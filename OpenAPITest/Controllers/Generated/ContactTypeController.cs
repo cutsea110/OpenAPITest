@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]ContactTypeCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.ContactType.Count() :
 					db.ContactType.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -52,7 +53,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<ContactType> Search([FromQuery]ContactTypeCondition c)
+		[ProducesResponseType(typeof(IEnumerable<ContactType>), 200)]
+		public IActionResult Search([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -62,7 +64,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.ContactType;
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -70,9 +72,12 @@ namespace OpenAPITest.Controllers
 		/// 連絡先種別の取得
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{contactTypeId}")]
-		public ContactType Get(int contactTypeId)
+		[ProducesResponseType(typeof(ContactType), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get(int contactTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -82,7 +87,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.ContactType;
 				var o = q.Find(contactTypeId);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -92,7 +97,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]ContactType o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -100,8 +106,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<ContactType>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<ContactType>(o);
+                return CreatedAtAction(nameof(Get), new { contactTypeId = o.contact_type_id }, o);
 			}
 		}
 
@@ -111,7 +117,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]ContactType o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -120,7 +127,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<ContactType>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -130,7 +137,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<ContactType> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -139,7 +147,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<ContactType>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -149,7 +157,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<ContactType> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -158,7 +167,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<ContactType>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -169,7 +178,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{contactTypeId}")]
-		public int Modify(int contactTypeId, [FromBody]ContactType o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(int contactTypeId, [FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -178,7 +188,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<ContactType>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -188,7 +198,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{contactTypeId}")]
-		public int Remove(int contactTypeId)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(int contactTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -200,7 +211,7 @@ namespace OpenAPITest.Controllers
 					.Where(_ => _.contact_type_id == contactTypeId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -210,7 +221,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]ContactTypeCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -222,7 +234,7 @@ namespace OpenAPITest.Controllers
 					.Where(c.CreatePredicate())
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -232,7 +244,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove/{contactTypeId}")]
-		public int PhysicallyRemove(int contactTypeId)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove(int contactTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -243,7 +256,7 @@ namespace OpenAPITest.Controllers
 				var count = db.ContactType
 					.Where(_ => _.contact_type_id == contactTypeId)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -253,7 +266,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove")]
-		public int PhysicallyRemove([FromQuery]ContactTypeCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -264,7 +278,7 @@ namespace OpenAPITest.Controllers
 				var count = db.ContactType
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 	}

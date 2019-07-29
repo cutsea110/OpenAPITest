@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]StaffCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]StaffCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.Staff.Count() :
 					db.Staff.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -56,7 +57,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<Staff> Search([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]StaffCondition c)
+		[ProducesResponseType(typeof(IEnumerable<Staff>), 200)]
+		public IActionResult Search([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]StaffCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -78,7 +80,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -90,9 +92,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="staffNo">職員番号(staff_no)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{staffNo}")]
-		public Staff Get([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, string staffNo)
+		[ProducesResponseType(typeof(Staff), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, string staffNo)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -114,7 +119,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var o = q.Find(staffNo);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -124,7 +129,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]Staff o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]Staff o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -132,8 +138,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<Staff>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<Staff>(o);
+                return CreatedAtAction(nameof(Get), new { staffNo = o.staff_no }, o);
 			}
 		}
 
@@ -143,7 +149,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]Staff o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]Staff o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -152,7 +159,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<Staff>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -162,7 +169,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<Staff> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<Staff> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -171,7 +179,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<Staff>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -181,7 +189,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<Staff> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<Staff> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -190,7 +199,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<Staff>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -201,7 +210,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{staffNo}")]
-		public int Modify(string staffNo, [FromBody]Staff o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(string staffNo, [FromBody]Staff o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -210,7 +220,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<Staff>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -220,7 +230,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="staffNo">職員番号(staff_no)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{staffNo}")]
-		public int Remove(string staffNo)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(string staffNo)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -232,7 +243,7 @@ namespace OpenAPITest.Controllers
 					.Where(_ => _.staff_no == staffNo)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -242,7 +253,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]StaffCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]StaffCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -254,7 +266,7 @@ namespace OpenAPITest.Controllers
 					.Where(c.CreatePredicate())
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -264,7 +276,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="staffNo">職員番号(staff_no)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove/{staffNo}")]
-		public int PhysicallyRemove(string staffNo)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove(string staffNo)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -275,7 +288,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Staff
 					.Where(_ => _.staff_no == staffNo)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -285,7 +298,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove")]
-		public int PhysicallyRemove([FromQuery]StaffCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove([FromQuery]StaffCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -296,7 +310,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Staff
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 	}

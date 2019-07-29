@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]AddressCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]AddressCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.Address.Count() :
 					db.Address.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -54,7 +55,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<Address> Search([FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, [FromQuery]AddressCondition c)
+		[ProducesResponseType(typeof(IEnumerable<Address>), 200)]
+		public IActionResult Search([FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, [FromQuery]AddressCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -72,7 +74,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -84,9 +86,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="userType">利用者種別(user_type)</param>
 		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
 		/// <param name="seq">連番(seq)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
-		public Address Get([FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, int userType, string genericUserNo, int seq)
+		[ProducesResponseType(typeof(Address), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get([FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, int userType, string genericUserNo, int seq)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -104,7 +109,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var o = q.Find(userType, genericUserNo, seq);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -114,7 +119,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]Address o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]Address o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -122,8 +128,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<Address>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<Address>(o);
+                return CreatedAtAction(nameof(Get), new { userType = o.user_type, genericUserNo = o.generic_user_no, seq = o.seq }, o);
 			}
 		}
 
@@ -133,7 +139,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]Address o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]Address o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -142,7 +149,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<Address>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -152,7 +159,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<Address> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<Address> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -161,7 +169,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<Address>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -171,7 +179,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<Address> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<Address> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -180,7 +189,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<Address>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -193,7 +202,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
-		public int Modify(int userType, string genericUserNo, int seq, [FromBody]Address o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(int userType, string genericUserNo, int seq, [FromBody]Address o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -202,7 +212,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<Address>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -214,7 +224,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="seq">連番(seq)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
-		public int Remove(int userType, string genericUserNo, int seq)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(int userType, string genericUserNo, int seq)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -225,7 +236,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Address
 					.Where(_ => _.user_type == userType && _.generic_user_no == genericUserNo && _.seq == seq)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -235,7 +246,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]AddressCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]AddressCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -246,7 +258,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Address
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 

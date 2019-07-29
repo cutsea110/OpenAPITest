@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]ErrorLogCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]ErrorLogCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.ErrorLog.Count() :
 					db.ErrorLog.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -52,7 +53,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<ErrorLog> Search([FromQuery]ErrorLogCondition c)
+		[ProducesResponseType(typeof(IEnumerable<ErrorLog>), 200)]
+		public IActionResult Search([FromQuery]ErrorLogCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -62,7 +64,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.ErrorLog;
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -70,9 +72,12 @@ namespace OpenAPITest.Controllers
 		/// エラーログの取得
 		/// </summary>
 		/// <param name="uid">ユニークID(uid)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{uid}")]
-		public ErrorLog Get(int uid)
+		[ProducesResponseType(typeof(ErrorLog), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get(int uid)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -82,7 +87,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.ErrorLog;
 				var o = q.Find(uid);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -92,7 +97,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]ErrorLog o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]ErrorLog o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -100,8 +106,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<ErrorLog>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<ErrorLog>(o);
+                return CreatedAtAction(nameof(Get), new { uid = o.uid }, o);
 			}
 		}
 
@@ -111,7 +117,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]ErrorLog o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]ErrorLog o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -120,7 +127,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<ErrorLog>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -130,7 +137,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<ErrorLog> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<ErrorLog> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -139,7 +147,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<ErrorLog>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -149,7 +157,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<ErrorLog> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<ErrorLog> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -158,7 +167,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<ErrorLog>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -169,7 +178,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{uid}")]
-		public int Modify(int uid, [FromBody]ErrorLog o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(int uid, [FromBody]ErrorLog o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -178,7 +188,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<ErrorLog>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -188,7 +198,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{uid}")]
-		public int Remove(int uid)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(int uid)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -200,7 +211,7 @@ namespace OpenAPITest.Controllers
 					.Where(_ => _.uid == uid)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -210,7 +221,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]ErrorLogCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]ErrorLogCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -222,7 +234,7 @@ namespace OpenAPITest.Controllers
 					.Where(c.CreatePredicate())
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -232,7 +244,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove/{uid}")]
-		public int PhysicallyRemove(int uid)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove(int uid)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -243,7 +256,7 @@ namespace OpenAPITest.Controllers
 				var count = db.ErrorLog
 					.Where(_ => _.uid == uid)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -253,7 +266,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove")]
-		public int PhysicallyRemove([FromQuery]ErrorLogCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove([FromQuery]ErrorLogCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -264,7 +278,7 @@ namespace OpenAPITest.Controllers
 				var count = db.ErrorLog
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 	}

@@ -29,6 +29,8 @@ namespace peppa.Domain
 		#region properties
 		// [DataMember]
 		// public int? uid_eq { get; set; }
+        [DataMember]
+        public RolePermissionCondition rpc { get; set; }
 		#endregion
 
 		/// <summary>
@@ -42,6 +44,10 @@ namespace peppa.Domain
 			#region extra
 			// if (uid_eq != null)
 			// 	 predicate = predicate.And(_ => _.uid == uid_eq);
+            if (rpc != null)
+            {
+                predicate = predicate.And(_ => _.RolePermissionList.AsQueryable().Any(rpc.CreatePredicate()));
+            }
 			#endregion
 
 			return predicate;

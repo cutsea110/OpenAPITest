@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]TestCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]TestCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.Test.Count() :
 					db.Test.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -52,7 +53,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<Test> Search([FromQuery]TestCondition c)
+		[ProducesResponseType(typeof(IEnumerable<Test>), 200)]
+		public IActionResult Search([FromQuery]TestCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -62,7 +64,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.Test;
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -70,9 +72,12 @@ namespace OpenAPITest.Controllers
 		/// テストの取得
 		/// </summary>
 		/// <param name="uid">ユニークID(uid)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{uid}")]
-		public Test Get(int uid)
+		[ProducesResponseType(typeof(Test), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get(int uid)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -82,7 +87,7 @@ namespace OpenAPITest.Controllers
 			{
 				var q = db.Test;
 				var o = q.Find(uid);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -92,7 +97,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]Test o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]Test o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -100,8 +106,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<Test>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<Test>(o);
+                return CreatedAtAction(nameof(Get), new { uid = o.uid }, o);
 			}
 		}
 
@@ -111,7 +117,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]Test o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]Test o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -120,7 +127,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<Test>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -130,7 +137,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<Test> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<Test> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -139,7 +147,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<Test>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -149,7 +157,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<Test> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<Test> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -158,7 +167,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<Test>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -169,7 +178,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{uid}")]
-		public int Modify(int uid, [FromBody]Test o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(int uid, [FromBody]Test o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -178,7 +188,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<Test>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -188,7 +198,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{uid}")]
-		public int Remove(int uid)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(int uid)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -199,7 +210,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Test
 					.Where(_ => _.uid == uid)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -209,7 +220,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]TestCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]TestCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -220,7 +232,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Test
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 

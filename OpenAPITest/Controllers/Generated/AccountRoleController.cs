@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]AccountRoleCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]AccountRoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.AccountRole.Count() :
 					db.AccountRole.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -53,7 +54,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<AccountRole> Search([FromQuery]bool with_Role, [FromQuery]AccountRoleCondition c)
+		[ProducesResponseType(typeof(IEnumerable<AccountRole>), 200)]
+		public IActionResult Search([FromQuery]bool with_Role, [FromQuery]AccountRoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -69,7 +71,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -79,9 +81,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Role">RoleをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="roleId">ロールID(role_id)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{accountId}/{roleId}")]
-		public AccountRole Get([FromQuery]bool with_Role, int accountId, string roleId)
+		[ProducesResponseType(typeof(AccountRole), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get([FromQuery]bool with_Role, int accountId, string roleId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -97,7 +102,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var o = q.Find(accountId, roleId);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -107,7 +112,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]AccountRole o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]AccountRole o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -115,8 +121,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<AccountRole>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<AccountRole>(o);
+                return CreatedAtAction(nameof(Get), new { accountId = o.account_id, roleId = o.role_id }, o);
 			}
 		}
 
@@ -126,7 +132,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]AccountRole o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]AccountRole o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -135,7 +142,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<AccountRole>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -145,7 +152,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<AccountRole> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<AccountRole> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -154,7 +162,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<AccountRole>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -164,7 +172,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<AccountRole> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<AccountRole> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -173,7 +182,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<AccountRole>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -185,7 +194,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{accountId}/{roleId}")]
-		public int Modify(int accountId, string roleId, [FromBody]AccountRole o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(int accountId, string roleId, [FromBody]AccountRole o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -194,7 +204,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<AccountRole>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -205,7 +215,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{accountId}/{roleId}")]
-		public int Remove(int accountId, string roleId)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(int accountId, string roleId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -216,7 +227,7 @@ namespace OpenAPITest.Controllers
 				var count = db.AccountRole
 					.Where(_ => _.account_id == accountId && _.role_id == roleId)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -226,7 +237,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]AccountRoleCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]AccountRoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -237,7 +249,7 @@ namespace OpenAPITest.Controllers
 				var count = db.AccountRole
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 

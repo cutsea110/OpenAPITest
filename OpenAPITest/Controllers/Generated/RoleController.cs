@@ -31,7 +31,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]RoleCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Count([FromQuery]RoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -42,7 +43,7 @@ namespace OpenAPITest.Controllers
 				var count =
 					c == null ? db.Role.Count() :
 					db.Role.Count(predicate: c.CreatePredicate());
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -53,7 +54,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<Role> Search([FromQuery]bool with_RolePermissionList, [FromQuery]RoleCondition c)
+		[ProducesResponseType(typeof(IEnumerable<Role>), 200)]
+		public IActionResult Search([FromQuery]bool with_RolePermissionList, [FromQuery]RoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -69,7 +71,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return list;
+				return Ok(list);
 			}
 		}
 
@@ -78,9 +80,12 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="with_RolePermissionList">RolePermissionListをLoadWithするか</param>
 		/// <param name="roleId">ロールID(role_id)</param>
-		/// <returns></returns>
+		/// <returns code="200">Found the Object</returns>
+		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{roleId}")]
-		public Role Get([FromQuery]bool with_RolePermissionList, string roleId)
+		[ProducesResponseType(typeof(Role), 200)]
+		[ProducesResponseType(404)]
+		public IActionResult Get([FromQuery]bool with_RolePermissionList, string roleId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -96,7 +101,7 @@ namespace OpenAPITest.Controllers
 				#endregion
 
 				var o = q.Find(roleId);
-				return o;
+				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
@@ -106,7 +111,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]Role o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Create([FromBody]Role o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -114,8 +120,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<Role>(o);
-				return uid;
+				o.uid = db.InsertWithInt32Identity<Role>(o);
+                return CreatedAtAction(nameof(Get), new { roleId = o.role_id }, o);
 			}
 		}
 
@@ -125,7 +131,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]Role o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Upsert([FromBody]Role o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -134,7 +141,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				int count = db.InsertOrReplace<Role>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -144,7 +151,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<Role> os)
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		public IActionResult MassiveCreate([FromBody]IEnumerable<Role> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -153,7 +161,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var ret = db.BulkCopy<Role>(os);
-				return ret;
+				return Ok(ret);
 			}
 		}
 
@@ -163,7 +171,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<Role> os)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Merge([FromBody]IEnumerable<Role> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -172,7 +181,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Merge<Role>(os);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -183,7 +192,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
 		[HttpPut, Route("modify/{roleId}")]
-		public int Modify(string roleId, [FromBody]Role o)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Modify(string roleId, [FromBody]Role o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -192,7 +202,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count = db.Update<Role>(o);
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -202,7 +212,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove/{roleId}")]
-		public int Remove(string roleId)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove(string roleId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -214,7 +225,7 @@ namespace OpenAPITest.Controllers
 					.Where(_ => _.role_id == roleId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -224,7 +235,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]RoleCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult Remove([FromQuery]RoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -236,7 +248,7 @@ namespace OpenAPITest.Controllers
 					.Where(c.CreatePredicate())
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -246,7 +258,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove/{roleId}")]
-		public int PhysicallyRemove(string roleId)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove(string roleId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -257,7 +270,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Role
 					.Where(_ => _.role_id == roleId)
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 
@@ -267,7 +280,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("physically-remove")]
-		public int PhysicallyRemove([FromQuery]RoleCondition c)
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove([FromQuery]RoleCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -278,7 +292,7 @@ namespace OpenAPITest.Controllers
 				var count = db.Role
 					.Where(c.CreatePredicate())
 					.Delete();
-				return count;
+				return Ok(count);
 			}
 		}
 	}

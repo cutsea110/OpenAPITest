@@ -82,19 +82,12 @@ namespace OpenAPITest
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
             {
-                option.IncludeXmlComments(GetXmlCommentsPath());
+                option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
         }
 
-        private string GetXmlCommentsPath()
-        {
-            var baseDirectory = System.AppContext.BaseDirectory;
-            var commentsFileName = string.Format("{0}.XML", Assembly.GetExecutingAssembly().GetName().Name);
-            var commentsFilePath = Path.Combine(baseDirectory, commentsFileName);
-
-            return commentsFilePath;
-        }
+        private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -116,9 +109,9 @@ namespace OpenAPITest
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(opions =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
+                opions.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
             });
         }
     }
