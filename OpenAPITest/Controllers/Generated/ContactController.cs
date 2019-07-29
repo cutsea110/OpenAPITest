@@ -119,7 +119,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
+		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Contact o)
 		{
 #if DEBUG

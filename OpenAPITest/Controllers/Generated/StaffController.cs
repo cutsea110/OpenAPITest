@@ -123,12 +123,12 @@ namespace OpenAPITest.Controllers
 			}
 		}
 
-        /// <summary>
-        /// 職員の作成
-        /// </summary>
-        /// <param name="o"></param>
-        /// <returns>uid</returns>
-        [HttpPost("create")]
+		/// <summary>
+		/// 職員の作成
+		/// </summary>
+		/// <param name="o"></param>
+		/// <returns>uid</returns>
+		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Staff o)
 		{
