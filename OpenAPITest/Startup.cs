@@ -32,9 +32,19 @@ namespace OpenAPITest
 
     public class DbSettings : ILinqToDBSettings
     {
+        private IConfiguration configuration;
+        private IConfigurationSection section;
+
+        public DbSettings(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            this.section = configuration.GetSection("ConnectionStrings");
+        }
+
         public IEnumerable<IDataProviderSettings> DataProviders => Enumerable.Empty<IDataProviderSettings>();
 
         public string DefaultConfiguration => "SqlServer";
+
         public string DefaultDataProvider => "SqlServer";
 
         public IEnumerable<IConnectionStringSettings> ConnectionStrings
@@ -44,9 +54,9 @@ namespace OpenAPITest
                 yield return
                     new ConnectionStringSettings
                     {
-                        Name = "SqlServer",
-                        ProviderName = "SqlServer",
-                        ConnectionString = @"Data Source=localhost;Initial Catalog=peppa;Integrated Security=True;Connection Timeout=600;", 
+                        Name = section.GetValue<string>("Name"),
+                        ProviderName = section.GetValue<string>("ProviderName"),
+                        ConnectionString = section.GetValue<string>("ConnectionString"),
                     };
             }
         }
@@ -65,7 +75,7 @@ namespace OpenAPITest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            DataConnection.DefaultSettings = new DbSettings();
+            DataConnection.DefaultSettings = new DbSettings(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
