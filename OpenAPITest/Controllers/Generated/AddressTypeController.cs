@@ -29,8 +29,8 @@ namespace OpenAPITest.Controllers
         /// </summary>
         /// <param name="c"></param>
         /// <returns>ヒットした件数</returns>
-        [HttpGet, Route("count")]
-		public int Count([FromQuery]AddressTypeCondition c)
+        [HttpGet("count")]
+		public ActionResult<int> Count([FromQuery]AddressTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -44,14 +44,13 @@ namespace OpenAPITest.Controllers
 				return count;
 			}
 		}
-
-		/// <summary>
-		/// 住所種別の検索
-		/// </summary>
-		/// <param name="c"></param>
-		/// <returns></returns>
-		[HttpGet, Route("search")]
-		public IEnumerable<AddressType> Search([FromQuery]AddressTypeCondition c)
+        /// <summary>
+        /// 住所種別の検索
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        [HttpGet("search")]
+		public ActionResult<IEnumerable<AddressType>> Search([FromQuery]AddressTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -70,8 +69,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
 		/// <returns></returns>
-		[HttpGet("{addressTypeId}"), Route("get")]
-		public AddressType Get(int addressTypeId)
+		[HttpGet("get/{addressTypeId}")]
+		public ActionResult<AddressType> Get(int addressTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -90,8 +89,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
-		[HttpPost, Route("create")]
-		public int Create([FromBody]AddressType o)
+		[HttpPost("create")]
+		public ActionResult<int> Create([FromBody]AddressType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -109,8 +108,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[HttpPost, Route("upsert")]
-		public int Upsert([FromBody]AddressType o)
+		[HttpPost("upsert")]
+		public ActionResult<int> Upsert([FromBody]AddressType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -128,8 +127,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[HttpPost, Route("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<AddressType> os)
+		[HttpPost("massive-new")]
+		public ActionResult<BulkCopyRowsCopied> MassiveCreate([FromBody]IEnumerable<AddressType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -147,8 +146,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[HttpPost, Route("merge")]
-		public int Merge([FromBody]IEnumerable<AddressType> os)
+		[HttpPost("merge")]
+		public ActionResult<int> Merge([FromBody]IEnumerable<AddressType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -167,8 +166,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[HttpPut("{addressTypeId}"), Route("modify")]
-		public int Modify(int addressTypeId, [FromBody]AddressType o)
+		[HttpPut("modify/{addressTypeId}")]
+		public ActionResult<int> Modify(int addressTypeId, [FromBody]AddressType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -186,8 +185,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
 		/// <returns>件数</returns>
-		[HttpDelete("{addressTypeId}"), Route("remove")]
-		public int Remove(int addressTypeId)
+		[HttpDelete("remove/{addressTypeId}")]
+		public ActionResult<int> Remove(int addressTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -208,7 +207,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[HttpDelete, Route("remove")]
+		[HttpDelete("remove")]
 		public int Remove([FromQuery]AddressTypeCondition c)
 		{
 #if DEBUG
@@ -230,7 +229,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
 		/// <returns>件数</returns>
-		[HttpDelete("{addressTypeId}"), Route("physically-remove")]
+		[HttpDelete("physically-remove/{addressTypeId}")]
 		public int PhysicallyRemove(int addressTypeId)
 		{
 #if DEBUG
@@ -251,8 +250,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[HttpDelete, Route("physically-remove")]
-		public int PhysicallyRemove([FromQuery]AddressTypeCondition c)
+		[HttpDelete("physically-remove")]
+		public ActionResult<int> PhysicallyRemove([FromQuery]AddressTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -266,5 +265,5 @@ namespace OpenAPITest.Controllers
 				return count;
 			}
 		}
-	}
+    }
 }
