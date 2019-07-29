@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using peppa.Domain;
 
-namespace MockWebAPI.Controllers
+namespace OpenAPITest.Controllers
 {
 	/// <summary>
 	/// 人名のWebAPI

@@ -5701,7 +5701,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// ロールID
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  string  role_id
 		{
 			get { return _role_id; }
@@ -5741,7 +5741,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 名称
 		/// </summary>
-		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull]
+		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  name
 		{
 			get { return _name; }
@@ -6577,7 +6577,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// ロールID
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  string  role_id
 		{
 			get { return _role_id; }
@@ -6617,7 +6617,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 権限ID
 		/// </summary>
-		[Column(DbType="varchar(40)", DataType=DataType.VarChar, Length=40), DataMember, NotNull, PrimaryKey(Order = 2)]
+		[Column(DbType="varchar(40)", DataType=DataType.VarChar, Length=40), DataMember, NotNull, PrimaryKey(Order = 2), System.ComponentModel.DataAnnotations.Required]
 		public  string  permission_id
 		{
 			get { return _permission_id; }
@@ -7424,7 +7424,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// アカウントID
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  account_id
 		{
 			get { return _account_id; }
@@ -7704,7 +7704,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 認証方式
 		/// </summary>
-		[Column(DbType="varchar(10)", DataType=DataType.VarChar, Length=10), DataMember, NotNull]
+		[Column(DbType="varchar(10)", DataType=DataType.VarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  auth_method_type
 		{
 			get { return _auth_method_type; }
@@ -7744,7 +7744,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 有効フラグ
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  is_valid
 		{
 			get { return _is_valid; }
@@ -8753,7 +8753,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// アカウントID
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  account_id
 		{
 			get { return _account_id; }
@@ -8793,7 +8793,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// ロールID
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2), System.ComponentModel.DataAnnotations.Required]
 		public  string  role_id
 		{
 			get { return _role_id; }
@@ -9436,7 +9436,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  user_type
 		{
 			get { return _user_type; }
@@ -9476,7 +9476,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 職員番号
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  string  staff_no
 		{
 			get { return _staff_no; }
@@ -10490,7 +10490,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  user_type
 		{
 			get { return _user_type; }
@@ -10530,7 +10530,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者番号
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2), System.ComponentModel.DataAnnotations.Required]
 		public  string  generic_user_no
 		{
 			get { return _generic_user_no; }
@@ -10570,7 +10570,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連番
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3), System.ComponentModel.DataAnnotations.Required]
 		public  int  seq
 		{
 			get { return _seq; }
@@ -10610,7 +10610,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 人名種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  person_name_type_id
 		{
 			get { return _person_name_type_id; }
@@ -10650,7 +10650,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 氏名
 		/// </summary>
-		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull]
+		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  name
 		{
 			get { return _name; }
@@ -11642,7 +11642,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 人名種別ID
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  person_name_type_id
 		{
 			get { return _person_name_type_id; }
@@ -11682,7 +11682,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 名称
 		/// </summary>
-		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull]
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  name
 		{
 			get { return _name; }
@@ -11762,7 +11762,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 表示順
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  display_order
 		{
 			get { return _display_order; }
@@ -12413,7 +12413,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  user_type
 		{
 			get { return _user_type; }
@@ -12453,7 +12453,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者番号
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2), System.ComponentModel.DataAnnotations.Required]
 		public  string  generic_user_no
 		{
 			get { return _generic_user_no; }
@@ -12493,7 +12493,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連番
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3), System.ComponentModel.DataAnnotations.Required]
 		public  int  seq
 		{
 			get { return _seq; }
@@ -12533,7 +12533,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 住所種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  address_type_id
 		{
 			get { return _address_type_id; }
@@ -12573,7 +12573,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 郵便番号
 		/// </summary>
-		[Column(DbType="varchar(7)", DataType=DataType.VarChar, Length=7), DataMember, NotNull]
+		[Column(DbType="varchar(7)", DataType=DataType.VarChar, Length=7), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  postal_code
 		{
 			get { return _postal_code; }
@@ -12613,7 +12613,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 都道府県
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  prefecture_code
 		{
 			get { return _prefecture_code; }
@@ -12653,7 +12653,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 住所1
 		/// </summary>
-		[Column(DbType="nvarchar(32)", DataType=DataType.NVarChar, Length=32), DataMember, NotNull]
+		[Column(DbType="nvarchar(32)", DataType=DataType.NVarChar, Length=32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  address1
 		{
 			get { return _address1; }
@@ -13828,7 +13828,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 住所種別ID
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  address_type_id
 		{
 			get { return _address_type_id; }
@@ -13868,7 +13868,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 名称
 		/// </summary>
-		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull]
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  name
 		{
 			get { return _name; }
@@ -13948,7 +13948,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 表示順
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  display_order
 		{
 			get { return _display_order; }
@@ -14599,7 +14599,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  user_type
 		{
 			get { return _user_type; }
@@ -14639,7 +14639,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 利用者番号
 		/// </summary>
-		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2)]
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 2), System.ComponentModel.DataAnnotations.Required]
 		public  string  generic_user_no
 		{
 			get { return _generic_user_no; }
@@ -14679,7 +14679,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連番
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 3), System.ComponentModel.DataAnnotations.Required]
 		public  int  seq
 		{
 			get { return _seq; }
@@ -14719,7 +14719,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連絡先種別
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  contact_type_id
 		{
 			get { return _contact_type_id; }
@@ -14759,7 +14759,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連絡先
 		/// </summary>
-		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull]
+		[Column(DbType="nvarchar(20)", DataType=DataType.NVarChar, Length=20), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  contact
 		{
 			get { return _contact; }
@@ -15562,7 +15562,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 連絡先種別ID
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
 		public  int  contact_type_id
 		{
 			get { return _contact_type_id; }
@@ -15602,7 +15602,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 名称
 		/// </summary>
-		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull]
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  string  name
 		{
 			get { return _name; }
@@ -15682,7 +15682,7 @@ namespace peppa.Domain
 		/// <summary>
 		/// 表示順
 		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
 		public  int  display_order
 		{
 			get { return _display_order; }

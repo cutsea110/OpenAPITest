@@ -73,7 +73,7 @@ namespace OpenAPITest
             services.AddSwaggerGen(option =>
             {
                 option.IncludeXmlComments(GetXmlCommentsPath());
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
         }
 
@@ -108,7 +108,7 @@ namespace OpenAPITest
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
             });
         }
     }
