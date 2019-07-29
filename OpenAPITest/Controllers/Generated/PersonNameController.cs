@@ -18,20 +18,20 @@ using peppa.Domain;
 namespace MockWebAPI.Controllers
 {
 	/// <summary>
-	/// 住所種別のWebAPI
+	/// 人名のWebAPI
 	/// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
-	public partial class AddressTypeController : ControllerBase
+	public partial class PersonNameController : ControllerBase
 	{
 
 		/// <summary>
-		/// 住所種別の件数
+		/// 人名の件数
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
-		public int Count([FromQuery]AddressTypeCondition c)
+		public int Count([FromQuery]PersonNameCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -40,19 +40,21 @@ namespace MockWebAPI.Controllers
 			using (var db = new peppaDB())
 			{
 				var count =
-					c == null ? db.AddressType.Count() :
-					db.AddressType.Count(predicate: c.CreatePredicate());
+					c == null ? db.PersonName.Count() :
+					db.PersonName.Count(predicate: c.CreatePredicate());
 				return count;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の検索
+		/// 人名の検索
 		/// </summary>
+		/// <param name="with_PersonNameType">PersonNameTypeをLoadWithするか</param>
+		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="c"></param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		public IEnumerable<AddressType> Search([FromQuery]AddressTypeCondition c)
+		public IEnumerable<PersonName> Search([FromQuery]bool with_PersonNameType, [FromQuery]bool with_Staff, [FromQuery]PersonNameCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -60,19 +62,31 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.AddressType;
+				var q = db.PersonName;
+
+				#region LoadWith
+				if (with_PersonNameType)
+					q = q.LoadWith(_ => _.PersonNameType);
+				if (with_Staff)
+					q = q.LoadWith(_ => _.Staff);
+				#endregion
+
 				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
 				return list;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の取得
+		/// 人名の取得
 		/// </summary>
-		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
+		/// <param name="with_PersonNameType">PersonNameTypeをLoadWithするか</param>
+		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="userType">利用者種別(user_type)</param>
+		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
+		/// <param name="seq">連番(seq)</param>
 		/// <returns></returns>
-		[HttpGet("get/{addressTypeId}")]
-		public AddressType Get(int addressTypeId)
+		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
+		public PersonName Get([FromQuery]bool with_PersonNameType, [FromQuery]bool with_Staff, int userType, string genericUserNo, int seq)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -80,19 +94,27 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.AddressType;
-				var o = q.Find(addressTypeId);
+				var q = db.PersonName;
+
+				#region LoadWith
+				if (with_PersonNameType)
+					q = q.LoadWith(_ => _.PersonNameType);
+				if (with_Staff)
+					q = q.LoadWith(_ => _.Staff);
+				#endregion
+
+				var o = q.Find(userType, genericUserNo, seq);
 				return o;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の作成
+		/// 人名の作成
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>uid</returns>
 		[HttpPost("create")]
-		public int Create([FromBody]AddressType o)
+		public int Create([FromBody]PersonName o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -100,18 +122,18 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int uid = db.InsertWithInt32Identity<AddressType>(o);
+				int uid = db.InsertWithInt32Identity<PersonName>(o);
 				return uid;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の更新(必要時作成)
+		/// 人名の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
-		public int Upsert([FromBody]AddressType o)
+		public int Upsert([FromBody]PersonName o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -119,18 +141,18 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int count = db.InsertOrReplace<AddressType>(o);
+				int count = db.InsertOrReplace<PersonName>(o);
 				return count;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の一括作成
+		/// 人名の一括作成
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
-		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<AddressType> os)
+		public BulkCopyRowsCopied MassiveCreate([FromBody]IEnumerable<PersonName> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -138,18 +160,18 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var ret = db.BulkCopy<AddressType>(os);
+				var ret = db.BulkCopy<PersonName>(os);
 				return ret;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別のマージ
+		/// 人名のマージ
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
-		public int Merge([FromBody]IEnumerable<AddressType> os)
+		public int Merge([FromBody]IEnumerable<PersonName> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -157,19 +179,21 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Merge<AddressType>(os);
+				var count = db.Merge<PersonName>(os);
 				return count;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の更新
+		/// 人名の更新
 		/// </summary>
-		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
+		/// <param name="userType">利用者種別(user_type)</param>
+		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
+		/// <param name="seq">連番(seq)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[HttpPut, Route("modify/{addressTypeId}")]
-		public int Modify(int addressTypeId, [FromBody]AddressType o)
+		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
+		public int Modify(int userType, string genericUserNo, int seq, [FromBody]PersonName o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -177,18 +201,20 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Update<AddressType>(o);
+				var count = db.Update<PersonName>(o);
 				return count;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の削除(論理)
+		/// 人名の削除(物理)
 		/// </summary>
-		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
+		/// <param name="userType">利用者種別(user_type)</param>
+		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
+		/// <param name="seq">連番(seq)</param>
 		/// <returns>件数</returns>
-		[HttpDelete("remove/{addressTypeId}")]
-		public int Remove(int addressTypeId)
+		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
+		public int Remove(int userType, string genericUserNo, int seq)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -196,21 +222,20 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.AddressType
-					.Where(_ => _.address_type_id == addressTypeId)
-					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
-					.Update();
+				var count = db.PersonName
+					.Where(_ => _.user_type == userType && _.generic_user_no == genericUserNo && _.seq == seq)
+					.Delete();
 				return count;
 			}
 		}
 
 		/// <summary>
-		/// 住所種別の削除(論理)
+		/// 人名の削除(物理)
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
-		public int Remove([FromQuery]AddressTypeCondition c)
+		public int Remove([FromQuery]PersonNameCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -218,54 +243,12 @@ namespace MockWebAPI.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.AddressType
-					.Where(c.CreatePredicate())
-					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
-					.Update();
-				return count;
-			}
-		}
-
-		/// <summary>
-		/// 住所種別の物理削除
-		/// </summary>
-		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
-		/// <returns>件数</returns>
-		[HttpDelete("physically-remove/{addressTypeId}")]
-		public int PhysicallyRemove(int addressTypeId)
-		{
-#if DEBUG
-			DataConnection.TurnTraceSwitchOn();
-			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
-#endif
-			using (var db = new peppaDB())
-			{
-				var count = db.AddressType
-					.Where(_ => _.address_type_id == addressTypeId)
-					.Delete();
-				return count;
-			}
-		}
-
-		/// <summary>
-		/// 住所種別の物理削除
-		/// </summary>
-		/// <param name="c"></param>
-		/// <returns>件数</returns>
-		[HttpDelete("physically-remove")]
-		public int PhysicallyRemove([FromQuery]AddressTypeCondition c)
-		{
-#if DEBUG
-			DataConnection.TurnTraceSwitchOn();
-			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
-#endif
-			using (var db = new peppaDB())
-			{
-				var count = db.AddressType
+				var count = db.PersonName
 					.Where(c.CreatePredicate())
 					.Delete();
 				return count;
 			}
 		}
+
 	}
 }
