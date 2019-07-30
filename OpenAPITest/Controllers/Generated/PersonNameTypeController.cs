@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -51,10 +52,11 @@ namespace OpenAPITest.Controllers
 		/// 人名種別の検索
 		/// </summary>
 		/// <param name="c"></param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<PersonNameType>), 200)]
-		public IActionResult Search([FromQuery]PersonNameTypeCondition c)
+		public IActionResult Search([FromQuery]PersonNameTypeCondition c, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -63,8 +65,10 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var q = db.PersonNameType;
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -95,7 +99,7 @@ namespace OpenAPITest.Controllers
 		/// 人名種別の作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">PersonNameTypeオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]PersonNameType o)

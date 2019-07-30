@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -50,13 +51,14 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// アカウントの検索
 		/// </summary>
+		/// <param name="c"></param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
-		/// <param name="c"></param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), 200)]
-		public IActionResult Search([FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]AccountCondition c)
+		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -73,8 +75,10 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.AccountRoleList);
 				#endregion
 
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -89,7 +93,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Account), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get([FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, int accountId)
+		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -115,7 +119,7 @@ namespace OpenAPITest.Controllers
 		/// アカウントの作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">Accountオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Account o)

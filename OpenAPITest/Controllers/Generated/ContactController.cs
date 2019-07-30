@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -50,13 +51,14 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// 連絡先の検索
 		/// </summary>
+		/// <param name="c"></param>
 		/// <param name="with_ContactType">ContactTypeをLoadWithするか</param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
-		/// <param name="c"></param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Contact>), 200)]
-		public IActionResult Search([FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]ContactCondition c)
+		public IActionResult Search([FromQuery]ContactCondition c, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -73,8 +75,10 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.Staff);
 				#endregion
 
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -91,7 +95,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(Contact), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get([FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, int userType, string genericUserNo, int seq)
+		public IActionResult Get(int userType, string genericUserNo, int seq, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -117,7 +121,7 @@ namespace OpenAPITest.Controllers
 		/// 連絡先の作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">Contactオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Contact o)

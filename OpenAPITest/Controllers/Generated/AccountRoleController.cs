@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -50,12 +51,13 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// アカウントロールの検索
 		/// </summary>
-		/// <param name="with_Role">RoleをLoadWithするか</param>
 		/// <param name="c"></param>
+		/// <param name="with_Role">RoleをLoadWithするか</param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<AccountRole>), 200)]
-		public IActionResult Search([FromQuery]bool with_Role, [FromQuery]AccountRoleCondition c)
+		public IActionResult Search([FromQuery]AccountRoleCondition c, [FromQuery]bool with_Role, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -70,8 +72,10 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.Role);
 				#endregion
 
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -86,7 +90,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{accountId}/{roleId}")]
 		[ProducesResponseType(typeof(AccountRole), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get([FromQuery]bool with_Role, int accountId, string roleId)
+		public IActionResult Get(int accountId, string roleId, [FromQuery]bool with_Role)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -110,7 +114,7 @@ namespace OpenAPITest.Controllers
 		/// アカウントロールの作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">AccountRoleオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]AccountRole o)

@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -50,12 +51,13 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// ロールマスタの検索
 		/// </summary>
-		/// <param name="with_RolePermissionList">RolePermissionListをLoadWithするか</param>
 		/// <param name="c"></param>
+		/// <param name="with_RolePermissionList">RolePermissionListをLoadWithするか</param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Role>), 200)]
-		public IActionResult Search([FromQuery]bool with_RolePermissionList, [FromQuery]RoleCondition c)
+		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -70,8 +72,10 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.RolePermissionList);
 				#endregion
 
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -85,7 +89,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{roleId}")]
 		[ProducesResponseType(typeof(Role), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get([FromQuery]bool with_RolePermissionList, string roleId)
+		public IActionResult Get(string roleId, [FromQuery]bool with_RolePermissionList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -109,7 +113,7 @@ namespace OpenAPITest.Controllers
 		/// ロールマスタの作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">Roleオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Role o)

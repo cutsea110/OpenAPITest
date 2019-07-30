@@ -13,7 +13,8 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using peppa.util;
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
@@ -50,15 +51,16 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// 職員の検索
 		/// </summary>
+		/// <param name="c"></param>
 		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
 		/// <param name="with_NameList">NameListをLoadWithするか</param>
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
-		/// <param name="c"></param>
+		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), 200)]
-		public IActionResult Search([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]StaffCondition c)
+		public IActionResult Search([FromQuery]StaffCondition c, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -79,8 +81,10 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.ContactList);
 				#endregion
 
-				var list = (c == null ? q : q.Where(c.CreatePredicate())).ToList();
-				return Ok(list);
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 
@@ -97,7 +101,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{staffNo}")]
 		[ProducesResponseType(typeof(Staff), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get([FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, string staffNo)
+		public IActionResult Get(string staffNo, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -127,7 +131,7 @@ namespace OpenAPITest.Controllers
 		/// 職員の作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>uid</returns>
+		/// <returns code="201">Staffオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Staff o)

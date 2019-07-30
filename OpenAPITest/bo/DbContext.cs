@@ -20,7 +20,7 @@ using LinqToDB.Mapping;
 
 using peppa.util;
 
-namespace peppa.Domain
+namespace OpenAPITest.Domain
 {
 	/// <summary>
 	/// テーブル基本クラス

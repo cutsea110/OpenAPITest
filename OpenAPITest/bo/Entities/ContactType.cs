@@ -11,7 +11,7 @@ using LinqToDB.Mapping;
 
 using peppa.util;
 
-namespace peppa.Domain
+namespace OpenAPITest.Domain
 {
 	/// <summary>
 	/// 連絡先種別

@@ -8,7 +8,7 @@ using LinqToDB.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using peppa.Domain;
+using OpenAPITest.Domain;
 using peppa.util;
 
 namespace OpenAPITest.Controllers
@@ -46,12 +46,13 @@ namespace OpenAPITest.Controllers
         /// 職員の検索
         /// </summary>
         /// <param name="c"></param>
-        /// <param name="order">例) kana, name, staff_no Desc</param>
+        /// <param name="order">例) birth_date Desc, gender Asc, staff_no</param>
         /// <returns></returns>
         [HttpGet("search-full")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), 200)]
 		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order)
 		{
+
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
@@ -63,8 +64,10 @@ namespace OpenAPITest.Controllers
                     .LoadWith(_ => _.AddressList.First().AddressType)
                     .LoadWith(_ => _.ContactList.First().ContactType);
 
-                var list = (c == null ? q : q.Where(c.CreatePredicate()));
-                return Ok(order.Any() ? list.SortBy(order).ToList() : list.ToList());
+                var filtered = c == null ? q : q.Where(c.CreatePredicate());
+                var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+
+                return Ok(ordered.ToList());
 			}
 		}
 	}
