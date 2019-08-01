@@ -9,6 +9,9 @@ using System.Xml.XPath;
 using LinqToDB.Configuration;
 using LinqToDB.Data;
 using LinqToDB.DataProvider.SqlServer;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -85,6 +88,11 @@ namespace OpenAPITest
                 option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
+
+            // Authentication Bear token
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
         }
 
         private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
@@ -113,6 +121,11 @@ namespace OpenAPITest
             {
                 opions.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
             });
+
+            app.Run(context => context.ChallengeAsync(CookieAuthenticationDefaults.AuthenticationScheme));
+
+            // Authentication by Bear token
+            app.Run(context => context.ChallengeAsync(JwtBearerDefaults.AuthenticationScheme));
         }
     }
 }

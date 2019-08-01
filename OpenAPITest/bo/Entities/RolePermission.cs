@@ -31,7 +31,7 @@ namespace OpenAPITest.Domain
 		// public int? uid_eq { get; set; }
 		#endregion
 
-		/// <summary>
+        /// <summary>
 		/// 検索条件式の生成
 		/// </summary>
 		/// <returns></returns>

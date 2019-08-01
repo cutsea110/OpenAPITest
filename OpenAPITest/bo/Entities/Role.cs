@@ -27,8 +27,10 @@ namespace OpenAPITest.Domain
 	public partial class RoleCondition
 	{
 		#region properties
-		// [DataMember]
-		// public int? uid_eq { get; set; }
+        /// <summary>
+        /// ロール権限リストをLoadWithしていることが前提
+        /// </summary>
+        public RolePermissionCondition rpc { get; set; }
 		#endregion
 
 		/// <summary>
@@ -39,9 +41,9 @@ namespace OpenAPITest.Domain
 		{
 			var predicate = base.CreatePredicate();
 
-			#region extra
-			// if (uid_eq != null)
-			// 	 predicate = predicate.And(_ => _.uid == uid_eq);
+            #region extra
+            if (rpc != null)
+                predicate = predicate.And(_ => _.RolePermissionList.AsQueryable().Any(rpc.CreatePredicate()));
 			#endregion
 
 			return predicate;

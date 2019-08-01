@@ -4506,7 +4506,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col02_in { get; set; }
 		[DataMember] public IEnumerable<string> col02_ni { get; set; }
 		[DataMember] public (string low, string high)? col02_between { get; set; }
-		[DataMember] public string col02_like { get; set; }
+		[DataMember] public string col02_liker { get; set; }
+		[DataMember] public string col02_clikec { get; set; }
+		[DataMember] public string col02_llike { get; set; }
 		#endregion
 		#region col02_
 		[DataMember] public string col02__eq { get; set; }
@@ -4520,7 +4522,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col02__between { get; set; }
 		[DataMember] public bool col02__isnull { get; set; } =  false ;
 		[DataMember] public bool col02__isnotnull { get; set; } = false;
-		[DataMember] public string col02__like { get; set; }
+		[DataMember] public string col02__liker { get; set; }
+		[DataMember] public string col02__clikec { get; set; }
+		[DataMember] public string col02__llike { get; set; }
 		#endregion
 		#region col03
 		[DataMember] public string col03_eq { get; set; }
@@ -4532,7 +4536,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col03_in { get; set; }
 		[DataMember] public IEnumerable<string> col03_ni { get; set; }
 		[DataMember] public (string low, string high)? col03_between { get; set; }
-		[DataMember] public string col03_like { get; set; }
+		[DataMember] public string col03_liker { get; set; }
+		[DataMember] public string col03_clikec { get; set; }
+		[DataMember] public string col03_llike { get; set; }
 		#endregion
 		#region col03_
 		[DataMember] public string col03__eq { get; set; }
@@ -4546,7 +4552,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col03__between { get; set; }
 		[DataMember] public bool col03__isnull { get; set; } =  false ;
 		[DataMember] public bool col03__isnotnull { get; set; } = false;
-		[DataMember] public string col03__like { get; set; }
+		[DataMember] public string col03__liker { get; set; }
+		[DataMember] public string col03__clikec { get; set; }
+		[DataMember] public string col03__llike { get; set; }
 		#endregion
 		#region col04
 		[DataMember] public string col04_eq { get; set; }
@@ -4558,7 +4566,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col04_in { get; set; }
 		[DataMember] public IEnumerable<string> col04_ni { get; set; }
 		[DataMember] public (string low, string high)? col04_between { get; set; }
-		[DataMember] public string col04_like { get; set; }
+		[DataMember] public string col04_liker { get; set; }
+		[DataMember] public string col04_clikec { get; set; }
+		[DataMember] public string col04_llike { get; set; }
 		#endregion
 		#region col04_
 		[DataMember] public string col04__eq { get; set; }
@@ -4572,7 +4582,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col04__between { get; set; }
 		[DataMember] public bool col04__isnull { get; set; } =  false ;
 		[DataMember] public bool col04__isnotnull { get; set; } = false;
-		[DataMember] public string col04__like { get; set; }
+		[DataMember] public string col04__liker { get; set; }
+		[DataMember] public string col04__clikec { get; set; }
+		[DataMember] public string col04__llike { get; set; }
 		#endregion
 		#region col05
 		[DataMember] public char? col05_eq { get; set; }
@@ -4608,7 +4620,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col06_in { get; set; }
 		[DataMember] public IEnumerable<string> col06_ni { get; set; }
 		[DataMember] public (string low, string high)? col06_between { get; set; }
-		[DataMember] public string col06_like { get; set; }
+		[DataMember] public string col06_liker { get; set; }
+		[DataMember] public string col06_clikec { get; set; }
+		[DataMember] public string col06_llike { get; set; }
 		#endregion
 		#region col06_
 		[DataMember] public string col06__eq { get; set; }
@@ -4622,7 +4636,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col06__between { get; set; }
 		[DataMember] public bool col06__isnull { get; set; } =  false ;
 		[DataMember] public bool col06__isnotnull { get; set; } = false;
-		[DataMember] public string col06__like { get; set; }
+		[DataMember] public string col06__liker { get; set; }
+		[DataMember] public string col06__clikec { get; set; }
+		[DataMember] public string col06__llike { get; set; }
 		#endregion
 		#region col07
 		[DataMember] public string col07_eq { get; set; }
@@ -4634,7 +4650,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col07_in { get; set; }
 		[DataMember] public IEnumerable<string> col07_ni { get; set; }
 		[DataMember] public (string low, string high)? col07_between { get; set; }
-		[DataMember] public string col07_like { get; set; }
+		[DataMember] public string col07_liker { get; set; }
+		[DataMember] public string col07_clikec { get; set; }
+		[DataMember] public string col07_llike { get; set; }
 		#endregion
 		#region col07_
 		[DataMember] public string col07__eq { get; set; }
@@ -4648,7 +4666,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col07__between { get; set; }
 		[DataMember] public bool col07__isnull { get; set; } =  false ;
 		[DataMember] public bool col07__isnotnull { get; set; } = false;
-		[DataMember] public string col07__like { get; set; }
+		[DataMember] public string col07__liker { get; set; }
+		[DataMember] public string col07__clikec { get; set; }
+		[DataMember] public string col07__llike { get; set; }
 		#endregion
 		#region col08
 		[DataMember] public string col08_eq { get; set; }
@@ -4660,7 +4680,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col08_in { get; set; }
 		[DataMember] public IEnumerable<string> col08_ni { get; set; }
 		[DataMember] public (string low, string high)? col08_between { get; set; }
-		[DataMember] public string col08_like { get; set; }
+		[DataMember] public string col08_liker { get; set; }
+		[DataMember] public string col08_clikec { get; set; }
+		[DataMember] public string col08_llike { get; set; }
 		#endregion
 		#region col08_
 		[DataMember] public string col08__eq { get; set; }
@@ -4674,7 +4696,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col08__between { get; set; }
 		[DataMember] public bool col08__isnull { get; set; } =  false ;
 		[DataMember] public bool col08__isnotnull { get; set; } = false;
-		[DataMember] public string col08__like { get; set; }
+		[DataMember] public string col08__liker { get; set; }
+		[DataMember] public string col08__clikec { get; set; }
+		[DataMember] public string col08__llike { get; set; }
 		#endregion
 		#region col09
 		[DataMember] public byte[] col09_eq { get; set; }
@@ -5124,6 +5148,9 @@ namespace OpenAPITest.Domain
 			if (col02_ge != null) predicate = predicate.And(_ => col02_ge.CompareTo(_.col02) <= 0);
 			if (col02_in != null) predicate = predicate.And(_ => col02_in.Contains(_.col02));
 			if (col02_ni != null) predicate = predicate.And(_ => !col02_ni.Contains(_.col02));
+			if (col02_liker != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"{col02_liker}%"));
+			if (col02_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"%{col02_clikec}%"));
+			if (col02_llike != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"%{col02_llike}"));
 			#endregion
 			#region col02_
 			if (col02__eq != null) predicate = predicate.And(_ => _.col02_ == col02__eq);
@@ -5136,6 +5163,9 @@ namespace OpenAPITest.Domain
 			if (col02__ni != null) predicate = predicate.And(_ => !col02__ni.Contains(_.col02_));
 			if (col02__isnull) predicate = predicate.And(_ => _.col02_ == null);
 			if (col02__isnotnull) predicate = predicate.And(_ => _.col02_ != null);
+			if (col02__liker != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"{col02__liker}%"));
+			if (col02__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"%{col02__clikec}%"));
+			if (col02__llike != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"%{col02__llike}"));
 			#endregion
 			#region col03
 			if (col03_eq != null) predicate = predicate.And(_ => _.col03 == col03_eq);
@@ -5146,6 +5176,9 @@ namespace OpenAPITest.Domain
 			if (col03_ge != null) predicate = predicate.And(_ => col03_ge.CompareTo(_.col03) <= 0);
 			if (col03_in != null) predicate = predicate.And(_ => col03_in.Contains(_.col03));
 			if (col03_ni != null) predicate = predicate.And(_ => !col03_ni.Contains(_.col03));
+			if (col03_liker != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"{col03_liker}%"));
+			if (col03_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"%{col03_clikec}%"));
+			if (col03_llike != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"%{col03_llike}"));
 			#endregion
 			#region col03_
 			if (col03__eq != null) predicate = predicate.And(_ => _.col03_ == col03__eq);
@@ -5158,6 +5191,9 @@ namespace OpenAPITest.Domain
 			if (col03__ni != null) predicate = predicate.And(_ => !col03__ni.Contains(_.col03_));
 			if (col03__isnull) predicate = predicate.And(_ => _.col03_ == null);
 			if (col03__isnotnull) predicate = predicate.And(_ => _.col03_ != null);
+			if (col03__liker != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"{col03__liker}%"));
+			if (col03__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"%{col03__clikec}%"));
+			if (col03__llike != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"%{col03__llike}"));
 			#endregion
 			#region col04
 			if (col04_eq != null) predicate = predicate.And(_ => _.col04 == col04_eq);
@@ -5168,6 +5204,9 @@ namespace OpenAPITest.Domain
 			if (col04_ge != null) predicate = predicate.And(_ => col04_ge.CompareTo(_.col04) <= 0);
 			if (col04_in != null) predicate = predicate.And(_ => col04_in.Contains(_.col04));
 			if (col04_ni != null) predicate = predicate.And(_ => !col04_ni.Contains(_.col04));
+			if (col04_liker != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"{col04_liker}%"));
+			if (col04_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"%{col04_clikec}%"));
+			if (col04_llike != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"%{col04_llike}"));
 			#endregion
 			#region col04_
 			if (col04__eq != null) predicate = predicate.And(_ => _.col04_ == col04__eq);
@@ -5180,6 +5219,9 @@ namespace OpenAPITest.Domain
 			if (col04__ni != null) predicate = predicate.And(_ => !col04__ni.Contains(_.col04_));
 			if (col04__isnull) predicate = predicate.And(_ => _.col04_ == null);
 			if (col04__isnotnull) predicate = predicate.And(_ => _.col04_ != null);
+			if (col04__liker != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"{col04__liker}%"));
+			if (col04__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"%{col04__clikec}%"));
+			if (col04__llike != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"%{col04__llike}"));
 			#endregion
 			#region col05
 			if (col05_eq != null) predicate = predicate.And(_ => _.col05 == col05_eq);
@@ -5212,6 +5254,9 @@ namespace OpenAPITest.Domain
 			if (col06_ge != null) predicate = predicate.And(_ => col06_ge.CompareTo(_.col06) <= 0);
 			if (col06_in != null) predicate = predicate.And(_ => col06_in.Contains(_.col06));
 			if (col06_ni != null) predicate = predicate.And(_ => !col06_ni.Contains(_.col06));
+			if (col06_liker != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"{col06_liker}%"));
+			if (col06_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"%{col06_clikec}%"));
+			if (col06_llike != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"%{col06_llike}"));
 			#endregion
 			#region col06_
 			if (col06__eq != null) predicate = predicate.And(_ => _.col06_ == col06__eq);
@@ -5224,6 +5269,9 @@ namespace OpenAPITest.Domain
 			if (col06__ni != null) predicate = predicate.And(_ => !col06__ni.Contains(_.col06_));
 			if (col06__isnull) predicate = predicate.And(_ => _.col06_ == null);
 			if (col06__isnotnull) predicate = predicate.And(_ => _.col06_ != null);
+			if (col06__liker != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"{col06__liker}%"));
+			if (col06__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"%{col06__clikec}%"));
+			if (col06__llike != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"%{col06__llike}"));
 			#endregion
 			#region col07
 			if (col07_eq != null) predicate = predicate.And(_ => _.col07 == col07_eq);
@@ -5234,6 +5282,9 @@ namespace OpenAPITest.Domain
 			if (col07_ge != null) predicate = predicate.And(_ => col07_ge.CompareTo(_.col07) <= 0);
 			if (col07_in != null) predicate = predicate.And(_ => col07_in.Contains(_.col07));
 			if (col07_ni != null) predicate = predicate.And(_ => !col07_ni.Contains(_.col07));
+			if (col07_liker != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"{col07_liker}%"));
+			if (col07_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"%{col07_clikec}%"));
+			if (col07_llike != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"%{col07_llike}"));
 			#endregion
 			#region col07_
 			if (col07__eq != null) predicate = predicate.And(_ => _.col07_ == col07__eq);
@@ -5246,6 +5297,9 @@ namespace OpenAPITest.Domain
 			if (col07__ni != null) predicate = predicate.And(_ => !col07__ni.Contains(_.col07_));
 			if (col07__isnull) predicate = predicate.And(_ => _.col07_ == null);
 			if (col07__isnotnull) predicate = predicate.And(_ => _.col07_ != null);
+			if (col07__liker != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"{col07__liker}%"));
+			if (col07__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"%{col07__clikec}%"));
+			if (col07__llike != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"%{col07__llike}"));
 			#endregion
 			#region col08
 			if (col08_eq != null) predicate = predicate.And(_ => _.col08 == col08_eq);
@@ -5256,6 +5310,9 @@ namespace OpenAPITest.Domain
 			if (col08_ge != null) predicate = predicate.And(_ => col08_ge.CompareTo(_.col08) <= 0);
 			if (col08_in != null) predicate = predicate.And(_ => col08_in.Contains(_.col08));
 			if (col08_ni != null) predicate = predicate.And(_ => !col08_ni.Contains(_.col08));
+			if (col08_liker != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"{col08_liker}%"));
+			if (col08_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"%{col08_clikec}%"));
+			if (col08_llike != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"%{col08_llike}"));
 			#endregion
 			#region col08_
 			if (col08__eq != null) predicate = predicate.And(_ => _.col08_ == col08__eq);
@@ -5268,6 +5325,9 @@ namespace OpenAPITest.Domain
 			if (col08__ni != null) predicate = predicate.And(_ => !col08__ni.Contains(_.col08_));
 			if (col08__isnull) predicate = predicate.And(_ => _.col08_ == null);
 			if (col08__isnotnull) predicate = predicate.And(_ => _.col08_ != null);
+			if (col08__liker != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"{col08__liker}%"));
+			if (col08__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"%{col08__clikec}%"));
+			if (col08__llike != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"%{col08__llike}"));
 			#endregion
 			#region col09
 			if (col09_eq != null) predicate = predicate.And(_ => _.col09 == col09_eq);
@@ -6271,7 +6331,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_like { get; set; }
+		[DataMember] public string role_id_liker { get; set; }
+		[DataMember] public string role_id_clikec { get; set; }
+		[DataMember] public string role_id_llike { get; set; }
 		#endregion
 		#region name
 		[DataMember] public string name_eq { get; set; }
@@ -6283,7 +6345,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_like { get; set; }
+		[DataMember] public string name_liker { get; set; }
+		[DataMember] public string name_clikec { get; set; }
+		[DataMember] public string name_llike { get; set; }
 		#endregion
 		#region abbrev
 		[DataMember] public string abbrev_eq { get; set; }
@@ -6295,7 +6359,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? abbrev_between { get; set; }
-		[DataMember] public string abbrev_like { get; set; }
+		[DataMember] public string abbrev_liker { get; set; }
+		[DataMember] public string abbrev_clikec { get; set; }
+		[DataMember] public string abbrev_llike { get; set; }
 		#endregion
 		#region name_en
 		[DataMember] public string name_en_eq { get; set; }
@@ -6307,7 +6373,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_en_in { get; set; }
 		[DataMember] public IEnumerable<string> name_en_ni { get; set; }
 		[DataMember] public (string low, string high)? name_en_between { get; set; }
-		[DataMember] public string name_en_like { get; set; }
+		[DataMember] public string name_en_liker { get; set; }
+		[DataMember] public string name_en_clikec { get; set; }
+		[DataMember] public string name_en_llike { get; set; }
 		#endregion
 		#region abbrev_en
 		[DataMember] public string abbrev_en_eq { get; set; }
@@ -6319,7 +6387,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> abbrev_en_in { get; set; }
 		[DataMember] public IEnumerable<string> abbrev_en_ni { get; set; }
 		[DataMember] public (string low, string high)? abbrev_en_between { get; set; }
-		[DataMember] public string abbrev_en_like { get; set; }
+		[DataMember] public string abbrev_en_liker { get; set; }
+		[DataMember] public string abbrev_en_clikec { get; set; }
+		[DataMember] public string abbrev_en_llike { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -6414,6 +6484,9 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
+			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
+			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
+			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region name
 			if (name_eq != null) predicate = predicate.And(_ => _.name == name_eq);
@@ -6424,6 +6497,9 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
+			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
+			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region abbrev
 			if (abbrev_eq != null) predicate = predicate.And(_ => _.abbrev == abbrev_eq);
@@ -6434,6 +6510,9 @@ namespace OpenAPITest.Domain
 			if (abbrev_ge != null) predicate = predicate.And(_ => abbrev_ge.CompareTo(_.abbrev) <= 0);
 			if (abbrev_in != null) predicate = predicate.And(_ => abbrev_in.Contains(_.abbrev));
 			if (abbrev_ni != null) predicate = predicate.And(_ => !abbrev_ni.Contains(_.abbrev));
+			if (abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"{abbrev_liker}%"));
+			if (abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"%{abbrev_clikec}%"));
+			if (abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"%{abbrev_llike}"));
 			#endregion
 			#region name_en
 			if (name_en_eq != null) predicate = predicate.And(_ => _.name_en == name_en_eq);
@@ -6444,6 +6523,9 @@ namespace OpenAPITest.Domain
 			if (name_en_ge != null) predicate = predicate.And(_ => name_en_ge.CompareTo(_.name_en) <= 0);
 			if (name_en_in != null) predicate = predicate.And(_ => name_en_in.Contains(_.name_en));
 			if (name_en_ni != null) predicate = predicate.And(_ => !name_en_ni.Contains(_.name_en));
+			if (name_en_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"{name_en_liker}%"));
+			if (name_en_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"%{name_en_clikec}%"));
+			if (name_en_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"%{name_en_llike}"));
 			#endregion
 			#region abbrev_en
 			if (abbrev_en_eq != null) predicate = predicate.And(_ => _.abbrev_en == abbrev_en_eq);
@@ -6454,6 +6536,9 @@ namespace OpenAPITest.Domain
 			if (abbrev_en_ge != null) predicate = predicate.And(_ => abbrev_en_ge.CompareTo(_.abbrev_en) <= 0);
 			if (abbrev_en_in != null) predicate = predicate.And(_ => abbrev_en_in.Contains(_.abbrev_en));
 			if (abbrev_en_ni != null) predicate = predicate.And(_ => !abbrev_en_ni.Contains(_.abbrev_en));
+			if (abbrev_en_liker != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"{abbrev_en_liker}%"));
+			if (abbrev_en_clikec != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"%{abbrev_en_clikec}%"));
+			if (abbrev_en_llike != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"%{abbrev_en_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -7165,7 +7250,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_like { get; set; }
+		[DataMember] public string role_id_liker { get; set; }
+		[DataMember] public string role_id_clikec { get; set; }
+		[DataMember] public string role_id_llike { get; set; }
 		#endregion
 		#region permission_id (PermissionId)
 		private string _permission_id_eq;
@@ -7303,6 +7390,9 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
+			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
+			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
+			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region permission_id
 			if (_permission_id_eq != null) predicate = predicate.And(_ => _.permission_id == _permission_id_eq);
@@ -8261,7 +8351,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
 		[DataMember] public bool staff_no_isnull { get; set; } =  false ;
 		[DataMember] public bool staff_no_isnotnull { get; set; } = false;
-		[DataMember] public string staff_no_like { get; set; }
+		[DataMember] public string staff_no_liker { get; set; }
+		[DataMember] public string staff_no_clikec { get; set; }
+		[DataMember] public string staff_no_llike { get; set; }
 		#endregion
 		#region teacher_no
 		[DataMember] public string teacher_no_eq { get; set; }
@@ -8275,7 +8367,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? teacher_no_between { get; set; }
 		[DataMember] public bool teacher_no_isnull { get; set; } =  false ;
 		[DataMember] public bool teacher_no_isnotnull { get; set; } = false;
-		[DataMember] public string teacher_no_like { get; set; }
+		[DataMember] public string teacher_no_liker { get; set; }
+		[DataMember] public string teacher_no_clikec { get; set; }
+		[DataMember] public string teacher_no_llike { get; set; }
 		#endregion
 		#region student_no
 		[DataMember] public string student_no_eq { get; set; }
@@ -8289,7 +8383,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? student_no_between { get; set; }
 		[DataMember] public bool student_no_isnull { get; set; } =  false ;
 		[DataMember] public bool student_no_isnotnull { get; set; } = false;
-		[DataMember] public string student_no_like { get; set; }
+		[DataMember] public string student_no_liker { get; set; }
+		[DataMember] public string student_no_clikec { get; set; }
+		[DataMember] public string student_no_llike { get; set; }
 		#endregion
 		#region out_student_no
 		[DataMember] public string out_student_no_eq { get; set; }
@@ -8303,7 +8399,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? out_student_no_between { get; set; }
 		[DataMember] public bool out_student_no_isnull { get; set; } =  false ;
 		[DataMember] public bool out_student_no_isnotnull { get; set; } = false;
-		[DataMember] public string out_student_no_like { get; set; }
+		[DataMember] public string out_student_no_liker { get; set; }
+		[DataMember] public string out_student_no_clikec { get; set; }
+		[DataMember] public string out_student_no_llike { get; set; }
 		#endregion
 		#region parent_no
 		[DataMember] public string parent_no_eq { get; set; }
@@ -8317,7 +8415,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? parent_no_between { get; set; }
 		[DataMember] public bool parent_no_isnull { get; set; } =  false ;
 		[DataMember] public bool parent_no_isnotnull { get; set; } = false;
-		[DataMember] public string parent_no_like { get; set; }
+		[DataMember] public string parent_no_liker { get; set; }
+		[DataMember] public string parent_no_clikec { get; set; }
+		[DataMember] public string parent_no_llike { get; set; }
 		#endregion
 		#region user_no
 		[DataMember] public string user_no_eq { get; set; }
@@ -8331,7 +8431,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? user_no_between { get; set; }
 		[DataMember] public bool user_no_isnull { get; set; } =  false ;
 		[DataMember] public bool user_no_isnotnull { get; set; } = false;
-		[DataMember] public string user_no_like { get; set; }
+		[DataMember] public string user_no_liker { get; set; }
+		[DataMember] public string user_no_clikec { get; set; }
+		[DataMember] public string user_no_llike { get; set; }
 		#endregion
 		#region auth_method_type (AuthMethodType)
 		private string _auth_method_type_eq;
@@ -8550,6 +8652,9 @@ namespace OpenAPITest.Domain
 			if (staff_no_ni != null) predicate = predicate.And(_ => !staff_no_ni.Contains(_.staff_no));
 			if (staff_no_isnull) predicate = predicate.And(_ => _.staff_no == null);
 			if (staff_no_isnotnull) predicate = predicate.And(_ => _.staff_no != null);
+			if (staff_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"{staff_no_liker}%"));
+			if (staff_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_clikec}%"));
+			if (staff_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_llike}"));
 			#endregion
 			#region teacher_no
 			if (teacher_no_eq != null) predicate = predicate.And(_ => _.teacher_no == teacher_no_eq);
@@ -8562,6 +8667,9 @@ namespace OpenAPITest.Domain
 			if (teacher_no_ni != null) predicate = predicate.And(_ => !teacher_no_ni.Contains(_.teacher_no));
 			if (teacher_no_isnull) predicate = predicate.And(_ => _.teacher_no == null);
 			if (teacher_no_isnotnull) predicate = predicate.And(_ => _.teacher_no != null);
+			if (teacher_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"{teacher_no_liker}%"));
+			if (teacher_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"%{teacher_no_clikec}%"));
+			if (teacher_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"%{teacher_no_llike}"));
 			#endregion
 			#region student_no
 			if (student_no_eq != null) predicate = predicate.And(_ => _.student_no == student_no_eq);
@@ -8574,6 +8682,9 @@ namespace OpenAPITest.Domain
 			if (student_no_ni != null) predicate = predicate.And(_ => !student_no_ni.Contains(_.student_no));
 			if (student_no_isnull) predicate = predicate.And(_ => _.student_no == null);
 			if (student_no_isnotnull) predicate = predicate.And(_ => _.student_no != null);
+			if (student_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"{student_no_liker}%"));
+			if (student_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"%{student_no_clikec}%"));
+			if (student_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"%{student_no_llike}"));
 			#endregion
 			#region out_student_no
 			if (out_student_no_eq != null) predicate = predicate.And(_ => _.out_student_no == out_student_no_eq);
@@ -8586,6 +8697,9 @@ namespace OpenAPITest.Domain
 			if (out_student_no_ni != null) predicate = predicate.And(_ => !out_student_no_ni.Contains(_.out_student_no));
 			if (out_student_no_isnull) predicate = predicate.And(_ => _.out_student_no == null);
 			if (out_student_no_isnotnull) predicate = predicate.And(_ => _.out_student_no != null);
+			if (out_student_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"{out_student_no_liker}%"));
+			if (out_student_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"%{out_student_no_clikec}%"));
+			if (out_student_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"%{out_student_no_llike}"));
 			#endregion
 			#region parent_no
 			if (parent_no_eq != null) predicate = predicate.And(_ => _.parent_no == parent_no_eq);
@@ -8598,6 +8712,9 @@ namespace OpenAPITest.Domain
 			if (parent_no_ni != null) predicate = predicate.And(_ => !parent_no_ni.Contains(_.parent_no));
 			if (parent_no_isnull) predicate = predicate.And(_ => _.parent_no == null);
 			if (parent_no_isnotnull) predicate = predicate.And(_ => _.parent_no != null);
+			if (parent_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"{parent_no_liker}%"));
+			if (parent_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"%{parent_no_clikec}%"));
+			if (parent_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"%{parent_no_llike}"));
 			#endregion
 			#region user_no
 			if (user_no_eq != null) predicate = predicate.And(_ => _.user_no == user_no_eq);
@@ -8610,6 +8727,9 @@ namespace OpenAPITest.Domain
 			if (user_no_ni != null) predicate = predicate.And(_ => !user_no_ni.Contains(_.user_no));
 			if (user_no_isnull) predicate = predicate.And(_ => _.user_no == null);
 			if (user_no_isnotnull) predicate = predicate.And(_ => _.user_no != null);
+			if (user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"{user_no_liker}%"));
+			if (user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"%{user_no_clikec}%"));
+			if (user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"%{user_no_llike}"));
 			#endregion
 			#region auth_method_type
 			if (_auth_method_type_eq != null) predicate = predicate.And(_ => _.auth_method_type == _auth_method_type_eq);
@@ -9211,7 +9331,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_like { get; set; }
+		[DataMember] public string role_id_liker { get; set; }
+		[DataMember] public string role_id_clikec { get; set; }
+		[DataMember] public string role_id_llike { get; set; }
 		#endregion
 		#region note
 		[DataMember] public string note_eq { get; set; }
@@ -9223,7 +9345,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> note_in { get; set; }
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
 		[DataMember] public (string low, string high)? note_between { get; set; }
-		[DataMember] public string note_like { get; set; }
+		[DataMember] public string note_liker { get; set; }
+		[DataMember] public string note_clikec { get; set; }
+		[DataMember] public string note_llike { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -9315,6 +9439,9 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
+			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
+			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
+			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region note
 			if (note_eq != null) predicate = predicate.And(_ => _.note == note_eq);
@@ -9325,6 +9452,9 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
+			if (note_liker != null) predicate = predicate.And(_ => Sql.Like(_.note, $"{note_liker}%"));
+			if (note_clikec != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_clikec}%"));
+			if (note_llike != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -10157,7 +10287,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> staff_no_in { get; set; }
 		[DataMember] public IEnumerable<string> staff_no_ni { get; set; }
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
-		[DataMember] public string staff_no_like { get; set; }
+		[DataMember] public string staff_no_liker { get; set; }
+		[DataMember] public string staff_no_clikec { get; set; }
+		[DataMember] public string staff_no_llike { get; set; }
 		#endregion
 		#region gender (Gender)
 		private int? _gender_eq;
@@ -10343,6 +10475,9 @@ namespace OpenAPITest.Domain
 			if (staff_no_ge != null) predicate = predicate.And(_ => staff_no_ge.CompareTo(_.staff_no) <= 0);
 			if (staff_no_in != null) predicate = predicate.And(_ => staff_no_in.Contains(_.staff_no));
 			if (staff_no_ni != null) predicate = predicate.And(_ => !staff_no_ni.Contains(_.staff_no));
+			if (staff_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"{staff_no_liker}%"));
+			if (staff_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_clikec}%"));
+			if (staff_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_llike}"));
 			#endregion
 			#region gender
 			if (_gender_eq != null) predicate = predicate.And(_ => _.gender == _gender_eq);
@@ -11287,7 +11422,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_like { get; set; }
+		[DataMember] public string generic_user_no_liker { get; set; }
+		[DataMember] public string generic_user_no_clikec { get; set; }
+		[DataMember] public string generic_user_no_llike { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -11321,7 +11458,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_like { get; set; }
+		[DataMember] public string name_liker { get; set; }
+		[DataMember] public string name_clikec { get; set; }
+		[DataMember] public string name_llike { get; set; }
 		#endregion
 		#region kana
 		[DataMember] public string kana_eq { get; set; }
@@ -11333,7 +11472,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> kana_in { get; set; }
 		[DataMember] public IEnumerable<string> kana_ni { get; set; }
 		[DataMember] public (string low, string high)? kana_between { get; set; }
-		[DataMember] public string kana_like { get; set; }
+		[DataMember] public string kana_liker { get; set; }
+		[DataMember] public string kana_clikec { get; set; }
+		[DataMember] public string kana_llike { get; set; }
 		#endregion
 		#region name_abbrev
 		[DataMember] public string name_abbrev_eq { get; set; }
@@ -11345,7 +11486,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> name_abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? name_abbrev_between { get; set; }
-		[DataMember] public string name_abbrev_like { get; set; }
+		[DataMember] public string name_abbrev_liker { get; set; }
+		[DataMember] public string name_abbrev_clikec { get; set; }
+		[DataMember] public string name_abbrev_llike { get; set; }
 		#endregion
 		#region name_eng
 		[DataMember] public string name_eng_eq { get; set; }
@@ -11357,7 +11500,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_eng_in { get; set; }
 		[DataMember] public IEnumerable<string> name_eng_ni { get; set; }
 		[DataMember] public (string low, string high)? name_eng_between { get; set; }
-		[DataMember] public string name_eng_like { get; set; }
+		[DataMember] public string name_eng_liker { get; set; }
+		[DataMember] public string name_eng_clikec { get; set; }
+		[DataMember] public string name_eng_llike { get; set; }
 		#endregion
 		#region name_eng_abbrev
 		[DataMember] public string name_eng_abbrev_eq { get; set; }
@@ -11369,7 +11514,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_eng_abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> name_eng_abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? name_eng_abbrev_between { get; set; }
-		[DataMember] public string name_eng_abbrev_like { get; set; }
+		[DataMember] public string name_eng_abbrev_liker { get; set; }
+		[DataMember] public string name_eng_abbrev_clikec { get; set; }
+		[DataMember] public string name_eng_abbrev_llike { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -11461,6 +11608,9 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
+			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
+			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
+			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -11491,6 +11641,9 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
+			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
+			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region kana
 			if (kana_eq != null) predicate = predicate.And(_ => _.kana == kana_eq);
@@ -11501,6 +11654,9 @@ namespace OpenAPITest.Domain
 			if (kana_ge != null) predicate = predicate.And(_ => kana_ge.CompareTo(_.kana) <= 0);
 			if (kana_in != null) predicate = predicate.And(_ => kana_in.Contains(_.kana));
 			if (kana_ni != null) predicate = predicate.And(_ => !kana_ni.Contains(_.kana));
+			if (kana_liker != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"{kana_liker}%"));
+			if (kana_clikec != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"%{kana_clikec}%"));
+			if (kana_llike != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"%{kana_llike}"));
 			#endregion
 			#region name_abbrev
 			if (name_abbrev_eq != null) predicate = predicate.And(_ => _.name_abbrev == name_abbrev_eq);
@@ -11511,6 +11667,9 @@ namespace OpenAPITest.Domain
 			if (name_abbrev_ge != null) predicate = predicate.And(_ => name_abbrev_ge.CompareTo(_.name_abbrev) <= 0);
 			if (name_abbrev_in != null) predicate = predicate.And(_ => name_abbrev_in.Contains(_.name_abbrev));
 			if (name_abbrev_ni != null) predicate = predicate.And(_ => !name_abbrev_ni.Contains(_.name_abbrev));
+			if (name_abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"{name_abbrev_liker}%"));
+			if (name_abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"%{name_abbrev_clikec}%"));
+			if (name_abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"%{name_abbrev_llike}"));
 			#endregion
 			#region name_eng
 			if (name_eng_eq != null) predicate = predicate.And(_ => _.name_eng == name_eng_eq);
@@ -11521,6 +11680,9 @@ namespace OpenAPITest.Domain
 			if (name_eng_ge != null) predicate = predicate.And(_ => name_eng_ge.CompareTo(_.name_eng) <= 0);
 			if (name_eng_in != null) predicate = predicate.And(_ => name_eng_in.Contains(_.name_eng));
 			if (name_eng_ni != null) predicate = predicate.And(_ => !name_eng_ni.Contains(_.name_eng));
+			if (name_eng_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"{name_eng_liker}%"));
+			if (name_eng_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"%{name_eng_clikec}%"));
+			if (name_eng_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"%{name_eng_llike}"));
 			#endregion
 			#region name_eng_abbrev
 			if (name_eng_abbrev_eq != null) predicate = predicate.And(_ => _.name_eng_abbrev == name_eng_abbrev_eq);
@@ -11531,6 +11693,9 @@ namespace OpenAPITest.Domain
 			if (name_eng_abbrev_ge != null) predicate = predicate.And(_ => name_eng_abbrev_ge.CompareTo(_.name_eng_abbrev) <= 0);
 			if (name_eng_abbrev_in != null) predicate = predicate.And(_ => name_eng_abbrev_in.Contains(_.name_eng_abbrev));
 			if (name_eng_abbrev_ni != null) predicate = predicate.And(_ => !name_eng_abbrev_ni.Contains(_.name_eng_abbrev));
+			if (name_eng_abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"{name_eng_abbrev_liker}%"));
+			if (name_eng_abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"%{name_eng_abbrev_clikec}%"));
+			if (name_eng_abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"%{name_eng_abbrev_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -12142,7 +12307,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_like { get; set; }
+		[DataMember] public string name_liker { get; set; }
+		[DataMember] public string name_clikec { get; set; }
+		[DataMember] public string name_llike { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -12154,7 +12321,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_like { get; set; }
+		[DataMember] public string description_liker { get; set; }
+		[DataMember] public string description_clikec { get; set; }
+		[DataMember] public string description_llike { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -12270,6 +12439,9 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
+			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
+			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -12280,6 +12452,9 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
+			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
+			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -13374,7 +13549,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_like { get; set; }
+		[DataMember] public string generic_user_no_liker { get; set; }
+		[DataMember] public string generic_user_no_clikec { get; set; }
+		[DataMember] public string generic_user_no_llike { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -13408,7 +13585,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> postal_code_in { get; set; }
 		[DataMember] public IEnumerable<string> postal_code_ni { get; set; }
 		[DataMember] public (string low, string high)? postal_code_between { get; set; }
-		[DataMember] public string postal_code_like { get; set; }
+		[DataMember] public string postal_code_liker { get; set; }
+		[DataMember] public string postal_code_clikec { get; set; }
+		[DataMember] public string postal_code_llike { get; set; }
 		#endregion
 		#region prefecture_code
 		[DataMember] public int? prefecture_code_eq { get; set; }
@@ -13431,7 +13610,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address1_in { get; set; }
 		[DataMember] public IEnumerable<string> address1_ni { get; set; }
 		[DataMember] public (string low, string high)? address1_between { get; set; }
-		[DataMember] public string address1_like { get; set; }
+		[DataMember] public string address1_liker { get; set; }
+		[DataMember] public string address1_clikec { get; set; }
+		[DataMember] public string address1_llike { get; set; }
 		#endregion
 		#region address2
 		[DataMember] public string address2_eq { get; set; }
@@ -13443,7 +13624,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address2_in { get; set; }
 		[DataMember] public IEnumerable<string> address2_ni { get; set; }
 		[DataMember] public (string low, string high)? address2_between { get; set; }
-		[DataMember] public string address2_like { get; set; }
+		[DataMember] public string address2_liker { get; set; }
+		[DataMember] public string address2_clikec { get; set; }
+		[DataMember] public string address2_llike { get; set; }
 		#endregion
 		#region address3
 		[DataMember] public string address3_eq { get; set; }
@@ -13455,7 +13638,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address3_in { get; set; }
 		[DataMember] public IEnumerable<string> address3_ni { get; set; }
 		[DataMember] public (string low, string high)? address3_between { get; set; }
-		[DataMember] public string address3_like { get; set; }
+		[DataMember] public string address3_liker { get; set; }
+		[DataMember] public string address3_clikec { get; set; }
+		[DataMember] public string address3_llike { get; set; }
 		#endregion
 		#region latitude
 		[DataMember] public decimal? latitude_eq { get; set; }
@@ -13599,6 +13784,9 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
+			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
+			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
+			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -13629,6 +13817,9 @@ namespace OpenAPITest.Domain
 			if (postal_code_ge != null) predicate = predicate.And(_ => postal_code_ge.CompareTo(_.postal_code) <= 0);
 			if (postal_code_in != null) predicate = predicate.And(_ => postal_code_in.Contains(_.postal_code));
 			if (postal_code_ni != null) predicate = predicate.And(_ => !postal_code_ni.Contains(_.postal_code));
+			if (postal_code_liker != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"{postal_code_liker}%"));
+			if (postal_code_clikec != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"%{postal_code_clikec}%"));
+			if (postal_code_llike != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"%{postal_code_llike}"));
 			#endregion
 			#region prefecture_code
 			if (prefecture_code_eq != null) predicate = predicate.And(_ => _.prefecture_code == prefecture_code_eq);
@@ -13649,6 +13840,9 @@ namespace OpenAPITest.Domain
 			if (address1_ge != null) predicate = predicate.And(_ => address1_ge.CompareTo(_.address1) <= 0);
 			if (address1_in != null) predicate = predicate.And(_ => address1_in.Contains(_.address1));
 			if (address1_ni != null) predicate = predicate.And(_ => !address1_ni.Contains(_.address1));
+			if (address1_liker != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"{address1_liker}%"));
+			if (address1_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"%{address1_clikec}%"));
+			if (address1_llike != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"%{address1_llike}"));
 			#endregion
 			#region address2
 			if (address2_eq != null) predicate = predicate.And(_ => _.address2 == address2_eq);
@@ -13659,6 +13853,9 @@ namespace OpenAPITest.Domain
 			if (address2_ge != null) predicate = predicate.And(_ => address2_ge.CompareTo(_.address2) <= 0);
 			if (address2_in != null) predicate = predicate.And(_ => address2_in.Contains(_.address2));
 			if (address2_ni != null) predicate = predicate.And(_ => !address2_ni.Contains(_.address2));
+			if (address2_liker != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"{address2_liker}%"));
+			if (address2_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"%{address2_clikec}%"));
+			if (address2_llike != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"%{address2_llike}"));
 			#endregion
 			#region address3
 			if (address3_eq != null) predicate = predicate.And(_ => _.address3 == address3_eq);
@@ -13669,6 +13866,9 @@ namespace OpenAPITest.Domain
 			if (address3_ge != null) predicate = predicate.And(_ => address3_ge.CompareTo(_.address3) <= 0);
 			if (address3_in != null) predicate = predicate.And(_ => address3_in.Contains(_.address3));
 			if (address3_ni != null) predicate = predicate.And(_ => !address3_ni.Contains(_.address3));
+			if (address3_liker != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"{address3_liker}%"));
+			if (address3_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"%{address3_clikec}%"));
+			if (address3_llike != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"%{address3_llike}"));
 			#endregion
 			#region latitude
 			if (latitude_eq != null) predicate = predicate.And(_ => _.latitude == latitude_eq);
@@ -14328,7 +14528,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_like { get; set; }
+		[DataMember] public string name_liker { get; set; }
+		[DataMember] public string name_clikec { get; set; }
+		[DataMember] public string name_llike { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -14340,7 +14542,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_like { get; set; }
+		[DataMember] public string description_liker { get; set; }
+		[DataMember] public string description_clikec { get; set; }
+		[DataMember] public string description_llike { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -14456,6 +14660,9 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
+			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
+			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -14466,6 +14673,9 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
+			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
+			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -15273,7 +15483,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_like { get; set; }
+		[DataMember] public string generic_user_no_liker { get; set; }
+		[DataMember] public string generic_user_no_clikec { get; set; }
+		[DataMember] public string generic_user_no_llike { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -15307,7 +15519,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> contact_in { get; set; }
 		[DataMember] public IEnumerable<string> contact_ni { get; set; }
 		[DataMember] public (string low, string high)? contact_between { get; set; }
-		[DataMember] public string contact_like { get; set; }
+		[DataMember] public string contact_liker { get; set; }
+		[DataMember] public string contact_clikec { get; set; }
+		[DataMember] public string contact_llike { get; set; }
 		#endregion
 		#region note
 		[DataMember] public string note_eq { get; set; }
@@ -15319,7 +15533,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> note_in { get; set; }
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
 		[DataMember] public (string low, string high)? note_between { get; set; }
-		[DataMember] public string note_like { get; set; }
+		[DataMember] public string note_liker { get; set; }
+		[DataMember] public string note_clikec { get; set; }
+		[DataMember] public string note_llike { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -15411,6 +15627,9 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
+			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
+			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
+			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -15441,6 +15660,9 @@ namespace OpenAPITest.Domain
 			if (contact_ge != null) predicate = predicate.And(_ => contact_ge.CompareTo(_.contact) <= 0);
 			if (contact_in != null) predicate = predicate.And(_ => contact_in.Contains(_.contact));
 			if (contact_ni != null) predicate = predicate.And(_ => !contact_ni.Contains(_.contact));
+			if (contact_liker != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"{contact_liker}%"));
+			if (contact_clikec != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"%{contact_clikec}%"));
+			if (contact_llike != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"%{contact_llike}"));
 			#endregion
 			#region note
 			if (note_eq != null) predicate = predicate.And(_ => _.note == note_eq);
@@ -15451,6 +15673,9 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
+			if (note_liker != null) predicate = predicate.And(_ => Sql.Like(_.note, $"{note_liker}%"));
+			if (note_clikec != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_clikec}%"));
+			if (note_llike != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -16062,7 +16287,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_like { get; set; }
+		[DataMember] public string name_liker { get; set; }
+		[DataMember] public string name_clikec { get; set; }
+		[DataMember] public string name_llike { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -16074,7 +16301,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_like { get; set; }
+		[DataMember] public string description_liker { get; set; }
+		[DataMember] public string description_clikec { get; set; }
+		[DataMember] public string description_llike { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -16190,6 +16419,9 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
+			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
+			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -16200,6 +16432,9 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
+			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
+			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -16863,7 +17098,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> category_in { get; set; }
 		[DataMember] public IEnumerable<string> category_ni { get; set; }
 		[DataMember] public (string low, string high)? category_between { get; set; }
-		[DataMember] public string category_like { get; set; }
+		[DataMember] public string category_liker { get; set; }
+		[DataMember] public string category_clikec { get; set; }
+		[DataMember] public string category_llike { get; set; }
 		#endregion
 		#region type
 		[DataMember] public string type_eq { get; set; }
@@ -16875,7 +17112,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> type_in { get; set; }
 		[DataMember] public IEnumerable<string> type_ni { get; set; }
 		[DataMember] public (string low, string high)? type_between { get; set; }
-		[DataMember] public string type_like { get; set; }
+		[DataMember] public string type_liker { get; set; }
+		[DataMember] public string type_clikec { get; set; }
+		[DataMember] public string type_llike { get; set; }
 		#endregion
 		#region level
 		[DataMember] public int? level_eq { get; set; }
@@ -16898,7 +17137,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> url_in { get; set; }
 		[DataMember] public IEnumerable<string> url_ni { get; set; }
 		[DataMember] public (string low, string high)? url_between { get; set; }
-		[DataMember] public string url_like { get; set; }
+		[DataMember] public string url_liker { get; set; }
+		[DataMember] public string url_clikec { get; set; }
+		[DataMember] public string url_llike { get; set; }
 		#endregion
 		#region methods
 		[DataMember] public string methods_eq { get; set; }
@@ -16910,7 +17151,9 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> methods_in { get; set; }
 		[DataMember] public IEnumerable<string> methods_ni { get; set; }
 		[DataMember] public (string low, string high)? methods_between { get; set; }
-		[DataMember] public string methods_like { get; set; }
+		[DataMember] public string methods_liker { get; set; }
+		[DataMember] public string methods_clikec { get; set; }
+		[DataMember] public string methods_llike { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -17005,6 +17248,9 @@ namespace OpenAPITest.Domain
 			if (category_ge != null) predicate = predicate.And(_ => category_ge.CompareTo(_.category) <= 0);
 			if (category_in != null) predicate = predicate.And(_ => category_in.Contains(_.category));
 			if (category_ni != null) predicate = predicate.And(_ => !category_ni.Contains(_.category));
+			if (category_liker != null) predicate = predicate.And(_ => Sql.Like(_.category, $"{category_liker}%"));
+			if (category_clikec != null) predicate = predicate.And(_ => Sql.Like(_.category, $"%{category_clikec}%"));
+			if (category_llike != null) predicate = predicate.And(_ => Sql.Like(_.category, $"%{category_llike}"));
 			#endregion
 			#region type
 			if (type_eq != null) predicate = predicate.And(_ => _.type == type_eq);
@@ -17015,6 +17261,9 @@ namespace OpenAPITest.Domain
 			if (type_ge != null) predicate = predicate.And(_ => type_ge.CompareTo(_.type) <= 0);
 			if (type_in != null) predicate = predicate.And(_ => type_in.Contains(_.type));
 			if (type_ni != null) predicate = predicate.And(_ => !type_ni.Contains(_.type));
+			if (type_liker != null) predicate = predicate.And(_ => Sql.Like(_.type, $"{type_liker}%"));
+			if (type_clikec != null) predicate = predicate.And(_ => Sql.Like(_.type, $"%{type_clikec}%"));
+			if (type_llike != null) predicate = predicate.And(_ => Sql.Like(_.type, $"%{type_llike}"));
 			#endregion
 			#region level
 			if (level_eq != null) predicate = predicate.And(_ => _.level == level_eq);
@@ -17035,6 +17284,9 @@ namespace OpenAPITest.Domain
 			if (url_ge != null) predicate = predicate.And(_ => url_ge.CompareTo(_.url) <= 0);
 			if (url_in != null) predicate = predicate.And(_ => url_in.Contains(_.url));
 			if (url_ni != null) predicate = predicate.And(_ => !url_ni.Contains(_.url));
+			if (url_liker != null) predicate = predicate.And(_ => Sql.Like(_.url, $"{url_liker}%"));
+			if (url_clikec != null) predicate = predicate.And(_ => Sql.Like(_.url, $"%{url_clikec}%"));
+			if (url_llike != null) predicate = predicate.And(_ => Sql.Like(_.url, $"%{url_llike}"));
 			#endregion
 			#region methods
 			if (methods_eq != null) predicate = predicate.And(_ => _.methods == methods_eq);
@@ -17045,6 +17297,9 @@ namespace OpenAPITest.Domain
 			if (methods_ge != null) predicate = predicate.And(_ => methods_ge.CompareTo(_.methods) <= 0);
 			if (methods_in != null) predicate = predicate.And(_ => methods_in.Contains(_.methods));
 			if (methods_ni != null) predicate = predicate.And(_ => !methods_ni.Contains(_.methods));
+			if (methods_liker != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"{methods_liker}%"));
+			if (methods_clikec != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"%{methods_clikec}%"));
+			if (methods_llike != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"%{methods_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
