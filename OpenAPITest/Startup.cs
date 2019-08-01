@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 using LinqToDB.Configuration;
@@ -89,10 +90,13 @@ namespace OpenAPITest
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
 
-            // Authentication Bear token
-            services.AddAuthentication()
-                .AddCookie()
-                .AddJwtBearer();
+            // Authentication by Bear token
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer()
+                .AddCookie();
         }
 
         private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
@@ -122,10 +126,15 @@ namespace OpenAPITest
                 opions.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
             });
 
-            app.Run(context => context.ChallengeAsync(CookieAuthenticationDefaults.AuthenticationScheme));
-
             // Authentication by Bear token
-            app.Run(context => context.ChallengeAsync(JwtBearerDefaults.AuthenticationScheme));
+            app.Run(context =>
+            {
+                var identity = new ClaimsIdentity();
+                identity.AddClaim(new Claim(ClaimTypes.Name, "cutsea110"));
+                var principal = new ClaimsPrincipal(identity);
+
+                return context.SignInAsync(principal);
+            });
         }
     }
 }
