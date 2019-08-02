@@ -7,13 +7,16 @@ using System.Text;
 using LinqToDB.Configuration;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace OpenAPITest
 {
@@ -80,6 +83,37 @@ namespace OpenAPITest
     }
     #endregion
 
+    #region SwaggerUIへのJwt対応
+    public class AssignJwtSecurityRequirements : IOperationFilter
+    {
+        /// <summary>
+        /// Swagger UI用のフィルタ。
+        /// Swagger上でAPIを実行する際のJWTトークン認証対応を実現する。
+        /// </summary>
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            //AllowAnonymousが付いている場合は、アクセスコードを要求しない
+            var allowAnonymousAccess = context.MethodInfo.CustomAttributes
+                .Any(a => a.AttributeType == typeof(AllowAnonymousAttribute));
+
+            if (allowAnonymousAccess == false)
+            {
+                var oAuthScheme = new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "api_key" }
+                };
+                operation.Security = new List<OpenApiSecurityRequirement>()
+                {
+                    new OpenApiSecurityRequirement
+                    {
+                        { oAuthScheme, new List<string>() }
+                    }
+                };
+            }
+        }
+    }
+    #endregion
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -116,6 +150,19 @@ namespace OpenAPITest
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
             {
+                //トークン認証用のUIを追加する
+                option.AddSecurityDefinition("api_key",
+                    new OpenApiSecurityScheme
+                    {
+                        Name = "Authorization",
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey,
+                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\""
+                    });
+
+                // 入力したトークンをリクエストに含めるためのフィルタを追加
+                option.OperationFilter<AssignJwtSecurityRequirements>();
+
                 option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
