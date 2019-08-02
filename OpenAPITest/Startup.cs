@@ -100,7 +100,7 @@ namespace OpenAPITest
             {
                 var oAuthScheme = new OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "api_key" }
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "JwtBearerAuth" }
                 };
                 operation.Security = new List<OpenApiSecurityRequirement>()
                 {
@@ -151,7 +151,7 @@ namespace OpenAPITest
             services.AddSwaggerGen(option =>
             {
                 //トークン認証用のUIを追加する
-                option.AddSecurityDefinition("api_key",
+                option.AddSecurityDefinition("JwtBearerAuth",
                     new OpenApiSecurityScheme
                     {
                         Name = "Authorization",
