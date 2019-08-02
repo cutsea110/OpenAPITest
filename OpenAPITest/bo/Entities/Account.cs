@@ -18,7 +18,10 @@ namespace OpenAPITest.Domain
 	/// </summary>
 	public partial class Account
 	{
-
+        /// <summary>
+        /// アカウントIDの文字列表現
+        /// </summary>
+        public string AccountID => account_id.ToString();
 	}
 
 	/// <summary>

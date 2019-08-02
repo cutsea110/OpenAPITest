@@ -9,9 +9,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
-using Microsoft.AspNetCore.Mvc;
 
 using peppa.util;
 using OpenAPITest.Domain;
@@ -21,6 +22,7 @@ namespace OpenAPITest.Controllers
 	/// <summary>
 	/// ロールマスタのWebAPI
 	/// </summary>
+	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public partial class RoleController : ControllerBase

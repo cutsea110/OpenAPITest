@@ -18,7 +18,38 @@ namespace OpenAPITest.Domain
 	/// </summary>
 	public partial class Password
 	{
-
+        /// <summary>
+        /// ハッシュ化方式に応じてパスワードが合致するかをチェック
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool Match(string password)
+        {
+            switch (HashType)
+            {
+                case HashMethod.SHA256:
+                    return false; // TODO
+                case HashMethod.平文:
+                    return password_hash == password;
+                default:
+                    return false; // FIXME
+            }
+        }
+        /// <summary>
+        /// ロックされているか
+        /// </summary>
+        public bool IsLocked => lock_flg == 1;
+        /// <summary>
+        /// 認証OKかどうかの判断
+        /// 1. パスワードが合致すること
+        /// 2. 有効期限内であること
+        /// 3. ロックされていないこと
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public bool Authenticate(string password, DateTime dt) =>
+            Match(password) && (expiration_on == null || expiration_on >= dt) && IsLocked == false;
 	}
 
 	/// <summary>

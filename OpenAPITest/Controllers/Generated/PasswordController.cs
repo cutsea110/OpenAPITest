@@ -20,22 +20,22 @@ using OpenAPITest.Domain;
 namespace OpenAPITest.Controllers
 {
 	/// <summary>
-	/// 住所のWebAPI
+	/// パスワード認証のWebAPI
 	/// </summary>
 	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
-	public partial class AddressController : ControllerBase
+	public partial class PasswordController : ControllerBase
 	{
 
 		/// <summary>
-		/// 住所の件数
+		/// パスワード認証の件数
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Count([FromQuery]AddressCondition c)
+		public IActionResult Count([FromQuery]PasswordCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -44,23 +44,22 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count =
-					c == null ? db.Address.Count() :
-					db.Address.Count(predicate: c.CreatePredicate());
+					c == null ? db.Password.Count() :
+					db.Password.Count(predicate: c.CreatePredicate());
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 住所の検索
+		/// パスワード認証の検索
 		/// </summary>
 		/// <param name="c"></param>
-		/// <param name="with_AddressType">AddressTypeをLoadWithするか</param>
-		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="with_Account">AccountをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Address>), 200)]
-		public IActionResult Search([FromQuery]AddressCondition c, [FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
+		[ProducesResponseType(typeof(IEnumerable<Password>), 200)]
+		public IActionResult Search([FromQuery]PasswordCondition c, [FromQuery]bool with_Account, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -68,13 +67,11 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Address;
+				var q = db.Password;
 
 				#region LoadWith
-				if (with_AddressType)
-					q = q.LoadWith(_ => _.AddressType);
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
+				if (with_Account)
+					q = q.LoadWith(_ => _.Account);
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -85,19 +82,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 住所の取得
+		/// パスワード認証の取得
 		/// </summary>
-		/// <param name="with_AddressType">AddressTypeをLoadWithするか</param>
-		/// <param name="with_Staff">StaffをLoadWithするか</param>
-		/// <param name="userType">利用者種別(user_type)</param>
-		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
-		/// <param name="seq">連番(seq)</param>
+		/// <param name="with_Account">AccountをLoadWithするか</param>
+		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
-		[ProducesResponseType(typeof(Address), 200)]
+		[HttpGet("get/{accountId}")]
+		[ProducesResponseType(typeof(Password), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get(int userType, string genericUserNo, int seq, [FromQuery]bool with_AddressType, [FromQuery]bool with_Staff)
+		public IActionResult Get(int accountId, [FromQuery]bool with_Account)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -105,28 +99,26 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Address;
+				var q = db.Password;
 
 				#region LoadWith
-				if (with_AddressType)
-					q = q.LoadWith(_ => _.AddressType);
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
+				if (with_Account)
+					q = q.LoadWith(_ => _.Account);
 				#endregion
 
-				var o = q.Find(userType, genericUserNo, seq);
+				var o = q.Find(accountId);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
 		/// <summary>
-		/// 住所の作成
+		/// パスワード認証の作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns code="201">Addressオブジェクト</returns>
+		/// <returns code="201">Passwordオブジェクト</returns>
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Create([FromBody]Address o)
+		public IActionResult Create([FromBody]Password o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -134,19 +126,19 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				o.uid = db.InsertWithInt32Identity<Address>(o);
-                return CreatedAtAction(nameof(Get), new { userType = o.user_type, genericUserNo = o.generic_user_no, seq = o.seq }, o);
+				o.uid = db.InsertWithInt32Identity<Password>(o);
+                return CreatedAtAction(nameof(Get), new { accountId = o.account_id }, o);
 			}
 		}
 
 		/// <summary>
-		/// 住所の更新(必要時作成)
+		/// パスワード認証の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Upsert([FromBody]Address o)
+		public IActionResult Upsert([FromBody]Password o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -154,19 +146,19 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				int count = db.InsertOrReplace<Address>(o);
+				int count = db.InsertOrReplace<Password>(o);
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 住所の一括作成
+		/// パスワード認証の一括作成
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		public IActionResult MassiveCreate([FromBody]IEnumerable<Address> os)
+		public IActionResult MassiveCreate([FromBody]IEnumerable<Password> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -174,19 +166,19 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var ret = db.BulkCopy<Address>(os);
+				var ret = db.BulkCopy<Password>(os);
 				return Ok(ret);
 			}
 		}
 
 		/// <summary>
-		/// 住所のマージ
+		/// パスワード認証のマージ
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Merge([FromBody]IEnumerable<Address> os)
+		public IActionResult Merge([FromBody]IEnumerable<Password> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -194,22 +186,20 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Merge<Address>(os);
+				var count = db.Merge<Password>(os);
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 住所の更新
+		/// パスワード認証の更新
 		/// </summary>
-		/// <param name="userType">利用者種別(user_type)</param>
-		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
-		/// <param name="seq">連番(seq)</param>
+		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
+		[HttpPut, Route("modify/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Modify(int userType, string genericUserNo, int seq, [FromBody]Address o)
+		public IActionResult Modify(int accountId, [FromBody]Password o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -217,21 +207,19 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Update<Address>(o);
+				var count = db.Update<Password>(o);
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 住所の削除(物理)
+		/// パスワード認証の削除(論理)
 		/// </summary>
-		/// <param name="userType">利用者種別(user_type)</param>
-		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
-		/// <param name="seq">連番(seq)</param>
+		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns>件数</returns>
-		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
+		[HttpDelete("remove/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Remove(int userType, string genericUserNo, int seq)
+		public IActionResult Remove(int accountId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -239,21 +227,22 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Address
-					.Where(_ => _.user_type == userType && _.generic_user_no == genericUserNo && _.seq == seq)
-					.Delete();
+				var count = db.Password
+					.Where(_ => _.account_id == accountId)
+					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
+					.Update();
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 住所の削除(物理)
+		/// パスワード認証の削除(論理)
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
-		public IActionResult Remove([FromQuery]AddressCondition c)
+		public IActionResult Remove([FromQuery]PasswordCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -261,12 +250,56 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Address
+				var count = db.Password
 					.Where(c.CreatePredicate())
+					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
+					.Update();
+				return Ok(count);
+			}
+		}
+
+		/// <summary>
+		/// パスワード認証の物理削除
+		/// </summary>
+		/// <param name="accountId">アカウントID(account_id)</param>
+		/// <returns>件数</returns>
+		[HttpDelete("physically-remove/{accountId}")]
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove(int accountId)
+		{
+#if DEBUG
+			DataConnection.TurnTraceSwitchOn();
+			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
+#endif
+			using (var db = new peppaDB())
+			{
+				var count = db.Password
+					.Where(_ => _.account_id == accountId)
 					.Delete();
 				return Ok(count);
 			}
 		}
 
+		/// <summary>
+		/// パスワード認証の物理削除
+		/// </summary>
+		/// <param name="c"></param>
+		/// <returns>件数</returns>
+		[HttpDelete("physically-remove")]
+		[ProducesResponseType(typeof(int), 200)]
+		public IActionResult PhysicallyRemove([FromQuery]PasswordCondition c)
+		{
+#if DEBUG
+			DataConnection.TurnTraceSwitchOn();
+			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
+#endif
+			using (var db = new peppaDB())
+			{
+				var count = db.Password
+					.Where(c.CreatePredicate())
+					.Delete();
+				return Ok(count);
+			}
+		}
 	}
 }
