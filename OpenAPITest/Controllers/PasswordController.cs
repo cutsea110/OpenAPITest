@@ -48,12 +48,12 @@ namespace OpenAPITest.Controllers
                 new Claim(ClaimTypes.Name, user.Name),
             };
             var token = new JwtSecurityToken(
-                issuer: AppConfiguration.SiteUrl,
-                audience: AppConfiguration.SiteUrl,
+                issuer: AppConfiguration.JwtSecret.SiteUri,
+                audience: AppConfiguration.JwtSecret.SiteUri,
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(7),
+                expires: DateTime.UtcNow.AddDays(AppConfiguration.JwtSecret.Life),
                 signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.SecretKey)),
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey)),
                     SecurityAlgorithms.HmacSha256
                 )
             );

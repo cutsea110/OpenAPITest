@@ -70,10 +70,23 @@ namespace OpenAPITest
     #endregion
 
     #region 鍵設定
+    public class JwtSecretKey
+    {
+        public string SiteUri { get; set; }
+        public string SecretKey { get; set; }
+        public int Life { get; set; }
+
+        public JwtSecretKey(IConfiguration conf)
+        {
+            var section = conf.GetSection("JwtSecretKey");
+            SiteUri = section.GetValue<string>("SiteUri");
+            SecretKey = section.GetValue<string>("SecretKey");
+            Life = section.GetValue<int>("Life");
+        }
+    }
     public static class AppConfiguration
     {
-        public static string SiteUrl => "http://localhost:5000";
-        public static string SecretKey { get; } = Guid.NewGuid().ToString();
+        public static JwtSecretKey JwtSecret { get; set; }
     }
     #endregion
 
@@ -90,6 +103,7 @@ namespace OpenAPITest
         public void ConfigureServices(IServiceCollection services)
         {
             DataConnection.DefaultSettings = new DbSettings(Configuration);
+            AppConfiguration.JwtSecret = new JwtSecretKey(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -99,13 +113,13 @@ namespace OpenAPITest
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(opt =>
             {
-                opt.Audience = AppConfiguration.SiteUrl;
+                opt.Audience = AppConfiguration.JwtSecret.SiteUri;
                 opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
-                    ValidIssuer = AppConfiguration.SiteUrl,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.SecretKey))
+                    ValidIssuer = AppConfiguration.JwtSecret.SiteUri,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey))
                 };
             });
 
