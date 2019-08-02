@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 using LinqToDB.Configuration;
@@ -21,6 +22,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace OpenAPITest
@@ -67,6 +69,14 @@ namespace OpenAPITest
     }
     #endregion
 
+    #region 鍵設定
+    public static class AppConfiguration
+    {
+        public static string SiteUrl => "http://localhost:5000";
+        public static string SecretKey { get; } = Guid.NewGuid().ToString();
+    }
+    #endregion
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -81,7 +91,23 @@ namespace OpenAPITest
         {
             DataConnection.DefaultSettings = new DbSettings(Configuration);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt =>
+            {
+                opt.Audience = AppConfiguration.SiteUrl;
+                opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidIssuer = AppConfiguration.SiteUrl,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.SecretKey))
+                };
+            });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
@@ -89,14 +115,6 @@ namespace OpenAPITest
                 option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
-
-            // Authentication by Bear token
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer()
-                .AddCookie();
         }
 
         private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
@@ -113,7 +131,7 @@ namespace OpenAPITest
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -124,16 +142,6 @@ namespace OpenAPITest
             app.UseSwaggerUI(opions =>
             {
                 opions.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
-            });
-
-            // Authentication by Bear token
-            app.Run(context =>
-            {
-                var identity = new ClaimsIdentity();
-                identity.AddClaim(new Claim(ClaimTypes.Name, "cutsea110"));
-                var principal = new ClaimsPrincipal(identity);
-
-                return context.SignInAsync(principal);
             });
         }
     }

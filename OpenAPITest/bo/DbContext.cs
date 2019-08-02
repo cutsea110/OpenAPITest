@@ -68,9 +68,17 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		public ITable<Account> Account => this.GetTable<Account>();
 		/// <summary>
+		/// パスワード認証
+		/// </summary>
+		public ITable<Password> Password => this.GetTable<Password>();
+		/// <summary>
 		/// アカウントロール
 		/// </summary>
 		public ITable<AccountRole> AccountRole => this.GetTable<AccountRole>();
+		/// <summary>
+		/// エラーログ
+		/// </summary>
+		public ITable<ErrorLog> ErrorLog => this.GetTable<ErrorLog>();
 		/// <summary>
 		/// 職員
 		/// </summary>
@@ -99,10 +107,6 @@ namespace OpenAPITest.Domain
 		/// 連絡先種別
 		/// </summary>
 		public ITable<ContactType> ContactType => this.GetTable<ContactType>();
-		/// <summary>
-		/// エラーログ
-		/// </summary>
-		public ITable<ErrorLog> ErrorLog => this.GetTable<ErrorLog>();
 		#endregion
 
 		public peppaDB()
@@ -150,35 +154,54 @@ namespace OpenAPITest.Domain
 		有効 = 1,
 	}
 	/// <summary>
-	/// 認証方式
+	/// パスワードハッシュ化方式
 	/// </summary>
 	[DataContract]
-	public enum AuthMethod
+	public enum HashMethod
 	{
 		/// <summary>
-		/// 名称 : 無認証
-		/// 説明 : 無認証
+		/// 名称 : SHA256
+		/// 説明 : SHA256
 		/// </summary>
-		[MapValue(Value = "None"), DataMember]
-		無認証,
+		[MapValue(Value = "SHA256"), DataMember]
+		SHA256,
 		/// <summary>
-		/// 名称 : パスワード
-		/// 説明 : パスワード
+		/// 名称 : 平文のまま
+		/// 説明 : 平文のまま保持
 		/// </summary>
-		[MapValue(Value = "Password"), DataMember]
-		パスワード,
+		[MapValue(Value = "RAW"), DataMember]
+		平文,
+	}
+	/// <summary>
+	/// ロック理由
+	/// </summary>
+	[DataContract]
+	public enum LockReason
+	{
 		/// <summary>
-		/// 名称 : LDAP
-		/// 説明 : LDAP
+		/// 名称 : なし
+		/// 説明 : 理由なし
 		/// </summary>
-		[MapValue(Value = "LDAP"), DataMember]
-		LDAP,
+		[MapValue(Value = 0), DataMember]
+		なし = 0,
 		/// <summary>
-		/// 名称 : OAuth2
-		/// 説明 : OAuth2
+		/// 名称 : 認証失敗
+		/// 説明 : 連続的な認証エラーによる
 		/// </summary>
-		[MapValue(Value = "OAuth2"), DataMember]
-		OAuth2,
+		[MapValue(Value = 1), DataMember]
+		失敗 = 1,
+		/// <summary>
+		/// 名称 : アカウント凍結
+		/// 説明 : アカウントを凍結するため
+		/// </summary>
+		[MapValue(Value = 2), DataMember]
+		凍結 = 2,
+		/// <summary>
+		/// 名称 : その他
+		/// 説明 : その他
+		/// </summary>
+		[MapValue(Value = 9), DataMember]
+		その他 = 9,
 	}
 	/// <summary>
 	/// 性別
@@ -658,194 +681,356 @@ namespace OpenAPITest.Domain
 			}
 		}
 		#endregion
-		#region AuthMethod拡張メソッド
+		#region HashMethod拡張メソッド
 		/// <summary>
-		/// AuthMethodを列挙する
+		/// HashMethodを列挙する
 		/// </summary>
 		/// <returns></returns>
-		public static IEnumerable<AuthMethod> AuthMethodEnumerator()
+		public static IEnumerable<HashMethod> HashMethodEnumerator()
 		{
-			foreach (AuthMethod v in Enum.GetValues(typeof(AuthMethod)))
+			foreach (HashMethod v in Enum.GetValues(typeof(HashMethod)))
 				yield return v;
 		}
 
 		/// <summary>
-		/// 文字列値からAuthMethodへの変換
+		/// 文字列値からHashMethodへの変換
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing"></param>
 		/// <returns></returns>
-		public static AuthMethod? ToAuthMethod(this string self, AuthMethod? missing = null)
+		public static HashMethod? ToHashMethod(this string self, HashMethod? missing = null)
 		{
 			switch (self)
 			{
-				case "None":
-					return AuthMethod.無認証;
-				case "Password":
-					return AuthMethod.パスワード;
-				case "LDAP":
-					return AuthMethod.LDAP;
-				case "OAuth2":
-					return AuthMethod.OAuth2;
+				case "SHA256":
+					return HashMethod.SHA256;
+				case "RAW":
+					return HashMethod.平文;
 				default:
-					return (AuthMethod?)missing;
+					return (HashMethod?)missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethodの値取得
+		/// HashMethodの値取得
 		/// </summary>
 		/// <param name="self"></param>
 		/// <returns></returns>
-		public static string Val(this AuthMethod self)
+		public static string Val(this HashMethod self)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
-					return "None";
-				case AuthMethod.パスワード:
-					return "Password";
-				case AuthMethod.LDAP:
-					return "LDAP";
-				case AuthMethod.OAuth2:
-					return "OAuth2";
+				case HashMethod.SHA256:
+					return "SHA256";
+				case HashMethod.平文:
+					return "RAW";
 				default:
-					throw new Exception("Unknown AuthMethod");
+					throw new Exception("Unknown HashMethod");
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod名称
+		/// HashMethod名称
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string Name(this AuthMethod self, string missing = null)
+		public static string Name(this HashMethod self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
-					return "無認証";
-				case AuthMethod.パスワード:
-					return "パスワード";
-				case AuthMethod.LDAP:
-					return "LDAP";
-				case AuthMethod.OAuth2:
-					return "OAuth2";
+				case HashMethod.SHA256:
+					return "SHA256";
+				case HashMethod.平文:
+					return "平文";
 				default:
 					return missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod表示名
+		/// HashMethod表示名
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string DisplayName(this AuthMethod self, string missing = null)
+		public static string DisplayName(this HashMethod self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
-					return "無認証";
-				case AuthMethod.パスワード:
-					return "パスワード";
-				case AuthMethod.LDAP:
-					return "LDAP";
-				case AuthMethod.OAuth2:
-					return "OAuth2";
+				case HashMethod.SHA256:
+					return "SHA256";
+				case HashMethod.平文:
+					return "平文のまま";
 				default:
 					return missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod略称
+		/// HashMethod略称
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string Abbrev(this AuthMethod self, string missing = null)
+		public static string Abbrev(this HashMethod self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
+				case HashMethod.SHA256:
+					return "S";
+				case HashMethod.平文:
+					return "R";
+				default:
+					return missing;
+			}
+		}
+
+		/// <summary>
+		/// HashMethod英字名称
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string NameEn(this HashMethod self, string missing = null)
+		{
+			switch (self)
+			{
+				case HashMethod.SHA256:
+					return "SHA256";
+				case HashMethod.平文:
+					return "RAW";
+				default:
+					return missing;
+			}
+		}
+
+		/// <summary>
+		/// HashMethod英字表示名
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string DisplayNameEn(this HashMethod self, string missing = null)
+		{
+			switch (self)
+			{
+				case HashMethod.SHA256:
+					return "SHA256";
+				case HashMethod.平文:
+					return "RAW";
+				default:
+					return missing;
+			}
+		}
+
+		/// <summary>
+		/// HashMethod英字略称
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string AbbrevEn(this HashMethod self, string missing = null)
+		{
+			switch (self)
+			{
+				case HashMethod.SHA256:
+					return "S";
+				case HashMethod.平文:
+					return "R";
+				default:
+					return missing;
+			}
+		}
+		#endregion
+		#region LockReason拡張メソッド
+		/// <summary>
+		/// LockReasonを列挙する
+		/// </summary>
+		/// <returns></returns>
+		public static IEnumerable<LockReason> LockReasonEnumerator()
+		{
+			foreach (LockReason v in Enum.GetValues(typeof(LockReason)))
+				yield return v;
+		}
+
+		/// <summary>
+		/// 整数値からLockReasonへの変換
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing"></param>
+		/// <returns></returns>
+		public static LockReason? ToLockReason(this int self, LockReason? missing = null)
+		{
+			switch (self)
+			{
+				case 0:
+					return LockReason.なし;
+				case 1:
+					return LockReason.失敗;
+				case 2:
+					return LockReason.凍結;
+				case 9:
+					return LockReason.その他;
+				default:
+					return (LockReason?)missing;
+			}
+		}
+
+		/// <summary>
+		/// LockReasonの値取得
+		/// </summary>
+		/// <param name="self"></param>
+		/// <returns></returns>
+		public static int Val(this LockReason self)
+		{
+			switch (self)
+			{
+				case LockReason.なし:
+					return 0;
+				case LockReason.失敗:
+					return 1;
+				case LockReason.凍結:
+					return 2;
+				case LockReason.その他:
+					return 9;
+				default:
+					throw new Exception("Unknown LockReason");
+			}
+		}
+
+		/// <summary>
+		/// LockReason名称
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string Name(this LockReason self, string missing = null)
+		{
+			switch (self)
+			{
+				case LockReason.なし:
+					return "なし";
+				case LockReason.失敗:
+					return "失敗";
+				case LockReason.凍結:
+					return "凍結";
+				case LockReason.その他:
+					return "その他";
+				default:
+					return missing;
+			}
+		}
+
+		/// <summary>
+		/// LockReason表示名
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string DisplayName(this LockReason self, string missing = null)
+		{
+			switch (self)
+			{
+				case LockReason.なし:
+					return "なし";
+				case LockReason.失敗:
+					return "認証失敗";
+				case LockReason.凍結:
+					return "アカウント凍結";
+				case LockReason.その他:
+					return "その他";
+				default:
+					return missing;
+			}
+		}
+
+		/// <summary>
+		/// LockReason略称
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
+		/// <returns></returns>
+		public static string Abbrev(this LockReason self, string missing = null)
+		{
+			switch (self)
+			{
+				case LockReason.なし:
 					return "無";
-				case AuthMethod.パスワード:
-					return "パ";
-				case AuthMethod.LDAP:
-					return "L";
-				case AuthMethod.OAuth2:
-					return "O";
+				case LockReason.失敗:
+					return "連";
+				case LockReason.凍結:
+					return "凍";
+				case LockReason.その他:
+					return "他";
 				default:
 					return missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod英字名称
+		/// LockReason英字名称
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string NameEn(this AuthMethod self, string missing = null)
+		public static string NameEn(this LockReason self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
+				case LockReason.なし:
 					return "None";
-				case AuthMethod.パスワード:
-					return "Password";
-				case AuthMethod.LDAP:
-					return "LDAP";
-				case AuthMethod.OAuth2:
-					return "OAuth2";
+				case LockReason.失敗:
+					return "Fail";
+				case LockReason.凍結:
+					return "Exclude";
+				case LockReason.その他:
+					return "Other";
 				default:
 					return missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod英字表示名
+		/// LockReason英字表示名
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string DisplayNameEn(this AuthMethod self, string missing = null)
+		public static string DisplayNameEn(this LockReason self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
+				case LockReason.なし:
 					return "None";
-				case AuthMethod.パスワード:
-					return "Password";
-				case AuthMethod.LDAP:
-					return "LDAP";
-				case AuthMethod.OAuth2:
-					return "OAuth2";
+				case LockReason.失敗:
+					return "Fail";
+				case LockReason.凍結:
+					return "Exclude";
+				case LockReason.その他:
+					return "Other";
 				default:
 					return missing;
 			}
 		}
 
 		/// <summary>
-		/// AuthMethod英字略称
+		/// LockReason英字略称
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="missing">存在しないenum値だった場合の返り値指定</param>
 		/// <returns></returns>
-		public static string AbbrevEn(this AuthMethod self, string missing = null)
+		public static string AbbrevEn(this LockReason self, string missing = null)
 		{
 			switch (self)
 			{
-				case AuthMethod.無認証:
+				case LockReason.なし:
 					return "N";
-				case AuthMethod.パスワード:
-					return "P";
-				case AuthMethod.LDAP:
-					return "L";
-				case AuthMethod.OAuth2:
+				case LockReason.失敗:
+					return "F";
+				case LockReason.凍結:
+					return "E";
+				case LockReason.その他:
 					return "O";
 				default:
 					return missing;
@@ -4506,9 +4691,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col02_in { get; set; }
 		[DataMember] public IEnumerable<string> col02_ni { get; set; }
 		[DataMember] public (string low, string high)? col02_between { get; set; }
-		[DataMember] public string col02_liker { get; set; }
-		[DataMember] public string col02_clikec { get; set; }
-		[DataMember] public string col02_llike { get; set; }
+		[DataMember] public string col02_like { get; set; }
 		#endregion
 		#region col02_
 		[DataMember] public string col02__eq { get; set; }
@@ -4522,9 +4705,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col02__between { get; set; }
 		[DataMember] public bool col02__isnull { get; set; } =  false ;
 		[DataMember] public bool col02__isnotnull { get; set; } = false;
-		[DataMember] public string col02__liker { get; set; }
-		[DataMember] public string col02__clikec { get; set; }
-		[DataMember] public string col02__llike { get; set; }
+		[DataMember] public string col02__like { get; set; }
 		#endregion
 		#region col03
 		[DataMember] public string col03_eq { get; set; }
@@ -4536,9 +4717,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col03_in { get; set; }
 		[DataMember] public IEnumerable<string> col03_ni { get; set; }
 		[DataMember] public (string low, string high)? col03_between { get; set; }
-		[DataMember] public string col03_liker { get; set; }
-		[DataMember] public string col03_clikec { get; set; }
-		[DataMember] public string col03_llike { get; set; }
+		[DataMember] public string col03_like { get; set; }
 		#endregion
 		#region col03_
 		[DataMember] public string col03__eq { get; set; }
@@ -4552,9 +4731,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col03__between { get; set; }
 		[DataMember] public bool col03__isnull { get; set; } =  false ;
 		[DataMember] public bool col03__isnotnull { get; set; } = false;
-		[DataMember] public string col03__liker { get; set; }
-		[DataMember] public string col03__clikec { get; set; }
-		[DataMember] public string col03__llike { get; set; }
+		[DataMember] public string col03__like { get; set; }
 		#endregion
 		#region col04
 		[DataMember] public string col04_eq { get; set; }
@@ -4566,9 +4743,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col04_in { get; set; }
 		[DataMember] public IEnumerable<string> col04_ni { get; set; }
 		[DataMember] public (string low, string high)? col04_between { get; set; }
-		[DataMember] public string col04_liker { get; set; }
-		[DataMember] public string col04_clikec { get; set; }
-		[DataMember] public string col04_llike { get; set; }
+		[DataMember] public string col04_like { get; set; }
 		#endregion
 		#region col04_
 		[DataMember] public string col04__eq { get; set; }
@@ -4582,9 +4757,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col04__between { get; set; }
 		[DataMember] public bool col04__isnull { get; set; } =  false ;
 		[DataMember] public bool col04__isnotnull { get; set; } = false;
-		[DataMember] public string col04__liker { get; set; }
-		[DataMember] public string col04__clikec { get; set; }
-		[DataMember] public string col04__llike { get; set; }
+		[DataMember] public string col04__like { get; set; }
 		#endregion
 		#region col05
 		[DataMember] public char? col05_eq { get; set; }
@@ -4620,9 +4793,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col06_in { get; set; }
 		[DataMember] public IEnumerable<string> col06_ni { get; set; }
 		[DataMember] public (string low, string high)? col06_between { get; set; }
-		[DataMember] public string col06_liker { get; set; }
-		[DataMember] public string col06_clikec { get; set; }
-		[DataMember] public string col06_llike { get; set; }
+		[DataMember] public string col06_like { get; set; }
 		#endregion
 		#region col06_
 		[DataMember] public string col06__eq { get; set; }
@@ -4636,9 +4807,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col06__between { get; set; }
 		[DataMember] public bool col06__isnull { get; set; } =  false ;
 		[DataMember] public bool col06__isnotnull { get; set; } = false;
-		[DataMember] public string col06__liker { get; set; }
-		[DataMember] public string col06__clikec { get; set; }
-		[DataMember] public string col06__llike { get; set; }
+		[DataMember] public string col06__like { get; set; }
 		#endregion
 		#region col07
 		[DataMember] public string col07_eq { get; set; }
@@ -4650,9 +4819,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col07_in { get; set; }
 		[DataMember] public IEnumerable<string> col07_ni { get; set; }
 		[DataMember] public (string low, string high)? col07_between { get; set; }
-		[DataMember] public string col07_liker { get; set; }
-		[DataMember] public string col07_clikec { get; set; }
-		[DataMember] public string col07_llike { get; set; }
+		[DataMember] public string col07_like { get; set; }
 		#endregion
 		#region col07_
 		[DataMember] public string col07__eq { get; set; }
@@ -4666,9 +4833,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col07__between { get; set; }
 		[DataMember] public bool col07__isnull { get; set; } =  false ;
 		[DataMember] public bool col07__isnotnull { get; set; } = false;
-		[DataMember] public string col07__liker { get; set; }
-		[DataMember] public string col07__clikec { get; set; }
-		[DataMember] public string col07__llike { get; set; }
+		[DataMember] public string col07__like { get; set; }
 		#endregion
 		#region col08
 		[DataMember] public string col08_eq { get; set; }
@@ -4680,9 +4845,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> col08_in { get; set; }
 		[DataMember] public IEnumerable<string> col08_ni { get; set; }
 		[DataMember] public (string low, string high)? col08_between { get; set; }
-		[DataMember] public string col08_liker { get; set; }
-		[DataMember] public string col08_clikec { get; set; }
-		[DataMember] public string col08_llike { get; set; }
+		[DataMember] public string col08_like { get; set; }
 		#endregion
 		#region col08_
 		[DataMember] public string col08__eq { get; set; }
@@ -4696,9 +4859,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? col08__between { get; set; }
 		[DataMember] public bool col08__isnull { get; set; } =  false ;
 		[DataMember] public bool col08__isnotnull { get; set; } = false;
-		[DataMember] public string col08__liker { get; set; }
-		[DataMember] public string col08__clikec { get; set; }
-		[DataMember] public string col08__llike { get; set; }
+		[DataMember] public string col08__like { get; set; }
 		#endregion
 		#region col09
 		[DataMember] public byte[] col09_eq { get; set; }
@@ -5148,9 +5309,6 @@ namespace OpenAPITest.Domain
 			if (col02_ge != null) predicate = predicate.And(_ => col02_ge.CompareTo(_.col02) <= 0);
 			if (col02_in != null) predicate = predicate.And(_ => col02_in.Contains(_.col02));
 			if (col02_ni != null) predicate = predicate.And(_ => !col02_ni.Contains(_.col02));
-			if (col02_liker != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"{col02_liker}%"));
-			if (col02_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"%{col02_clikec}%"));
-			if (col02_llike != null) predicate = predicate.And(_ => Sql.Like(_.col02, $"%{col02_llike}"));
 			#endregion
 			#region col02_
 			if (col02__eq != null) predicate = predicate.And(_ => _.col02_ == col02__eq);
@@ -5163,9 +5321,6 @@ namespace OpenAPITest.Domain
 			if (col02__ni != null) predicate = predicate.And(_ => !col02__ni.Contains(_.col02_));
 			if (col02__isnull) predicate = predicate.And(_ => _.col02_ == null);
 			if (col02__isnotnull) predicate = predicate.And(_ => _.col02_ != null);
-			if (col02__liker != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"{col02__liker}%"));
-			if (col02__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"%{col02__clikec}%"));
-			if (col02__llike != null) predicate = predicate.And(_ => Sql.Like(_.col02_, $"%{col02__llike}"));
 			#endregion
 			#region col03
 			if (col03_eq != null) predicate = predicate.And(_ => _.col03 == col03_eq);
@@ -5176,9 +5331,6 @@ namespace OpenAPITest.Domain
 			if (col03_ge != null) predicate = predicate.And(_ => col03_ge.CompareTo(_.col03) <= 0);
 			if (col03_in != null) predicate = predicate.And(_ => col03_in.Contains(_.col03));
 			if (col03_ni != null) predicate = predicate.And(_ => !col03_ni.Contains(_.col03));
-			if (col03_liker != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"{col03_liker}%"));
-			if (col03_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"%{col03_clikec}%"));
-			if (col03_llike != null) predicate = predicate.And(_ => Sql.Like(_.col03, $"%{col03_llike}"));
 			#endregion
 			#region col03_
 			if (col03__eq != null) predicate = predicate.And(_ => _.col03_ == col03__eq);
@@ -5191,9 +5343,6 @@ namespace OpenAPITest.Domain
 			if (col03__ni != null) predicate = predicate.And(_ => !col03__ni.Contains(_.col03_));
 			if (col03__isnull) predicate = predicate.And(_ => _.col03_ == null);
 			if (col03__isnotnull) predicate = predicate.And(_ => _.col03_ != null);
-			if (col03__liker != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"{col03__liker}%"));
-			if (col03__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"%{col03__clikec}%"));
-			if (col03__llike != null) predicate = predicate.And(_ => Sql.Like(_.col03_, $"%{col03__llike}"));
 			#endregion
 			#region col04
 			if (col04_eq != null) predicate = predicate.And(_ => _.col04 == col04_eq);
@@ -5204,9 +5353,6 @@ namespace OpenAPITest.Domain
 			if (col04_ge != null) predicate = predicate.And(_ => col04_ge.CompareTo(_.col04) <= 0);
 			if (col04_in != null) predicate = predicate.And(_ => col04_in.Contains(_.col04));
 			if (col04_ni != null) predicate = predicate.And(_ => !col04_ni.Contains(_.col04));
-			if (col04_liker != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"{col04_liker}%"));
-			if (col04_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"%{col04_clikec}%"));
-			if (col04_llike != null) predicate = predicate.And(_ => Sql.Like(_.col04, $"%{col04_llike}"));
 			#endregion
 			#region col04_
 			if (col04__eq != null) predicate = predicate.And(_ => _.col04_ == col04__eq);
@@ -5219,9 +5365,6 @@ namespace OpenAPITest.Domain
 			if (col04__ni != null) predicate = predicate.And(_ => !col04__ni.Contains(_.col04_));
 			if (col04__isnull) predicate = predicate.And(_ => _.col04_ == null);
 			if (col04__isnotnull) predicate = predicate.And(_ => _.col04_ != null);
-			if (col04__liker != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"{col04__liker}%"));
-			if (col04__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"%{col04__clikec}%"));
-			if (col04__llike != null) predicate = predicate.And(_ => Sql.Like(_.col04_, $"%{col04__llike}"));
 			#endregion
 			#region col05
 			if (col05_eq != null) predicate = predicate.And(_ => _.col05 == col05_eq);
@@ -5254,9 +5397,6 @@ namespace OpenAPITest.Domain
 			if (col06_ge != null) predicate = predicate.And(_ => col06_ge.CompareTo(_.col06) <= 0);
 			if (col06_in != null) predicate = predicate.And(_ => col06_in.Contains(_.col06));
 			if (col06_ni != null) predicate = predicate.And(_ => !col06_ni.Contains(_.col06));
-			if (col06_liker != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"{col06_liker}%"));
-			if (col06_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"%{col06_clikec}%"));
-			if (col06_llike != null) predicate = predicate.And(_ => Sql.Like(_.col06, $"%{col06_llike}"));
 			#endregion
 			#region col06_
 			if (col06__eq != null) predicate = predicate.And(_ => _.col06_ == col06__eq);
@@ -5269,9 +5409,6 @@ namespace OpenAPITest.Domain
 			if (col06__ni != null) predicate = predicate.And(_ => !col06__ni.Contains(_.col06_));
 			if (col06__isnull) predicate = predicate.And(_ => _.col06_ == null);
 			if (col06__isnotnull) predicate = predicate.And(_ => _.col06_ != null);
-			if (col06__liker != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"{col06__liker}%"));
-			if (col06__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"%{col06__clikec}%"));
-			if (col06__llike != null) predicate = predicate.And(_ => Sql.Like(_.col06_, $"%{col06__llike}"));
 			#endregion
 			#region col07
 			if (col07_eq != null) predicate = predicate.And(_ => _.col07 == col07_eq);
@@ -5282,9 +5419,6 @@ namespace OpenAPITest.Domain
 			if (col07_ge != null) predicate = predicate.And(_ => col07_ge.CompareTo(_.col07) <= 0);
 			if (col07_in != null) predicate = predicate.And(_ => col07_in.Contains(_.col07));
 			if (col07_ni != null) predicate = predicate.And(_ => !col07_ni.Contains(_.col07));
-			if (col07_liker != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"{col07_liker}%"));
-			if (col07_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"%{col07_clikec}%"));
-			if (col07_llike != null) predicate = predicate.And(_ => Sql.Like(_.col07, $"%{col07_llike}"));
 			#endregion
 			#region col07_
 			if (col07__eq != null) predicate = predicate.And(_ => _.col07_ == col07__eq);
@@ -5297,9 +5431,6 @@ namespace OpenAPITest.Domain
 			if (col07__ni != null) predicate = predicate.And(_ => !col07__ni.Contains(_.col07_));
 			if (col07__isnull) predicate = predicate.And(_ => _.col07_ == null);
 			if (col07__isnotnull) predicate = predicate.And(_ => _.col07_ != null);
-			if (col07__liker != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"{col07__liker}%"));
-			if (col07__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"%{col07__clikec}%"));
-			if (col07__llike != null) predicate = predicate.And(_ => Sql.Like(_.col07_, $"%{col07__llike}"));
 			#endregion
 			#region col08
 			if (col08_eq != null) predicate = predicate.And(_ => _.col08 == col08_eq);
@@ -5310,9 +5441,6 @@ namespace OpenAPITest.Domain
 			if (col08_ge != null) predicate = predicate.And(_ => col08_ge.CompareTo(_.col08) <= 0);
 			if (col08_in != null) predicate = predicate.And(_ => col08_in.Contains(_.col08));
 			if (col08_ni != null) predicate = predicate.And(_ => !col08_ni.Contains(_.col08));
-			if (col08_liker != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"{col08_liker}%"));
-			if (col08_clikec != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"%{col08_clikec}%"));
-			if (col08_llike != null) predicate = predicate.And(_ => Sql.Like(_.col08, $"%{col08_llike}"));
 			#endregion
 			#region col08_
 			if (col08__eq != null) predicate = predicate.And(_ => _.col08_ == col08__eq);
@@ -5325,9 +5453,6 @@ namespace OpenAPITest.Domain
 			if (col08__ni != null) predicate = predicate.And(_ => !col08__ni.Contains(_.col08_));
 			if (col08__isnull) predicate = predicate.And(_ => _.col08_ == null);
 			if (col08__isnotnull) predicate = predicate.And(_ => _.col08_ != null);
-			if (col08__liker != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"{col08__liker}%"));
-			if (col08__clikec != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"%{col08__clikec}%"));
-			if (col08__llike != null) predicate = predicate.And(_ => Sql.Like(_.col08_, $"%{col08__llike}"));
 			#endregion
 			#region col09
 			if (col09_eq != null) predicate = predicate.And(_ => _.col09 == col09_eq);
@@ -5712,7 +5837,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロールマスタ
 	/// </summary>
-	[Table(Schema="Common", Name="Role"), DataContract]
+	[Table(Schema="Core", Name="Role"), DataContract]
 	public partial class Role : TableBase<Role>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -6331,9 +6456,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_liker { get; set; }
-		[DataMember] public string role_id_clikec { get; set; }
-		[DataMember] public string role_id_llike { get; set; }
+		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region name
 		[DataMember] public string name_eq { get; set; }
@@ -6345,9 +6468,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_liker { get; set; }
-		[DataMember] public string name_clikec { get; set; }
-		[DataMember] public string name_llike { get; set; }
+		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region abbrev
 		[DataMember] public string abbrev_eq { get; set; }
@@ -6359,9 +6480,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? abbrev_between { get; set; }
-		[DataMember] public string abbrev_liker { get; set; }
-		[DataMember] public string abbrev_clikec { get; set; }
-		[DataMember] public string abbrev_llike { get; set; }
+		[DataMember] public string abbrev_like { get; set; }
 		#endregion
 		#region name_en
 		[DataMember] public string name_en_eq { get; set; }
@@ -6373,9 +6492,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_en_in { get; set; }
 		[DataMember] public IEnumerable<string> name_en_ni { get; set; }
 		[DataMember] public (string low, string high)? name_en_between { get; set; }
-		[DataMember] public string name_en_liker { get; set; }
-		[DataMember] public string name_en_clikec { get; set; }
-		[DataMember] public string name_en_llike { get; set; }
+		[DataMember] public string name_en_like { get; set; }
 		#endregion
 		#region abbrev_en
 		[DataMember] public string abbrev_en_eq { get; set; }
@@ -6387,9 +6504,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> abbrev_en_in { get; set; }
 		[DataMember] public IEnumerable<string> abbrev_en_ni { get; set; }
 		[DataMember] public (string low, string high)? abbrev_en_between { get; set; }
-		[DataMember] public string abbrev_en_liker { get; set; }
-		[DataMember] public string abbrev_en_clikec { get; set; }
-		[DataMember] public string abbrev_en_llike { get; set; }
+		[DataMember] public string abbrev_en_like { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -6484,9 +6599,6 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
-			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
-			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
-			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region name
 			if (name_eq != null) predicate = predicate.And(_ => _.name == name_eq);
@@ -6497,9 +6609,6 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
-			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
-			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
-			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region abbrev
 			if (abbrev_eq != null) predicate = predicate.And(_ => _.abbrev == abbrev_eq);
@@ -6510,9 +6619,6 @@ namespace OpenAPITest.Domain
 			if (abbrev_ge != null) predicate = predicate.And(_ => abbrev_ge.CompareTo(_.abbrev) <= 0);
 			if (abbrev_in != null) predicate = predicate.And(_ => abbrev_in.Contains(_.abbrev));
 			if (abbrev_ni != null) predicate = predicate.And(_ => !abbrev_ni.Contains(_.abbrev));
-			if (abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"{abbrev_liker}%"));
-			if (abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"%{abbrev_clikec}%"));
-			if (abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.abbrev, $"%{abbrev_llike}"));
 			#endregion
 			#region name_en
 			if (name_en_eq != null) predicate = predicate.And(_ => _.name_en == name_en_eq);
@@ -6523,9 +6629,6 @@ namespace OpenAPITest.Domain
 			if (name_en_ge != null) predicate = predicate.And(_ => name_en_ge.CompareTo(_.name_en) <= 0);
 			if (name_en_in != null) predicate = predicate.And(_ => name_en_in.Contains(_.name_en));
 			if (name_en_ni != null) predicate = predicate.And(_ => !name_en_ni.Contains(_.name_en));
-			if (name_en_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"{name_en_liker}%"));
-			if (name_en_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"%{name_en_clikec}%"));
-			if (name_en_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_en, $"%{name_en_llike}"));
 			#endregion
 			#region abbrev_en
 			if (abbrev_en_eq != null) predicate = predicate.And(_ => _.abbrev_en == abbrev_en_eq);
@@ -6536,9 +6639,6 @@ namespace OpenAPITest.Domain
 			if (abbrev_en_ge != null) predicate = predicate.And(_ => abbrev_en_ge.CompareTo(_.abbrev_en) <= 0);
 			if (abbrev_en_in != null) predicate = predicate.And(_ => abbrev_en_in.Contains(_.abbrev_en));
 			if (abbrev_en_ni != null) predicate = predicate.And(_ => !abbrev_en_ni.Contains(_.abbrev_en));
-			if (abbrev_en_liker != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"{abbrev_en_liker}%"));
-			if (abbrev_en_clikec != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"%{abbrev_en_clikec}%"));
-			if (abbrev_en_llike != null) predicate = predicate.And(_ => Sql.Like(_.abbrev_en, $"%{abbrev_en_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -6613,7 +6713,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロール権限
 	/// </summary>
-	[Table(Schema="Common", Name="RolePermission"), DataContract]
+	[Table(Schema="Core", Name="RolePermission"), DataContract]
 	public partial class RolePermission : TableBase<RolePermission>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -7250,9 +7350,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_liker { get; set; }
-		[DataMember] public string role_id_clikec { get; set; }
-		[DataMember] public string role_id_llike { get; set; }
+		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region permission_id (PermissionId)
 		private string _permission_id_eq;
@@ -7390,9 +7488,6 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
-			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
-			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
-			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region permission_id
 			if (_permission_id_eq != null) predicate = predicate.And(_ => _.permission_id == _permission_id_eq);
@@ -7465,7 +7560,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// アカウント
 	/// </summary>
-	[Table(Schema="Common", Name="Account"), DataContract]
+	[Table(Schema="Core", Name="Account"), DataContract]
 	public partial class Account : TableBase<Account>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -7788,46 +7883,6 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
-		#region auth_method_type : string
-
-		private string _auth_method_type;
-		/// <summary>
-		/// 認証方式
-		/// </summary>
-		[Column(DbType="varchar(10)", DataType=DataType.VarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
-		public  string  auth_method_type
-		{
-			get { return _auth_method_type; }
-			set
-			{
-				if (_auth_method_type != value)
-				{
-					Beforeauth_method_typeChanged(value);
-					_auth_method_type = value;
-					Afterauth_method_typeChanged();
-
-					Onauth_method_typeChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforeauth_method_typeChanged(string newValue);
-		partial void Afterauth_method_typeChanged();
-
-		public const string NameOfauth_method_type = "auth_method_type";
-
-		private static readonly PropertyChangedEventArgs _auth_method_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfauth_method_type);
-
-		private void Onauth_method_typeChanged()
-		{
-			OnPropertyChanged(_auth_method_typeChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
 		#region is_valid : int
 
 		private int _is_valid;
@@ -8111,48 +8166,6 @@ namespace OpenAPITest.Domain
 
 		#region enum用アクセスラッパー
 		/// <summary>
-		/// auth_method_typeのenumラッパー
-		/// </summary>
-		public AuthMethod AuthMethodType
-		{
-			get
-			{
-				switch (auth_method_type)
-				{
-					case "None":
-						return AuthMethod.無認証;
-					case "Password":
-						return AuthMethod.パスワード;
-					case "LDAP":
-						return AuthMethod.LDAP;
-					case "OAuth2":
-						return AuthMethod.OAuth2;
-					default:
-						throw new Exception($"Unknown auth_method_type: {auth_method_type}");
-				}
-			}
-			set
-			{
-				switch (value)
-				{
-					case AuthMethod.無認証:
-						auth_method_type = "None";
-						break;
-					case AuthMethod.パスワード:
-						auth_method_type = "Password";
-						break;
-					case AuthMethod.LDAP:
-						auth_method_type = "LDAP";
-						break;
-					case AuthMethod.OAuth2:
-						auth_method_type = "OAuth2";
-						break;
-					default:
-						throw new Exception($"Unknown AuthMethod: {value}");
-				}
-			}
-		}
-		/// <summary>
 		/// is_validのenumラッパー
 		/// </summary>
 		public ValidityFlag IsValid
@@ -8175,7 +8188,6 @@ namespace OpenAPITest.Domain
 			out_student_no = null;
 			parent_no = null;
 			user_no = null;
-			auth_method_type = "None";
 			is_valid = 1;
 			created_at = DateTime.UtcNow;
 			created_by = null;
@@ -8270,6 +8282,46 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region IEnumerable<Password> : account_id to Password : account_id (FK_Account_Password)
+
+		private IEnumerable<Password> _PasswordList;
+		/// <summary>
+		/// FK_Account_Password_BackReference
+		/// </summary>
+		[Association(ThisKey="account_id", OtherKey="account_id", CanBeNull=true, Relationship=Relationship.OneToMany, IsBackReference=true), DataMember]
+		public  IEnumerable<Password>  PasswordList
+		{
+			get { return _PasswordList; }
+			set
+			{
+				if (_PasswordList != value)
+				{
+					BeforePasswordListChanged(value);
+					_PasswordList = value;
+					AfterPasswordListChanged();
+
+					OnPasswordListChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforePasswordListChanged(IEnumerable<Password> newValue);
+		partial void AfterPasswordListChanged ();
+
+		public const string NameOfPasswordList = "PasswordList";
+
+		private static readonly PropertyChangedEventArgs _PasswordListChangedEventArgs = new PropertyChangedEventArgs(NameOfPasswordList);
+
+		private void OnPasswordListChanged()
+		{
+			OnPropertyChanged(_PasswordListChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 
 		#endregion
 
@@ -8351,9 +8403,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
 		[DataMember] public bool staff_no_isnull { get; set; } =  false ;
 		[DataMember] public bool staff_no_isnotnull { get; set; } = false;
-		[DataMember] public string staff_no_liker { get; set; }
-		[DataMember] public string staff_no_clikec { get; set; }
-		[DataMember] public string staff_no_llike { get; set; }
+		[DataMember] public string staff_no_like { get; set; }
 		#endregion
 		#region teacher_no
 		[DataMember] public string teacher_no_eq { get; set; }
@@ -8367,9 +8417,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? teacher_no_between { get; set; }
 		[DataMember] public bool teacher_no_isnull { get; set; } =  false ;
 		[DataMember] public bool teacher_no_isnotnull { get; set; } = false;
-		[DataMember] public string teacher_no_liker { get; set; }
-		[DataMember] public string teacher_no_clikec { get; set; }
-		[DataMember] public string teacher_no_llike { get; set; }
+		[DataMember] public string teacher_no_like { get; set; }
 		#endregion
 		#region student_no
 		[DataMember] public string student_no_eq { get; set; }
@@ -8383,9 +8431,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? student_no_between { get; set; }
 		[DataMember] public bool student_no_isnull { get; set; } =  false ;
 		[DataMember] public bool student_no_isnotnull { get; set; } = false;
-		[DataMember] public string student_no_liker { get; set; }
-		[DataMember] public string student_no_clikec { get; set; }
-		[DataMember] public string student_no_llike { get; set; }
+		[DataMember] public string student_no_like { get; set; }
 		#endregion
 		#region out_student_no
 		[DataMember] public string out_student_no_eq { get; set; }
@@ -8399,9 +8445,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? out_student_no_between { get; set; }
 		[DataMember] public bool out_student_no_isnull { get; set; } =  false ;
 		[DataMember] public bool out_student_no_isnotnull { get; set; } = false;
-		[DataMember] public string out_student_no_liker { get; set; }
-		[DataMember] public string out_student_no_clikec { get; set; }
-		[DataMember] public string out_student_no_llike { get; set; }
+		[DataMember] public string out_student_no_like { get; set; }
 		#endregion
 		#region parent_no
 		[DataMember] public string parent_no_eq { get; set; }
@@ -8415,9 +8459,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? parent_no_between { get; set; }
 		[DataMember] public bool parent_no_isnull { get; set; } =  false ;
 		[DataMember] public bool parent_no_isnotnull { get; set; } = false;
-		[DataMember] public string parent_no_liker { get; set; }
-		[DataMember] public string parent_no_clikec { get; set; }
-		[DataMember] public string parent_no_llike { get; set; }
+		[DataMember] public string parent_no_like { get; set; }
 		#endregion
 		#region user_no
 		[DataMember] public string user_no_eq { get; set; }
@@ -8431,65 +8473,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public (string low, string high)? user_no_between { get; set; }
 		[DataMember] public bool user_no_isnull { get; set; } =  false ;
 		[DataMember] public bool user_no_isnotnull { get; set; } = false;
-		[DataMember] public string user_no_liker { get; set; }
-		[DataMember] public string user_no_clikec { get; set; }
-		[DataMember] public string user_no_llike { get; set; }
-		#endregion
-		#region auth_method_type (AuthMethodType)
-		private string _auth_method_type_eq;
-		[DataMember] public AuthMethod? AuthMethodType_eq
-		{
-			get => _auth_method_type_eq?.ToAuthMethod();
-			set => _auth_method_type_eq = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private string _auth_method_type_ne;
-		[DataMember] public AuthMethod? AuthMethodType_ne
-		{
-			get => _auth_method_type_ne?.ToAuthMethod();
-			set => _auth_method_type_ne = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private string _auth_method_type_lt;
-		[DataMember] public AuthMethod? AuthMethodType_lt
-		{
-			get => _auth_method_type_lt?.ToAuthMethod();
-			set => _auth_method_type_lt = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private string _auth_method_type_gt;
-		[DataMember] public AuthMethod? AuthMethodType_gt
-		{
-			get => _auth_method_type_gt?.ToAuthMethod();
-			set => _auth_method_type_gt = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private string _auth_method_type_le;
-		[DataMember] public AuthMethod? AuthMethodType_le
-		{
-			get => _auth_method_type_le?.ToAuthMethod();
-			set => _auth_method_type_le = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private string _auth_method_type_ge;
-		[DataMember] public AuthMethod? AuthMethodType_ge
-		{
-			get => _auth_method_type_ge?.ToAuthMethod();
-			set => _auth_method_type_ge = value.HasValue ? value.Value.Val() : (string)null;
-		}
-		private IEnumerable<string> _auth_method_type_in;
-		[DataMember] public IEnumerable<AuthMethod> AuthMethodType_in
-		{
-			get => _auth_method_type_in?.Select(_ => _.ToAuthMethod().Value) ?? Enumerable.Empty<AuthMethod>();
-			set => _auth_method_type_in = value.Select(_ => _.Val());
-		}
-		private IEnumerable<string> _auth_method_type_ni;
-		[DataMember] public IEnumerable<AuthMethod> AuthMethodType_ni
-		{
-			get => _auth_method_type_ni?.Select(_ => _.ToAuthMethod().Value) ?? Enumerable.Empty<AuthMethod>();
-			set => _auth_method_type_ni = value.Select(_ => _.Val());
-		}
-		private (string low, string high)? _auth_method_type_between;
-		[DataMember] public (AuthMethod low, AuthMethod high)? AuthMethodType_between
-		{
-			get => _auth_method_type_between.HasValue ? (_auth_method_type_between.Value.low.ToAuthMethod().Value, _auth_method_type_between.Value.high.ToAuthMethod().Value) : ((AuthMethod, AuthMethod)?)null;
-			set => _auth_method_type_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((string, string)?)null;
-		}
+		[DataMember] public string user_no_like { get; set; }
 		#endregion
 		#region is_valid (IsValid)
 		private int? _is_valid_eq;
@@ -8652,9 +8636,6 @@ namespace OpenAPITest.Domain
 			if (staff_no_ni != null) predicate = predicate.And(_ => !staff_no_ni.Contains(_.staff_no));
 			if (staff_no_isnull) predicate = predicate.And(_ => _.staff_no == null);
 			if (staff_no_isnotnull) predicate = predicate.And(_ => _.staff_no != null);
-			if (staff_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"{staff_no_liker}%"));
-			if (staff_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_clikec}%"));
-			if (staff_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_llike}"));
 			#endregion
 			#region teacher_no
 			if (teacher_no_eq != null) predicate = predicate.And(_ => _.teacher_no == teacher_no_eq);
@@ -8667,9 +8648,6 @@ namespace OpenAPITest.Domain
 			if (teacher_no_ni != null) predicate = predicate.And(_ => !teacher_no_ni.Contains(_.teacher_no));
 			if (teacher_no_isnull) predicate = predicate.And(_ => _.teacher_no == null);
 			if (teacher_no_isnotnull) predicate = predicate.And(_ => _.teacher_no != null);
-			if (teacher_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"{teacher_no_liker}%"));
-			if (teacher_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"%{teacher_no_clikec}%"));
-			if (teacher_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.teacher_no, $"%{teacher_no_llike}"));
 			#endregion
 			#region student_no
 			if (student_no_eq != null) predicate = predicate.And(_ => _.student_no == student_no_eq);
@@ -8682,9 +8660,6 @@ namespace OpenAPITest.Domain
 			if (student_no_ni != null) predicate = predicate.And(_ => !student_no_ni.Contains(_.student_no));
 			if (student_no_isnull) predicate = predicate.And(_ => _.student_no == null);
 			if (student_no_isnotnull) predicate = predicate.And(_ => _.student_no != null);
-			if (student_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"{student_no_liker}%"));
-			if (student_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"%{student_no_clikec}%"));
-			if (student_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.student_no, $"%{student_no_llike}"));
 			#endregion
 			#region out_student_no
 			if (out_student_no_eq != null) predicate = predicate.And(_ => _.out_student_no == out_student_no_eq);
@@ -8697,9 +8672,6 @@ namespace OpenAPITest.Domain
 			if (out_student_no_ni != null) predicate = predicate.And(_ => !out_student_no_ni.Contains(_.out_student_no));
 			if (out_student_no_isnull) predicate = predicate.And(_ => _.out_student_no == null);
 			if (out_student_no_isnotnull) predicate = predicate.And(_ => _.out_student_no != null);
-			if (out_student_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"{out_student_no_liker}%"));
-			if (out_student_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"%{out_student_no_clikec}%"));
-			if (out_student_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.out_student_no, $"%{out_student_no_llike}"));
 			#endregion
 			#region parent_no
 			if (parent_no_eq != null) predicate = predicate.And(_ => _.parent_no == parent_no_eq);
@@ -8712,9 +8684,6 @@ namespace OpenAPITest.Domain
 			if (parent_no_ni != null) predicate = predicate.And(_ => !parent_no_ni.Contains(_.parent_no));
 			if (parent_no_isnull) predicate = predicate.And(_ => _.parent_no == null);
 			if (parent_no_isnotnull) predicate = predicate.And(_ => _.parent_no != null);
-			if (parent_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"{parent_no_liker}%"));
-			if (parent_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"%{parent_no_clikec}%"));
-			if (parent_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.parent_no, $"%{parent_no_llike}"));
 			#endregion
 			#region user_no
 			if (user_no_eq != null) predicate = predicate.And(_ => _.user_no == user_no_eq);
@@ -8727,19 +8696,6 @@ namespace OpenAPITest.Domain
 			if (user_no_ni != null) predicate = predicate.And(_ => !user_no_ni.Contains(_.user_no));
 			if (user_no_isnull) predicate = predicate.And(_ => _.user_no == null);
 			if (user_no_isnotnull) predicate = predicate.And(_ => _.user_no != null);
-			if (user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"{user_no_liker}%"));
-			if (user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"%{user_no_clikec}%"));
-			if (user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.user_no, $"%{user_no_llike}"));
-			#endregion
-			#region auth_method_type
-			if (_auth_method_type_eq != null) predicate = predicate.And(_ => _.auth_method_type == _auth_method_type_eq);
-			if (_auth_method_type_ne != null) predicate = predicate.And(_ => _.auth_method_type != _auth_method_type_ne);
-			if (_auth_method_type_lt != null) predicate = predicate.And(_ => _auth_method_type_lt.CompareTo(_.auth_method_type) > 0);
-			if (_auth_method_type_gt != null) predicate = predicate.And(_ => _auth_method_type_gt.CompareTo(_.auth_method_type) < 0);
-			if (_auth_method_type_le != null) predicate = predicate.And(_ => _auth_method_type_le.CompareTo(_.auth_method_type) >= 0);
-			if (_auth_method_type_ge != null) predicate = predicate.And(_ => _auth_method_type_ge.CompareTo(_.auth_method_type) <= 0);
-			if (_auth_method_type_in != null) predicate = predicate.And(_ => _auth_method_type_in.Contains(_.auth_method_type));
-			if (_auth_method_type_ni != null) predicate = predicate.And(_ => !_auth_method_type_ni.Contains(_.auth_method_type));
 			#endregion
 			#region is_valid
 			if (_is_valid_eq != null) predicate = predicate.And(_ => _.is_valid == _is_valid_eq);
@@ -8820,11 +8776,1283 @@ namespace OpenAPITest.Domain
 	}
 	#endregion
 	#endregion
+	#region パスワード認証
+	/// <summary>
+	/// パスワード認証
+	/// </summary>
+	[Table(Schema="Core", Name="Password"), DataContract]
+	public partial class Password : TableBase<Password>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region account_id : int
+
+		private int _account_id;
+		/// <summary>
+		/// アカウントID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1)]
+		public  int  account_id
+		{
+			get { return _account_id; }
+			set
+			{
+				if (_account_id != value)
+				{
+					Beforeaccount_idChanged(value);
+					_account_id = value;
+					Afteraccount_idChanged();
+
+					Onaccount_idChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeaccount_idChanged(int newValue);
+		partial void Afteraccount_idChanged();
+
+		public const string NameOfaccount_id = "account_id";
+
+		private static readonly PropertyChangedEventArgs _account_idChangedEventArgs = new PropertyChangedEventArgs(NameOfaccount_id);
+
+		private void Onaccount_idChanged()
+		{
+			OnPropertyChanged(_account_idChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region password_hash : string
+
+		private string _password_hash;
+		/// <summary>
+		/// パスワードハッシュ
+		/// </summary>
+		[Column(DbType="varchar(128)", DataType=DataType.VarChar, Length=128), DataMember, NotNull]
+		public  string  password_hash
+		{
+			get { return _password_hash; }
+			set
+			{
+				if (_password_hash != value)
+				{
+					Beforepassword_hashChanged(value);
+					_password_hash = value;
+					Afterpassword_hashChanged();
+
+					Onpassword_hashChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforepassword_hashChanged(string newValue);
+		partial void Afterpassword_hashChanged();
+
+		public const string NameOfpassword_hash = "password_hash";
+
+		private static readonly PropertyChangedEventArgs _password_hashChangedEventArgs = new PropertyChangedEventArgs(NameOfpassword_hash);
+
+		private void Onpassword_hashChanged()
+		{
+			OnPropertyChanged(_password_hashChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region hash_type : string
+
+		private string _hash_type;
+		/// <summary>
+		/// ハッシュ化方式
+		/// </summary>
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull]
+		public  string  hash_type
+		{
+			get { return _hash_type; }
+			set
+			{
+				if (_hash_type != value)
+				{
+					Beforehash_typeChanged(value);
+					_hash_type = value;
+					Afterhash_typeChanged();
+
+					Onhash_typeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforehash_typeChanged(string newValue);
+		partial void Afterhash_typeChanged();
+
+		public const string NameOfhash_type = "hash_type";
+
+		private static readonly PropertyChangedEventArgs _hash_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfhash_type);
+
+		private void Onhash_typeChanged()
+		{
+			OnPropertyChanged(_hash_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region expiration_on : DateTime?
+
+		private DateTime? _expiration_on;
+		/// <summary>
+		/// 有効期限
+		/// </summary>
+		[Column(DbType="date", DataType=DataType.Date), DataMember, Nullable]
+		public  DateTime?  expiration_on
+		{
+			get { return _expiration_on; }
+			set
+			{
+				if (_expiration_on != value)
+				{
+					Beforeexpiration_onChanged(value);
+					_expiration_on = value;
+					Afterexpiration_onChanged();
+
+					Onexpiration_onChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeexpiration_onChanged(DateTime? newValue);
+		partial void Afterexpiration_onChanged();
+
+		public const string NameOfexpiration_on = "expiration_on";
+
+		private static readonly PropertyChangedEventArgs _expiration_onChangedEventArgs = new PropertyChangedEventArgs(NameOfexpiration_on);
+
+		private void Onexpiration_onChanged()
+		{
+			OnPropertyChanged(_expiration_onChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region password_life_days : int?
+
+		private int? _password_life_days;
+		/// <summary>
+		/// 更新間隔
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  password_life_days
+		{
+			get { return _password_life_days; }
+			set
+			{
+				if (_password_life_days != value)
+				{
+					Beforepassword_life_daysChanged(value);
+					_password_life_days = value;
+					Afterpassword_life_daysChanged();
+
+					Onpassword_life_daysChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforepassword_life_daysChanged(int? newValue);
+		partial void Afterpassword_life_daysChanged();
+
+		public const string NameOfpassword_life_days = "password_life_days";
+
+		private static readonly PropertyChangedEventArgs _password_life_daysChangedEventArgs = new PropertyChangedEventArgs(NameOfpassword_life_days);
+
+		private void Onpassword_life_daysChanged()
+		{
+			OnPropertyChanged(_password_life_daysChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region can_fail_times : int
+
+		private int _can_fail_times;
+		/// <summary>
+		/// 連続失敗許容回数
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  can_fail_times
+		{
+			get { return _can_fail_times; }
+			set
+			{
+				if (_can_fail_times != value)
+				{
+					Beforecan_fail_timesChanged(value);
+					_can_fail_times = value;
+					Aftercan_fail_timesChanged();
+
+					Oncan_fail_timesChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecan_fail_timesChanged(int newValue);
+		partial void Aftercan_fail_timesChanged();
+
+		public const string NameOfcan_fail_times = "can_fail_times";
+
+		private static readonly PropertyChangedEventArgs _can_fail_timesChangedEventArgs = new PropertyChangedEventArgs(NameOfcan_fail_times);
+
+		private void Oncan_fail_timesChanged()
+		{
+			OnPropertyChanged(_can_fail_timesChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region fail_times : int
+
+		private int _fail_times;
+		/// <summary>
+		/// 連続失敗回数
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  fail_times
+		{
+			get { return _fail_times; }
+			set
+			{
+				if (_fail_times != value)
+				{
+					Beforefail_timesChanged(value);
+					_fail_times = value;
+					Afterfail_timesChanged();
+
+					Onfail_timesChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforefail_timesChanged(int newValue);
+		partial void Afterfail_timesChanged();
+
+		public const string NameOffail_times = "fail_times";
+
+		private static readonly PropertyChangedEventArgs _fail_timesChangedEventArgs = new PropertyChangedEventArgs(NameOffail_times);
+
+		private void Onfail_timesChanged()
+		{
+			OnPropertyChanged(_fail_timesChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region lock_flg : int
+
+		private int _lock_flg;
+		/// <summary>
+		/// ロックフラグ
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  lock_flg
+		{
+			get { return _lock_flg; }
+			set
+			{
+				if (_lock_flg != value)
+				{
+					Beforelock_flgChanged(value);
+					_lock_flg = value;
+					Afterlock_flgChanged();
+
+					Onlock_flgChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforelock_flgChanged(int newValue);
+		partial void Afterlock_flgChanged();
+
+		public const string NameOflock_flg = "lock_flg";
+
+		private static readonly PropertyChangedEventArgs _lock_flgChangedEventArgs = new PropertyChangedEventArgs(NameOflock_flg);
+
+		private void Onlock_flgChanged()
+		{
+			OnPropertyChanged(_lock_flgChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region lock_reason : int?
+
+		private int? _lock_reason;
+		/// <summary>
+		/// ロック理由
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  lock_reason
+		{
+			get { return _lock_reason; }
+			set
+			{
+				if (_lock_reason != value)
+				{
+					Beforelock_reasonChanged(value);
+					_lock_reason = value;
+					Afterlock_reasonChanged();
+
+					Onlock_reasonChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforelock_reasonChanged(int? newValue);
+		partial void Afterlock_reasonChanged();
+
+		public const string NameOflock_reason = "lock_reason";
+
+		private static readonly PropertyChangedEventArgs _lock_reasonChangedEventArgs = new PropertyChangedEventArgs(NameOflock_reason);
+
+		private void Onlock_reasonChanged()
+		{
+			OnPropertyChanged(_lock_reasonChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		/// <summary>
+		/// hash_typeのenumラッパー
+		/// </summary>
+		public HashMethod HashType
+		{
+			get
+			{
+				switch (hash_type)
+				{
+					case "SHA256":
+						return HashMethod.SHA256;
+					case "RAW":
+						return HashMethod.平文;
+					default:
+						throw new Exception($"Unknown hash_type: {hash_type}");
+				}
+			}
+			set
+			{
+				switch (value)
+				{
+					case HashMethod.SHA256:
+						hash_type = "SHA256";
+						break;
+					case HashMethod.平文:
+						hash_type = "RAW";
+						break;
+					default:
+						throw new Exception($"Unknown HashMethod: {value}");
+				}
+			}
+		}
+		/// <summary>
+		/// lock_reasonのenumラッパー
+		/// </summary>
+		public LockReason? LockReason
+		{
+			get => (LockReason?)lock_reason;
+			set => lock_reason = value?.Val();
+		}
+		#endregion
+
+		#region Constructor
+
+		public Password()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			account_id = 0;
+			password_hash = null;
+			hash_type = "SHA256";
+			expiration_on = null;
+			password_life_days = null;
+			can_fail_times = 3;
+			fail_times = 0;
+			lock_flg = 0;
+			lock_reason = 0;
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+		#region Account : account_id (FK_Password_Account)
+
+		private Account _Account;
+		/// <summary>
+		/// FK_Password_Account
+		/// </summary>
+		[Association(ThisKey="account_id", OtherKey="account_id", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Password_Account", BackReferenceName="Password"), DataMember]
+		public  Account  Account
+		{
+			get { return _Account; }
+			set
+			{
+				if (_Account != value)
+				{
+					BeforeAccountChanged(value);
+					_Account = value;
+					AfterAccountChanged();
+
+					OnAccountChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeAccountChanged(Account newValue);
+		partial void AfterAccountChanged ();
+
+		public const string NameOfAccount = "Account";
+
+		private static readonly PropertyChangedEventArgs _AccountChangedEventArgs = new PropertyChangedEventArgs(NameOfAccount);
+
+		private void OnAccountChanged()
+		{
+			OnPropertyChanged(_AccountChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region パスワード認証条件
+	/// <summary>
+	/// パスワード認証条件
+	/// </summary>
+	[DataContract]
+	public partial class PasswordCondition : PasswordConditionBase
+	{
+	}
+
+	/// <summary>
+	/// パスワード認証条件ベース
+	/// </summary>
+	[DataContract]
+	public class PasswordConditionBase : ConditionBase<Password>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region account_id
+		[DataMember] public int? account_id_eq { get; set; }
+		[DataMember] public int? account_id_ne { get; set; }
+		[DataMember] public int? account_id_lt { get; set; }
+		[DataMember] public int? account_id_gt { get; set; }
+		[DataMember] public int? account_id_le { get; set; }
+		[DataMember] public int? account_id_ge { get; set; }
+		[DataMember] public IEnumerable<int> account_id_in { get; set; }
+		[DataMember] public IEnumerable<int> account_id_ni { get; set; }
+		[DataMember] public (int? low, int? high)? account_id_between { get; set; }
+		#endregion
+		#region password_hash
+		[DataMember] public string password_hash_eq { get; set; }
+		[DataMember] public string password_hash_ne { get; set; }
+		[DataMember] public string password_hash_lt { get; set; }
+		[DataMember] public string password_hash_gt { get; set; }
+		[DataMember] public string password_hash_le { get; set; }
+		[DataMember] public string password_hash_ge { get; set; }
+		[DataMember] public IEnumerable<string> password_hash_in { get; set; }
+		[DataMember] public IEnumerable<string> password_hash_ni { get; set; }
+		[DataMember] public (string low, string high)? password_hash_between { get; set; }
+		[DataMember] public string password_hash_like { get; set; }
+		#endregion
+		#region hash_type (HashType)
+		private string _hash_type_eq;
+		[DataMember] public HashMethod? HashType_eq
+		{
+			get => _hash_type_eq?.ToHashMethod();
+			set => _hash_type_eq = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private string _hash_type_ne;
+		[DataMember] public HashMethod? HashType_ne
+		{
+			get => _hash_type_ne?.ToHashMethod();
+			set => _hash_type_ne = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private string _hash_type_lt;
+		[DataMember] public HashMethod? HashType_lt
+		{
+			get => _hash_type_lt?.ToHashMethod();
+			set => _hash_type_lt = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private string _hash_type_gt;
+		[DataMember] public HashMethod? HashType_gt
+		{
+			get => _hash_type_gt?.ToHashMethod();
+			set => _hash_type_gt = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private string _hash_type_le;
+		[DataMember] public HashMethod? HashType_le
+		{
+			get => _hash_type_le?.ToHashMethod();
+			set => _hash_type_le = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private string _hash_type_ge;
+		[DataMember] public HashMethod? HashType_ge
+		{
+			get => _hash_type_ge?.ToHashMethod();
+			set => _hash_type_ge = value.HasValue ? value.Value.Val() : (string)null;
+		}
+		private IEnumerable<string> _hash_type_in;
+		[DataMember] public IEnumerable<HashMethod> HashType_in
+		{
+			get => _hash_type_in?.Select(_ => _.ToHashMethod().Value) ?? Enumerable.Empty<HashMethod>();
+			set => _hash_type_in = value.Select(_ => _.Val());
+		}
+		private IEnumerable<string> _hash_type_ni;
+		[DataMember] public IEnumerable<HashMethod> HashType_ni
+		{
+			get => _hash_type_ni?.Select(_ => _.ToHashMethod().Value) ?? Enumerable.Empty<HashMethod>();
+			set => _hash_type_ni = value.Select(_ => _.Val());
+		}
+		private (string low, string high)? _hash_type_between;
+		[DataMember] public (HashMethod low, HashMethod high)? HashType_between
+		{
+			get => _hash_type_between.HasValue ? (_hash_type_between.Value.low.ToHashMethod().Value, _hash_type_between.Value.high.ToHashMethod().Value) : ((HashMethod, HashMethod)?)null;
+			set => _hash_type_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((string, string)?)null;
+		}
+		#endregion
+		#region expiration_on
+		[DataMember] public DateTime? expiration_on_eq { get; set; }
+		[DataMember] public DateTime? expiration_on_ne { get; set; }
+		[DataMember] public DateTime? expiration_on_lt { get; set; }
+		[DataMember] public DateTime? expiration_on_gt { get; set; }
+		[DataMember] public DateTime? expiration_on_le { get; set; }
+		[DataMember] public DateTime? expiration_on_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> expiration_on_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> expiration_on_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? expiration_on_between { get; set; }
+		[DataMember] public bool expiration_on_isnull { get; set; } =  false ;
+		[DataMember] public bool expiration_on_isnotnull { get; set; } = false;
+		#endregion
+		#region password_life_days
+		[DataMember] public int? password_life_days_eq { get; set; }
+		[DataMember] public int? password_life_days_ne { get; set; }
+		[DataMember] public int? password_life_days_lt { get; set; }
+		[DataMember] public int? password_life_days_gt { get; set; }
+		[DataMember] public int? password_life_days_le { get; set; }
+		[DataMember] public int? password_life_days_ge { get; set; }
+		[DataMember] public IEnumerable<int> password_life_days_in { get; set; }
+		[DataMember] public IEnumerable<int> password_life_days_ni { get; set; }
+		[DataMember] public (int? low, int? high)? password_life_days_between { get; set; }
+		[DataMember] public bool password_life_days_isnull { get; set; } =  false ;
+		[DataMember] public bool password_life_days_isnotnull { get; set; } = false;
+		#endregion
+		#region can_fail_times
+		[DataMember] public int? can_fail_times_eq { get; set; }
+		[DataMember] public int? can_fail_times_ne { get; set; }
+		[DataMember] public int? can_fail_times_lt { get; set; }
+		[DataMember] public int? can_fail_times_gt { get; set; }
+		[DataMember] public int? can_fail_times_le { get; set; }
+		[DataMember] public int? can_fail_times_ge { get; set; }
+		[DataMember] public IEnumerable<int> can_fail_times_in { get; set; }
+		[DataMember] public IEnumerable<int> can_fail_times_ni { get; set; }
+		[DataMember] public (int? low, int? high)? can_fail_times_between { get; set; }
+		#endregion
+		#region fail_times
+		[DataMember] public int? fail_times_eq { get; set; }
+		[DataMember] public int? fail_times_ne { get; set; }
+		[DataMember] public int? fail_times_lt { get; set; }
+		[DataMember] public int? fail_times_gt { get; set; }
+		[DataMember] public int? fail_times_le { get; set; }
+		[DataMember] public int? fail_times_ge { get; set; }
+		[DataMember] public IEnumerable<int> fail_times_in { get; set; }
+		[DataMember] public IEnumerable<int> fail_times_ni { get; set; }
+		[DataMember] public (int? low, int? high)? fail_times_between { get; set; }
+		#endregion
+		#region lock_flg
+		[DataMember] public int? lock_flg_eq { get; set; }
+		[DataMember] public int? lock_flg_ne { get; set; }
+		[DataMember] public int? lock_flg_lt { get; set; }
+		[DataMember] public int? lock_flg_gt { get; set; }
+		[DataMember] public int? lock_flg_le { get; set; }
+		[DataMember] public int? lock_flg_ge { get; set; }
+		[DataMember] public IEnumerable<int> lock_flg_in { get; set; }
+		[DataMember] public IEnumerable<int> lock_flg_ni { get; set; }
+		[DataMember] public (int? low, int? high)? lock_flg_between { get; set; }
+		#endregion
+		#region lock_reason (LockReason)
+		private int? _lock_reason_eq;
+		[DataMember] public LockReason? LockReason_eq
+		{
+			get => _lock_reason_eq?.ToLockReason();
+			set => _lock_reason_eq = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _lock_reason_ne;
+		[DataMember] public LockReason? LockReason_ne
+		{
+			get => _lock_reason_ne?.ToLockReason();
+			set => _lock_reason_ne = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _lock_reason_lt;
+		[DataMember] public LockReason? LockReason_lt
+		{
+			get => _lock_reason_lt?.ToLockReason();
+			set => _lock_reason_lt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _lock_reason_gt;
+		[DataMember] public LockReason? LockReason_gt
+		{
+			get => _lock_reason_gt?.ToLockReason();
+			set => _lock_reason_gt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _lock_reason_le;
+		[DataMember] public LockReason? LockReason_le
+		{
+			get => _lock_reason_le?.ToLockReason();
+			set => _lock_reason_le = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _lock_reason_ge;
+		[DataMember] public LockReason? LockReason_ge
+		{
+			get => _lock_reason_ge?.ToLockReason();
+			set => _lock_reason_ge = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private IEnumerable<int> _lock_reason_in;
+		[DataMember] public IEnumerable<LockReason> LockReason_in
+		{
+			get => _lock_reason_in?.Select(_ => _.ToLockReason().Value) ?? Enumerable.Empty<LockReason>();
+			set => _lock_reason_in = value.Select(_ => _.Val());
+		}
+		private IEnumerable<int> _lock_reason_ni;
+		[DataMember] public IEnumerable<LockReason> LockReason_ni
+		{
+			get => _lock_reason_ni?.Select(_ => _.ToLockReason().Value) ?? Enumerable.Empty<LockReason>();
+			set => _lock_reason_ni = value.Select(_ => _.Val());
+		}
+		private (int low, int high)? _lock_reason_between;
+		[DataMember] public (LockReason low, LockReason high)? LockReason_between
+		{
+			get => _lock_reason_between.HasValue ? (_lock_reason_between.Value.low.ToLockReason().Value, _lock_reason_between.Value.high.ToLockReason().Value) : ((LockReason, LockReason)?)null;
+			set => _lock_reason_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
+		}
+		private bool _lock_reason_isnull { get; set; } =  false ;
+		[DataMember] public bool LockReason_isnull
+		{
+			get => _lock_reason_isnull;
+			set => _lock_reason_isnull = value;
+		}
+		private bool _lock_reason_isnotnull { get; set; } = false;
+		[DataMember] public bool LockReason_isnotnull
+		{
+			get => _lock_reason_isnotnull;
+			set => _lock_reason_isnotnull = value;
+		}
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<Password, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region account_id
+			if (account_id_eq != null) predicate = predicate.And(_ => _.account_id == account_id_eq);
+			if (account_id_ne != null) predicate = predicate.And(_ => _.account_id != account_id_ne);
+			if (account_id_lt != null) predicate = predicate.And(_ => _.account_id < account_id_lt);
+			if (account_id_gt != null) predicate = predicate.And(_ => _.account_id > account_id_gt);
+			if (account_id_le != null) predicate = predicate.And(_ => _.account_id <= account_id_le);
+			if (account_id_ge != null) predicate = predicate.And(_ => _.account_id >= account_id_ge);
+			if (account_id_in != null) predicate = predicate.And(_ => account_id_in.Contains(_.account_id));
+			if (account_id_ni != null) predicate = predicate.And(_ => !account_id_ni.Contains(_.account_id));
+			#endregion
+			#region password_hash
+			if (password_hash_eq != null) predicate = predicate.And(_ => _.password_hash == password_hash_eq);
+			if (password_hash_ne != null) predicate = predicate.And(_ => _.password_hash != password_hash_ne);
+			if (password_hash_lt != null) predicate = predicate.And(_ => password_hash_lt.CompareTo(_.password_hash) > 0);
+			if (password_hash_gt != null) predicate = predicate.And(_ => password_hash_gt.CompareTo(_.password_hash) < 0);
+			if (password_hash_le != null) predicate = predicate.And(_ => password_hash_le.CompareTo(_.password_hash) >= 0);
+			if (password_hash_ge != null) predicate = predicate.And(_ => password_hash_ge.CompareTo(_.password_hash) <= 0);
+			if (password_hash_in != null) predicate = predicate.And(_ => password_hash_in.Contains(_.password_hash));
+			if (password_hash_ni != null) predicate = predicate.And(_ => !password_hash_ni.Contains(_.password_hash));
+			#endregion
+			#region hash_type
+			if (_hash_type_eq != null) predicate = predicate.And(_ => _.hash_type == _hash_type_eq);
+			if (_hash_type_ne != null) predicate = predicate.And(_ => _.hash_type != _hash_type_ne);
+			if (_hash_type_lt != null) predicate = predicate.And(_ => _hash_type_lt.CompareTo(_.hash_type) > 0);
+			if (_hash_type_gt != null) predicate = predicate.And(_ => _hash_type_gt.CompareTo(_.hash_type) < 0);
+			if (_hash_type_le != null) predicate = predicate.And(_ => _hash_type_le.CompareTo(_.hash_type) >= 0);
+			if (_hash_type_ge != null) predicate = predicate.And(_ => _hash_type_ge.CompareTo(_.hash_type) <= 0);
+			if (_hash_type_in != null) predicate = predicate.And(_ => _hash_type_in.Contains(_.hash_type));
+			if (_hash_type_ni != null) predicate = predicate.And(_ => !_hash_type_ni.Contains(_.hash_type));
+			#endregion
+			#region expiration_on
+			if (expiration_on_eq != null) predicate = predicate.And(_ => _.expiration_on == expiration_on_eq);
+			if (expiration_on_ne != null) predicate = predicate.And(_ => _.expiration_on != expiration_on_ne);
+			if (expiration_on_lt != null) predicate = predicate.And(_ => _.expiration_on < expiration_on_lt);
+			if (expiration_on_gt != null) predicate = predicate.And(_ => _.expiration_on > expiration_on_gt);
+			if (expiration_on_le != null) predicate = predicate.And(_ => _.expiration_on <= expiration_on_le);
+			if (expiration_on_ge != null) predicate = predicate.And(_ => _.expiration_on >= expiration_on_ge);
+			if (expiration_on_in != null) predicate = predicate.And(_ => expiration_on_in.Contains(_.expiration_on.Value));
+			if (expiration_on_ni != null) predicate = predicate.And(_ => !expiration_on_ni.Contains(_.expiration_on.Value));
+			if (expiration_on_isnull) predicate = predicate.And(_ => _.expiration_on == null);
+			if (expiration_on_isnotnull) predicate = predicate.And(_ => _.expiration_on != null);
+			#endregion
+			#region password_life_days
+			if (password_life_days_eq != null) predicate = predicate.And(_ => _.password_life_days == password_life_days_eq);
+			if (password_life_days_ne != null) predicate = predicate.And(_ => _.password_life_days != password_life_days_ne);
+			if (password_life_days_lt != null) predicate = predicate.And(_ => _.password_life_days < password_life_days_lt);
+			if (password_life_days_gt != null) predicate = predicate.And(_ => _.password_life_days > password_life_days_gt);
+			if (password_life_days_le != null) predicate = predicate.And(_ => _.password_life_days <= password_life_days_le);
+			if (password_life_days_ge != null) predicate = predicate.And(_ => _.password_life_days >= password_life_days_ge);
+			if (password_life_days_in != null) predicate = predicate.And(_ => password_life_days_in.Contains(_.password_life_days.Value));
+			if (password_life_days_ni != null) predicate = predicate.And(_ => !password_life_days_ni.Contains(_.password_life_days.Value));
+			if (password_life_days_isnull) predicate = predicate.And(_ => _.password_life_days == null);
+			if (password_life_days_isnotnull) predicate = predicate.And(_ => _.password_life_days != null);
+			#endregion
+			#region can_fail_times
+			if (can_fail_times_eq != null) predicate = predicate.And(_ => _.can_fail_times == can_fail_times_eq);
+			if (can_fail_times_ne != null) predicate = predicate.And(_ => _.can_fail_times != can_fail_times_ne);
+			if (can_fail_times_lt != null) predicate = predicate.And(_ => _.can_fail_times < can_fail_times_lt);
+			if (can_fail_times_gt != null) predicate = predicate.And(_ => _.can_fail_times > can_fail_times_gt);
+			if (can_fail_times_le != null) predicate = predicate.And(_ => _.can_fail_times <= can_fail_times_le);
+			if (can_fail_times_ge != null) predicate = predicate.And(_ => _.can_fail_times >= can_fail_times_ge);
+			if (can_fail_times_in != null) predicate = predicate.And(_ => can_fail_times_in.Contains(_.can_fail_times));
+			if (can_fail_times_ni != null) predicate = predicate.And(_ => !can_fail_times_ni.Contains(_.can_fail_times));
+			#endregion
+			#region fail_times
+			if (fail_times_eq != null) predicate = predicate.And(_ => _.fail_times == fail_times_eq);
+			if (fail_times_ne != null) predicate = predicate.And(_ => _.fail_times != fail_times_ne);
+			if (fail_times_lt != null) predicate = predicate.And(_ => _.fail_times < fail_times_lt);
+			if (fail_times_gt != null) predicate = predicate.And(_ => _.fail_times > fail_times_gt);
+			if (fail_times_le != null) predicate = predicate.And(_ => _.fail_times <= fail_times_le);
+			if (fail_times_ge != null) predicate = predicate.And(_ => _.fail_times >= fail_times_ge);
+			if (fail_times_in != null) predicate = predicate.And(_ => fail_times_in.Contains(_.fail_times));
+			if (fail_times_ni != null) predicate = predicate.And(_ => !fail_times_ni.Contains(_.fail_times));
+			#endregion
+			#region lock_flg
+			if (lock_flg_eq != null) predicate = predicate.And(_ => _.lock_flg == lock_flg_eq);
+			if (lock_flg_ne != null) predicate = predicate.And(_ => _.lock_flg != lock_flg_ne);
+			if (lock_flg_lt != null) predicate = predicate.And(_ => _.lock_flg < lock_flg_lt);
+			if (lock_flg_gt != null) predicate = predicate.And(_ => _.lock_flg > lock_flg_gt);
+			if (lock_flg_le != null) predicate = predicate.And(_ => _.lock_flg <= lock_flg_le);
+			if (lock_flg_ge != null) predicate = predicate.And(_ => _.lock_flg >= lock_flg_ge);
+			if (lock_flg_in != null) predicate = predicate.And(_ => lock_flg_in.Contains(_.lock_flg));
+			if (lock_flg_ni != null) predicate = predicate.And(_ => !lock_flg_ni.Contains(_.lock_flg));
+			#endregion
+			#region lock_reason
+			if (_lock_reason_eq != null) predicate = predicate.And(_ => _.lock_reason == _lock_reason_eq);
+			if (_lock_reason_ne != null) predicate = predicate.And(_ => _.lock_reason != _lock_reason_ne);
+			if (_lock_reason_lt != null) predicate = predicate.And(_ => _.lock_reason < _lock_reason_lt);
+			if (_lock_reason_gt != null) predicate = predicate.And(_ => _.lock_reason > _lock_reason_gt);
+			if (_lock_reason_le != null) predicate = predicate.And(_ => _.lock_reason <= _lock_reason_le);
+			if (_lock_reason_ge != null) predicate = predicate.And(_ => _.lock_reason >= _lock_reason_ge);
+			if (_lock_reason_in != null) predicate = predicate.And(_ => _lock_reason_in.Contains(_.lock_reason.Value));
+			if (_lock_reason_ni != null) predicate = predicate.And(_ => !_lock_reason_ni.Contains(_.lock_reason.Value));
+			if (_lock_reason_isnull) predicate = predicate.And(_ => _.lock_reason == null);
+			if (_lock_reason_isnotnull) predicate = predicate.And(_ => _.lock_reason != null);
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
 	#region アカウントロール
 	/// <summary>
 	/// アカウントロール
 	/// </summary>
-	[Table(Schema="Common", Name="AccountRole"), DataContract]
+	[Table(Schema="Core", Name="AccountRole"), DataContract]
 	public partial class AccountRole : TableBase<AccountRole>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -9331,9 +10559,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
-		[DataMember] public string role_id_liker { get; set; }
-		[DataMember] public string role_id_clikec { get; set; }
-		[DataMember] public string role_id_llike { get; set; }
+		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region note
 		[DataMember] public string note_eq { get; set; }
@@ -9345,9 +10571,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> note_in { get; set; }
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
 		[DataMember] public (string low, string high)? note_between { get; set; }
-		[DataMember] public string note_liker { get; set; }
-		[DataMember] public string note_clikec { get; set; }
-		[DataMember] public string note_llike { get; set; }
+		[DataMember] public string note_like { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -9439,9 +10663,6 @@ namespace OpenAPITest.Domain
 			if (role_id_ge != null) predicate = predicate.And(_ => role_id_ge.CompareTo(_.role_id) <= 0);
 			if (role_id_in != null) predicate = predicate.And(_ => role_id_in.Contains(_.role_id));
 			if (role_id_ni != null) predicate = predicate.And(_ => !role_id_ni.Contains(_.role_id));
-			if (role_id_liker != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"{role_id_liker}%"));
-			if (role_id_clikec != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_clikec}%"));
-			if (role_id_llike != null) predicate = predicate.And(_ => Sql.Like(_.role_id, $"%{role_id_llike}"));
 			#endregion
 			#region note
 			if (note_eq != null) predicate = predicate.And(_ => _.note == note_eq);
@@ -9452,9 +10673,6 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
-			if (note_liker != null) predicate = predicate.And(_ => Sql.Like(_.note, $"{note_liker}%"));
-			if (note_clikec != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_clikec}%"));
-			if (note_llike != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -9499,6 +10717,841 @@ namespace OpenAPITest.Domain
 			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
 			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
 			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
+	#region エラーログ
+	/// <summary>
+	/// エラーログ
+	/// </summary>
+	[Table(Schema="Core", Name="ErrorLog"), DataContract]
+	public partial class ErrorLog : TableBase<ErrorLog>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region category : string
+
+		private string _category;
+		/// <summary>
+		/// カテゴリ
+		/// </summary>
+		[Column(DbType="nvarchar(16)", DataType=DataType.NVarChar, Length=16), DataMember, NotNull]
+		public  string  category
+		{
+			get { return _category; }
+			set
+			{
+				if (_category != value)
+				{
+					BeforecategoryChanged(value);
+					_category = value;
+					AftercategoryChanged();
+
+					OncategoryChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforecategoryChanged(string newValue);
+		partial void AftercategoryChanged();
+
+		public const string NameOfcategory = "category";
+
+		private static readonly PropertyChangedEventArgs _categoryChangedEventArgs = new PropertyChangedEventArgs(NameOfcategory);
+
+		private void OncategoryChanged()
+		{
+			OnPropertyChanged(_categoryChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region type : string
+
+		private string _type;
+		/// <summary>
+		/// 種別
+		/// </summary>
+		[Column(DbType="nvarchar(16)", DataType=DataType.NVarChar, Length=16), DataMember, NotNull]
+		public  string  type
+		{
+			get { return _type; }
+			set
+			{
+				if (_type != value)
+				{
+					BeforetypeChanged(value);
+					_type = value;
+					AftertypeChanged();
+
+					OntypeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforetypeChanged(string newValue);
+		partial void AftertypeChanged();
+
+		public const string NameOftype = "type";
+
+		private static readonly PropertyChangedEventArgs _typeChangedEventArgs = new PropertyChangedEventArgs(NameOftype);
+
+		private void OntypeChanged()
+		{
+			OnPropertyChanged(_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region level : int
+
+		private int _level;
+		/// <summary>
+		/// レベル
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  level
+		{
+			get { return _level; }
+			set
+			{
+				if (_level != value)
+				{
+					BeforelevelChanged(value);
+					_level = value;
+					AfterlevelChanged();
+
+					OnlevelChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforelevelChanged(int newValue);
+		partial void AfterlevelChanged();
+
+		public const string NameOflevel = "level";
+
+		private static readonly PropertyChangedEventArgs _levelChangedEventArgs = new PropertyChangedEventArgs(NameOflevel);
+
+		private void OnlevelChanged()
+		{
+			OnPropertyChanged(_levelChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region url : string
+
+		private string _url;
+		/// <summary>
+		/// URL
+		/// </summary>
+		[Column(DbType="nvarchar(1024)", DataType=DataType.NVarChar, Length=1024), DataMember, NotNull]
+		public  string  url
+		{
+			get { return _url; }
+			set
+			{
+				if (_url != value)
+				{
+					BeforeurlChanged(value);
+					_url = value;
+					AfterurlChanged();
+
+					OnurlChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeurlChanged(string newValue);
+		partial void AfterurlChanged();
+
+		public const string NameOfurl = "url";
+
+		private static readonly PropertyChangedEventArgs _urlChangedEventArgs = new PropertyChangedEventArgs(NameOfurl);
+
+		private void OnurlChanged()
+		{
+			OnPropertyChanged(_urlChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region methods : string
+
+		private string _methods;
+		/// <summary>
+		/// 処理
+		/// </summary>
+		[Column(DbType="varchar(200)", DataType=DataType.VarChar, Length=200), DataMember, NotNull]
+		public  string  methods
+		{
+			get { return _methods; }
+			set
+			{
+				if (_methods != value)
+				{
+					BeforemethodsChanged(value);
+					_methods = value;
+					AftermethodsChanged();
+
+					OnmethodsChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforemethodsChanged(string newValue);
+		partial void AftermethodsChanged();
+
+		public const string NameOfmethods = "methods";
+
+		private static readonly PropertyChangedEventArgs _methodsChangedEventArgs = new PropertyChangedEventArgs(NameOfmethods);
+
+		private void OnmethodsChanged()
+		{
+			OnPropertyChanged(_methodsChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		#endregion
+
+		#region Constructor
+
+		public ErrorLog()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			category = "";
+			type = "";
+			level = 0;
+			url = "";
+			methods = "";
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region エラーログ条件
+	/// <summary>
+	/// エラーログ条件
+	/// </summary>
+	[DataContract]
+	public partial class ErrorLogCondition : ErrorLogConditionBase
+	{
+	}
+
+	/// <summary>
+	/// エラーログ条件ベース
+	/// </summary>
+	[DataContract]
+	public class ErrorLogConditionBase : ConditionBase<ErrorLog>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region category
+		[DataMember] public string category_eq { get; set; }
+		[DataMember] public string category_ne { get; set; }
+		[DataMember] public string category_lt { get; set; }
+		[DataMember] public string category_gt { get; set; }
+		[DataMember] public string category_le { get; set; }
+		[DataMember] public string category_ge { get; set; }
+		[DataMember] public IEnumerable<string> category_in { get; set; }
+		[DataMember] public IEnumerable<string> category_ni { get; set; }
+		[DataMember] public (string low, string high)? category_between { get; set; }
+		[DataMember] public string category_like { get; set; }
+		#endregion
+		#region type
+		[DataMember] public string type_eq { get; set; }
+		[DataMember] public string type_ne { get; set; }
+		[DataMember] public string type_lt { get; set; }
+		[DataMember] public string type_gt { get; set; }
+		[DataMember] public string type_le { get; set; }
+		[DataMember] public string type_ge { get; set; }
+		[DataMember] public IEnumerable<string> type_in { get; set; }
+		[DataMember] public IEnumerable<string> type_ni { get; set; }
+		[DataMember] public (string low, string high)? type_between { get; set; }
+		[DataMember] public string type_like { get; set; }
+		#endregion
+		#region level
+		[DataMember] public int? level_eq { get; set; }
+		[DataMember] public int? level_ne { get; set; }
+		[DataMember] public int? level_lt { get; set; }
+		[DataMember] public int? level_gt { get; set; }
+		[DataMember] public int? level_le { get; set; }
+		[DataMember] public int? level_ge { get; set; }
+		[DataMember] public IEnumerable<int> level_in { get; set; }
+		[DataMember] public IEnumerable<int> level_ni { get; set; }
+		[DataMember] public (int? low, int? high)? level_between { get; set; }
+		#endregion
+		#region url
+		[DataMember] public string url_eq { get; set; }
+		[DataMember] public string url_ne { get; set; }
+		[DataMember] public string url_lt { get; set; }
+		[DataMember] public string url_gt { get; set; }
+		[DataMember] public string url_le { get; set; }
+		[DataMember] public string url_ge { get; set; }
+		[DataMember] public IEnumerable<string> url_in { get; set; }
+		[DataMember] public IEnumerable<string> url_ni { get; set; }
+		[DataMember] public (string low, string high)? url_between { get; set; }
+		[DataMember] public string url_like { get; set; }
+		#endregion
+		#region methods
+		[DataMember] public string methods_eq { get; set; }
+		[DataMember] public string methods_ne { get; set; }
+		[DataMember] public string methods_lt { get; set; }
+		[DataMember] public string methods_gt { get; set; }
+		[DataMember] public string methods_le { get; set; }
+		[DataMember] public string methods_ge { get; set; }
+		[DataMember] public IEnumerable<string> methods_in { get; set; }
+		[DataMember] public IEnumerable<string> methods_ni { get; set; }
+		[DataMember] public (string low, string high)? methods_between { get; set; }
+		[DataMember] public string methods_like { get; set; }
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<ErrorLog, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region category
+			if (category_eq != null) predicate = predicate.And(_ => _.category == category_eq);
+			if (category_ne != null) predicate = predicate.And(_ => _.category != category_ne);
+			if (category_lt != null) predicate = predicate.And(_ => category_lt.CompareTo(_.category) > 0);
+			if (category_gt != null) predicate = predicate.And(_ => category_gt.CompareTo(_.category) < 0);
+			if (category_le != null) predicate = predicate.And(_ => category_le.CompareTo(_.category) >= 0);
+			if (category_ge != null) predicate = predicate.And(_ => category_ge.CompareTo(_.category) <= 0);
+			if (category_in != null) predicate = predicate.And(_ => category_in.Contains(_.category));
+			if (category_ni != null) predicate = predicate.And(_ => !category_ni.Contains(_.category));
+			#endregion
+			#region type
+			if (type_eq != null) predicate = predicate.And(_ => _.type == type_eq);
+			if (type_ne != null) predicate = predicate.And(_ => _.type != type_ne);
+			if (type_lt != null) predicate = predicate.And(_ => type_lt.CompareTo(_.type) > 0);
+			if (type_gt != null) predicate = predicate.And(_ => type_gt.CompareTo(_.type) < 0);
+			if (type_le != null) predicate = predicate.And(_ => type_le.CompareTo(_.type) >= 0);
+			if (type_ge != null) predicate = predicate.And(_ => type_ge.CompareTo(_.type) <= 0);
+			if (type_in != null) predicate = predicate.And(_ => type_in.Contains(_.type));
+			if (type_ni != null) predicate = predicate.And(_ => !type_ni.Contains(_.type));
+			#endregion
+			#region level
+			if (level_eq != null) predicate = predicate.And(_ => _.level == level_eq);
+			if (level_ne != null) predicate = predicate.And(_ => _.level != level_ne);
+			if (level_lt != null) predicate = predicate.And(_ => _.level < level_lt);
+			if (level_gt != null) predicate = predicate.And(_ => _.level > level_gt);
+			if (level_le != null) predicate = predicate.And(_ => _.level <= level_le);
+			if (level_ge != null) predicate = predicate.And(_ => _.level >= level_ge);
+			if (level_in != null) predicate = predicate.And(_ => level_in.Contains(_.level));
+			if (level_ni != null) predicate = predicate.And(_ => !level_ni.Contains(_.level));
+			#endregion
+			#region url
+			if (url_eq != null) predicate = predicate.And(_ => _.url == url_eq);
+			if (url_ne != null) predicate = predicate.And(_ => _.url != url_ne);
+			if (url_lt != null) predicate = predicate.And(_ => url_lt.CompareTo(_.url) > 0);
+			if (url_gt != null) predicate = predicate.And(_ => url_gt.CompareTo(_.url) < 0);
+			if (url_le != null) predicate = predicate.And(_ => url_le.CompareTo(_.url) >= 0);
+			if (url_ge != null) predicate = predicate.And(_ => url_ge.CompareTo(_.url) <= 0);
+			if (url_in != null) predicate = predicate.And(_ => url_in.Contains(_.url));
+			if (url_ni != null) predicate = predicate.And(_ => !url_ni.Contains(_.url));
+			#endregion
+			#region methods
+			if (methods_eq != null) predicate = predicate.And(_ => _.methods == methods_eq);
+			if (methods_ne != null) predicate = predicate.And(_ => _.methods != methods_ne);
+			if (methods_lt != null) predicate = predicate.And(_ => methods_lt.CompareTo(_.methods) > 0);
+			if (methods_gt != null) predicate = predicate.And(_ => methods_gt.CompareTo(_.methods) < 0);
+			if (methods_le != null) predicate = predicate.And(_ => methods_le.CompareTo(_.methods) >= 0);
+			if (methods_ge != null) predicate = predicate.And(_ => methods_ge.CompareTo(_.methods) <= 0);
+			if (methods_in != null) predicate = predicate.And(_ => methods_in.Contains(_.methods));
+			if (methods_ni != null) predicate = predicate.And(_ => !methods_ni.Contains(_.methods));
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
 			#endregion
 			#region row_version
 			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
@@ -10287,9 +12340,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> staff_no_in { get; set; }
 		[DataMember] public IEnumerable<string> staff_no_ni { get; set; }
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
-		[DataMember] public string staff_no_liker { get; set; }
-		[DataMember] public string staff_no_clikec { get; set; }
-		[DataMember] public string staff_no_llike { get; set; }
+		[DataMember] public string staff_no_like { get; set; }
 		#endregion
 		#region gender (Gender)
 		private int? _gender_eq;
@@ -10475,9 +12526,6 @@ namespace OpenAPITest.Domain
 			if (staff_no_ge != null) predicate = predicate.And(_ => staff_no_ge.CompareTo(_.staff_no) <= 0);
 			if (staff_no_in != null) predicate = predicate.And(_ => staff_no_in.Contains(_.staff_no));
 			if (staff_no_ni != null) predicate = predicate.And(_ => !staff_no_ni.Contains(_.staff_no));
-			if (staff_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"{staff_no_liker}%"));
-			if (staff_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_clikec}%"));
-			if (staff_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.staff_no, $"%{staff_no_llike}"));
 			#endregion
 			#region gender
 			if (_gender_eq != null) predicate = predicate.And(_ => _.gender == _gender_eq);
@@ -11422,9 +13470,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_liker { get; set; }
-		[DataMember] public string generic_user_no_clikec { get; set; }
-		[DataMember] public string generic_user_no_llike { get; set; }
+		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -11458,9 +13504,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_liker { get; set; }
-		[DataMember] public string name_clikec { get; set; }
-		[DataMember] public string name_llike { get; set; }
+		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region kana
 		[DataMember] public string kana_eq { get; set; }
@@ -11472,9 +13516,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> kana_in { get; set; }
 		[DataMember] public IEnumerable<string> kana_ni { get; set; }
 		[DataMember] public (string low, string high)? kana_between { get; set; }
-		[DataMember] public string kana_liker { get; set; }
-		[DataMember] public string kana_clikec { get; set; }
-		[DataMember] public string kana_llike { get; set; }
+		[DataMember] public string kana_like { get; set; }
 		#endregion
 		#region name_abbrev
 		[DataMember] public string name_abbrev_eq { get; set; }
@@ -11486,9 +13528,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> name_abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? name_abbrev_between { get; set; }
-		[DataMember] public string name_abbrev_liker { get; set; }
-		[DataMember] public string name_abbrev_clikec { get; set; }
-		[DataMember] public string name_abbrev_llike { get; set; }
+		[DataMember] public string name_abbrev_like { get; set; }
 		#endregion
 		#region name_eng
 		[DataMember] public string name_eng_eq { get; set; }
@@ -11500,9 +13540,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_eng_in { get; set; }
 		[DataMember] public IEnumerable<string> name_eng_ni { get; set; }
 		[DataMember] public (string low, string high)? name_eng_between { get; set; }
-		[DataMember] public string name_eng_liker { get; set; }
-		[DataMember] public string name_eng_clikec { get; set; }
-		[DataMember] public string name_eng_llike { get; set; }
+		[DataMember] public string name_eng_like { get; set; }
 		#endregion
 		#region name_eng_abbrev
 		[DataMember] public string name_eng_abbrev_eq { get; set; }
@@ -11514,9 +13552,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_eng_abbrev_in { get; set; }
 		[DataMember] public IEnumerable<string> name_eng_abbrev_ni { get; set; }
 		[DataMember] public (string low, string high)? name_eng_abbrev_between { get; set; }
-		[DataMember] public string name_eng_abbrev_liker { get; set; }
-		[DataMember] public string name_eng_abbrev_clikec { get; set; }
-		[DataMember] public string name_eng_abbrev_llike { get; set; }
+		[DataMember] public string name_eng_abbrev_like { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -11608,9 +13644,6 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
-			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
-			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
-			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -11641,9 +13674,6 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
-			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
-			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
-			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region kana
 			if (kana_eq != null) predicate = predicate.And(_ => _.kana == kana_eq);
@@ -11654,9 +13684,6 @@ namespace OpenAPITest.Domain
 			if (kana_ge != null) predicate = predicate.And(_ => kana_ge.CompareTo(_.kana) <= 0);
 			if (kana_in != null) predicate = predicate.And(_ => kana_in.Contains(_.kana));
 			if (kana_ni != null) predicate = predicate.And(_ => !kana_ni.Contains(_.kana));
-			if (kana_liker != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"{kana_liker}%"));
-			if (kana_clikec != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"%{kana_clikec}%"));
-			if (kana_llike != null) predicate = predicate.And(_ => Sql.Like(_.kana, $"%{kana_llike}"));
 			#endregion
 			#region name_abbrev
 			if (name_abbrev_eq != null) predicate = predicate.And(_ => _.name_abbrev == name_abbrev_eq);
@@ -11667,9 +13694,6 @@ namespace OpenAPITest.Domain
 			if (name_abbrev_ge != null) predicate = predicate.And(_ => name_abbrev_ge.CompareTo(_.name_abbrev) <= 0);
 			if (name_abbrev_in != null) predicate = predicate.And(_ => name_abbrev_in.Contains(_.name_abbrev));
 			if (name_abbrev_ni != null) predicate = predicate.And(_ => !name_abbrev_ni.Contains(_.name_abbrev));
-			if (name_abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"{name_abbrev_liker}%"));
-			if (name_abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"%{name_abbrev_clikec}%"));
-			if (name_abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_abbrev, $"%{name_abbrev_llike}"));
 			#endregion
 			#region name_eng
 			if (name_eng_eq != null) predicate = predicate.And(_ => _.name_eng == name_eng_eq);
@@ -11680,9 +13704,6 @@ namespace OpenAPITest.Domain
 			if (name_eng_ge != null) predicate = predicate.And(_ => name_eng_ge.CompareTo(_.name_eng) <= 0);
 			if (name_eng_in != null) predicate = predicate.And(_ => name_eng_in.Contains(_.name_eng));
 			if (name_eng_ni != null) predicate = predicate.And(_ => !name_eng_ni.Contains(_.name_eng));
-			if (name_eng_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"{name_eng_liker}%"));
-			if (name_eng_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"%{name_eng_clikec}%"));
-			if (name_eng_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_eng, $"%{name_eng_llike}"));
 			#endregion
 			#region name_eng_abbrev
 			if (name_eng_abbrev_eq != null) predicate = predicate.And(_ => _.name_eng_abbrev == name_eng_abbrev_eq);
@@ -11693,9 +13714,6 @@ namespace OpenAPITest.Domain
 			if (name_eng_abbrev_ge != null) predicate = predicate.And(_ => name_eng_abbrev_ge.CompareTo(_.name_eng_abbrev) <= 0);
 			if (name_eng_abbrev_in != null) predicate = predicate.And(_ => name_eng_abbrev_in.Contains(_.name_eng_abbrev));
 			if (name_eng_abbrev_ni != null) predicate = predicate.And(_ => !name_eng_abbrev_ni.Contains(_.name_eng_abbrev));
-			if (name_eng_abbrev_liker != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"{name_eng_abbrev_liker}%"));
-			if (name_eng_abbrev_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"%{name_eng_abbrev_clikec}%"));
-			if (name_eng_abbrev_llike != null) predicate = predicate.And(_ => Sql.Like(_.name_eng_abbrev, $"%{name_eng_abbrev_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -11758,7 +13776,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 人名種別
 	/// </summary>
-	[Table(Schema="Common", Name="PersonNameType"), DataContract]
+	[Table(Schema="Master", Name="PersonNameType"), DataContract]
 	public partial class PersonNameType : TableBase<PersonNameType>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -12307,9 +14325,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_liker { get; set; }
-		[DataMember] public string name_clikec { get; set; }
-		[DataMember] public string name_llike { get; set; }
+		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -12321,9 +14337,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_liker { get; set; }
-		[DataMember] public string description_clikec { get; set; }
-		[DataMember] public string description_llike { get; set; }
+		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -12439,9 +14453,6 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
-			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
-			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
-			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -12452,9 +14463,6 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
-			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
-			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
-			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -12539,7 +14547,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 住所
 	/// </summary>
-	[Table(Schema="HumanResource", Name="Address"), DataContract]
+	[Table(Schema="Common", Name="Address"), DataContract]
 	public partial class Address : TableBase<Address>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -13549,9 +15557,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_liker { get; set; }
-		[DataMember] public string generic_user_no_clikec { get; set; }
-		[DataMember] public string generic_user_no_llike { get; set; }
+		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -13585,9 +15591,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> postal_code_in { get; set; }
 		[DataMember] public IEnumerable<string> postal_code_ni { get; set; }
 		[DataMember] public (string low, string high)? postal_code_between { get; set; }
-		[DataMember] public string postal_code_liker { get; set; }
-		[DataMember] public string postal_code_clikec { get; set; }
-		[DataMember] public string postal_code_llike { get; set; }
+		[DataMember] public string postal_code_like { get; set; }
 		#endregion
 		#region prefecture_code
 		[DataMember] public int? prefecture_code_eq { get; set; }
@@ -13610,9 +15614,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address1_in { get; set; }
 		[DataMember] public IEnumerable<string> address1_ni { get; set; }
 		[DataMember] public (string low, string high)? address1_between { get; set; }
-		[DataMember] public string address1_liker { get; set; }
-		[DataMember] public string address1_clikec { get; set; }
-		[DataMember] public string address1_llike { get; set; }
+		[DataMember] public string address1_like { get; set; }
 		#endregion
 		#region address2
 		[DataMember] public string address2_eq { get; set; }
@@ -13624,9 +15626,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address2_in { get; set; }
 		[DataMember] public IEnumerable<string> address2_ni { get; set; }
 		[DataMember] public (string low, string high)? address2_between { get; set; }
-		[DataMember] public string address2_liker { get; set; }
-		[DataMember] public string address2_clikec { get; set; }
-		[DataMember] public string address2_llike { get; set; }
+		[DataMember] public string address2_like { get; set; }
 		#endregion
 		#region address3
 		[DataMember] public string address3_eq { get; set; }
@@ -13638,9 +15638,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> address3_in { get; set; }
 		[DataMember] public IEnumerable<string> address3_ni { get; set; }
 		[DataMember] public (string low, string high)? address3_between { get; set; }
-		[DataMember] public string address3_liker { get; set; }
-		[DataMember] public string address3_clikec { get; set; }
-		[DataMember] public string address3_llike { get; set; }
+		[DataMember] public string address3_like { get; set; }
 		#endregion
 		#region latitude
 		[DataMember] public decimal? latitude_eq { get; set; }
@@ -13784,9 +15782,6 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
-			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
-			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
-			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -13817,9 +15812,6 @@ namespace OpenAPITest.Domain
 			if (postal_code_ge != null) predicate = predicate.And(_ => postal_code_ge.CompareTo(_.postal_code) <= 0);
 			if (postal_code_in != null) predicate = predicate.And(_ => postal_code_in.Contains(_.postal_code));
 			if (postal_code_ni != null) predicate = predicate.And(_ => !postal_code_ni.Contains(_.postal_code));
-			if (postal_code_liker != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"{postal_code_liker}%"));
-			if (postal_code_clikec != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"%{postal_code_clikec}%"));
-			if (postal_code_llike != null) predicate = predicate.And(_ => Sql.Like(_.postal_code, $"%{postal_code_llike}"));
 			#endregion
 			#region prefecture_code
 			if (prefecture_code_eq != null) predicate = predicate.And(_ => _.prefecture_code == prefecture_code_eq);
@@ -13840,9 +15832,6 @@ namespace OpenAPITest.Domain
 			if (address1_ge != null) predicate = predicate.And(_ => address1_ge.CompareTo(_.address1) <= 0);
 			if (address1_in != null) predicate = predicate.And(_ => address1_in.Contains(_.address1));
 			if (address1_ni != null) predicate = predicate.And(_ => !address1_ni.Contains(_.address1));
-			if (address1_liker != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"{address1_liker}%"));
-			if (address1_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"%{address1_clikec}%"));
-			if (address1_llike != null) predicate = predicate.And(_ => Sql.Like(_.address1, $"%{address1_llike}"));
 			#endregion
 			#region address2
 			if (address2_eq != null) predicate = predicate.And(_ => _.address2 == address2_eq);
@@ -13853,9 +15842,6 @@ namespace OpenAPITest.Domain
 			if (address2_ge != null) predicate = predicate.And(_ => address2_ge.CompareTo(_.address2) <= 0);
 			if (address2_in != null) predicate = predicate.And(_ => address2_in.Contains(_.address2));
 			if (address2_ni != null) predicate = predicate.And(_ => !address2_ni.Contains(_.address2));
-			if (address2_liker != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"{address2_liker}%"));
-			if (address2_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"%{address2_clikec}%"));
-			if (address2_llike != null) predicate = predicate.And(_ => Sql.Like(_.address2, $"%{address2_llike}"));
 			#endregion
 			#region address3
 			if (address3_eq != null) predicate = predicate.And(_ => _.address3 == address3_eq);
@@ -13866,9 +15852,6 @@ namespace OpenAPITest.Domain
 			if (address3_ge != null) predicate = predicate.And(_ => address3_ge.CompareTo(_.address3) <= 0);
 			if (address3_in != null) predicate = predicate.And(_ => address3_in.Contains(_.address3));
 			if (address3_ni != null) predicate = predicate.And(_ => !address3_ni.Contains(_.address3));
-			if (address3_liker != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"{address3_liker}%"));
-			if (address3_clikec != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"%{address3_clikec}%"));
-			if (address3_llike != null) predicate = predicate.And(_ => Sql.Like(_.address3, $"%{address3_llike}"));
 			#endregion
 			#region latitude
 			if (latitude_eq != null) predicate = predicate.And(_ => _.latitude == latitude_eq);
@@ -13979,7 +15962,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 住所種別
 	/// </summary>
-	[Table(Schema="Common", Name="AddressType"), DataContract]
+	[Table(Schema="Master", Name="AddressType"), DataContract]
 	public partial class AddressType : TableBase<AddressType>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -14528,9 +16511,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_liker { get; set; }
-		[DataMember] public string name_clikec { get; set; }
-		[DataMember] public string name_llike { get; set; }
+		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -14542,9 +16523,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_liker { get; set; }
-		[DataMember] public string description_clikec { get; set; }
-		[DataMember] public string description_llike { get; set; }
+		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -14660,9 +16639,6 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
-			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
-			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
-			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -14673,9 +16649,6 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
-			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
-			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
-			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -14760,7 +16733,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 連絡先
 	/// </summary>
-	[Table(Schema="HumanResource", Name="Contact"), DataContract]
+	[Table(Schema="Common", Name="Contact"), DataContract]
 	public partial class Contact : TableBase<Contact>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -15483,9 +17456,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
-		[DataMember] public string generic_user_no_liker { get; set; }
-		[DataMember] public string generic_user_no_clikec { get; set; }
-		[DataMember] public string generic_user_no_llike { get; set; }
+		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
 		[DataMember] public int? seq_eq { get; set; }
@@ -15519,9 +17490,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> contact_in { get; set; }
 		[DataMember] public IEnumerable<string> contact_ni { get; set; }
 		[DataMember] public (string low, string high)? contact_between { get; set; }
-		[DataMember] public string contact_liker { get; set; }
-		[DataMember] public string contact_clikec { get; set; }
-		[DataMember] public string contact_llike { get; set; }
+		[DataMember] public string contact_like { get; set; }
 		#endregion
 		#region note
 		[DataMember] public string note_eq { get; set; }
@@ -15533,9 +17502,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> note_in { get; set; }
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
 		[DataMember] public (string low, string high)? note_between { get; set; }
-		[DataMember] public string note_liker { get; set; }
-		[DataMember] public string note_clikec { get; set; }
-		[DataMember] public string note_llike { get; set; }
+		[DataMember] public string note_like { get; set; }
 		#endregion
 		#region created_at
 		[DataMember] public DateTime? created_at_eq { get; set; }
@@ -15627,9 +17594,6 @@ namespace OpenAPITest.Domain
 			if (generic_user_no_ge != null) predicate = predicate.And(_ => generic_user_no_ge.CompareTo(_.generic_user_no) <= 0);
 			if (generic_user_no_in != null) predicate = predicate.And(_ => generic_user_no_in.Contains(_.generic_user_no));
 			if (generic_user_no_ni != null) predicate = predicate.And(_ => !generic_user_no_ni.Contains(_.generic_user_no));
-			if (generic_user_no_liker != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"{generic_user_no_liker}%"));
-			if (generic_user_no_clikec != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_clikec}%"));
-			if (generic_user_no_llike != null) predicate = predicate.And(_ => Sql.Like(_.generic_user_no, $"%{generic_user_no_llike}"));
 			#endregion
 			#region seq
 			if (seq_eq != null) predicate = predicate.And(_ => _.seq == seq_eq);
@@ -15660,9 +17624,6 @@ namespace OpenAPITest.Domain
 			if (contact_ge != null) predicate = predicate.And(_ => contact_ge.CompareTo(_.contact) <= 0);
 			if (contact_in != null) predicate = predicate.And(_ => contact_in.Contains(_.contact));
 			if (contact_ni != null) predicate = predicate.And(_ => !contact_ni.Contains(_.contact));
-			if (contact_liker != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"{contact_liker}%"));
-			if (contact_clikec != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"%{contact_clikec}%"));
-			if (contact_llike != null) predicate = predicate.And(_ => Sql.Like(_.contact, $"%{contact_llike}"));
 			#endregion
 			#region note
 			if (note_eq != null) predicate = predicate.And(_ => _.note == note_eq);
@@ -15673,9 +17634,6 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
-			if (note_liker != null) predicate = predicate.And(_ => Sql.Like(_.note, $"{note_liker}%"));
-			if (note_clikec != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_clikec}%"));
-			if (note_llike != null) predicate = predicate.And(_ => Sql.Like(_.note, $"%{note_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -15738,7 +17696,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 連絡先種別
 	/// </summary>
-	[Table(Schema="Common", Name="ContactType"), DataContract]
+	[Table(Schema="Master", Name="ContactType"), DataContract]
 	public partial class ContactType : TableBase<ContactType>, INotifyPropertyChanged
 	{
 		#region uid : int
@@ -16287,9 +18245,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> name_in { get; set; }
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
 		[DataMember] public (string low, string high)? name_between { get; set; }
-		[DataMember] public string name_liker { get; set; }
-		[DataMember] public string name_clikec { get; set; }
-		[DataMember] public string name_llike { get; set; }
+		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
 		[DataMember] public string description_eq { get; set; }
@@ -16301,9 +18257,7 @@ namespace OpenAPITest.Domain
 		[DataMember] public IEnumerable<string> description_in { get; set; }
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
 		[DataMember] public (string low, string high)? description_between { get; set; }
-		[DataMember] public string description_liker { get; set; }
-		[DataMember] public string description_clikec { get; set; }
-		[DataMember] public string description_llike { get; set; }
+		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
 		[DataMember] public int? display_order_eq { get; set; }
@@ -16419,9 +18373,6 @@ namespace OpenAPITest.Domain
 			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
-			if (name_liker != null) predicate = predicate.And(_ => Sql.Like(_.name, $"{name_liker}%"));
-			if (name_clikec != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_clikec}%"));
-			if (name_llike != null) predicate = predicate.And(_ => Sql.Like(_.name, $"%{name_llike}"));
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
@@ -16432,9 +18383,6 @@ namespace OpenAPITest.Domain
 			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
 			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
 			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
-			if (description_liker != null) predicate = predicate.And(_ => Sql.Like(_.description, $"{description_liker}%"));
-			if (description_clikec != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_clikec}%"));
-			if (description_llike != null) predicate = predicate.And(_ => Sql.Like(_.description, $"%{description_llike}"));
 			#endregion
 			#region display_order
 			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
@@ -16445,861 +18393,6 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
-			#endregion
-			#region created_at
-			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
-			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
-			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
-			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
-			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
-			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
-			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
-			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
-			#endregion
-			#region created_by
-			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
-			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
-			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
-			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
-			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
-			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
-			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
-			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
-			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
-			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
-			#endregion
-			#region modified_at
-			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
-			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
-			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
-			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
-			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
-			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
-			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
-			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
-			#endregion
-			#region modified_by
-			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
-			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
-			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
-			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
-			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
-			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
-			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
-			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
-			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
-			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
-			#endregion
-			#region removed_at
-			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
-			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
-			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
-			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
-			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
-			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
-			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
-			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
-			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
-			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
-			#endregion
-			#region row_version
-			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
-			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
-			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
-			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
-			#endregion
-
-			return predicate;
-		}
-		#endregion
-	}
-	#endregion
-	#endregion
-	#region エラーログ
-	/// <summary>
-	/// エラーログ
-	/// </summary>
-	[Table(Schema="dbo", Name="ErrorLog"), DataContract]
-	public partial class ErrorLog : TableBase<ErrorLog>, INotifyPropertyChanged
-	{
-		#region uid : int
-
-		private int _uid;
-		/// <summary>
-		/// ユニークID
-		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), Identity]
-		public  int  uid
-		{
-			get { return _uid; }
-			set
-			{
-				if (_uid != value)
-				{
-					BeforeuidChanged(value);
-					_uid = value;
-					AfteruidChanged();
-
-					OnuidChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforeuidChanged(int newValue);
-		partial void AfteruidChanged();
-
-		public const string NameOfuid = "uid";
-
-		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
-
-		private void OnuidChanged()
-		{
-			OnPropertyChanged(_uidChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region category : string
-
-		private string _category;
-		/// <summary>
-		/// カテゴリ
-		/// </summary>
-		[Column(DbType="nvarchar(16)", DataType=DataType.NVarChar, Length=16), DataMember, NotNull]
-		public  string  category
-		{
-			get { return _category; }
-			set
-			{
-				if (_category != value)
-				{
-					BeforecategoryChanged(value);
-					_category = value;
-					AftercategoryChanged();
-
-					OncategoryChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforecategoryChanged(string newValue);
-		partial void AftercategoryChanged();
-
-		public const string NameOfcategory = "category";
-
-		private static readonly PropertyChangedEventArgs _categoryChangedEventArgs = new PropertyChangedEventArgs(NameOfcategory);
-
-		private void OncategoryChanged()
-		{
-			OnPropertyChanged(_categoryChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region type : string
-
-		private string _type;
-		/// <summary>
-		/// 種別
-		/// </summary>
-		[Column(DbType="nvarchar(16)", DataType=DataType.NVarChar, Length=16), DataMember, NotNull]
-		public  string  type
-		{
-			get { return _type; }
-			set
-			{
-				if (_type != value)
-				{
-					BeforetypeChanged(value);
-					_type = value;
-					AftertypeChanged();
-
-					OntypeChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforetypeChanged(string newValue);
-		partial void AftertypeChanged();
-
-		public const string NameOftype = "type";
-
-		private static readonly PropertyChangedEventArgs _typeChangedEventArgs = new PropertyChangedEventArgs(NameOftype);
-
-		private void OntypeChanged()
-		{
-			OnPropertyChanged(_typeChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region level : int
-
-		private int _level;
-		/// <summary>
-		/// レベル
-		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
-		public  int  level
-		{
-			get { return _level; }
-			set
-			{
-				if (_level != value)
-				{
-					BeforelevelChanged(value);
-					_level = value;
-					AfterlevelChanged();
-
-					OnlevelChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforelevelChanged(int newValue);
-		partial void AfterlevelChanged();
-
-		public const string NameOflevel = "level";
-
-		private static readonly PropertyChangedEventArgs _levelChangedEventArgs = new PropertyChangedEventArgs(NameOflevel);
-
-		private void OnlevelChanged()
-		{
-			OnPropertyChanged(_levelChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region url : string
-
-		private string _url;
-		/// <summary>
-		/// URL
-		/// </summary>
-		[Column(DbType="nvarchar(1024)", DataType=DataType.NVarChar, Length=1024), DataMember, NotNull]
-		public  string  url
-		{
-			get { return _url; }
-			set
-			{
-				if (_url != value)
-				{
-					BeforeurlChanged(value);
-					_url = value;
-					AfterurlChanged();
-
-					OnurlChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforeurlChanged(string newValue);
-		partial void AfterurlChanged();
-
-		public const string NameOfurl = "url";
-
-		private static readonly PropertyChangedEventArgs _urlChangedEventArgs = new PropertyChangedEventArgs(NameOfurl);
-
-		private void OnurlChanged()
-		{
-			OnPropertyChanged(_urlChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region methods : string
-
-		private string _methods;
-		/// <summary>
-		/// 処理
-		/// </summary>
-		[Column(DbType="varchar(200)", DataType=DataType.VarChar, Length=200), DataMember, NotNull]
-		public  string  methods
-		{
-			get { return _methods; }
-			set
-			{
-				if (_methods != value)
-				{
-					BeforemethodsChanged(value);
-					_methods = value;
-					AftermethodsChanged();
-
-					OnmethodsChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void BeforemethodsChanged(string newValue);
-		partial void AftermethodsChanged();
-
-		public const string NameOfmethods = "methods";
-
-		private static readonly PropertyChangedEventArgs _methodsChangedEventArgs = new PropertyChangedEventArgs(NameOfmethods);
-
-		private void OnmethodsChanged()
-		{
-			OnPropertyChanged(_methodsChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region created_at : DateTime
-
-		private DateTime _created_at;
-		/// <summary>
-		/// 作成日時
-		/// </summary>
-		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
-		public  DateTime  created_at
-		{
-			get { return _created_at; }
-			set
-			{
-				if (_created_at != value)
-				{
-					Beforecreated_atChanged(value);
-					_created_at = value;
-					Aftercreated_atChanged();
-
-					Oncreated_atChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforecreated_atChanged(DateTime newValue);
-		partial void Aftercreated_atChanged();
-
-		public const string NameOfcreated_at = "created_at";
-
-		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
-
-		private void Oncreated_atChanged()
-		{
-			OnPropertyChanged(_created_atChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region created_by : int?
-
-		private int? _created_by;
-		/// <summary>
-		/// 作成者
-		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
-		public  int?  created_by
-		{
-			get { return _created_by; }
-			set
-			{
-				if (_created_by != value)
-				{
-					Beforecreated_byChanged(value);
-					_created_by = value;
-					Aftercreated_byChanged();
-
-					Oncreated_byChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforecreated_byChanged(int? newValue);
-		partial void Aftercreated_byChanged();
-
-		public const string NameOfcreated_by = "created_by";
-
-		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
-
-		private void Oncreated_byChanged()
-		{
-			OnPropertyChanged(_created_byChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region modified_at : DateTime
-
-		private DateTime _modified_at;
-		/// <summary>
-		/// 更新日時
-		/// </summary>
-		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
-		public  DateTime  modified_at
-		{
-			get { return _modified_at; }
-			set
-			{
-				if (_modified_at != value)
-				{
-					Beforemodified_atChanged(value);
-					_modified_at = value;
-					Aftermodified_atChanged();
-
-					Onmodified_atChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforemodified_atChanged(DateTime newValue);
-		partial void Aftermodified_atChanged();
-
-		public const string NameOfmodified_at = "modified_at";
-
-		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
-
-		private void Onmodified_atChanged()
-		{
-			OnPropertyChanged(_modified_atChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region modified_by : int?
-
-		private int? _modified_by;
-		/// <summary>
-		/// 更新者
-		/// </summary>
-		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
-		public  int?  modified_by
-		{
-			get { return _modified_by; }
-			set
-			{
-				if (_modified_by != value)
-				{
-					Beforemodified_byChanged(value);
-					_modified_by = value;
-					Aftermodified_byChanged();
-
-					Onmodified_byChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforemodified_byChanged(int? newValue);
-		partial void Aftermodified_byChanged();
-
-		public const string NameOfmodified_by = "modified_by";
-
-		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
-
-		private void Onmodified_byChanged()
-		{
-			OnPropertyChanged(_modified_byChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region removed_at : DateTime?
-
-		private DateTime? _removed_at;
-		/// <summary>
-		/// 削除日時
-		/// </summary>
-		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
-		public  DateTime?  removed_at
-		{
-			get { return _removed_at; }
-			set
-			{
-				if (_removed_at != value)
-				{
-					Beforeremoved_atChanged(value);
-					_removed_at = value;
-					Afterremoved_atChanged();
-
-					Onremoved_atChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforeremoved_atChanged(DateTime? newValue);
-		partial void Afterremoved_atChanged();
-
-		public const string NameOfremoved_at = "removed_at";
-
-		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
-
-		private void Onremoved_atChanged()
-		{
-			OnPropertyChanged(_removed_atChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-		#region row_version : byte[]
-
-		private byte[] _row_version;
-		/// <summary>
-		/// 版
-		/// </summary>
-		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
-		public  byte[]  row_version
-		{
-			get { return _row_version; }
-			set
-			{
-				if (_row_version != value)
-				{
-					Beforerow_versionChanged(value);
-					_row_version = value;
-					Afterrow_versionChanged();
-
-					Onrow_versionChanged();
-				}
-			}
-		}
-
-		#region INotifyPropertyChanged support
-
-		partial void Beforerow_versionChanged(byte[] newValue);
-		partial void Afterrow_versionChanged();
-
-		public const string NameOfrow_version = "row_version";
-
-		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
-
-		private void Onrow_versionChanged()
-		{
-			OnPropertyChanged(_row_versionChangedEventArgs);
-		}
-
-		#endregion
-
-		#endregion
-
-		#region enum用アクセスラッパー
-		#endregion
-
-		#region Constructor
-
-		public ErrorLog()
-		{
-			#region フィールド初期化
-			uid = default(int);
-			category = "";
-			type = "";
-			level = 0;
-			url = "";
-			methods = "";
-			created_at = DateTime.UtcNow;
-			created_by = null;
-			modified_at = DateTime.UtcNow;
-			modified_by = null;
-			removed_at = null;
-			row_version = default(byte[]);
-			#endregion
-		}
-
-		#endregion
-
-		#region Association
-
-
-		#endregion
-
-		#region INotifyPropertyChanged support
-
-		[field : NonSerialized]
-		public virtual event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			var propertyChanged = PropertyChanged;
-
-			if (propertyChanged != null)
-			{
-				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
-		{
-			var propertyChanged = PropertyChanged;
-
-			if (propertyChanged != null)
-			{
-				propertyChanged(this, arg);
-			}
-		}
-
-		#endregion
-
-	}
-	#region エラーログ条件
-	/// <summary>
-	/// エラーログ条件
-	/// </summary>
-	[DataContract]
-	public partial class ErrorLogCondition : ErrorLogConditionBase
-	{
-	}
-
-	/// <summary>
-	/// エラーログ条件ベース
-	/// </summary>
-	[DataContract]
-	public class ErrorLogConditionBase : ConditionBase<ErrorLog>
-	{
-		#region properties
-		#region uid
-		[DataMember] public int? uid_eq { get; set; }
-		[DataMember] public int? uid_ne { get; set; }
-		[DataMember] public int? uid_lt { get; set; }
-		[DataMember] public int? uid_gt { get; set; }
-		[DataMember] public int? uid_le { get; set; }
-		[DataMember] public int? uid_ge { get; set; }
-		[DataMember] public IEnumerable<int> uid_in { get; set; }
-		[DataMember] public IEnumerable<int> uid_ni { get; set; }
-		[DataMember] public (int? low, int? high)? uid_between { get; set; }
-		#endregion
-		#region category
-		[DataMember] public string category_eq { get; set; }
-		[DataMember] public string category_ne { get; set; }
-		[DataMember] public string category_lt { get; set; }
-		[DataMember] public string category_gt { get; set; }
-		[DataMember] public string category_le { get; set; }
-		[DataMember] public string category_ge { get; set; }
-		[DataMember] public IEnumerable<string> category_in { get; set; }
-		[DataMember] public IEnumerable<string> category_ni { get; set; }
-		[DataMember] public (string low, string high)? category_between { get; set; }
-		[DataMember] public string category_liker { get; set; }
-		[DataMember] public string category_clikec { get; set; }
-		[DataMember] public string category_llike { get; set; }
-		#endregion
-		#region type
-		[DataMember] public string type_eq { get; set; }
-		[DataMember] public string type_ne { get; set; }
-		[DataMember] public string type_lt { get; set; }
-		[DataMember] public string type_gt { get; set; }
-		[DataMember] public string type_le { get; set; }
-		[DataMember] public string type_ge { get; set; }
-		[DataMember] public IEnumerable<string> type_in { get; set; }
-		[DataMember] public IEnumerable<string> type_ni { get; set; }
-		[DataMember] public (string low, string high)? type_between { get; set; }
-		[DataMember] public string type_liker { get; set; }
-		[DataMember] public string type_clikec { get; set; }
-		[DataMember] public string type_llike { get; set; }
-		#endregion
-		#region level
-		[DataMember] public int? level_eq { get; set; }
-		[DataMember] public int? level_ne { get; set; }
-		[DataMember] public int? level_lt { get; set; }
-		[DataMember] public int? level_gt { get; set; }
-		[DataMember] public int? level_le { get; set; }
-		[DataMember] public int? level_ge { get; set; }
-		[DataMember] public IEnumerable<int> level_in { get; set; }
-		[DataMember] public IEnumerable<int> level_ni { get; set; }
-		[DataMember] public (int? low, int? high)? level_between { get; set; }
-		#endregion
-		#region url
-		[DataMember] public string url_eq { get; set; }
-		[DataMember] public string url_ne { get; set; }
-		[DataMember] public string url_lt { get; set; }
-		[DataMember] public string url_gt { get; set; }
-		[DataMember] public string url_le { get; set; }
-		[DataMember] public string url_ge { get; set; }
-		[DataMember] public IEnumerable<string> url_in { get; set; }
-		[DataMember] public IEnumerable<string> url_ni { get; set; }
-		[DataMember] public (string low, string high)? url_between { get; set; }
-		[DataMember] public string url_liker { get; set; }
-		[DataMember] public string url_clikec { get; set; }
-		[DataMember] public string url_llike { get; set; }
-		#endregion
-		#region methods
-		[DataMember] public string methods_eq { get; set; }
-		[DataMember] public string methods_ne { get; set; }
-		[DataMember] public string methods_lt { get; set; }
-		[DataMember] public string methods_gt { get; set; }
-		[DataMember] public string methods_le { get; set; }
-		[DataMember] public string methods_ge { get; set; }
-		[DataMember] public IEnumerable<string> methods_in { get; set; }
-		[DataMember] public IEnumerable<string> methods_ni { get; set; }
-		[DataMember] public (string low, string high)? methods_between { get; set; }
-		[DataMember] public string methods_liker { get; set; }
-		[DataMember] public string methods_clikec { get; set; }
-		[DataMember] public string methods_llike { get; set; }
-		#endregion
-		#region created_at
-		[DataMember] public DateTime? created_at_eq { get; set; }
-		[DataMember] public DateTime? created_at_ne { get; set; }
-		[DataMember] public DateTime? created_at_lt { get; set; }
-		[DataMember] public DateTime? created_at_gt { get; set; }
-		[DataMember] public DateTime? created_at_le { get; set; }
-		[DataMember] public DateTime? created_at_ge { get; set; }
-		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
-		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
-		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
-		#endregion
-		#region created_by
-		[DataMember] public int? created_by_eq { get; set; }
-		[DataMember] public int? created_by_ne { get; set; }
-		[DataMember] public int? created_by_lt { get; set; }
-		[DataMember] public int? created_by_gt { get; set; }
-		[DataMember] public int? created_by_le { get; set; }
-		[DataMember] public int? created_by_ge { get; set; }
-		[DataMember] public IEnumerable<int> created_by_in { get; set; }
-		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
-		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
-		[DataMember] public bool created_by_isnull { get; set; } =  false ;
-		[DataMember] public bool created_by_isnotnull { get; set; } = false;
-		#endregion
-		#region modified_at
-		[DataMember] public DateTime? modified_at_eq { get; set; }
-		[DataMember] public DateTime? modified_at_ne { get; set; }
-		[DataMember] public DateTime? modified_at_lt { get; set; }
-		[DataMember] public DateTime? modified_at_gt { get; set; }
-		[DataMember] public DateTime? modified_at_le { get; set; }
-		[DataMember] public DateTime? modified_at_ge { get; set; }
-		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
-		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
-		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
-		#endregion
-		#region modified_by
-		[DataMember] public int? modified_by_eq { get; set; }
-		[DataMember] public int? modified_by_ne { get; set; }
-		[DataMember] public int? modified_by_lt { get; set; }
-		[DataMember] public int? modified_by_gt { get; set; }
-		[DataMember] public int? modified_by_le { get; set; }
-		[DataMember] public int? modified_by_ge { get; set; }
-		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
-		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
-		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
-		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
-		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
-		#endregion
-		#region removed_at
-		[DataMember] public DateTime? removed_at_eq { get; set; }
-		[DataMember] public DateTime? removed_at_ne { get; set; }
-		[DataMember] public DateTime? removed_at_lt { get; set; }
-		[DataMember] public DateTime? removed_at_gt { get; set; }
-		[DataMember] public DateTime? removed_at_le { get; set; }
-		[DataMember] public DateTime? removed_at_ge { get; set; }
-		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
-		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
-		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
-		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
-		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
-		#endregion
-		#region row_version
-		[DataMember] public byte[] row_version_eq { get; set; }
-		[DataMember] public byte[] row_version_ne { get; set; }
-		[DataMember] public bool row_version_isnull { get; set; } =  false ;
-		[DataMember] public bool row_version_isnotnull { get; set; } = false;
-		#endregion
-		#endregion
-
-		#region override
-		override public Expression<Func<ErrorLog, bool>> CreatePredicate()
-		{
-			var predicate = base.CreatePredicate();
-
-			#region uid
-			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
-			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
-			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
-			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
-			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
-			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
-			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
-			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
-			#endregion
-			#region category
-			if (category_eq != null) predicate = predicate.And(_ => _.category == category_eq);
-			if (category_ne != null) predicate = predicate.And(_ => _.category != category_ne);
-			if (category_lt != null) predicate = predicate.And(_ => category_lt.CompareTo(_.category) > 0);
-			if (category_gt != null) predicate = predicate.And(_ => category_gt.CompareTo(_.category) < 0);
-			if (category_le != null) predicate = predicate.And(_ => category_le.CompareTo(_.category) >= 0);
-			if (category_ge != null) predicate = predicate.And(_ => category_ge.CompareTo(_.category) <= 0);
-			if (category_in != null) predicate = predicate.And(_ => category_in.Contains(_.category));
-			if (category_ni != null) predicate = predicate.And(_ => !category_ni.Contains(_.category));
-			if (category_liker != null) predicate = predicate.And(_ => Sql.Like(_.category, $"{category_liker}%"));
-			if (category_clikec != null) predicate = predicate.And(_ => Sql.Like(_.category, $"%{category_clikec}%"));
-			if (category_llike != null) predicate = predicate.And(_ => Sql.Like(_.category, $"%{category_llike}"));
-			#endregion
-			#region type
-			if (type_eq != null) predicate = predicate.And(_ => _.type == type_eq);
-			if (type_ne != null) predicate = predicate.And(_ => _.type != type_ne);
-			if (type_lt != null) predicate = predicate.And(_ => type_lt.CompareTo(_.type) > 0);
-			if (type_gt != null) predicate = predicate.And(_ => type_gt.CompareTo(_.type) < 0);
-			if (type_le != null) predicate = predicate.And(_ => type_le.CompareTo(_.type) >= 0);
-			if (type_ge != null) predicate = predicate.And(_ => type_ge.CompareTo(_.type) <= 0);
-			if (type_in != null) predicate = predicate.And(_ => type_in.Contains(_.type));
-			if (type_ni != null) predicate = predicate.And(_ => !type_ni.Contains(_.type));
-			if (type_liker != null) predicate = predicate.And(_ => Sql.Like(_.type, $"{type_liker}%"));
-			if (type_clikec != null) predicate = predicate.And(_ => Sql.Like(_.type, $"%{type_clikec}%"));
-			if (type_llike != null) predicate = predicate.And(_ => Sql.Like(_.type, $"%{type_llike}"));
-			#endregion
-			#region level
-			if (level_eq != null) predicate = predicate.And(_ => _.level == level_eq);
-			if (level_ne != null) predicate = predicate.And(_ => _.level != level_ne);
-			if (level_lt != null) predicate = predicate.And(_ => _.level < level_lt);
-			if (level_gt != null) predicate = predicate.And(_ => _.level > level_gt);
-			if (level_le != null) predicate = predicate.And(_ => _.level <= level_le);
-			if (level_ge != null) predicate = predicate.And(_ => _.level >= level_ge);
-			if (level_in != null) predicate = predicate.And(_ => level_in.Contains(_.level));
-			if (level_ni != null) predicate = predicate.And(_ => !level_ni.Contains(_.level));
-			#endregion
-			#region url
-			if (url_eq != null) predicate = predicate.And(_ => _.url == url_eq);
-			if (url_ne != null) predicate = predicate.And(_ => _.url != url_ne);
-			if (url_lt != null) predicate = predicate.And(_ => url_lt.CompareTo(_.url) > 0);
-			if (url_gt != null) predicate = predicate.And(_ => url_gt.CompareTo(_.url) < 0);
-			if (url_le != null) predicate = predicate.And(_ => url_le.CompareTo(_.url) >= 0);
-			if (url_ge != null) predicate = predicate.And(_ => url_ge.CompareTo(_.url) <= 0);
-			if (url_in != null) predicate = predicate.And(_ => url_in.Contains(_.url));
-			if (url_ni != null) predicate = predicate.And(_ => !url_ni.Contains(_.url));
-			if (url_liker != null) predicate = predicate.And(_ => Sql.Like(_.url, $"{url_liker}%"));
-			if (url_clikec != null) predicate = predicate.And(_ => Sql.Like(_.url, $"%{url_clikec}%"));
-			if (url_llike != null) predicate = predicate.And(_ => Sql.Like(_.url, $"%{url_llike}"));
-			#endregion
-			#region methods
-			if (methods_eq != null) predicate = predicate.And(_ => _.methods == methods_eq);
-			if (methods_ne != null) predicate = predicate.And(_ => _.methods != methods_ne);
-			if (methods_lt != null) predicate = predicate.And(_ => methods_lt.CompareTo(_.methods) > 0);
-			if (methods_gt != null) predicate = predicate.And(_ => methods_gt.CompareTo(_.methods) < 0);
-			if (methods_le != null) predicate = predicate.And(_ => methods_le.CompareTo(_.methods) >= 0);
-			if (methods_ge != null) predicate = predicate.And(_ => methods_ge.CompareTo(_.methods) <= 0);
-			if (methods_in != null) predicate = predicate.And(_ => methods_in.Contains(_.methods));
-			if (methods_ni != null) predicate = predicate.And(_ => !methods_ni.Contains(_.methods));
-			if (methods_liker != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"{methods_liker}%"));
-			if (methods_clikec != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"%{methods_clikec}%"));
-			if (methods_llike != null) predicate = predicate.And(_ => Sql.Like(_.methods, $"%{methods_llike}"));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -17417,6 +18510,16 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.account_id == p_account_id);
 		}
 		/// <summary>
+		/// 主キーを指定してPasswordデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_account_id">アカウントID(account_id)</param>
+		/// <returns></returns>
+		public static Password Find(this ITable<Password> table, int p_account_id)
+		{
+			return table.SingleOrDefault(_ => _.account_id == p_account_id);
+		}
+		/// <summary>
 		/// 主キーを指定してAccountRoleデータ取得
 		/// </summary>
 		/// <param name="table"></param>
@@ -17426,6 +18529,16 @@ namespace OpenAPITest.Domain
 		public static AccountRole Find(this ITable<AccountRole> table, int p_account_id, string p_role_id)
 		{
 			return table.SingleOrDefault(_ => _.account_id == p_account_id && _.role_id == p_role_id);
+		}
+		/// <summary>
+		/// 主キーを指定してErrorLogデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_uid">ユニークID(uid)</param>
+		/// <returns></returns>
+		public static ErrorLog Find(this ITable<ErrorLog> table, int p_uid)
+		{
+			return table.SingleOrDefault(_ => _.uid == p_uid);
 		}
 		/// <summary>
 		/// 主キーを指定してStaffデータ取得
@@ -17502,16 +18615,6 @@ namespace OpenAPITest.Domain
 		public static ContactType Find(this ITable<ContactType> table, int p_contact_type_id)
 		{
 			return table.SingleOrDefault(_ => _.contact_type_id == p_contact_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してErrorLogデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_uid">ユニークID(uid)</param>
-		/// <returns></returns>
-		public static ErrorLog Find(this ITable<ErrorLog> table, int p_uid)
-		{
-			return table.SingleOrDefault(_ => _.uid == p_uid);
 		}
 		#endregion
 	}

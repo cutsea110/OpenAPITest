@@ -54,11 +54,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
+		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), 200)]
-		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -73,6 +74,8 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.Staff);
 				if (with_AccountRoleList)
 					q = q.LoadWith(_ => _.AccountRoleList);
+				if (with_PasswordList)
+					q = q.LoadWith(_ => _.PasswordList);
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -87,13 +90,14 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
+		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Account), 200)]
 		[ProducesResponseType(404)]
-		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList)
+		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -108,6 +112,8 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.Staff);
 				if (with_AccountRoleList)
 					q = q.LoadWith(_ => _.AccountRoleList);
+				if (with_PasswordList)
+					q = q.LoadWith(_ => _.PasswordList);
 				#endregion
 
 				var o = q.Find(accountId);
