@@ -146,6 +146,7 @@ namespace OpenAPITest
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            #region Add to support Authentication With Jwt
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -161,7 +162,9 @@ namespace OpenAPITest
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey))
                 };
             });
+            #endregion
 
+            #region Add to support Authorization by using PermissionType
             // PermissionTypeを使った要件の定義
             foreach (PermissionType p in Enum.GetValues(typeof(PermissionType)))
             {
@@ -173,7 +176,9 @@ namespace OpenAPITest
             services.AddSingleton<IAuthorizationHandler, PermissionTypeHandler>();
             // PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
             services.AddHttpContextAccessor();
+            #endregion
 
+            #region Add to support Swagger UI
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
             {
@@ -193,6 +198,7 @@ namespace OpenAPITest
                 option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
             });
+            #endregion
         }
 
         private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
