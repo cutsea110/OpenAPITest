@@ -16,13 +16,14 @@ using LinqToDB.Data;
 
 using peppa.util;
 using OpenAPITest.Domain;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace OpenAPITest.Controllers
 {
-	/// <summary>
-	/// アカウントのWebAPI
-	/// </summary>
-	[Authorize]
+    /// <summary>
+    /// アカウントのWebAPI
+    /// </summary>
+    [Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public partial class AccountController : ControllerBase
@@ -33,6 +34,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+        [Authorize(Policy = "Read_Account")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]AccountCondition c)

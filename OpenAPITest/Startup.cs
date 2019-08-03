@@ -10,12 +10,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.JsonPatch.Operations;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenAPITest.core;
+using OpenAPITest.Domain;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace OpenAPITest
@@ -84,6 +86,9 @@ namespace OpenAPITest
     #endregion
 
     #region SwaggerUIへのJwt対応
+    /// <summary>
+    /// Jwt認証要求クラス
+    /// </summary>
     public class AssignJwtSecurityRequirements : IOperationFilter
     {
         /// <summary>
@@ -114,8 +119,15 @@ namespace OpenAPITest
     }
     #endregion
 
+    /// <summary>
+    /// アプリのStartup
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -123,7 +135,10 @@ namespace OpenAPITest
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             DataConnection.DefaultSettings = new DbSettings(Configuration);
@@ -146,6 +161,18 @@ namespace OpenAPITest
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey))
                 };
             });
+
+            // PermissionTypeを使った要件の定義
+            foreach (PermissionType p in Enum.GetValues(typeof(PermissionType)))
+            {
+                services.AddAuthorization(options =>
+                    options.AddPolicy(p.Val(), policy =>
+                        policy.Requirements.Add(new PermissionTypeRequirement(new[] { p }))));
+            }
+            // ASP.NET Coreのパイプラインにインジェクションする
+            services.AddSingleton<IAuthorizationHandler, PermissionTypeHandler>();
+            // PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
+            services.AddHttpContextAccessor();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
@@ -170,7 +197,11 @@ namespace OpenAPITest
 
         private string XmlCommentsPath => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML");
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
