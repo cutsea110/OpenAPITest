@@ -33,6 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+		[Authorize(Policy = "Read_Test")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]TestCondition c)
@@ -56,6 +57,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_Test")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Test>), 200)]
 		public IActionResult Search([FromQuery]TestCondition c, [FromQuery]string[] order)
@@ -80,6 +82,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_Test")]
 		[HttpGet("get/{uid}")]
 		[ProducesResponseType(typeof(Test), 200)]
 		[ProducesResponseType(404)]
@@ -102,6 +105,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Testオブジェクト</returns>
+		[Authorize(Policy = "Create_Test")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Test o)
@@ -122,6 +126,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Test")]
+		[Authorize(Policy = "Update_Test")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]Test o)
@@ -142,6 +148,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_Test")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Test> os)
@@ -162,6 +169,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Test")]
+		[Authorize(Policy = "Update_Test")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<Test> os)
@@ -183,6 +192,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_Test")]
 		[HttpPut, Route("modify/{uid}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int uid, [FromBody]Test o)
@@ -203,6 +213,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="uid">ユニークID(uid)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Test")]
 		[HttpDelete("remove/{uid}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int uid)
@@ -225,6 +236,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Test")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]TestCondition c)

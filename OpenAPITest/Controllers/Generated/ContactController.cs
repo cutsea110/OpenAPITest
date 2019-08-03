@@ -33,6 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+		[Authorize(Policy = "Read_Contact")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]ContactCondition c)
@@ -58,6 +59,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_Contact")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Contact>), 200)]
 		public IActionResult Search([FromQuery]ContactCondition c, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
@@ -94,6 +96,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="seq">連番(seq)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_Contact")]
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(Contact), 200)]
 		[ProducesResponseType(404)]
@@ -124,6 +127,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Contactオブジェクト</returns>
+		[Authorize(Policy = "Create_Contact")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Contact o)
@@ -144,6 +148,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Contact")]
+		[Authorize(Policy = "Update_Contact")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]Contact o)
@@ -164,6 +170,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_Contact")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Contact> os)
@@ -184,6 +191,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Contact")]
+		[Authorize(Policy = "Update_Contact")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<Contact> os)
@@ -207,6 +216,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="seq">連番(seq)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_Contact")]
 		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int userType, string genericUserNo, int seq, [FromBody]Contact o)
@@ -229,6 +239,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
 		/// <param name="seq">連番(seq)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Contact")]
 		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int userType, string genericUserNo, int seq)
@@ -251,6 +262,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Contact")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]ContactCondition c)

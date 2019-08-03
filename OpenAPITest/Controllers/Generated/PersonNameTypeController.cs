@@ -33,6 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]PersonNameTypeCondition c)
@@ -56,6 +57,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<PersonNameType>), 200)]
 		public IActionResult Search([FromQuery]PersonNameTypeCondition c, [FromQuery]string[] order)
@@ -80,6 +82,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="personNameTypeId">人名種別ID(person_name_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("get/{personNameTypeId}")]
 		[ProducesResponseType(typeof(PersonNameType), 200)]
 		[ProducesResponseType(404)]
@@ -102,6 +105,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">PersonNameTypeオブジェクト</returns>
+		[Authorize(Policy = "Create_PersonNameType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]PersonNameType o)
@@ -122,6 +126,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_PersonNameType")]
+		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]PersonNameType o)
@@ -142,6 +148,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_PersonNameType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<PersonNameType> os)
@@ -162,6 +169,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_PersonNameType")]
+		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<PersonNameType> os)
@@ -183,6 +192,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="personNameTypeId">人名種別ID(person_name_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPut, Route("modify/{personNameTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int personNameTypeId, [FromBody]PersonNameType o)
@@ -203,6 +213,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="personNameTypeId">人名種別ID(person_name_type_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("remove/{personNameTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int personNameTypeId)
@@ -226,6 +237,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]PersonNameTypeCondition c)
@@ -249,6 +261,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="personNameTypeId">人名種別ID(person_name_type_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("physically-remove/{personNameTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove(int personNameTypeId)
@@ -271,6 +284,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove([FromQuery]PersonNameTypeCondition c)

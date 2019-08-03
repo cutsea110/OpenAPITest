@@ -285,7 +285,7 @@ namespace OpenAPITest.Domain
 		ロール表示,
 		/// <summary>
 		/// 名称 : ロール更新
-		/// 説明 : ロールマスタの変更
+		/// 説明 : ロールマスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_Role"), DataMember]
 		ロール更新,
@@ -309,7 +309,7 @@ namespace OpenAPITest.Domain
 		ロール権限表示,
 		/// <summary>
 		/// 名称 : ロール権限更新
-		/// 説明 : ロール権限の変更
+		/// 説明 : ロール権限の更新
 		/// </summary>
 		[MapValue(Value = "Update_RolePermission"), DataMember]
 		ロール権限更新,
@@ -333,7 +333,7 @@ namespace OpenAPITest.Domain
 		アカウント表示,
 		/// <summary>
 		/// 名称 : アカウント更新
-		/// 説明 : アカウントの変更
+		/// 説明 : アカウントの更新
 		/// </summary>
 		[MapValue(Value = "Update_Account"), DataMember]
 		アカウント更新,
@@ -357,7 +357,7 @@ namespace OpenAPITest.Domain
 		アカウントロール表示,
 		/// <summary>
 		/// 名称 : アカウントロール更新
-		/// 説明 : アカウントロールの変更
+		/// 説明 : アカウントロールの更新
 		/// </summary>
 		[MapValue(Value = "Update_AccountRole"), DataMember]
 		アカウントロール更新,
@@ -367,6 +367,36 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[MapValue(Value = "Delete_AccountRole"), DataMember]
 		アカウントロール削除,
+		/// <summary>
+		/// 名称 : パスワード作成
+		/// 説明 : パスワードの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_Password"), DataMember]
+		パスワード作成,
+		/// <summary>
+		/// 名称 : パスワード表示
+		/// 説明 : パスワードの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_Password"), DataMember]
+		パスワード表示,
+		/// <summary>
+		/// 名称 : パスワード更新
+		/// 説明 : パスワードの更新
+		/// </summary>
+		[MapValue(Value = "Update_Password"), DataMember]
+		パスワード更新,
+		/// <summary>
+		/// 名称 : パスワード変更
+		/// 説明 : パスワードの変更
+		/// </summary>
+		[MapValue(Value = "Change_Password"), DataMember]
+		パスワード変更,
+		/// <summary>
+		/// 名称 : パスワード削除
+		/// 説明 : パスワードの削除
+		/// </summary>
+		[MapValue(Value = "Delete_Password"), DataMember]
+		パスワード削除,
 		/// <summary>
 		/// 名称 : 職員作成
 		/// 説明 : 職員マスタの新規作成
@@ -381,7 +411,7 @@ namespace OpenAPITest.Domain
 		職員表示,
 		/// <summary>
 		/// 名称 : 職員更新
-		/// 説明 : 職員マスタの変更
+		/// 説明 : 職員マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_Staff"), DataMember]
 		職員更新,
@@ -391,6 +421,60 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[MapValue(Value = "Delete_Staff"), DataMember]
 		職員削除,
+		/// <summary>
+		/// 名称 : 人名作成
+		/// 説明 : 人名の新規作成
+		/// </summary>
+		[MapValue(Value = "Create_PersonName"), DataMember]
+		人名作成,
+		/// <summary>
+		/// 名称 : 人名表示
+		/// 説明 : 人名の閲覧
+		/// </summary>
+		[MapValue(Value = "Read_PersonName"), DataMember]
+		人名表示,
+		/// <summary>
+		/// 名称 : 人名更新
+		/// 説明 : 人名の更新
+		/// </summary>
+		[MapValue(Value = "Update_PersonName"), DataMember]
+		人名更新,
+		/// <summary>
+		/// 名称 : 人名変更
+		/// 説明 : 人名の変更
+		/// </summary>
+		[MapValue(Value = "Change_PersonName"), DataMember]
+		人名変更,
+		/// <summary>
+		/// 名称 : 人名削除
+		/// 説明 : 人名の削除
+		/// </summary>
+		[MapValue(Value = "Delete_PersonName"), DataMember]
+		人名削除,
+		/// <summary>
+		/// 名称 : 人名種別作成
+		/// 説明 : 人名種別の新規作成
+		/// </summary>
+		[MapValue(Value = "Create_PersonNameType"), DataMember]
+		人名種別作成,
+		/// <summary>
+		/// 名称 : 人名種別表示
+		/// 説明 : 人名種別の閲覧
+		/// </summary>
+		[MapValue(Value = "Read_PersonNameType"), DataMember]
+		人名種別表示,
+		/// <summary>
+		/// 名称 : 人名種別更新
+		/// 説明 : 人名種別の更新
+		/// </summary>
+		[MapValue(Value = "Update_PersonNameType"), DataMember]
+		人名種別更新,
+		/// <summary>
+		/// 名称 : 人名種別削除
+		/// 説明 : 人名種別の削除
+		/// </summary>
+		[MapValue(Value = "Delete_PersonNameType"), DataMember]
+		人名種別削除,
 		/// <summary>
 		/// 名称 : 住所作成
 		/// 説明 : 住所の新規作成
@@ -405,10 +489,16 @@ namespace OpenAPITest.Domain
 		住所表示,
 		/// <summary>
 		/// 名称 : 住所更新
-		/// 説明 : 住所の変更
+		/// 説明 : 住所の更新
 		/// </summary>
 		[MapValue(Value = "Update_Address"), DataMember]
 		住所更新,
+		/// <summary>
+		/// 名称 : 住所変更
+		/// 説明 : 住所の変更
+		/// </summary>
+		[MapValue(Value = "Change_Address"), DataMember]
+		住所変更,
 		/// <summary>
 		/// 名称 : 住所削除
 		/// 説明 : 住所の削除
@@ -429,7 +519,7 @@ namespace OpenAPITest.Domain
 		住所種別表示,
 		/// <summary>
 		/// 名称 : 住所種別更新
-		/// 説明 : 住所種別の変更
+		/// 説明 : 住所種別の更新
 		/// </summary>
 		[MapValue(Value = "Update_AddressType"), DataMember]
 		住所種別更新,
@@ -453,10 +543,16 @@ namespace OpenAPITest.Domain
 		連絡先表示,
 		/// <summary>
 		/// 名称 : 連絡先更新
-		/// 説明 : 連絡先の変更
+		/// 説明 : 連絡先の更新
 		/// </summary>
 		[MapValue(Value = "Update_Contact"), DataMember]
 		連絡先更新,
+		/// <summary>
+		/// 名称 : 連絡先変更
+		/// 説明 : 連絡先の変更
+		/// </summary>
+		[MapValue(Value = "Change_Contact"), DataMember]
+		連絡先変更,
 		/// <summary>
 		/// 名称 : 連絡先削除
 		/// 説明 : 連絡先の削除
@@ -477,7 +573,7 @@ namespace OpenAPITest.Domain
 		連絡先種別表示,
 		/// <summary>
 		/// 名称 : 連絡先種別更新
-		/// 説明 : 連絡先種別の変更
+		/// 説明 : 連絡先種別の更新
 		/// </summary>
 		[MapValue(Value = "Update_ContactType"), DataMember]
 		連絡先種別更新,
@@ -501,7 +597,7 @@ namespace OpenAPITest.Domain
 		エラーログ表示,
 		/// <summary>
 		/// 名称 : エラーログ更新
-		/// 説明 : エラーログの変更
+		/// 説明 : エラーログの更新
 		/// </summary>
 		[MapValue(Value = "Update_ErrorLog"), DataMember]
 		エラーログ更新,
@@ -511,6 +607,30 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[MapValue(Value = "Delete_ErrorLog"), DataMember]
 		エラーログ削除,
+		/// <summary>
+		/// 名称 : テスト作成
+		/// 説明 : テストの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_Test"), DataMember]
+		テスト作成,
+		/// <summary>
+		/// 名称 : テスト表示
+		/// 説明 : テストの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_Test"), DataMember]
+		テスト表示,
+		/// <summary>
+		/// 名称 : テスト更新
+		/// 説明 : テストの更新
+		/// </summary>
+		[MapValue(Value = "Update_Test"), DataMember]
+		テスト更新,
+		/// <summary>
+		/// 名称 : テスト削除
+		/// 説明 : テストの削除
+		/// </summary>
+		[MapValue(Value = "Delete_Test"), DataMember]
+		テスト削除,
 	}
 	#endregion
 	#region enum拡張
@@ -1478,6 +1598,16 @@ namespace OpenAPITest.Domain
 					return PermissionType.アカウントロール更新;
 				case "Delete_AccountRole":
 					return PermissionType.アカウントロール削除;
+				case "Create_Password":
+					return PermissionType.パスワード作成;
+				case "Read_Password":
+					return PermissionType.パスワード表示;
+				case "Update_Password":
+					return PermissionType.パスワード更新;
+				case "Change_Password":
+					return PermissionType.パスワード変更;
+				case "Delete_Password":
+					return PermissionType.パスワード削除;
 				case "Create_Staff":
 					return PermissionType.職員作成;
 				case "Read_Staff":
@@ -1486,12 +1616,32 @@ namespace OpenAPITest.Domain
 					return PermissionType.職員更新;
 				case "Delete_Staff":
 					return PermissionType.職員削除;
+				case "Create_PersonName":
+					return PermissionType.人名作成;
+				case "Read_PersonName":
+					return PermissionType.人名表示;
+				case "Update_PersonName":
+					return PermissionType.人名更新;
+				case "Change_PersonName":
+					return PermissionType.人名変更;
+				case "Delete_PersonName":
+					return PermissionType.人名削除;
+				case "Create_PersonNameType":
+					return PermissionType.人名種別作成;
+				case "Read_PersonNameType":
+					return PermissionType.人名種別表示;
+				case "Update_PersonNameType":
+					return PermissionType.人名種別更新;
+				case "Delete_PersonNameType":
+					return PermissionType.人名種別削除;
 				case "Create_Address":
 					return PermissionType.住所作成;
 				case "Read_Address":
 					return PermissionType.住所表示;
 				case "Update_Address":
 					return PermissionType.住所更新;
+				case "Change_Address":
+					return PermissionType.住所変更;
 				case "Delete_Address":
 					return PermissionType.住所削除;
 				case "Create_AddressType":
@@ -1508,6 +1658,8 @@ namespace OpenAPITest.Domain
 					return PermissionType.連絡先表示;
 				case "Update_Contact":
 					return PermissionType.連絡先更新;
+				case "Change_Contact":
+					return PermissionType.連絡先変更;
 				case "Delete_Contact":
 					return PermissionType.連絡先削除;
 				case "Create_ContactType":
@@ -1526,6 +1678,14 @@ namespace OpenAPITest.Domain
 					return PermissionType.エラーログ更新;
 				case "Delete_ErrorLog":
 					return PermissionType.エラーログ削除;
+				case "Create_Test":
+					return PermissionType.テスト作成;
+				case "Read_Test":
+					return PermissionType.テスト表示;
+				case "Update_Test":
+					return PermissionType.テスト更新;
+				case "Delete_Test":
+					return PermissionType.テスト削除;
 				default:
 					return (PermissionType?)missing;
 			}
@@ -1572,6 +1732,16 @@ namespace OpenAPITest.Domain
 					return "Update_AccountRole";
 				case PermissionType.アカウントロール削除:
 					return "Delete_AccountRole";
+				case PermissionType.パスワード作成:
+					return "Create_Password";
+				case PermissionType.パスワード表示:
+					return "Read_Password";
+				case PermissionType.パスワード更新:
+					return "Update_Password";
+				case PermissionType.パスワード変更:
+					return "Change_Password";
+				case PermissionType.パスワード削除:
+					return "Delete_Password";
 				case PermissionType.職員作成:
 					return "Create_Staff";
 				case PermissionType.職員表示:
@@ -1580,12 +1750,32 @@ namespace OpenAPITest.Domain
 					return "Update_Staff";
 				case PermissionType.職員削除:
 					return "Delete_Staff";
+				case PermissionType.人名作成:
+					return "Create_PersonName";
+				case PermissionType.人名表示:
+					return "Read_PersonName";
+				case PermissionType.人名更新:
+					return "Update_PersonName";
+				case PermissionType.人名変更:
+					return "Change_PersonName";
+				case PermissionType.人名削除:
+					return "Delete_PersonName";
+				case PermissionType.人名種別作成:
+					return "Create_PersonNameType";
+				case PermissionType.人名種別表示:
+					return "Read_PersonNameType";
+				case PermissionType.人名種別更新:
+					return "Update_PersonNameType";
+				case PermissionType.人名種別削除:
+					return "Delete_PersonNameType";
 				case PermissionType.住所作成:
 					return "Create_Address";
 				case PermissionType.住所表示:
 					return "Read_Address";
 				case PermissionType.住所更新:
 					return "Update_Address";
+				case PermissionType.住所変更:
+					return "Change_Address";
 				case PermissionType.住所削除:
 					return "Delete_Address";
 				case PermissionType.住所種別作成:
@@ -1602,6 +1792,8 @@ namespace OpenAPITest.Domain
 					return "Read_Contact";
 				case PermissionType.連絡先更新:
 					return "Update_Contact";
+				case PermissionType.連絡先変更:
+					return "Change_Contact";
 				case PermissionType.連絡先削除:
 					return "Delete_Contact";
 				case PermissionType.連絡先種別作成:
@@ -1620,6 +1812,14 @@ namespace OpenAPITest.Domain
 					return "Update_ErrorLog";
 				case PermissionType.エラーログ削除:
 					return "Delete_ErrorLog";
+				case PermissionType.テスト作成:
+					return "Create_Test";
+				case PermissionType.テスト表示:
+					return "Read_Test";
+				case PermissionType.テスト更新:
+					return "Update_Test";
+				case PermissionType.テスト削除:
+					return "Delete_Test";
 				default:
 					throw new Exception("Unknown PermissionType");
 			}
@@ -1667,6 +1867,16 @@ namespace OpenAPITest.Domain
 					return "アカウントロール更新";
 				case PermissionType.アカウントロール削除:
 					return "アカウントロール削除";
+				case PermissionType.パスワード作成:
+					return "パスワード作成";
+				case PermissionType.パスワード表示:
+					return "パスワード表示";
+				case PermissionType.パスワード更新:
+					return "パスワード更新";
+				case PermissionType.パスワード変更:
+					return "パスワード変更";
+				case PermissionType.パスワード削除:
+					return "パスワード削除";
 				case PermissionType.職員作成:
 					return "職員作成";
 				case PermissionType.職員表示:
@@ -1675,12 +1885,32 @@ namespace OpenAPITest.Domain
 					return "職員更新";
 				case PermissionType.職員削除:
 					return "職員削除";
+				case PermissionType.人名作成:
+					return "人名作成";
+				case PermissionType.人名表示:
+					return "人名表示";
+				case PermissionType.人名更新:
+					return "人名更新";
+				case PermissionType.人名変更:
+					return "人名変更";
+				case PermissionType.人名削除:
+					return "人名削除";
+				case PermissionType.人名種別作成:
+					return "人名種別作成";
+				case PermissionType.人名種別表示:
+					return "人名種別表示";
+				case PermissionType.人名種別更新:
+					return "人名種別更新";
+				case PermissionType.人名種別削除:
+					return "人名種別削除";
 				case PermissionType.住所作成:
 					return "住所作成";
 				case PermissionType.住所表示:
 					return "住所表示";
 				case PermissionType.住所更新:
 					return "住所更新";
+				case PermissionType.住所変更:
+					return "住所変更";
 				case PermissionType.住所削除:
 					return "住所削除";
 				case PermissionType.住所種別作成:
@@ -1697,6 +1927,8 @@ namespace OpenAPITest.Domain
 					return "連絡先表示";
 				case PermissionType.連絡先更新:
 					return "連絡先更新";
+				case PermissionType.連絡先変更:
+					return "連絡先変更";
 				case PermissionType.連絡先削除:
 					return "連絡先削除";
 				case PermissionType.連絡先種別作成:
@@ -1715,6 +1947,14 @@ namespace OpenAPITest.Domain
 					return "エラーログ更新";
 				case PermissionType.エラーログ削除:
 					return "エラーログ削除";
+				case PermissionType.テスト作成:
+					return "テスト作成";
+				case PermissionType.テスト表示:
+					return "テスト表示";
+				case PermissionType.テスト更新:
+					return "テスト更新";
+				case PermissionType.テスト削除:
+					return "テスト削除";
 				default:
 					return missing;
 			}
@@ -1762,6 +2002,16 @@ namespace OpenAPITest.Domain
 					return "アカウントロール更新";
 				case PermissionType.アカウントロール削除:
 					return "アカウントロール削除";
+				case PermissionType.パスワード作成:
+					return "パスワード作成";
+				case PermissionType.パスワード表示:
+					return "パスワード表示";
+				case PermissionType.パスワード更新:
+					return "パスワード更新";
+				case PermissionType.パスワード変更:
+					return "パスワード変更";
+				case PermissionType.パスワード削除:
+					return "パスワード削除";
 				case PermissionType.職員作成:
 					return "職員作成";
 				case PermissionType.職員表示:
@@ -1770,12 +2020,32 @@ namespace OpenAPITest.Domain
 					return "職員更新";
 				case PermissionType.職員削除:
 					return "職員削除";
+				case PermissionType.人名作成:
+					return "人名作成";
+				case PermissionType.人名表示:
+					return "人名表示";
+				case PermissionType.人名更新:
+					return "人名更新";
+				case PermissionType.人名変更:
+					return "人名変更";
+				case PermissionType.人名削除:
+					return "人名削除";
+				case PermissionType.人名種別作成:
+					return "人名種別作成";
+				case PermissionType.人名種別表示:
+					return "人名種別表示";
+				case PermissionType.人名種別更新:
+					return "人名種別更新";
+				case PermissionType.人名種別削除:
+					return "人名種別削除";
 				case PermissionType.住所作成:
 					return "住所作成";
 				case PermissionType.住所表示:
 					return "住所表示";
 				case PermissionType.住所更新:
 					return "住所更新";
+				case PermissionType.住所変更:
+					return "住所変更";
 				case PermissionType.住所削除:
 					return "住所削除";
 				case PermissionType.住所種別作成:
@@ -1792,6 +2062,8 @@ namespace OpenAPITest.Domain
 					return "連絡先表示";
 				case PermissionType.連絡先更新:
 					return "連絡先更新";
+				case PermissionType.連絡先変更:
+					return "連絡先変更";
 				case PermissionType.連絡先削除:
 					return "連絡先削除";
 				case PermissionType.連絡先種別作成:
@@ -1810,6 +2082,14 @@ namespace OpenAPITest.Domain
 					return "エラーログ更新";
 				case PermissionType.エラーログ削除:
 					return "エラーログ削除";
+				case PermissionType.テスト作成:
+					return "テスト作成";
+				case PermissionType.テスト表示:
+					return "テスト表示";
+				case PermissionType.テスト更新:
+					return "テスト更新";
+				case PermissionType.テスト削除:
+					return "テスト削除";
 				default:
 					return missing;
 			}
@@ -1830,7 +2110,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.ロール表示:
 					return "ロ表";
 				case PermissionType.ロール更新:
-					return "ロ変";
+					return "ロ更";
 				case PermissionType.ロール削除:
 					return "ロ廃";
 				case PermissionType.ロール権限作成:
@@ -1838,7 +2118,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.ロール権限表示:
 					return "権表";
 				case PermissionType.ロール権限更新:
-					return "権変";
+					return "権更";
 				case PermissionType.ロール権限削除:
 					return "権廃";
 				case PermissionType.アカウント作成:
@@ -1846,7 +2126,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.アカウント表示:
 					return "ア表";
 				case PermissionType.アカウント更新:
-					return "ア変";
+					return "ア更";
 				case PermissionType.アカウント削除:
 					return "ア廃";
 				case PermissionType.アカウントロール作成:
@@ -1854,22 +2134,52 @@ namespace OpenAPITest.Domain
 				case PermissionType.アカウントロール表示:
 					return "アロ表";
 				case PermissionType.アカウントロール更新:
-					return "アロ変";
+					return "アロ更";
 				case PermissionType.アカウントロール削除:
 					return "アロ廃";
+				case PermissionType.パスワード作成:
+					return "パ新";
+				case PermissionType.パスワード表示:
+					return "パ表";
+				case PermissionType.パスワード更新:
+					return "パ更";
+				case PermissionType.パスワード変更:
+					return "パ変";
+				case PermissionType.パスワード削除:
+					return "パ廃";
 				case PermissionType.職員作成:
 					return "職新";
 				case PermissionType.職員表示:
 					return "職表";
 				case PermissionType.職員更新:
-					return "職変";
+					return "職更";
 				case PermissionType.職員削除:
 					return "職廃";
+				case PermissionType.人名作成:
+					return "名新";
+				case PermissionType.人名表示:
+					return "名表";
+				case PermissionType.人名更新:
+					return "名更";
+				case PermissionType.人名変更:
+					return "名変";
+				case PermissionType.人名削除:
+					return "住廃";
+				case PermissionType.人名種別作成:
+					return "住種新";
+				case PermissionType.人名種別表示:
+					return "住種表";
+				case PermissionType.人名種別更新:
+					return "住種更";
+				case PermissionType.人名種別削除:
+					return "住種廃";
 				case PermissionType.住所作成:
 					return "住新";
 				case PermissionType.住所表示:
 					return "住表";
 				case PermissionType.住所更新:
+					return "住更";
+				case PermissionType.住所変更:
 					return "住変";
 				case PermissionType.住所削除:
 					return "住廃";
@@ -1878,7 +2188,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.住所種別表示:
 					return "住種表";
 				case PermissionType.住所種別更新:
-					return "住種変";
+					return "住種更";
 				case PermissionType.住所種別削除:
 					return "住種廃";
 				case PermissionType.連絡先作成:
@@ -1886,6 +2196,8 @@ namespace OpenAPITest.Domain
 				case PermissionType.連絡先表示:
 					return "連表";
 				case PermissionType.連絡先更新:
+					return "連更";
+				case PermissionType.連絡先変更:
 					return "連変";
 				case PermissionType.連絡先削除:
 					return "連廃";
@@ -1894,7 +2206,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.連絡先種別表示:
 					return "連種表";
 				case PermissionType.連絡先種別更新:
-					return "連種変";
+					return "連種更";
 				case PermissionType.連絡先種別削除:
 					return "連種廃";
 				case PermissionType.エラーログ作成:
@@ -1902,9 +2214,17 @@ namespace OpenAPITest.Domain
 				case PermissionType.エラーログ表示:
 					return "エ表";
 				case PermissionType.エラーログ更新:
-					return "エ変";
+					return "エ更";
 				case PermissionType.エラーログ削除:
 					return "エ廃";
+				case PermissionType.テスト作成:
+					return "テ新";
+				case PermissionType.テスト表示:
+					return "テ表";
+				case PermissionType.テスト更新:
+					return "テ更";
+				case PermissionType.テスト削除:
+					return "テ廃";
 				default:
 					return missing;
 			}
@@ -1952,6 +2272,16 @@ namespace OpenAPITest.Domain
 					return "Update AccountRole";
 				case PermissionType.アカウントロール削除:
 					return "Delete AccountRole";
+				case PermissionType.パスワード作成:
+					return "Create Password";
+				case PermissionType.パスワード表示:
+					return "Read Password";
+				case PermissionType.パスワード更新:
+					return "Update Password";
+				case PermissionType.パスワード変更:
+					return "Change Password";
+				case PermissionType.パスワード削除:
+					return "Delete Password";
 				case PermissionType.職員作成:
 					return "Create Staff";
 				case PermissionType.職員表示:
@@ -1960,12 +2290,32 @@ namespace OpenAPITest.Domain
 					return "Update Staff";
 				case PermissionType.職員削除:
 					return "Delete Staff";
+				case PermissionType.人名作成:
+					return "Create PersonName";
+				case PermissionType.人名表示:
+					return "Read PersonName";
+				case PermissionType.人名更新:
+					return "Update PersonName";
+				case PermissionType.人名変更:
+					return "Change PersonName";
+				case PermissionType.人名削除:
+					return "Delete PersonName";
+				case PermissionType.人名種別作成:
+					return "Create PersonNameType";
+				case PermissionType.人名種別表示:
+					return "Read PersonNameType";
+				case PermissionType.人名種別更新:
+					return "Update PersonNameType";
+				case PermissionType.人名種別削除:
+					return "Delete PersonNameType";
 				case PermissionType.住所作成:
 					return "Create Address";
 				case PermissionType.住所表示:
 					return "Read Address";
 				case PermissionType.住所更新:
 					return "Update Address";
+				case PermissionType.住所変更:
+					return "Change Address";
 				case PermissionType.住所削除:
 					return "Delete Address";
 				case PermissionType.住所種別作成:
@@ -1982,6 +2332,8 @@ namespace OpenAPITest.Domain
 					return "Read Contact";
 				case PermissionType.連絡先更新:
 					return "Update Contact";
+				case PermissionType.連絡先変更:
+					return "Change Contact";
 				case PermissionType.連絡先削除:
 					return "Delete Contact";
 				case PermissionType.連絡先種別作成:
@@ -2000,6 +2352,14 @@ namespace OpenAPITest.Domain
 					return "Update ErrorLog";
 				case PermissionType.エラーログ削除:
 					return "Delete ErrorLog";
+				case PermissionType.テスト作成:
+					return "Create Test";
+				case PermissionType.テスト表示:
+					return "Read Test";
+				case PermissionType.テスト更新:
+					return "Update Test";
+				case PermissionType.テスト削除:
+					return "Delete Test";
 				default:
 					return missing;
 			}
@@ -2047,6 +2407,16 @@ namespace OpenAPITest.Domain
 					return "Update AccountRole";
 				case PermissionType.アカウントロール削除:
 					return "Delete AccountRole";
+				case PermissionType.パスワード作成:
+					return "Create Password";
+				case PermissionType.パスワード表示:
+					return "Read Password";
+				case PermissionType.パスワード更新:
+					return "Update Password";
+				case PermissionType.パスワード変更:
+					return "Change Password";
+				case PermissionType.パスワード削除:
+					return "Delete Password";
 				case PermissionType.職員作成:
 					return "Create Staff";
 				case PermissionType.職員表示:
@@ -2055,12 +2425,32 @@ namespace OpenAPITest.Domain
 					return "Update Staff";
 				case PermissionType.職員削除:
 					return "Delete Staff";
+				case PermissionType.人名作成:
+					return "Create PersonName";
+				case PermissionType.人名表示:
+					return "Read PersonName";
+				case PermissionType.人名更新:
+					return "Update PersonName";
+				case PermissionType.人名変更:
+					return "Change PersonName";
+				case PermissionType.人名削除:
+					return "Delete PersonName";
+				case PermissionType.人名種別作成:
+					return "Create PersonNameType";
+				case PermissionType.人名種別表示:
+					return "Read PersonNameType";
+				case PermissionType.人名種別更新:
+					return "Update PersonNameType";
+				case PermissionType.人名種別削除:
+					return "Delete PersonNameType";
 				case PermissionType.住所作成:
 					return "Create Address";
 				case PermissionType.住所表示:
 					return "Read Address";
 				case PermissionType.住所更新:
 					return "Update Address";
+				case PermissionType.住所変更:
+					return "Change Address";
 				case PermissionType.住所削除:
 					return "Delete Address";
 				case PermissionType.住所種別作成:
@@ -2077,6 +2467,8 @@ namespace OpenAPITest.Domain
 					return "Read Contact";
 				case PermissionType.連絡先更新:
 					return "Update Contact";
+				case PermissionType.連絡先変更:
+					return "Change Contact";
 				case PermissionType.連絡先削除:
 					return "Delete Contact";
 				case PermissionType.連絡先種別作成:
@@ -2095,6 +2487,14 @@ namespace OpenAPITest.Domain
 					return "Update ErrorLog";
 				case PermissionType.エラーログ削除:
 					return "Delete ErrorLog";
+				case PermissionType.テスト作成:
+					return "Create Test";
+				case PermissionType.テスト表示:
+					return "Read Test";
+				case PermissionType.テスト更新:
+					return "Update Test";
+				case PermissionType.テスト削除:
+					return "Delete Test";
 				default:
 					return missing;
 			}
@@ -2111,7 +2511,7 @@ namespace OpenAPITest.Domain
 			switch (self)
 			{
 				case PermissionType.ロール作成:
-					return "C Role";
+					return "N Role";
 				case PermissionType.ロール表示:
 					return "R Role";
 				case PermissionType.ロール更新:
@@ -2119,7 +2519,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.ロール削除:
 					return "D Role";
 				case PermissionType.ロール権限作成:
-					return "C RolePermission";
+					return "N RolePermission";
 				case PermissionType.ロール権限表示:
 					return "R RolePermission";
 				case PermissionType.ロール権限更新:
@@ -2127,7 +2527,7 @@ namespace OpenAPITest.Domain
 				case PermissionType.ロール権限削除:
 					return "D RolePermission";
 				case PermissionType.アカウント作成:
-					return "C Account";
+					return "N Account";
 				case PermissionType.アカウント表示:
 					return "R Account";
 				case PermissionType.アカウント更新:
@@ -2135,31 +2535,61 @@ namespace OpenAPITest.Domain
 				case PermissionType.アカウント削除:
 					return "D Account";
 				case PermissionType.アカウントロール作成:
-					return "C AccountRole";
+					return "N AccountRole";
 				case PermissionType.アカウントロール表示:
 					return "R AccountRole";
 				case PermissionType.アカウントロール更新:
 					return "U AccountRole";
 				case PermissionType.アカウントロール削除:
 					return "D AccountRole";
+				case PermissionType.パスワード作成:
+					return "N Password";
+				case PermissionType.パスワード表示:
+					return "R Password";
+				case PermissionType.パスワード更新:
+					return "U Password";
+				case PermissionType.パスワード変更:
+					return "C Password";
+				case PermissionType.パスワード削除:
+					return "D Password";
 				case PermissionType.職員作成:
-					return "C Staff";
+					return "N Staff";
 				case PermissionType.職員表示:
 					return "R Staff";
 				case PermissionType.職員更新:
 					return "U Staff";
 				case PermissionType.職員削除:
 					return "D Staff";
+				case PermissionType.人名作成:
+					return "N PersonName";
+				case PermissionType.人名表示:
+					return "R PersonName";
+				case PermissionType.人名更新:
+					return "U PersonName";
+				case PermissionType.人名変更:
+					return "C PersonName";
+				case PermissionType.人名削除:
+					return "D PersonName";
+				case PermissionType.人名種別作成:
+					return "N PersonNameType";
+				case PermissionType.人名種別表示:
+					return "R PersonNameType";
+				case PermissionType.人名種別更新:
+					return "U PersonNameType";
+				case PermissionType.人名種別削除:
+					return "D PersonNameType";
 				case PermissionType.住所作成:
-					return "C Address";
+					return "N Address";
 				case PermissionType.住所表示:
 					return "R Address";
 				case PermissionType.住所更新:
 					return "U Address";
+				case PermissionType.住所変更:
+					return "C Address";
 				case PermissionType.住所削除:
 					return "D Address";
 				case PermissionType.住所種別作成:
-					return "C AddressType";
+					return "N AddressType";
 				case PermissionType.住所種別表示:
 					return "R AddressType";
 				case PermissionType.住所種別更新:
@@ -2167,15 +2597,17 @@ namespace OpenAPITest.Domain
 				case PermissionType.住所種別削除:
 					return "D AddressType";
 				case PermissionType.連絡先作成:
-					return "C Contact";
+					return "N Contact";
 				case PermissionType.連絡先表示:
 					return "R Contact";
 				case PermissionType.連絡先更新:
 					return "U Contact";
+				case PermissionType.連絡先変更:
+					return "C Contact";
 				case PermissionType.連絡先削除:
 					return "D Contact";
 				case PermissionType.連絡先種別作成:
-					return "C ContactType";
+					return "N ContactType";
 				case PermissionType.連絡先種別表示:
 					return "R ContactType";
 				case PermissionType.連絡先種別更新:
@@ -2183,13 +2615,21 @@ namespace OpenAPITest.Domain
 				case PermissionType.連絡先種別削除:
 					return "D ContactType";
 				case PermissionType.エラーログ作成:
-					return "C ErrorLog";
+					return "N ErrorLog";
 				case PermissionType.エラーログ表示:
 					return "R ErrorLog";
 				case PermissionType.エラーログ更新:
 					return "U ErrorLog";
 				case PermissionType.エラーログ削除:
 					return "D ErrorLog";
+				case PermissionType.テスト作成:
+					return "N Test";
+				case PermissionType.テスト表示:
+					return "R Test";
+				case PermissionType.テスト更新:
+					return "U Test";
+				case PermissionType.テスト削除:
+					return "D Test";
 				default:
 					return missing;
 			}
@@ -7079,6 +7519,16 @@ namespace OpenAPITest.Domain
 						return PermissionType.アカウントロール更新;
 					case "Delete_AccountRole":
 						return PermissionType.アカウントロール削除;
+					case "Create_Password":
+						return PermissionType.パスワード作成;
+					case "Read_Password":
+						return PermissionType.パスワード表示;
+					case "Update_Password":
+						return PermissionType.パスワード更新;
+					case "Change_Password":
+						return PermissionType.パスワード変更;
+					case "Delete_Password":
+						return PermissionType.パスワード削除;
 					case "Create_Staff":
 						return PermissionType.職員作成;
 					case "Read_Staff":
@@ -7087,12 +7537,32 @@ namespace OpenAPITest.Domain
 						return PermissionType.職員更新;
 					case "Delete_Staff":
 						return PermissionType.職員削除;
+					case "Create_PersonName":
+						return PermissionType.人名作成;
+					case "Read_PersonName":
+						return PermissionType.人名表示;
+					case "Update_PersonName":
+						return PermissionType.人名更新;
+					case "Change_PersonName":
+						return PermissionType.人名変更;
+					case "Delete_PersonName":
+						return PermissionType.人名削除;
+					case "Create_PersonNameType":
+						return PermissionType.人名種別作成;
+					case "Read_PersonNameType":
+						return PermissionType.人名種別表示;
+					case "Update_PersonNameType":
+						return PermissionType.人名種別更新;
+					case "Delete_PersonNameType":
+						return PermissionType.人名種別削除;
 					case "Create_Address":
 						return PermissionType.住所作成;
 					case "Read_Address":
 						return PermissionType.住所表示;
 					case "Update_Address":
 						return PermissionType.住所更新;
+					case "Change_Address":
+						return PermissionType.住所変更;
 					case "Delete_Address":
 						return PermissionType.住所削除;
 					case "Create_AddressType":
@@ -7109,6 +7579,8 @@ namespace OpenAPITest.Domain
 						return PermissionType.連絡先表示;
 					case "Update_Contact":
 						return PermissionType.連絡先更新;
+					case "Change_Contact":
+						return PermissionType.連絡先変更;
 					case "Delete_Contact":
 						return PermissionType.連絡先削除;
 					case "Create_ContactType":
@@ -7127,6 +7599,14 @@ namespace OpenAPITest.Domain
 						return PermissionType.エラーログ更新;
 					case "Delete_ErrorLog":
 						return PermissionType.エラーログ削除;
+					case "Create_Test":
+						return PermissionType.テスト作成;
+					case "Read_Test":
+						return PermissionType.テスト表示;
+					case "Update_Test":
+						return PermissionType.テスト更新;
+					case "Delete_Test":
+						return PermissionType.テスト削除;
 					default:
 						throw new Exception($"Unknown permission_id: {permission_id}");
 				}
@@ -7183,6 +7663,21 @@ namespace OpenAPITest.Domain
 					case PermissionType.アカウントロール削除:
 						permission_id = "Delete_AccountRole";
 						break;
+					case PermissionType.パスワード作成:
+						permission_id = "Create_Password";
+						break;
+					case PermissionType.パスワード表示:
+						permission_id = "Read_Password";
+						break;
+					case PermissionType.パスワード更新:
+						permission_id = "Update_Password";
+						break;
+					case PermissionType.パスワード変更:
+						permission_id = "Change_Password";
+						break;
+					case PermissionType.パスワード削除:
+						permission_id = "Delete_Password";
+						break;
 					case PermissionType.職員作成:
 						permission_id = "Create_Staff";
 						break;
@@ -7195,6 +7690,33 @@ namespace OpenAPITest.Domain
 					case PermissionType.職員削除:
 						permission_id = "Delete_Staff";
 						break;
+					case PermissionType.人名作成:
+						permission_id = "Create_PersonName";
+						break;
+					case PermissionType.人名表示:
+						permission_id = "Read_PersonName";
+						break;
+					case PermissionType.人名更新:
+						permission_id = "Update_PersonName";
+						break;
+					case PermissionType.人名変更:
+						permission_id = "Change_PersonName";
+						break;
+					case PermissionType.人名削除:
+						permission_id = "Delete_PersonName";
+						break;
+					case PermissionType.人名種別作成:
+						permission_id = "Create_PersonNameType";
+						break;
+					case PermissionType.人名種別表示:
+						permission_id = "Read_PersonNameType";
+						break;
+					case PermissionType.人名種別更新:
+						permission_id = "Update_PersonNameType";
+						break;
+					case PermissionType.人名種別削除:
+						permission_id = "Delete_PersonNameType";
+						break;
 					case PermissionType.住所作成:
 						permission_id = "Create_Address";
 						break;
@@ -7203,6 +7725,9 @@ namespace OpenAPITest.Domain
 						break;
 					case PermissionType.住所更新:
 						permission_id = "Update_Address";
+						break;
+					case PermissionType.住所変更:
+						permission_id = "Change_Address";
 						break;
 					case PermissionType.住所削除:
 						permission_id = "Delete_Address";
@@ -7227,6 +7752,9 @@ namespace OpenAPITest.Domain
 						break;
 					case PermissionType.連絡先更新:
 						permission_id = "Update_Contact";
+						break;
+					case PermissionType.連絡先変更:
+						permission_id = "Change_Contact";
 						break;
 					case PermissionType.連絡先削除:
 						permission_id = "Delete_Contact";
@@ -7254,6 +7782,18 @@ namespace OpenAPITest.Domain
 						break;
 					case PermissionType.エラーログ削除:
 						permission_id = "Delete_ErrorLog";
+						break;
+					case PermissionType.テスト作成:
+						permission_id = "Create_Test";
+						break;
+					case PermissionType.テスト表示:
+						permission_id = "Read_Test";
+						break;
+					case PermissionType.テスト更新:
+						permission_id = "Update_Test";
+						break;
+					case PermissionType.テスト削除:
+						permission_id = "Delete_Test";
 						break;
 					default:
 						throw new Exception($"Unknown PermissionType: {value}");

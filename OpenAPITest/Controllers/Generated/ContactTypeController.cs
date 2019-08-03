@@ -33,6 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]ContactTypeCondition c)
@@ -56,6 +57,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<ContactType>), 200)]
 		public IActionResult Search([FromQuery]ContactTypeCondition c, [FromQuery]string[] order)
@@ -80,6 +82,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("get/{contactTypeId}")]
 		[ProducesResponseType(typeof(ContactType), 200)]
 		[ProducesResponseType(404)]
@@ -102,6 +105,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">ContactTypeオブジェクト</returns>
+		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]ContactType o)
@@ -122,6 +126,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_ContactType")]
+		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]ContactType o)
@@ -142,6 +148,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<ContactType> os)
@@ -162,6 +169,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_ContactType")]
+		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<ContactType> os)
@@ -183,6 +192,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_ContactType")]
 		[HttpPut, Route("modify/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int contactTypeId, [FromBody]ContactType o)
@@ -203,6 +213,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("remove/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int contactTypeId)
@@ -226,6 +237,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]ContactTypeCondition c)
@@ -249,6 +261,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("physically-remove/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove(int contactTypeId)
@@ -271,6 +284,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove([FromQuery]ContactTypeCondition c)

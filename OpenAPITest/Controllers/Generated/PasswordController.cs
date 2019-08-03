@@ -33,6 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
+		[Authorize(Policy = "Read_Password")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]PasswordCondition c)
@@ -57,6 +58,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Account">AccountをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_Password")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Password>), 200)]
 		public IActionResult Search([FromQuery]PasswordCondition c, [FromQuery]bool with_Account, [FromQuery]string[] order)
@@ -88,6 +90,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_Password")]
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Password), 200)]
 		[ProducesResponseType(404)]
@@ -116,6 +119,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Passwordオブジェクト</returns>
+		[Authorize(Policy = "Create_Password")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Password o)
@@ -136,6 +140,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Password")]
+		[Authorize(Policy = "Update_Password")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]Password o)
@@ -156,6 +162,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_Password")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Password> os)
@@ -176,6 +183,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Password")]
+		[Authorize(Policy = "Update_Password")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<Password> os)
@@ -197,6 +206,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_Password")]
 		[HttpPut, Route("modify/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int accountId, [FromBody]Password o)
@@ -217,6 +227,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("remove/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int accountId)
@@ -240,6 +251,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]PasswordCondition c)
@@ -263,6 +275,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("physically-remove/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove(int accountId)
@@ -285,6 +298,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove([FromQuery]PasswordCondition c)

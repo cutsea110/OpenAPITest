@@ -16,14 +16,13 @@ using LinqToDB.Data;
 
 using peppa.util;
 using OpenAPITest.Domain;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace OpenAPITest.Controllers
 {
-    /// <summary>
-    /// アカウントのWebAPI
-    /// </summary>
-    [Authorize]
+	/// <summary>
+	/// アカウントのWebAPI
+	/// </summary>
+	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public partial class AccountController : ControllerBase
@@ -34,7 +33,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-        [Authorize(Policy = "Read_Account")]
+		[Authorize(Policy = "Read_Account")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Count([FromQuery]AccountCondition c)
@@ -61,6 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
+		[Authorize(Policy = "Read_Account")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), 200)]
 		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order)
@@ -98,6 +98,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
+		[Authorize(Policy = "Read_Account")]
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Account), 200)]
 		[ProducesResponseType(404)]
@@ -130,6 +131,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Accountオブジェクト</returns>
+		[Authorize(Policy = "Create_Account")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Create([FromBody]Account o)
@@ -150,6 +152,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Account")]
+		[Authorize(Policy = "Update_Account")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Upsert([FromBody]Account o)
@@ -170,6 +174,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
+		[Authorize(Policy = "Create_Account")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Account> os)
@@ -190,6 +195,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Create_Account")]
+		[Authorize(Policy = "Update_Account")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Merge([FromBody]IEnumerable<Account> os)
@@ -211,6 +218,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
+		[Authorize(Policy = "Update_Account")]
 		[HttpPut, Route("modify/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Modify(int accountId, [FromBody]Account o)
@@ -231,6 +239,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Account")]
 		[HttpDelete("remove/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove(int accountId)
@@ -254,6 +263,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Account")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult Remove([FromQuery]AccountCondition c)
@@ -277,6 +287,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Account")]
 		[HttpDelete("physically-remove/{accountId}")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove(int accountId)
@@ -299,6 +310,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
+		[Authorize(Policy = "Delete_Account")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), 200)]
 		public IActionResult PhysicallyRemove([FromQuery]AccountCondition c)
