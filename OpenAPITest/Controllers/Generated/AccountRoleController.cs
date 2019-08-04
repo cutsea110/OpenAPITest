@@ -122,7 +122,7 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">AccountRoleオブジェクト</returns>
 		[Authorize(Policy = "Create_AccountRole")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), 201)]
 		[ProducesResponseType(400)]
 		public IActionResult Create([FromBody]AccountRole o)
 		{

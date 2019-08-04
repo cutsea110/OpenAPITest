@@ -108,7 +108,7 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">RolePermissionオブジェクト</returns>
 		[Authorize(Policy = "Create_RolePermission")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), 201)]
 		[ProducesResponseType(400)]
 		public IActionResult Create([FromBody]RolePermission o)
 		{

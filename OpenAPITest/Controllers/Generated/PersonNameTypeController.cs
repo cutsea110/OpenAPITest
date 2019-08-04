@@ -107,7 +107,7 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">PersonNameTypeオブジェクト</returns>
 		[Authorize(Policy = "Create_PersonNameType")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), 201)]
 		[ProducesResponseType(400)]
 		public IActionResult Create([FromBody]PersonNameType o)
 		{
