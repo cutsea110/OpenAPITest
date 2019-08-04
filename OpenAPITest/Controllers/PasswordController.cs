@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
     public class PasswordInputModel
     {
         [Required]
-        public int ID { get; set; }
+        public int AccountId { get; set; }
         public HashMethod Method { get; set; } = HashMethod.SHA256;
         [Required]
         public string NewPassword { get; set; }
@@ -48,7 +48,7 @@ namespace OpenAPITest.Controllers
         public string ConfirmNewPassword { get; set; }
         public DateTime? ExpiredOn { get; set; }
         public int? PasswordLifeDays { get; set; } = 90;
-        public int? CanFailTimes { get; set; } = 3;
+        public int CanFailTimes { get; set; } = 3;
     }
     public class ChangePasswordInputModel
     {
@@ -153,12 +153,16 @@ namespace OpenAPITest.Controllers
             {
                 using (var db = new peppaDB())
                 {
-                    var ret = db.Insert<Password>(new Password
+                    var pw = new Password
                     {
-                        account_id = inputModel.ID,
+                        account_id = inputModel.AccountId,
                         HashType = inputModel.Method,
-                        password_hash = inputModel.NewPassword.EncryptBySHA256WithSalt(),
-                    });
+                        expiration_on = inputModel.ExpiredOn,
+                        can_fail_times = inputModel.CanFailTimes,
+                    };
+                    pw.password_hash = pw.Encrypt(inputModel.NewPassword);
+
+                    var ret = db.Insert<Password>(pw);
                     return Ok(ret);
                 }
             }
