@@ -153,7 +153,7 @@ namespace OpenAPITest.Controllers
                     {
                         var new_password = pw.Encrypt(inputModel.NewPassword);
                         var new_life = pw.NewLifeExpectancy;
-                        var count = db.Password
+                        var ret = db.Password
                             .Where(q.CreatePredicate())
                             .Update(_ => new Password
                             {
@@ -162,7 +162,7 @@ namespace OpenAPITest.Controllers
                                 modified_by = CurrentAccountId,
                             });
 
-                        return Ok(count);
+                        return Ok(ret);
                     }
                 }
             }
