@@ -48,6 +48,11 @@ namespace OpenAPITest.Controllers
 
     public partial class PasswordController : ControllerBase
     {
+        /// <summary>
+        /// 現在のアカウントID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
+
 
         private JwtSecurityToken CreateJwtSecurityToken(Auth user)
         {
@@ -82,25 +87,32 @@ namespace OpenAPITest.Controllers
         [ProducesResponseType(400)]
         public IActionResult Token([FromBody]TokenInputModel inputModel)
         {
+#if DEBUG
+            DataConnection.TurnTraceSwitchOn();
+            DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
+#endif
             if (ModelState.IsValid)
             {
                 using (var db = new peppaDB())
                 {
+                    var q = new AccountCondition
+                    {
+                        staff_no_eq = inputModel.ID,
+                    };
                     var accs = db.Account
                         .LoadWith(_ => _.Staff)
                         .LoadWith(_ => _.PasswordList)
-                        .Where(_ => _.removed_at == null && _.staff_no == inputModel.ID)
+                        .Where(q.CreatePredicate())
                         .ToList();
                     var validAcc = accs.FirstOrDefault(_ => _.PasswordList.Any(p => p.Authenticate(inputModel.Password, DateTime.UtcNow)));
 
                     if (validAcc != null)
                     {
-                        var auth = new Auth
+                        var token = CreateJwtSecurityToken(new Auth
                         {
                             ID = validAcc.AccountID,
                             Name = validAcc.staff_no,
-                        };
-                        var token = CreateJwtSecurityToken(auth);
+                        });
                         return Ok(new TokenViewModel
                         {
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -113,12 +125,6 @@ namespace OpenAPITest.Controllers
         }
 
         /// <summary>
-        /// 現在のアカウントID
-        /// </summary>
-        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
-
-
-        /// <summary>
         /// ログインユーザが自分のパスワードを変更する
         /// </summary>
         /// <param name="inputModel"></param>
@@ -129,18 +135,26 @@ namespace OpenAPITest.Controllers
         [ProducesResponseType(400)]
         public IActionResult Change([FromBody]ChangePasswordInputModel inputModel)
         {
+#if DEBUG
+            DataConnection.TurnTraceSwitchOn();
+            DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
+#endif
             if (ModelState.IsValid)
             {
                 using (var db = new peppaDB())
                 {
-                    var pw = db.Password.Find(CurrentAccountId);
+                    var q = new PasswordCondition
+                    {
+                        account_id_eq = CurrentAccountId,
+                    };
+                    var pw = db.Password.SingleOrDefault(q.CreatePredicate());
 
                     if (pw != null)
                     {
                         var new_password = pw.Encrypt(inputModel.NewPassword);
                         var new_life = pw.NewLifeExpectancy;
                         var count = db.Password
-                            .Where(_ => _.removed_at == null && _.account_id == CurrentAccountId)
+                            .Where(q.CreatePredicate())
                             .Update(_ => new Password
                             {
                                 password_hash = new_password,
