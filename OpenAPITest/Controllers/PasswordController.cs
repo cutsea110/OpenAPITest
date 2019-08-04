@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using peppa.util;
+
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +36,20 @@ namespace OpenAPITest.Controllers
         public string Token { get; set; }
         public DateTime Expiration { get; set; }
     }
-
+    public class PasswordInputModel
+    {
+        [Required]
+        public int ID { get; set; }
+        public HashMethod Method { get; set; } = HashMethod.SHA256;
+        [Required]
+        public string NewPassword { get; set; }
+        [Required]
+        [Compare(nameof(NewPassword))]
+        public string ConfirmNewPassword { get; set; }
+        public DateTime? ExpiredOn { get; set; }
+        public int? PasswordLifeDays { get; set; } = 90;
+        public int? CanFailTimes { get; set; } = 3;
+    }
     public class ChangePasswordInputModel
     {
         [Required]
@@ -119,6 +134,32 @@ namespace OpenAPITest.Controllers
                             Expiration = token.ValidTo,
                         });
                     }
+                }
+            }
+            return BadRequest();
+        }
+
+        [Authorize("Create_Password")]
+        [HttpPost("init-password")]
+        [ProducesResponseType(typeof(Password), 201)]
+        [ProducesResponseType(400)]
+        public IActionResult Init([FromBody]PasswordInputModel inputModel)
+        {
+#if DEBUG
+            DataConnection.TurnTraceSwitchOn();
+            DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
+#endif
+            if (ModelState.IsValid)
+            {
+                using (var db = new peppaDB())
+                {
+                    var ret = db.Insert<Password>(new Password
+                    {
+                        account_id = inputModel.ID,
+                        HashType = inputModel.Method,
+                        password_hash = inputModel.NewPassword.EncryptBySHA256WithSalt(),
+                    });
+                    return Ok(ret);
                 }
             }
             return BadRequest();

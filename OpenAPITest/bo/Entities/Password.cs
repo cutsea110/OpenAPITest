@@ -28,9 +28,9 @@ namespace OpenAPITest.Domain
             switch (HashType)
             {
                 case HashMethod.SHA256:
-                    return password_hash == password.ToSha256Sum();
+                    return password.MatchWithSHA256(password_hash);
                 case HashMethod.平文:
-                    return password_hash == password;
+                    return password == password_hash;
                 default:
                     return false; // FIXME
             }
@@ -45,7 +45,7 @@ namespace OpenAPITest.Domain
             switch (HashType)
             {
                 case HashMethod.SHA256:
-                    return password.ToSha256Sum();
+                    return password.EncryptBySHA256WithSalt();
                 case HashMethod.平文:
                     return password;
                 default:
