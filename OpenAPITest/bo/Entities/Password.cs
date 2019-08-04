@@ -28,7 +28,7 @@ namespace OpenAPITest.Domain
             switch (HashType)
             {
                 case HashMethod.SHA256:
-                    return false; // TODO
+                    return password_hash == password.ToSha256Sum();
                 case HashMethod.平文:
                     return password_hash == password;
                 default:
@@ -36,20 +36,50 @@ namespace OpenAPITest.Domain
             }
         }
         /// <summary>
+        /// パスワード化方式に応じてパスワードの暗号化
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public string Encrypt(string password)
+        {
+            switch (HashType)
+            {
+                case HashMethod.SHA256:
+                    return password.ToSha256Sum();
+                case HashMethod.平文:
+                    return password;
+                default:
+                    throw new Exception("Unknown HashMethod.");
+            }
+        }
+        /// <summary>
+        /// 新しい余命を計算して返す
+        /// ただし現在の余命と余命の延長日数が両方定義されるている必要がある
+        /// どちらかがnullの場合には計算結果もnullになる
+        /// </summary>
+        public DateTime? NewLifeExpectancy =>
+            expiration_on.HasValue && password_life_days.HasValue ?
+            expiration_on.Value.AddDays(password_life_days.Value) :
+            (DateTime?)null;
+        /// <summary>
         /// ロックされているか
         /// </summary>
         public bool IsLocked => lock_flg == 1;
         /// <summary>
         /// 認証OKかどうかの判断
-        /// 1. パスワードが合致すること
+        /// 1. 削除されてないこと
         /// 2. 有効期限内であること
         /// 3. ロックされていないこと
+        /// 4. パスワードが合致すること
         /// </summary>
         /// <param name="password"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
         public bool Authenticate(string password, DateTime dt) =>
-            Match(password) && (expiration_on == null || expiration_on >= dt) && IsLocked == false;
+            removed_at == null &&
+            (expiration_on == null || expiration_on >= dt) &&
+            IsLocked == false &&
+            Match(password);
 	}
 
 	/// <summary>

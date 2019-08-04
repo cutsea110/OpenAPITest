@@ -35,6 +35,17 @@ namespace OpenAPITest.Controllers
         public DateTime Expiration { get; set; }
     }
 
+    public class ChangePasswordInputModel
+    {
+        [Required]
+        public string OrigPassword { get; set; }
+        [Required]
+        public string NewPassword { get; set; }
+        [Required]
+        [Compare(nameof(NewPassword))]
+        public string ConfirmNewPassword { get; set; }
+    }
+
     public partial class PasswordController : ControllerBase
     {
 
@@ -60,7 +71,11 @@ namespace OpenAPITest.Controllers
             return token;
         }
 
-
+        /// <summary>
+        /// ログイン認証をする
+        /// </summary>
+        /// <param name="inputModel"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("token")]
         [ProducesResponseType(typeof(TokenViewModel), 200)]
@@ -69,12 +84,12 @@ namespace OpenAPITest.Controllers
         {
             if (ModelState.IsValid)
             {
-                using(var db = new peppaDB())
+                using (var db = new peppaDB())
                 {
                     var accs = db.Account
                         .LoadWith(_ => _.Staff)
                         .LoadWith(_ => _.PasswordList)
-                        .Where(_ => _.staff_no == inputModel.ID)
+                        .Where(_ => _.removed_at == null && _.staff_no == inputModel.ID)
                         .ToList();
                     var validAcc = accs.FirstOrDefault(_ => _.PasswordList.Any(p => p.Authenticate(inputModel.Password, DateTime.UtcNow)));
 
@@ -96,5 +111,49 @@ namespace OpenAPITest.Controllers
             }
             return BadRequest();
         }
+
+        /// <summary>
+        /// 現在のアカウントID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
+
+
+        /// <summary>
+        /// ログインユーザが自分のパスワードを変更する
+        /// </summary>
+        /// <param name="inputModel"></param>
+        /// <returns></returns>
+        [Authorize("Change_Password")]
+        [HttpPut("change-password")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(400)]
+        public IActionResult Change([FromBody]ChangePasswordInputModel inputModel)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new peppaDB())
+                {
+                    var pw = db.Password.Find(CurrentAccountId);
+
+                    if (pw != null)
+                    {
+                        var new_password = pw.Encrypt(inputModel.NewPassword);
+                        var new_life = pw.NewLifeExpectancy;
+                        var count = db.Password
+                            .Where(_ => _.removed_at == null && _.account_id == CurrentAccountId)
+                            .Update(_ => new Password
+                            {
+                                password_hash = new_password,
+                                expiration_on = new_life,
+                                modified_by = CurrentAccountId,
+                            });
+
+                        return Ok(count);
+                    }
+                }
+            }
+            return BadRequest();
+        }
+
     }
 }
