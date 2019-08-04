@@ -108,17 +108,21 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(400)]
 		public IActionResult Create([FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
 #endif
-			using (var db = new peppaDB())
-			{
-				o.uid = db.InsertWithInt32Identity<ContactType>(o);
-                return CreatedAtAction(nameof(Get), new { contactTypeId = o.contact_type_id }, o);
+			if (ModelState.IsValid) {
+				using (var db = new peppaDB())
+				{
+					o.uid = db.InsertWithInt32Identity<ContactType>(o);
+					return CreatedAtAction(nameof(Get), new { contactTypeId = o.contact_type_id }, o);
+				}
 			}
+			return BadRequest();
 		}
 
 		/// <summary>
@@ -130,17 +134,21 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(400)]
 		public IActionResult Upsert([FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
 #endif
-			using (var db = new peppaDB())
-			{
-				int count = db.InsertOrReplace<ContactType>(o);
-				return Ok(count);
+			if (ModelState.IsValid) {
+				using (var db = new peppaDB())
+				{
+					int count = db.InsertOrReplace<ContactType>(o);
+					return Ok(count);
+				}
 			}
+			return BadRequest();
 		}
 
 		/// <summary>
@@ -151,17 +159,21 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
+		[ProducesResponseType(400)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
 #endif
-			using (var db = new peppaDB())
-			{
-				var ret = db.BulkCopy<ContactType>(os);
-				return Ok(ret);
+			if (ModelState.IsValid) {
+				using (var db = new peppaDB())
+				{
+					var ret = db.BulkCopy<ContactType>(os);
+					return Ok(ret);
+				}
 			}
+			return BadRequest();
 		}
 
 		/// <summary>
@@ -173,17 +185,21 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(400)]
 		public IActionResult Merge([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
 #endif
-			using (var db = new peppaDB())
-			{
-				var count = db.Merge<ContactType>(os);
-				return Ok(count);
+			if (ModelState.IsValid) {
+				using (var db = new peppaDB())
+				{
+					var count = db.Merge<ContactType>(os);
+					return Ok(count);
+				}
 			}
+			return BadRequest();
 		}
 
 		/// <summary>
@@ -195,17 +211,21 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPut, Route("modify/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(400)]
 		public IActionResult Modify(int contactTypeId, [FromBody]ContactType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
 #endif
-			using (var db = new peppaDB())
-			{
-				var count = db.Update<ContactType>(o);
-				return Ok(count);
+			if (ModelState.IsValid) {
+				using (var db = new peppaDB())
+				{
+					var count = db.Update<ContactType>(o);
+					return Ok(count);
+				}
 			}
+			return BadRequest();
 		}
 
 		/// <summary>
