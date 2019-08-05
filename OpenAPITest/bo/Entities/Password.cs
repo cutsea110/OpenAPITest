@@ -75,17 +75,22 @@ namespace OpenAPITest.Domain
         /// <param name="password"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public bool Authenticate(string password, DateTime dt) =>
+        public bool Authenticate(string password, DateTime dt) => IsActive(dt) && Match(password);
+        /// <summary>
+        /// 現在有効なパスワードか
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public bool IsActive(DateTime dt) =>
             removed_at == null &&
             (expiration_on == null || expiration_on >= dt) &&
-            IsLocked == false &&
-            Match(password);
-	}
+            IsLocked == false;
+    }
 
-	/// <summary>
-	/// パスワード認証条件
-	/// </summary>
-	public partial class PasswordCondition
+    /// <summary>
+    /// パスワード認証条件
+    /// </summary>
+    public partial class PasswordCondition
 	{
 		#region properties
 		// [DataMember]
