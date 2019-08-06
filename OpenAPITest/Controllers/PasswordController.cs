@@ -122,17 +122,17 @@ namespace OpenAPITest.Controllers
                         .ToList();
 
                     var now = DateTime.UtcNow;
-                    var validAccPw = accs.SelectMany(_ => _.PasswordList.Select(p => (acc: _, pw: p))).FirstOrDefault(_ => _.pw.IsActive(now));
+                    var validAccPw = accs.SelectMany(a => a.PasswordList.Select(p => (Acc: a, Pw: p))).FirstOrDefault(_ => _.Pw.IsActive(now));
 
-                    if (validAccPw.pw != null)
+                    if (validAccPw.Pw != null)
                     {
-                        if (validAccPw.pw.Authenticate(inputModel.Password, now))
+                        if (validAccPw.Pw.Authenticate(inputModel.Password, now))
                         {
                             // 連続失敗回数は初期化
-                            if (validAccPw.pw.fail_times != 0)
+                            if (validAccPw.Pw.fail_times != 0)
                             {
                                 var ret = db.Password
-                                .Where(_ => _.uid == validAccPw.pw.uid)
+                                .Where(_ => _.uid == validAccPw.Pw.uid)
                                 .Update(_ => new Password
                                 {
                                     fail_times = 0,
@@ -140,8 +140,8 @@ namespace OpenAPITest.Controllers
                             }
                             var token = CreateJwtSecurityToken(new Auth
                             {
-                                ID = validAccPw.acc.AccountID,
-                                Name = validAccPw.acc.staff_no,
+                                ID = validAccPw.Acc.AccountID,
+                                Name = validAccPw.Acc.staff_no,
                             });
                             return Ok(new TokenViewModel
                             {
@@ -153,7 +153,7 @@ namespace OpenAPITest.Controllers
                         {
                             // 連続失敗回数をインクリしつつ回数上限に達していたらロックフラグも立てる
                             var ret = db.Password
-                                .Where(_ => _.uid == validAccPw.pw.uid)
+                                .Where(_ => _.uid == validAccPw.Pw.uid)
                                 .Update(_ => new Password
                                 {
                                     fail_times = Math.Min(_.can_fail_times, _.fail_times + 1),
