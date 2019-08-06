@@ -18,6 +18,17 @@ namespace OpenAPITest.Domain
 	/// </summary>
 	public partial class Password
 	{
+        #region extra properties
+        /// <summary>
+        /// ロックされているか
+        /// </summary>
+        public bool IsLocked
+        {
+            get => lock_flg == 1;
+            set => lock_flg = value ? 1 : 0;
+        }
+        #endregion
+
         /// <summary>
         /// ハッシュ化方式に応じてパスワードが合致するかをチェック
         /// </summary>
@@ -61,10 +72,6 @@ namespace OpenAPITest.Domain
             expiration_on.HasValue && password_life_days.HasValue ?
             expiration_on.Value.AddDays(password_life_days.Value) :
             (DateTime?)null;
-        /// <summary>
-        /// ロックされているか
-        /// </summary>
-        public bool IsLocked => lock_flg == 1;
         /// <summary>
         /// 認証OKかどうかの判断
         /// 1. 削除されてないこと

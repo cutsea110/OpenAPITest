@@ -100,6 +100,7 @@ namespace OpenAPITest.Controllers
         [HttpPost("token")]
         [ProducesResponseType(typeof(TokenViewModel), 200)]
         [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Token([FromBody]TokenInputModel inputModel)
         {
 #if DEBUG
@@ -119,21 +120,49 @@ namespace OpenAPITest.Controllers
                         .LoadWith(_ => _.PasswordList)
                         .Where(q.CreatePredicate())
                         .ToList();
-                    var validAcc = accs.FirstOrDefault(_ => _.PasswordList.Any(p => p.Authenticate(inputModel.Password, DateTime.UtcNow)));
 
-                    if (validAcc != null)
+                    var now = DateTime.UtcNow;
+                    var validAccPw = accs.SelectMany(_ => _.PasswordList.Select(p => (acc: _, pw: p))).FirstOrDefault(_ => _.pw.IsActive(now));
+
+                    if (validAccPw.pw != null)
                     {
-                        var token = CreateJwtSecurityToken(new Auth
+                        if (validAccPw.pw.Authenticate(inputModel.Password, now))
                         {
-                            ID = validAcc.AccountID,
-                            Name = validAcc.staff_no,
-                        });
-                        return Ok(new TokenViewModel
+                            // 連続失敗回数は初期化
+                            if (validAccPw.pw.fail_times != 0)
+                            {
+                                var ret = db.Password
+                                .Where(_ => _.uid == validAccPw.pw.uid)
+                                .Update(_ => new Password
+                                {
+                                    fail_times = 0,
+                                });
+                            }
+                            var token = CreateJwtSecurityToken(new Auth
+                            {
+                                ID = validAccPw.acc.AccountID,
+                                Name = validAccPw.acc.staff_no,
+                            });
+                            return Ok(new TokenViewModel
+                            {
+                                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                                Expiration = token.ValidTo,
+                            });
+                        }
+                        else
                         {
-                            Token = new JwtSecurityTokenHandler().WriteToken(token),
-                            Expiration = token.ValidTo,
-                        });
+                            // 連続失敗回数をインクリしつつ回数上限に達していたらロックフラグも立てる
+                            var ret = db.Password
+                                .Where(_ => _.uid == validAccPw.pw.uid)
+                                .Update(_ => new Password
+                                {
+                                    fail_times = Math.Min(_.can_fail_times, _.fail_times + 1),
+                                    lock_flg = _.can_fail_times <= _.fail_times + 1 ? 1 : 0,
+                                });
+                            return Unauthorized();
+                        }
                     }
+                    return Unauthorized();
                 }
             }
             return BadRequest();
