@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_Password")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]PasswordCondition c)
 		{
 #if DEBUG
@@ -60,7 +61,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_Password")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Password>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Password>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]PasswordCondition c, [FromQuery]bool with_Account, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -92,8 +93,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_Password")]
 		[HttpGet("get/{accountId}")]
-		[ProducesResponseType(typeof(Password), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Password), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(int accountId, [FromQuery]bool with_Account)
 		{
 #if DEBUG
@@ -121,8 +122,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">Passwordオブジェクト</returns>
 		[Authorize(Policy = "Create_Password")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]Password o)
 		{
 #if DEBUG
@@ -147,8 +148,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Password")]
 		[Authorize(Policy = "Update_Password")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]Password o)
 		{
 #if DEBUG
@@ -172,8 +173,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_Password")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Password> os)
 		{
 #if DEBUG
@@ -198,8 +199,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Password")]
 		[Authorize(Policy = "Update_Password")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<Password> os)
 		{
 #if DEBUG
@@ -224,8 +225,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_Password")]
 		[HttpPut, Route("modify/{accountId}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(int accountId, [FromBody]Password o)
 		{
 #if DEBUG
@@ -249,7 +250,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("remove/{accountId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int accountId)
 		{
 #if DEBUG
@@ -273,7 +274,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]PasswordCondition c)
 		{
 #if DEBUG
@@ -297,7 +298,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("physically-remove/{accountId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int accountId)
 		{
 #if DEBUG
@@ -320,7 +321,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Password")]
 		[HttpDelete("physically-remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]PasswordCondition c)
 		{
 #if DEBUG

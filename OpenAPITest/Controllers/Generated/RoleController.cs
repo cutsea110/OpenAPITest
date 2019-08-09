@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_Role")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]RoleCondition c)
 		{
 #if DEBUG
@@ -60,7 +61,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_Role")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Role>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Role>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -92,8 +93,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_Role")]
 		[HttpGet("get/{roleId}")]
-		[ProducesResponseType(typeof(Role), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Role), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(string roleId, [FromQuery]bool with_RolePermissionList)
 		{
 #if DEBUG
@@ -121,8 +122,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">Roleオブジェクト</returns>
 		[Authorize(Policy = "Create_Role")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]Role o)
 		{
 #if DEBUG
@@ -147,8 +148,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Role")]
 		[Authorize(Policy = "Update_Role")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]Role o)
 		{
 #if DEBUG
@@ -172,8 +173,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_Role")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Role> os)
 		{
 #if DEBUG
@@ -198,8 +199,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Role")]
 		[Authorize(Policy = "Update_Role")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<Role> os)
 		{
 #if DEBUG
@@ -224,8 +225,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_Role")]
 		[HttpPut, Route("modify/{roleId}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(string roleId, [FromBody]Role o)
 		{
 #if DEBUG
@@ -249,7 +250,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Role")]
 		[HttpDelete("remove/{roleId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(string roleId)
 		{
 #if DEBUG
@@ -273,7 +274,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Role")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]RoleCondition c)
 		{
 #if DEBUG
@@ -297,7 +298,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Role")]
 		[HttpDelete("physically-remove/{roleId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(string roleId)
 		{
 #if DEBUG
@@ -320,7 +321,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Role")]
 		[HttpDelete("physically-remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]RoleCondition c)
 		{
 #if DEBUG

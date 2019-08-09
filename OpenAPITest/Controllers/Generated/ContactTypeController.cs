@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
@@ -59,7 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<ContactType>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<ContactType>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]ContactTypeCondition c, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -84,8 +85,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_ContactType")]
 		[HttpGet("get/{contactTypeId}")]
-		[ProducesResponseType(typeof(ContactType), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(ContactType), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(int contactTypeId)
 		{
 #if DEBUG
@@ -107,8 +108,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">ContactTypeオブジェクト</returns>
 		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]ContactType o)
 		{
 #if DEBUG
@@ -133,8 +134,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_ContactType")]
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]ContactType o)
 		{
 #if DEBUG
@@ -158,8 +159,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_ContactType")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
@@ -184,8 +185,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_ContactType")]
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<ContactType> os)
 		{
 #if DEBUG
@@ -210,8 +211,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_ContactType")]
 		[HttpPut, Route("modify/{contactTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(int contactTypeId, [FromBody]ContactType o)
 		{
 #if DEBUG
@@ -235,7 +236,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("remove/{contactTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int contactTypeId)
 		{
 #if DEBUG
@@ -259,7 +260,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG
@@ -283,7 +284,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("physically-remove/{contactTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int contactTypeId)
 		{
 #if DEBUG
@@ -306,7 +307,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_ContactType")]
 		[HttpDelete("physically-remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]ContactTypeCondition c)
 		{
 #if DEBUG

@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_Test")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]TestCondition c)
 		{
 #if DEBUG
@@ -59,7 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_Test")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Test>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Test>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]TestCondition c, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -84,8 +85,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_Test")]
 		[HttpGet("get/{uid}")]
-		[ProducesResponseType(typeof(Test), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Test), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(int uid)
 		{
 #if DEBUG
@@ -107,8 +108,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">Testオブジェクト</returns>
 		[Authorize(Policy = "Create_Test")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]Test o)
 		{
 #if DEBUG
@@ -133,8 +134,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Test")]
 		[Authorize(Policy = "Update_Test")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]Test o)
 		{
 #if DEBUG
@@ -158,8 +159,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_Test")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Test> os)
 		{
 #if DEBUG
@@ -184,8 +185,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Test")]
 		[Authorize(Policy = "Update_Test")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<Test> os)
 		{
 #if DEBUG
@@ -210,8 +211,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_Test")]
 		[HttpPut, Route("modify/{uid}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(int uid, [FromBody]Test o)
 		{
 #if DEBUG
@@ -235,7 +236,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Test")]
 		[HttpDelete("remove/{uid}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int uid)
 		{
 #if DEBUG
@@ -258,7 +259,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Test")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]TestCondition c)
 		{
 #if DEBUG

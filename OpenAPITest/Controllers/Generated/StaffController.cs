@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_Staff")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]StaffCondition c)
 		{
 #if DEBUG
@@ -63,7 +64,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_Staff")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Staff>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]StaffCondition c, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -104,8 +105,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_Staff")]
 		[HttpGet("get/{staffNo}")]
-		[ProducesResponseType(typeof(Staff), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Staff), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(string staffNo, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
 		{
 #if DEBUG
@@ -139,8 +140,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">Staffオブジェクト</returns>
 		[Authorize(Policy = "Create_Staff")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]Staff o)
 		{
 #if DEBUG
@@ -165,8 +166,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Staff")]
 		[Authorize(Policy = "Update_Staff")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]Staff o)
 		{
 #if DEBUG
@@ -190,8 +191,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_Staff")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Staff> os)
 		{
 #if DEBUG
@@ -216,8 +217,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Staff")]
 		[Authorize(Policy = "Update_Staff")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<Staff> os)
 		{
 #if DEBUG
@@ -242,8 +243,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_Staff")]
 		[HttpPut, Route("modify/{staffNo}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(string staffNo, [FromBody]Staff o)
 		{
 #if DEBUG
@@ -267,7 +268,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Staff")]
 		[HttpDelete("remove/{staffNo}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(string staffNo)
 		{
 #if DEBUG
@@ -291,7 +292,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Staff")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]StaffCondition c)
 		{
 #if DEBUG
@@ -315,7 +316,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Staff")]
 		[HttpDelete("physically-remove/{staffNo}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(string staffNo)
 		{
 #if DEBUG
@@ -338,7 +339,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Staff")]
 		[HttpDelete("physically-remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]StaffCondition c)
 		{
 #if DEBUG

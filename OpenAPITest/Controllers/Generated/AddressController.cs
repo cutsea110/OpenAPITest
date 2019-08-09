@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_Address")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]AddressCondition c)
 		{
 #if DEBUG
@@ -61,7 +62,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_Address")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Address>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Address>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]AddressCondition c, [FromQuery]bool with_AddressType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -98,8 +99,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_Address")]
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
-		[ProducesResponseType(typeof(Address), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Address), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(int userType, string genericUserNo, int seq, [FromQuery]bool with_AddressType, [FromQuery]bool with_Staff)
 		{
 #if DEBUG
@@ -129,8 +130,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">Addressオブジェクト</returns>
 		[Authorize(Policy = "Create_Address")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]Address o)
 		{
 #if DEBUG
@@ -155,8 +156,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Address")]
 		[Authorize(Policy = "Update_Address")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]Address o)
 		{
 #if DEBUG
@@ -180,8 +181,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_Address")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<Address> os)
 		{
 #if DEBUG
@@ -206,8 +207,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_Address")]
 		[Authorize(Policy = "Update_Address")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<Address> os)
 		{
 #if DEBUG
@@ -234,8 +235,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_Address")]
 		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(int userType, string genericUserNo, int seq, [FromBody]Address o)
 		{
 #if DEBUG
@@ -261,7 +262,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Address")]
 		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int userType, string genericUserNo, int seq)
 		{
 #if DEBUG
@@ -284,7 +285,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_Address")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]AddressCondition c)
 		{
 #if DEBUG

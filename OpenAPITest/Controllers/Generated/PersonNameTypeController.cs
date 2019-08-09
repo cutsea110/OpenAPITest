@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LinqToDB;
 using LinqToDB.Data;
@@ -35,7 +36,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>ヒットした件数</returns>
 		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("count")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]PersonNameTypeCondition c)
 		{
 #if DEBUG
@@ -59,7 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <returns></returns>
 		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<PersonNameType>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<PersonNameType>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]PersonNameTypeCondition c, [FromQuery]string[] order)
 		{
 #if DEBUG
@@ -84,8 +85,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="404">Invalid identifiers</returns>
 		[Authorize(Policy = "Read_PersonNameType")]
 		[HttpGet("get/{personNameTypeId}")]
-		[ProducesResponseType(typeof(PersonNameType), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(PersonNameType), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult Get(int personNameTypeId)
 		{
 #if DEBUG
@@ -107,8 +108,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="201">PersonNameTypeオブジェクト</returns>
 		[Authorize(Policy = "Create_PersonNameType")]
 		[HttpPost("create")]
-		[ProducesResponseType(typeof(int), 201)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Create([FromBody]PersonNameType o)
 		{
 #if DEBUG
@@ -133,8 +134,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_PersonNameType")]
 		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPost("upsert")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Upsert([FromBody]PersonNameType o)
 		{
 #if DEBUG
@@ -158,8 +159,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>BulkCopyRowsCopied</returns>
 		[Authorize(Policy = "Create_PersonNameType")]
 		[HttpPost("massive-new")]
-		[ProducesResponseType(typeof(BulkCopyRowsCopied), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult MassiveCreate([FromBody]IEnumerable<PersonNameType> os)
 		{
 #if DEBUG
@@ -184,8 +185,8 @@ namespace OpenAPITest.Controllers
 		[Authorize(Policy = "Create_PersonNameType")]
 		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPost("merge")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Merge([FromBody]IEnumerable<PersonNameType> os)
 		{
 #if DEBUG
@@ -210,8 +211,8 @@ namespace OpenAPITest.Controllers
 		/// <returns>更新件数</returns>
 		[Authorize(Policy = "Update_PersonNameType")]
 		[HttpPut, Route("modify/{personNameTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
-		[ProducesResponseType(400)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Modify(int personNameTypeId, [FromBody]PersonNameType o)
 		{
 #if DEBUG
@@ -235,7 +236,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("remove/{personNameTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int personNameTypeId)
 		{
 #if DEBUG
@@ -259,7 +260,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]PersonNameTypeCondition c)
 		{
 #if DEBUG
@@ -283,7 +284,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("physically-remove/{personNameTypeId}")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int personNameTypeId)
 		{
 #if DEBUG
@@ -306,7 +307,7 @@ namespace OpenAPITest.Controllers
 		/// <returns>件数</returns>
 		[Authorize(Policy = "Delete_PersonNameType")]
 		[HttpDelete("physically-remove")]
-		[ProducesResponseType(typeof(int), 200)]
+		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]PersonNameTypeCondition c)
 		{
 #if DEBUG
