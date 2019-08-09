@@ -198,18 +198,6 @@ namespace OpenAPITest
 
             //// PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
             services.AddHttpContextAccessor();
-            
-            //// PermissionTypeを使った要件の定義
-            //foreach (PermissionType p in Enum.GetValues(typeof(PermissionType)))
-            //{
-            //    services.AddAuthorization(options =>
-            //        options.AddPolicy(p.Val(), policy =>
-            //            policy.Requirements.Add(new PermissionTypeRequirement(new[] { p }))));
-            //}
-            //// ASP.NET Coreのパイプラインにインジェクションする
-            //services.AddSingleton<IAuthorizationHandler, PermissionTypeHandler>();
-            //// PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
-            //services.AddHttpContextAccessor();
             #endregion
 
             #region Add to support Swagger UI

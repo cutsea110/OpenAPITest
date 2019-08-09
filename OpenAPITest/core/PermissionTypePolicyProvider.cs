@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using OpenAPITest.Domain;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using OpenAPITest.Domain;
 
 namespace OpenAPITest.CustomPolicyProvider
 {
