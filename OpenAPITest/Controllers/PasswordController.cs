@@ -98,9 +98,9 @@ namespace OpenAPITest.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("token")]
-        [ProducesResponseType(typeof(TokenViewModel), 200)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
+        [ProducesResponseType(typeof(TokenViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Token([FromBody]TokenInputModel inputModel)
         {
 #if DEBUG
@@ -170,8 +170,8 @@ namespace OpenAPITest.Controllers
 
         [Authorize("Create_Password")]
         [HttpPost("init-password")]
-        [ProducesResponseType(typeof(Password), 201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(Password), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Init([FromBody]PasswordInputModel inputModel)
         {
 #if DEBUG
@@ -205,8 +205,8 @@ namespace OpenAPITest.Controllers
         /// <returns></returns>
         [Authorize("Change_Password")]
         [HttpPut("change-password")]
-        [ProducesResponseType(typeof(int), 200)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Change([FromBody]ChangePasswordInputModel inputModel)
         {
 #if DEBUG
