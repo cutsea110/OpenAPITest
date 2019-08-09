@@ -22,8 +22,8 @@ namespace OpenAPITest.Controllers
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
 		[HttpGet("get-full/{staffNo}")]
-		[ProducesResponseType(typeof(Staff), 200)]
-		[ProducesResponseType(404)]
+		[ProducesResponseType(typeof(Staff), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult GetFull(string staffNo)
 		{
 #if DEBUG
@@ -49,7 +49,7 @@ namespace OpenAPITest.Controllers
         /// <param name="order">例) birth_date Desc, gender Asc, staff_no</param>
         /// <returns></returns>
         [HttpGet("search-full")]
-		[ProducesResponseType(typeof(IEnumerable<Staff>), 200)]
+		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
 		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order)
 		{
 
