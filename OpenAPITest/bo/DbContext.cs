@@ -84,6 +84,22 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		public ITable<Staff> Staff => this.GetTable<Staff>();
 		/// <summary>
+		/// 教員
+		/// </summary>
+		public ITable<Teacher> Teacher => this.GetTable<Teacher>();
+		/// <summary>
+		/// 勤務形態種別
+		/// </summary>
+		public ITable<WorkStyleType> WorkStyleType => this.GetTable<WorkStyleType>();
+		/// <summary>
+		/// 職階種別
+		/// </summary>
+		public ITable<PositionType> PositionType => this.GetTable<PositionType>();
+		/// <summary>
+		/// 教員資格種別
+		/// </summary>
+		public ITable<TeacherLisenceType> TeacherLisenceType => this.GetTable<TeacherLisenceType>();
+		/// <summary>
 		/// 人名
 		/// </summary>
 		public ITable<PersonName> PersonName => this.GetTable<PersonName>();
@@ -421,6 +437,102 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[MapValue(Value = "Delete_Staff"), DataMember]
 		職員削除,
+		/// <summary>
+		/// 名称 : 教員作成
+		/// 説明 : 教員マスタの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_Teacher"), DataMember]
+		教員作成,
+		/// <summary>
+		/// 名称 : 教員表示
+		/// 説明 : 教員マスタの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_Teacher"), DataMember]
+		教員表示,
+		/// <summary>
+		/// 名称 : 教員更新
+		/// 説明 : 教員マスタの更新
+		/// </summary>
+		[MapValue(Value = "Update_Teacher"), DataMember]
+		教員更新,
+		/// <summary>
+		/// 名称 : 教員削除
+		/// 説明 : 教員マスタの削除
+		/// </summary>
+		[MapValue(Value = "Delete_Teacher"), DataMember]
+		教員削除,
+		/// <summary>
+		/// 名称 : 勤務形態種別作成
+		/// 説明 : 勤務形態種別マスタの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_WorkStyleType"), DataMember]
+		勤務形態種別作成,
+		/// <summary>
+		/// 名称 : 勤務形態種別表示
+		/// 説明 : 勤務形態種別マスタの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_WorkStyleType"), DataMember]
+		勤務形態種別表示,
+		/// <summary>
+		/// 名称 : 勤務形態種別更新
+		/// 説明 : 勤務形態種別マスタの更新
+		/// </summary>
+		[MapValue(Value = "Update_WorkStyleType"), DataMember]
+		勤務形態種別更新,
+		/// <summary>
+		/// 名称 : 勤務形態種別削除
+		/// 説明 : 勤務形態種別マスタの削除
+		/// </summary>
+		[MapValue(Value = "Delete_WorkStyleType"), DataMember]
+		勤務形態種別削除,
+		/// <summary>
+		/// 名称 : 職階種別作成
+		/// 説明 : 職階種別マスタの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_PositionType"), DataMember]
+		職階種別作成,
+		/// <summary>
+		/// 名称 : 職階種別表示
+		/// 説明 : 職階種別マスタの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_PositionType"), DataMember]
+		職階種別表示,
+		/// <summary>
+		/// 名称 : 職階種別更新
+		/// 説明 : 職階種別マスタの更新
+		/// </summary>
+		[MapValue(Value = "Update_PositionType"), DataMember]
+		職階種別更新,
+		/// <summary>
+		/// 名称 : 職階種別削除
+		/// 説明 : 職階種別マスタの削除
+		/// </summary>
+		[MapValue(Value = "Delete_PositionType"), DataMember]
+		職階種別削除,
+		/// <summary>
+		/// 名称 : 教員資格種別作成
+		/// 説明 : 教員資格種別マスタの新規作成
+		/// </summary>
+		[MapValue(Value = "Create_TeacherLisenceType"), DataMember]
+		教員資格種別作成,
+		/// <summary>
+		/// 名称 : 教員資格種別表示
+		/// 説明 : 教員資格種別マスタの閲覧
+		/// </summary>
+		[MapValue(Value = "Read_TeacherLisenceType"), DataMember]
+		教員資格種別表示,
+		/// <summary>
+		/// 名称 : 教員資格種別更新
+		/// 説明 : 教員資格種別マスタの更新
+		/// </summary>
+		[MapValue(Value = "Update_TeacherLisenceType"), DataMember]
+		教員資格種別更新,
+		/// <summary>
+		/// 名称 : 教員資格種別削除
+		/// 説明 : 教員資格種別マスタの削除
+		/// </summary>
+		[MapValue(Value = "Delete_TeacherLisenceType"), DataMember]
+		教員資格種別削除,
 		/// <summary>
 		/// 名称 : 人名作成
 		/// 説明 : 人名の新規作成
@@ -1616,6 +1728,38 @@ namespace OpenAPITest.Domain
 					return PermissionType.職員更新;
 				case "Delete_Staff":
 					return PermissionType.職員削除;
+				case "Create_Teacher":
+					return PermissionType.教員作成;
+				case "Read_Teacher":
+					return PermissionType.教員表示;
+				case "Update_Teacher":
+					return PermissionType.教員更新;
+				case "Delete_Teacher":
+					return PermissionType.教員削除;
+				case "Create_WorkStyleType":
+					return PermissionType.勤務形態種別作成;
+				case "Read_WorkStyleType":
+					return PermissionType.勤務形態種別表示;
+				case "Update_WorkStyleType":
+					return PermissionType.勤務形態種別更新;
+				case "Delete_WorkStyleType":
+					return PermissionType.勤務形態種別削除;
+				case "Create_PositionType":
+					return PermissionType.職階種別作成;
+				case "Read_PositionType":
+					return PermissionType.職階種別表示;
+				case "Update_PositionType":
+					return PermissionType.職階種別更新;
+				case "Delete_PositionType":
+					return PermissionType.職階種別削除;
+				case "Create_TeacherLisenceType":
+					return PermissionType.教員資格種別作成;
+				case "Read_TeacherLisenceType":
+					return PermissionType.教員資格種別表示;
+				case "Update_TeacherLisenceType":
+					return PermissionType.教員資格種別更新;
+				case "Delete_TeacherLisenceType":
+					return PermissionType.教員資格種別削除;
 				case "Create_PersonName":
 					return PermissionType.人名作成;
 				case "Read_PersonName":
@@ -1750,6 +1894,38 @@ namespace OpenAPITest.Domain
 					return "Update_Staff";
 				case PermissionType.職員削除:
 					return "Delete_Staff";
+				case PermissionType.教員作成:
+					return "Create_Teacher";
+				case PermissionType.教員表示:
+					return "Read_Teacher";
+				case PermissionType.教員更新:
+					return "Update_Teacher";
+				case PermissionType.教員削除:
+					return "Delete_Teacher";
+				case PermissionType.勤務形態種別作成:
+					return "Create_WorkStyleType";
+				case PermissionType.勤務形態種別表示:
+					return "Read_WorkStyleType";
+				case PermissionType.勤務形態種別更新:
+					return "Update_WorkStyleType";
+				case PermissionType.勤務形態種別削除:
+					return "Delete_WorkStyleType";
+				case PermissionType.職階種別作成:
+					return "Create_PositionType";
+				case PermissionType.職階種別表示:
+					return "Read_PositionType";
+				case PermissionType.職階種別更新:
+					return "Update_PositionType";
+				case PermissionType.職階種別削除:
+					return "Delete_PositionType";
+				case PermissionType.教員資格種別作成:
+					return "Create_TeacherLisenceType";
+				case PermissionType.教員資格種別表示:
+					return "Read_TeacherLisenceType";
+				case PermissionType.教員資格種別更新:
+					return "Update_TeacherLisenceType";
+				case PermissionType.教員資格種別削除:
+					return "Delete_TeacherLisenceType";
 				case PermissionType.人名作成:
 					return "Create_PersonName";
 				case PermissionType.人名表示:
@@ -1885,6 +2061,38 @@ namespace OpenAPITest.Domain
 					return "職員更新";
 				case PermissionType.職員削除:
 					return "職員削除";
+				case PermissionType.教員作成:
+					return "教員作成";
+				case PermissionType.教員表示:
+					return "教員表示";
+				case PermissionType.教員更新:
+					return "教員更新";
+				case PermissionType.教員削除:
+					return "教員削除";
+				case PermissionType.勤務形態種別作成:
+					return "勤務形態種別作成";
+				case PermissionType.勤務形態種別表示:
+					return "勤務形態種別表示";
+				case PermissionType.勤務形態種別更新:
+					return "勤務形態種別更新";
+				case PermissionType.勤務形態種別削除:
+					return "勤務形態種別削除";
+				case PermissionType.職階種別作成:
+					return "職階種別作成";
+				case PermissionType.職階種別表示:
+					return "職階種別表示";
+				case PermissionType.職階種別更新:
+					return "職階種別更新";
+				case PermissionType.職階種別削除:
+					return "職階種別削除";
+				case PermissionType.教員資格種別作成:
+					return "教員資格種別作成";
+				case PermissionType.教員資格種別表示:
+					return "教員資格種別表示";
+				case PermissionType.教員資格種別更新:
+					return "教員資格種別更新";
+				case PermissionType.教員資格種別削除:
+					return "教員資格種別削除";
 				case PermissionType.人名作成:
 					return "人名作成";
 				case PermissionType.人名表示:
@@ -2020,6 +2228,38 @@ namespace OpenAPITest.Domain
 					return "職員更新";
 				case PermissionType.職員削除:
 					return "職員削除";
+				case PermissionType.教員作成:
+					return "教員作成";
+				case PermissionType.教員表示:
+					return "教員表示";
+				case PermissionType.教員更新:
+					return "教員更新";
+				case PermissionType.教員削除:
+					return "教員削除";
+				case PermissionType.勤務形態種別作成:
+					return "勤務形態種別作成";
+				case PermissionType.勤務形態種別表示:
+					return "勤務形態種別表示";
+				case PermissionType.勤務形態種別更新:
+					return "勤務形態種別更新";
+				case PermissionType.勤務形態種別削除:
+					return "勤務形態種別削除";
+				case PermissionType.職階種別作成:
+					return "職階種別作成";
+				case PermissionType.職階種別表示:
+					return "職階種別表示";
+				case PermissionType.職階種別更新:
+					return "職階種別更新";
+				case PermissionType.職階種別削除:
+					return "職階種別削除";
+				case PermissionType.教員資格種別作成:
+					return "教員資格種別作成";
+				case PermissionType.教員資格種別表示:
+					return "教員資格種別表示";
+				case PermissionType.教員資格種別更新:
+					return "教員資格種別更新";
+				case PermissionType.教員資格種別削除:
+					return "教員資格種別削除";
 				case PermissionType.人名作成:
 					return "人名作成";
 				case PermissionType.人名表示:
@@ -2155,6 +2395,38 @@ namespace OpenAPITest.Domain
 					return "職更";
 				case PermissionType.職員削除:
 					return "職廃";
+				case PermissionType.教員作成:
+					return "教新";
+				case PermissionType.教員表示:
+					return "教表";
+				case PermissionType.教員更新:
+					return "教更";
+				case PermissionType.教員削除:
+					return "教廃";
+				case PermissionType.勤務形態種別作成:
+					return "勤新";
+				case PermissionType.勤務形態種別表示:
+					return "勤表";
+				case PermissionType.勤務形態種別更新:
+					return "勤更";
+				case PermissionType.勤務形態種別削除:
+					return "勤廃";
+				case PermissionType.職階種別作成:
+					return "階新";
+				case PermissionType.職階種別表示:
+					return "階表";
+				case PermissionType.職階種別更新:
+					return "階更";
+				case PermissionType.職階種別削除:
+					return "階廃";
+				case PermissionType.教員資格種別作成:
+					return "資新";
+				case PermissionType.教員資格種別表示:
+					return "資表";
+				case PermissionType.教員資格種別更新:
+					return "資更";
+				case PermissionType.教員資格種別削除:
+					return "資廃";
 				case PermissionType.人名作成:
 					return "名新";
 				case PermissionType.人名表示:
@@ -2290,6 +2562,38 @@ namespace OpenAPITest.Domain
 					return "Update Staff";
 				case PermissionType.職員削除:
 					return "Delete Staff";
+				case PermissionType.教員作成:
+					return "Create Teacher";
+				case PermissionType.教員表示:
+					return "Read Teacher";
+				case PermissionType.教員更新:
+					return "Update Teacher";
+				case PermissionType.教員削除:
+					return "Delete Teacher";
+				case PermissionType.勤務形態種別作成:
+					return "Create WorkStyleType";
+				case PermissionType.勤務形態種別表示:
+					return "Read WorkStyleType";
+				case PermissionType.勤務形態種別更新:
+					return "Update WorkStyleType";
+				case PermissionType.勤務形態種別削除:
+					return "Delete WorkStyleType";
+				case PermissionType.職階種別作成:
+					return "Create PositionType";
+				case PermissionType.職階種別表示:
+					return "Read PositionType";
+				case PermissionType.職階種別更新:
+					return "Update PositionType";
+				case PermissionType.職階種別削除:
+					return "Delete PositionType";
+				case PermissionType.教員資格種別作成:
+					return "Create TeacherLisenceType";
+				case PermissionType.教員資格種別表示:
+					return "Read TeacherLisenceType";
+				case PermissionType.教員資格種別更新:
+					return "Update TeacherLisenceType";
+				case PermissionType.教員資格種別削除:
+					return "Delete TeacherLisenceType";
 				case PermissionType.人名作成:
 					return "Create PersonName";
 				case PermissionType.人名表示:
@@ -2425,6 +2729,38 @@ namespace OpenAPITest.Domain
 					return "Update Staff";
 				case PermissionType.職員削除:
 					return "Delete Staff";
+				case PermissionType.教員作成:
+					return "Create Teacher";
+				case PermissionType.教員表示:
+					return "Read Teacher";
+				case PermissionType.教員更新:
+					return "Update Teacher";
+				case PermissionType.教員削除:
+					return "Delete Teacher";
+				case PermissionType.勤務形態種別作成:
+					return "Create WorkStyleType";
+				case PermissionType.勤務形態種別表示:
+					return "Read WorkStyleType";
+				case PermissionType.勤務形態種別更新:
+					return "Update WorkStyleType";
+				case PermissionType.勤務形態種別削除:
+					return "Delete WorkStyleType";
+				case PermissionType.職階種別作成:
+					return "Create PositionType";
+				case PermissionType.職階種別表示:
+					return "Read PositionType";
+				case PermissionType.職階種別更新:
+					return "Update PositionType";
+				case PermissionType.職階種別削除:
+					return "Delete PositionType";
+				case PermissionType.教員資格種別作成:
+					return "Create TeacherLisenceType";
+				case PermissionType.教員資格種別表示:
+					return "Read TeacherLisenceType";
+				case PermissionType.教員資格種別更新:
+					return "Update TeacherLisenceType";
+				case PermissionType.教員資格種別削除:
+					return "Delete TeacherLisenceType";
 				case PermissionType.人名作成:
 					return "Create PersonName";
 				case PermissionType.人名表示:
@@ -2560,6 +2896,38 @@ namespace OpenAPITest.Domain
 					return "U Staff";
 				case PermissionType.職員削除:
 					return "D Staff";
+				case PermissionType.教員作成:
+					return "N Teacher";
+				case PermissionType.教員表示:
+					return "R Teacher";
+				case PermissionType.教員更新:
+					return "U Teacher";
+				case PermissionType.教員削除:
+					return "D Teacher";
+				case PermissionType.勤務形態種別作成:
+					return "N WorkStyleType";
+				case PermissionType.勤務形態種別表示:
+					return "R WorkStyleType";
+				case PermissionType.勤務形態種別更新:
+					return "U WorkStyleType";
+				case PermissionType.勤務形態種別削除:
+					return "D WorkStyleType";
+				case PermissionType.職階種別作成:
+					return "N PositionType";
+				case PermissionType.職階種別表示:
+					return "R PositionType";
+				case PermissionType.職階種別更新:
+					return "U PositionType";
+				case PermissionType.職階種別削除:
+					return "D PositionType";
+				case PermissionType.教員資格種別作成:
+					return "N TeacherLisenceType";
+				case PermissionType.教員資格種別表示:
+					return "R TeacherLisenceType";
+				case PermissionType.教員資格種別更新:
+					return "U TeacherLisenceType";
+				case PermissionType.教員資格種別削除:
+					return "D TeacherLisenceType";
 				case PermissionType.人名作成:
 					return "N PersonName";
 				case PermissionType.人名表示:
@@ -7537,6 +7905,38 @@ namespace OpenAPITest.Domain
 						return PermissionType.職員更新;
 					case "Delete_Staff":
 						return PermissionType.職員削除;
+					case "Create_Teacher":
+						return PermissionType.教員作成;
+					case "Read_Teacher":
+						return PermissionType.教員表示;
+					case "Update_Teacher":
+						return PermissionType.教員更新;
+					case "Delete_Teacher":
+						return PermissionType.教員削除;
+					case "Create_WorkStyleType":
+						return PermissionType.勤務形態種別作成;
+					case "Read_WorkStyleType":
+						return PermissionType.勤務形態種別表示;
+					case "Update_WorkStyleType":
+						return PermissionType.勤務形態種別更新;
+					case "Delete_WorkStyleType":
+						return PermissionType.勤務形態種別削除;
+					case "Create_PositionType":
+						return PermissionType.職階種別作成;
+					case "Read_PositionType":
+						return PermissionType.職階種別表示;
+					case "Update_PositionType":
+						return PermissionType.職階種別更新;
+					case "Delete_PositionType":
+						return PermissionType.職階種別削除;
+					case "Create_TeacherLisenceType":
+						return PermissionType.教員資格種別作成;
+					case "Read_TeacherLisenceType":
+						return PermissionType.教員資格種別表示;
+					case "Update_TeacherLisenceType":
+						return PermissionType.教員資格種別更新;
+					case "Delete_TeacherLisenceType":
+						return PermissionType.教員資格種別削除;
 					case "Create_PersonName":
 						return PermissionType.人名作成;
 					case "Read_PersonName":
@@ -7689,6 +8089,54 @@ namespace OpenAPITest.Domain
 						break;
 					case PermissionType.職員削除:
 						permission_id = "Delete_Staff";
+						break;
+					case PermissionType.教員作成:
+						permission_id = "Create_Teacher";
+						break;
+					case PermissionType.教員表示:
+						permission_id = "Read_Teacher";
+						break;
+					case PermissionType.教員更新:
+						permission_id = "Update_Teacher";
+						break;
+					case PermissionType.教員削除:
+						permission_id = "Delete_Teacher";
+						break;
+					case PermissionType.勤務形態種別作成:
+						permission_id = "Create_WorkStyleType";
+						break;
+					case PermissionType.勤務形態種別表示:
+						permission_id = "Read_WorkStyleType";
+						break;
+					case PermissionType.勤務形態種別更新:
+						permission_id = "Update_WorkStyleType";
+						break;
+					case PermissionType.勤務形態種別削除:
+						permission_id = "Delete_WorkStyleType";
+						break;
+					case PermissionType.職階種別作成:
+						permission_id = "Create_PositionType";
+						break;
+					case PermissionType.職階種別表示:
+						permission_id = "Read_PositionType";
+						break;
+					case PermissionType.職階種別更新:
+						permission_id = "Update_PositionType";
+						break;
+					case PermissionType.職階種別削除:
+						permission_id = "Delete_PositionType";
+						break;
+					case PermissionType.教員資格種別作成:
+						permission_id = "Create_TeacherLisenceType";
+						break;
+					case PermissionType.教員資格種別表示:
+						permission_id = "Read_TeacherLisenceType";
+						break;
+					case PermissionType.教員資格種別更新:
+						permission_id = "Update_TeacherLisenceType";
+						break;
+					case PermissionType.教員資格種別削除:
+						permission_id = "Delete_TeacherLisenceType";
 						break;
 					case PermissionType.人名作成:
 						permission_id = "Create_PersonName";
@@ -13090,6 +13538,3741 @@ namespace OpenAPITest.Domain
 			if (birth_date_ni != null) predicate = predicate.And(_ => !birth_date_ni.Contains(_.birth_date.Value));
 			if (birth_date_isnull) predicate = predicate.And(_ => _.birth_date == null);
 			if (birth_date_isnotnull) predicate = predicate.And(_ => _.birth_date != null);
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
+	#region 教員
+	/// <summary>
+	/// 教員
+	/// </summary>
+	[Table(Schema="HumanResource", Name="Teacher"), DataContract]
+	public partial class Teacher : TableBase<Teacher>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region user_type : int
+
+		private int _user_type;
+		/// <summary>
+		/// 利用者種別
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  int  user_type
+		{
+			get { return _user_type; }
+			set
+			{
+				if (_user_type != value)
+				{
+					Beforeuser_typeChanged(value);
+					_user_type = value;
+					Afteruser_typeChanged();
+
+					Onuser_typeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeuser_typeChanged(int newValue);
+		partial void Afteruser_typeChanged();
+
+		public const string NameOfuser_type = "user_type";
+
+		private static readonly PropertyChangedEventArgs _user_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfuser_type);
+
+		private void Onuser_typeChanged()
+		{
+			OnPropertyChanged(_user_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region teacher_no : string
+
+		private string _teacher_no;
+		/// <summary>
+		/// 教員番号
+		/// </summary>
+		[Column(DbType="varchar(16)", DataType=DataType.VarChar, Length=16), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
+		public  string  teacher_no
+		{
+			get { return _teacher_no; }
+			set
+			{
+				if (_teacher_no != value)
+				{
+					Beforeteacher_noChanged(value);
+					_teacher_no = value;
+					Afterteacher_noChanged();
+
+					Onteacher_noChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeteacher_noChanged(string newValue);
+		partial void Afterteacher_noChanged();
+
+		public const string NameOfteacher_no = "teacher_no";
+
+		private static readonly PropertyChangedEventArgs _teacher_noChangedEventArgs = new PropertyChangedEventArgs(NameOfteacher_no);
+
+		private void Onteacher_noChanged()
+		{
+			OnPropertyChanged(_teacher_noChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region gender : int?
+
+		private int? _gender;
+		/// <summary>
+		/// 性別
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  gender
+		{
+			get { return _gender; }
+			set
+			{
+				if (_gender != value)
+				{
+					BeforegenderChanged(value);
+					_gender = value;
+					AftergenderChanged();
+
+					OngenderChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforegenderChanged(int? newValue);
+		partial void AftergenderChanged();
+
+		public const string NameOfgender = "gender";
+
+		private static readonly PropertyChangedEventArgs _genderChangedEventArgs = new PropertyChangedEventArgs(NameOfgender);
+
+		private void OngenderChanged()
+		{
+			OnPropertyChanged(_genderChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region birth_date : DateTime?
+
+		private DateTime? _birth_date;
+		/// <summary>
+		/// 生年月日
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  birth_date
+		{
+			get { return _birth_date; }
+			set
+			{
+				if (_birth_date != value)
+				{
+					Beforebirth_dateChanged(value);
+					_birth_date = value;
+					Afterbirth_dateChanged();
+
+					Onbirth_dateChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforebirth_dateChanged(DateTime? newValue);
+		partial void Afterbirth_dateChanged();
+
+		public const string NameOfbirth_date = "birth_date";
+
+		private static readonly PropertyChangedEventArgs _birth_dateChangedEventArgs = new PropertyChangedEventArgs(NameOfbirth_date);
+
+		private void Onbirth_dateChanged()
+		{
+			OnPropertyChanged(_birth_dateChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region work_style_type : int
+
+		private int _work_style_type;
+		/// <summary>
+		/// 勤務形態
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  work_style_type
+		{
+			get { return _work_style_type; }
+			set
+			{
+				if (_work_style_type != value)
+				{
+					Beforework_style_typeChanged(value);
+					_work_style_type = value;
+					Afterwork_style_typeChanged();
+
+					Onwork_style_typeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforework_style_typeChanged(int newValue);
+		partial void Afterwork_style_typeChanged();
+
+		public const string NameOfwork_style_type = "work_style_type";
+
+		private static readonly PropertyChangedEventArgs _work_style_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfwork_style_type);
+
+		private void Onwork_style_typeChanged()
+		{
+			OnPropertyChanged(_work_style_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region position_type : int
+
+		private int _position_type;
+		/// <summary>
+		/// 職階
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  position_type
+		{
+			get { return _position_type; }
+			set
+			{
+				if (_position_type != value)
+				{
+					Beforeposition_typeChanged(value);
+					_position_type = value;
+					Afterposition_typeChanged();
+
+					Onposition_typeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeposition_typeChanged(int newValue);
+		partial void Afterposition_typeChanged();
+
+		public const string NameOfposition_type = "position_type";
+
+		private static readonly PropertyChangedEventArgs _position_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfposition_type);
+
+		private void Onposition_typeChanged()
+		{
+			OnPropertyChanged(_position_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region teacher_lisence_type : int
+
+		private int _teacher_lisence_type;
+		/// <summary>
+		/// 教員資格
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull]
+		public  int  teacher_lisence_type
+		{
+			get { return _teacher_lisence_type; }
+			set
+			{
+				if (_teacher_lisence_type != value)
+				{
+					Beforeteacher_lisence_typeChanged(value);
+					_teacher_lisence_type = value;
+					Afterteacher_lisence_typeChanged();
+
+					Onteacher_lisence_typeChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeteacher_lisence_typeChanged(int newValue);
+		partial void Afterteacher_lisence_typeChanged();
+
+		public const string NameOfteacher_lisence_type = "teacher_lisence_type";
+
+		private static readonly PropertyChangedEventArgs _teacher_lisence_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfteacher_lisence_type);
+
+		private void Onteacher_lisence_typeChanged()
+		{
+			OnPropertyChanged(_teacher_lisence_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		/// <summary>
+		/// user_typeのenumラッパー
+		/// </summary>
+		public UserType UserType
+		{
+			get => (UserType)user_type;
+			set => user_type = value.Val();
+		}
+		/// <summary>
+		/// genderのenumラッパー
+		/// </summary>
+		public Gender? Gender
+		{
+			get => (Gender?)gender;
+			set => gender = value?.Val();
+		}
+		#endregion
+
+		#region Constructor
+
+		public Teacher()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			user_type = 2;
+			teacher_no = "";
+			gender = null;
+			birth_date = null;
+			work_style_type = 0;
+			position_type = 0;
+			teacher_lisence_type = 0;
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+		#region WorkStyleType : work_style_type (FK_Teacher_WorkStyle)
+
+		private WorkStyleType _WorkStyle;
+		/// <summary>
+		/// FK_Teacher_WorkStyle
+		/// </summary>
+		[Association(ThisKey="work_style_type", OtherKey="work_style_type_id", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Teacher_WorkStyle", BackReferenceName="Teacher"), DataMember]
+		public  WorkStyleType  WorkStyle
+		{
+			get { return _WorkStyle; }
+			set
+			{
+				if (_WorkStyle != value)
+				{
+					BeforeWorkStyleChanged(value);
+					_WorkStyle = value;
+					AfterWorkStyleChanged();
+
+					OnWorkStyleChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeWorkStyleChanged(WorkStyleType newValue);
+		partial void AfterWorkStyleChanged ();
+
+		public const string NameOfWorkStyle = "WorkStyle";
+
+		private static readonly PropertyChangedEventArgs _WorkStyleChangedEventArgs = new PropertyChangedEventArgs(NameOfWorkStyle);
+
+		private void OnWorkStyleChanged()
+		{
+			OnPropertyChanged(_WorkStyleChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region PositionType : position_type (FK_Teacher_Position)
+
+		private PositionType _Position;
+		/// <summary>
+		/// FK_Teacher_Position
+		/// </summary>
+		[Association(ThisKey="position_type", OtherKey="position_type_id", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Teacher_Position", BackReferenceName="Teacher"), DataMember]
+		public  PositionType  Position
+		{
+			get { return _Position; }
+			set
+			{
+				if (_Position != value)
+				{
+					BeforePositionChanged(value);
+					_Position = value;
+					AfterPositionChanged();
+
+					OnPositionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforePositionChanged(PositionType newValue);
+		partial void AfterPositionChanged ();
+
+		public const string NameOfPosition = "Position";
+
+		private static readonly PropertyChangedEventArgs _PositionChangedEventArgs = new PropertyChangedEventArgs(NameOfPosition);
+
+		private void OnPositionChanged()
+		{
+			OnPropertyChanged(_PositionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region TeacherLisenceType : teacher_lisence_type (FK_Teacher_TeacherLisence)
+
+		private TeacherLisenceType _TeacherLisence;
+		/// <summary>
+		/// FK_Teacher_TeacherLisence
+		/// </summary>
+		[Association(ThisKey="teacher_lisence_type", OtherKey="teacher_lisence_type_id", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Teacher_TeacherLisence", BackReferenceName="Teacher"), DataMember]
+		public  TeacherLisenceType  TeacherLisence
+		{
+			get { return _TeacherLisence; }
+			set
+			{
+				if (_TeacherLisence != value)
+				{
+					BeforeTeacherLisenceChanged(value);
+					_TeacherLisence = value;
+					AfterTeacherLisenceChanged();
+
+					OnTeacherLisenceChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeTeacherLisenceChanged(TeacherLisenceType newValue);
+		partial void AfterTeacherLisenceChanged ();
+
+		public const string NameOfTeacherLisence = "TeacherLisence";
+
+		private static readonly PropertyChangedEventArgs _TeacherLisenceChangedEventArgs = new PropertyChangedEventArgs(NameOfTeacherLisence);
+
+		private void OnTeacherLisenceChanged()
+		{
+			OnPropertyChanged(_TeacherLisenceChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region IEnumerable<Account> : teacher_no to Account : teacher_no (FK_Teacher_Account)
+
+		private IEnumerable<Account> _AccountList;
+		/// <summary>
+		/// FK_Teacher_Account_BackReference
+		/// </summary>
+		[Association(ThisKey="teacher_no", OtherKey="teacher_no", CanBeNull=true, Relationship=Relationship.OneToMany, IsBackReference=true), DataMember]
+		public  IEnumerable<Account>  AccountList
+		{
+			get { return _AccountList; }
+			set
+			{
+				if (_AccountList != value)
+				{
+					BeforeAccountListChanged(value);
+					_AccountList = value;
+					AfterAccountListChanged();
+
+					OnAccountListChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeAccountListChanged(IEnumerable<Account> newValue);
+		partial void AfterAccountListChanged ();
+
+		public const string NameOfAccountList = "AccountList";
+
+		private static readonly PropertyChangedEventArgs _AccountListChangedEventArgs = new PropertyChangedEventArgs(NameOfAccountList);
+
+		private void OnAccountListChanged()
+		{
+			OnPropertyChanged(_AccountListChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region IEnumerable<PersonName> : user_type,teacher_no to PersonName : user_type,generic_user_no (FK_Teacher_Name)
+
+		private IEnumerable<PersonName> _NameList;
+		/// <summary>
+		/// FK_Teacher_Name_BackReference
+		/// </summary>
+		[Association(ThisKey="user_type,teacher_no", OtherKey="user_type,generic_user_no", CanBeNull=true, Relationship=Relationship.OneToMany, IsBackReference=true), DataMember]
+		public  IEnumerable<PersonName>  NameList
+		{
+			get { return _NameList; }
+			set
+			{
+				if (_NameList != value)
+				{
+					BeforeNameListChanged(value);
+					_NameList = value;
+					AfterNameListChanged();
+
+					OnNameListChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeNameListChanged(IEnumerable<PersonName> newValue);
+		partial void AfterNameListChanged ();
+
+		public const string NameOfNameList = "NameList";
+
+		private static readonly PropertyChangedEventArgs _NameListChangedEventArgs = new PropertyChangedEventArgs(NameOfNameList);
+
+		private void OnNameListChanged()
+		{
+			OnPropertyChanged(_NameListChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region IEnumerable<Address> : user_type,teacher_no to Address : user_type,generic_user_no (FK_Teacher_Address)
+
+		private IEnumerable<Address> _AddressList;
+		/// <summary>
+		/// FK_Teacher_Address_BackReference
+		/// </summary>
+		[Association(ThisKey="user_type,teacher_no", OtherKey="user_type,generic_user_no", CanBeNull=true, Relationship=Relationship.OneToMany, IsBackReference=true), DataMember]
+		public  IEnumerable<Address>  AddressList
+		{
+			get { return _AddressList; }
+			set
+			{
+				if (_AddressList != value)
+				{
+					BeforeAddressListChanged(value);
+					_AddressList = value;
+					AfterAddressListChanged();
+
+					OnAddressListChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeAddressListChanged(IEnumerable<Address> newValue);
+		partial void AfterAddressListChanged ();
+
+		public const string NameOfAddressList = "AddressList";
+
+		private static readonly PropertyChangedEventArgs _AddressListChangedEventArgs = new PropertyChangedEventArgs(NameOfAddressList);
+
+		private void OnAddressListChanged()
+		{
+			OnPropertyChanged(_AddressListChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region IEnumerable<Contact> : user_type,teacher_no to Contact : user_type,generic_user_no (FK_Teacher_Contact)
+
+		private IEnumerable<Contact> _ContactList;
+		/// <summary>
+		/// FK_Teacher_Contact_BackReference
+		/// </summary>
+		[Association(ThisKey="user_type,teacher_no", OtherKey="user_type,generic_user_no", CanBeNull=true, Relationship=Relationship.OneToMany, IsBackReference=true), DataMember]
+		public  IEnumerable<Contact>  ContactList
+		{
+			get { return _ContactList; }
+			set
+			{
+				if (_ContactList != value)
+				{
+					BeforeContactListChanged(value);
+					_ContactList = value;
+					AfterContactListChanged();
+
+					OnContactListChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeContactListChanged(IEnumerable<Contact> newValue);
+		partial void AfterContactListChanged ();
+
+		public const string NameOfContactList = "ContactList";
+
+		private static readonly PropertyChangedEventArgs _ContactListChangedEventArgs = new PropertyChangedEventArgs(NameOfContactList);
+
+		private void OnContactListChanged()
+		{
+			OnPropertyChanged(_ContactListChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region 教員条件
+	/// <summary>
+	/// 教員条件
+	/// </summary>
+	[DataContract]
+	public partial class TeacherCondition : TeacherConditionBase
+	{
+	}
+
+	/// <summary>
+	/// 教員条件ベース
+	/// </summary>
+	[DataContract]
+	public class TeacherConditionBase : ConditionBase<Teacher>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region user_type (UserType)
+		private int? _user_type_eq;
+		[DataMember] public UserType? UserType_eq
+		{
+			get => _user_type_eq?.ToUserType();
+			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _user_type_ne;
+		[DataMember] public UserType? UserType_ne
+		{
+			get => _user_type_ne?.ToUserType();
+			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _user_type_lt;
+		[DataMember] public UserType? UserType_lt
+		{
+			get => _user_type_lt?.ToUserType();
+			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _user_type_gt;
+		[DataMember] public UserType? UserType_gt
+		{
+			get => _user_type_gt?.ToUserType();
+			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _user_type_le;
+		[DataMember] public UserType? UserType_le
+		{
+			get => _user_type_le?.ToUserType();
+			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _user_type_ge;
+		[DataMember] public UserType? UserType_ge
+		{
+			get => _user_type_ge?.ToUserType();
+			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private IEnumerable<int> _user_type_in;
+		[DataMember] public IEnumerable<UserType> UserType_in
+		{
+			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
+			set => _user_type_in = value.Select(_ => _.Val());
+		}
+		private IEnumerable<int> _user_type_ni;
+		[DataMember] public IEnumerable<UserType> UserType_ni
+		{
+			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
+			set => _user_type_ni = value.Select(_ => _.Val());
+		}
+		private (int low, int high)? _user_type_between;
+		[DataMember] public (UserType low, UserType high)? UserType_between
+		{
+			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
+			set => _user_type_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
+		}
+		#endregion
+		#region teacher_no
+		[DataMember] public string teacher_no_eq { get; set; }
+		[DataMember] public string teacher_no_ne { get; set; }
+		[DataMember] public string teacher_no_lt { get; set; }
+		[DataMember] public string teacher_no_gt { get; set; }
+		[DataMember] public string teacher_no_le { get; set; }
+		[DataMember] public string teacher_no_ge { get; set; }
+		[DataMember] public IEnumerable<string> teacher_no_in { get; set; }
+		[DataMember] public IEnumerable<string> teacher_no_ni { get; set; }
+		[DataMember] public (string low, string high)? teacher_no_between { get; set; }
+		[DataMember] public string teacher_no_like { get; set; }
+		#endregion
+		#region gender (Gender)
+		private int? _gender_eq;
+		[DataMember] public Gender? Gender_eq
+		{
+			get => _gender_eq?.ToGender();
+			set => _gender_eq = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _gender_ne;
+		[DataMember] public Gender? Gender_ne
+		{
+			get => _gender_ne?.ToGender();
+			set => _gender_ne = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _gender_lt;
+		[DataMember] public Gender? Gender_lt
+		{
+			get => _gender_lt?.ToGender();
+			set => _gender_lt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _gender_gt;
+		[DataMember] public Gender? Gender_gt
+		{
+			get => _gender_gt?.ToGender();
+			set => _gender_gt = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _gender_le;
+		[DataMember] public Gender? Gender_le
+		{
+			get => _gender_le?.ToGender();
+			set => _gender_le = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private int? _gender_ge;
+		[DataMember] public Gender? Gender_ge
+		{
+			get => _gender_ge?.ToGender();
+			set => _gender_ge = value.HasValue ? value.Value.Val() : (int?)null;
+		}
+		private IEnumerable<int> _gender_in;
+		[DataMember] public IEnumerable<Gender> Gender_in
+		{
+			get => _gender_in?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
+			set => _gender_in = value.Select(_ => _.Val());
+		}
+		private IEnumerable<int> _gender_ni;
+		[DataMember] public IEnumerable<Gender> Gender_ni
+		{
+			get => _gender_ni?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
+			set => _gender_ni = value.Select(_ => _.Val());
+		}
+		private (int low, int high)? _gender_between;
+		[DataMember] public (Gender low, Gender high)? Gender_between
+		{
+			get => _gender_between.HasValue ? (_gender_between.Value.low.ToGender().Value, _gender_between.Value.high.ToGender().Value) : ((Gender, Gender)?)null;
+			set => _gender_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
+		}
+		private bool _gender_isnull { get; set; } =  false ;
+		[DataMember] public bool Gender_isnull
+		{
+			get => _gender_isnull;
+			set => _gender_isnull = value;
+		}
+		private bool _gender_isnotnull { get; set; } = false;
+		[DataMember] public bool Gender_isnotnull
+		{
+			get => _gender_isnotnull;
+			set => _gender_isnotnull = value;
+		}
+		#endregion
+		#region birth_date
+		[DataMember] public DateTime? birth_date_eq { get; set; }
+		[DataMember] public DateTime? birth_date_ne { get; set; }
+		[DataMember] public DateTime? birth_date_lt { get; set; }
+		[DataMember] public DateTime? birth_date_gt { get; set; }
+		[DataMember] public DateTime? birth_date_le { get; set; }
+		[DataMember] public DateTime? birth_date_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> birth_date_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> birth_date_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? birth_date_between { get; set; }
+		[DataMember] public bool birth_date_isnull { get; set; } =  false ;
+		[DataMember] public bool birth_date_isnotnull { get; set; } = false;
+		#endregion
+		#region work_style_type
+		[DataMember] public int? work_style_type_eq { get; set; }
+		[DataMember] public int? work_style_type_ne { get; set; }
+		[DataMember] public int? work_style_type_lt { get; set; }
+		[DataMember] public int? work_style_type_gt { get; set; }
+		[DataMember] public int? work_style_type_le { get; set; }
+		[DataMember] public int? work_style_type_ge { get; set; }
+		[DataMember] public IEnumerable<int> work_style_type_in { get; set; }
+		[DataMember] public IEnumerable<int> work_style_type_ni { get; set; }
+		[DataMember] public (int? low, int? high)? work_style_type_between { get; set; }
+		#endregion
+		#region position_type
+		[DataMember] public int? position_type_eq { get; set; }
+		[DataMember] public int? position_type_ne { get; set; }
+		[DataMember] public int? position_type_lt { get; set; }
+		[DataMember] public int? position_type_gt { get; set; }
+		[DataMember] public int? position_type_le { get; set; }
+		[DataMember] public int? position_type_ge { get; set; }
+		[DataMember] public IEnumerable<int> position_type_in { get; set; }
+		[DataMember] public IEnumerable<int> position_type_ni { get; set; }
+		[DataMember] public (int? low, int? high)? position_type_between { get; set; }
+		#endregion
+		#region teacher_lisence_type
+		[DataMember] public int? teacher_lisence_type_eq { get; set; }
+		[DataMember] public int? teacher_lisence_type_ne { get; set; }
+		[DataMember] public int? teacher_lisence_type_lt { get; set; }
+		[DataMember] public int? teacher_lisence_type_gt { get; set; }
+		[DataMember] public int? teacher_lisence_type_le { get; set; }
+		[DataMember] public int? teacher_lisence_type_ge { get; set; }
+		[DataMember] public IEnumerable<int> teacher_lisence_type_in { get; set; }
+		[DataMember] public IEnumerable<int> teacher_lisence_type_ni { get; set; }
+		[DataMember] public (int? low, int? high)? teacher_lisence_type_between { get; set; }
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<Teacher, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region user_type
+			if (_user_type_eq != null) predicate = predicate.And(_ => _.user_type == _user_type_eq);
+			if (_user_type_ne != null) predicate = predicate.And(_ => _.user_type != _user_type_ne);
+			if (_user_type_lt != null) predicate = predicate.And(_ => _.user_type < _user_type_lt);
+			if (_user_type_gt != null) predicate = predicate.And(_ => _.user_type > _user_type_gt);
+			if (_user_type_le != null) predicate = predicate.And(_ => _.user_type <= _user_type_le);
+			if (_user_type_ge != null) predicate = predicate.And(_ => _.user_type >= _user_type_ge);
+			if (_user_type_in != null) predicate = predicate.And(_ => _user_type_in.Contains(_.user_type));
+			if (_user_type_ni != null) predicate = predicate.And(_ => !_user_type_ni.Contains(_.user_type));
+			#endregion
+			#region teacher_no
+			if (teacher_no_eq != null) predicate = predicate.And(_ => _.teacher_no == teacher_no_eq);
+			if (teacher_no_ne != null) predicate = predicate.And(_ => _.teacher_no != teacher_no_ne);
+			if (teacher_no_lt != null) predicate = predicate.And(_ => teacher_no_lt.CompareTo(_.teacher_no) > 0);
+			if (teacher_no_gt != null) predicate = predicate.And(_ => teacher_no_gt.CompareTo(_.teacher_no) < 0);
+			if (teacher_no_le != null) predicate = predicate.And(_ => teacher_no_le.CompareTo(_.teacher_no) >= 0);
+			if (teacher_no_ge != null) predicate = predicate.And(_ => teacher_no_ge.CompareTo(_.teacher_no) <= 0);
+			if (teacher_no_in != null) predicate = predicate.And(_ => teacher_no_in.Contains(_.teacher_no));
+			if (teacher_no_ni != null) predicate = predicate.And(_ => !teacher_no_ni.Contains(_.teacher_no));
+			#endregion
+			#region gender
+			if (_gender_eq != null) predicate = predicate.And(_ => _.gender == _gender_eq);
+			if (_gender_ne != null) predicate = predicate.And(_ => _.gender != _gender_ne);
+			if (_gender_lt != null) predicate = predicate.And(_ => _.gender < _gender_lt);
+			if (_gender_gt != null) predicate = predicate.And(_ => _.gender > _gender_gt);
+			if (_gender_le != null) predicate = predicate.And(_ => _.gender <= _gender_le);
+			if (_gender_ge != null) predicate = predicate.And(_ => _.gender >= _gender_ge);
+			if (_gender_in != null) predicate = predicate.And(_ => _gender_in.Contains(_.gender.Value));
+			if (_gender_ni != null) predicate = predicate.And(_ => !_gender_ni.Contains(_.gender.Value));
+			if (_gender_isnull) predicate = predicate.And(_ => _.gender == null);
+			if (_gender_isnotnull) predicate = predicate.And(_ => _.gender != null);
+			#endregion
+			#region birth_date
+			if (birth_date_eq != null) predicate = predicate.And(_ => _.birth_date == birth_date_eq);
+			if (birth_date_ne != null) predicate = predicate.And(_ => _.birth_date != birth_date_ne);
+			if (birth_date_lt != null) predicate = predicate.And(_ => _.birth_date < birth_date_lt);
+			if (birth_date_gt != null) predicate = predicate.And(_ => _.birth_date > birth_date_gt);
+			if (birth_date_le != null) predicate = predicate.And(_ => _.birth_date <= birth_date_le);
+			if (birth_date_ge != null) predicate = predicate.And(_ => _.birth_date >= birth_date_ge);
+			if (birth_date_in != null) predicate = predicate.And(_ => birth_date_in.Contains(_.birth_date.Value));
+			if (birth_date_ni != null) predicate = predicate.And(_ => !birth_date_ni.Contains(_.birth_date.Value));
+			if (birth_date_isnull) predicate = predicate.And(_ => _.birth_date == null);
+			if (birth_date_isnotnull) predicate = predicate.And(_ => _.birth_date != null);
+			#endregion
+			#region work_style_type
+			if (work_style_type_eq != null) predicate = predicate.And(_ => _.work_style_type == work_style_type_eq);
+			if (work_style_type_ne != null) predicate = predicate.And(_ => _.work_style_type != work_style_type_ne);
+			if (work_style_type_lt != null) predicate = predicate.And(_ => _.work_style_type < work_style_type_lt);
+			if (work_style_type_gt != null) predicate = predicate.And(_ => _.work_style_type > work_style_type_gt);
+			if (work_style_type_le != null) predicate = predicate.And(_ => _.work_style_type <= work_style_type_le);
+			if (work_style_type_ge != null) predicate = predicate.And(_ => _.work_style_type >= work_style_type_ge);
+			if (work_style_type_in != null) predicate = predicate.And(_ => work_style_type_in.Contains(_.work_style_type));
+			if (work_style_type_ni != null) predicate = predicate.And(_ => !work_style_type_ni.Contains(_.work_style_type));
+			#endregion
+			#region position_type
+			if (position_type_eq != null) predicate = predicate.And(_ => _.position_type == position_type_eq);
+			if (position_type_ne != null) predicate = predicate.And(_ => _.position_type != position_type_ne);
+			if (position_type_lt != null) predicate = predicate.And(_ => _.position_type < position_type_lt);
+			if (position_type_gt != null) predicate = predicate.And(_ => _.position_type > position_type_gt);
+			if (position_type_le != null) predicate = predicate.And(_ => _.position_type <= position_type_le);
+			if (position_type_ge != null) predicate = predicate.And(_ => _.position_type >= position_type_ge);
+			if (position_type_in != null) predicate = predicate.And(_ => position_type_in.Contains(_.position_type));
+			if (position_type_ni != null) predicate = predicate.And(_ => !position_type_ni.Contains(_.position_type));
+			#endregion
+			#region teacher_lisence_type
+			if (teacher_lisence_type_eq != null) predicate = predicate.And(_ => _.teacher_lisence_type == teacher_lisence_type_eq);
+			if (teacher_lisence_type_ne != null) predicate = predicate.And(_ => _.teacher_lisence_type != teacher_lisence_type_ne);
+			if (teacher_lisence_type_lt != null) predicate = predicate.And(_ => _.teacher_lisence_type < teacher_lisence_type_lt);
+			if (teacher_lisence_type_gt != null) predicate = predicate.And(_ => _.teacher_lisence_type > teacher_lisence_type_gt);
+			if (teacher_lisence_type_le != null) predicate = predicate.And(_ => _.teacher_lisence_type <= teacher_lisence_type_le);
+			if (teacher_lisence_type_ge != null) predicate = predicate.And(_ => _.teacher_lisence_type >= teacher_lisence_type_ge);
+			if (teacher_lisence_type_in != null) predicate = predicate.And(_ => teacher_lisence_type_in.Contains(_.teacher_lisence_type));
+			if (teacher_lisence_type_ni != null) predicate = predicate.And(_ => !teacher_lisence_type_ni.Contains(_.teacher_lisence_type));
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
+	#region 勤務形態種別
+	/// <summary>
+	/// 勤務形態種別
+	/// </summary>
+	[Table(Schema="Master", Name="WorkStyleType"), DataContract]
+	public partial class WorkStyleType : TableBase<WorkStyleType>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region work_style_type_id : int
+
+		private int _work_style_type_id;
+		/// <summary>
+		/// 勤務形態種別ID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
+		public  int  work_style_type_id
+		{
+			get { return _work_style_type_id; }
+			set
+			{
+				if (_work_style_type_id != value)
+				{
+					Beforework_style_type_idChanged(value);
+					_work_style_type_id = value;
+					Afterwork_style_type_idChanged();
+
+					Onwork_style_type_idChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforework_style_type_idChanged(int newValue);
+		partial void Afterwork_style_type_idChanged();
+
+		public const string NameOfwork_style_type_id = "work_style_type_id";
+
+		private static readonly PropertyChangedEventArgs _work_style_type_idChangedEventArgs = new PropertyChangedEventArgs(NameOfwork_style_type_id);
+
+		private void Onwork_style_type_idChanged()
+		{
+			OnPropertyChanged(_work_style_type_idChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region name : string
+
+		private string _name;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  string  name
+		{
+			get { return _name; }
+			set
+			{
+				if (_name != value)
+				{
+					BeforenameChanged(value);
+					_name = value;
+					AfternameChanged();
+
+					OnnameChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforenameChanged(string newValue);
+		partial void AfternameChanged();
+
+		public const string NameOfname = "name";
+
+		private static readonly PropertyChangedEventArgs _nameChangedEventArgs = new PropertyChangedEventArgs(NameOfname);
+
+		private void OnnameChanged()
+		{
+			OnPropertyChanged(_nameChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region description : string
+
+		private string _description;
+		/// <summary>
+		/// 説明
+		/// </summary>
+		[Column(DbType="nvarchar(64)", DataType=DataType.NVarChar, Length=64), DataMember, NotNull]
+		public  string  description
+		{
+			get { return _description; }
+			set
+			{
+				if (_description != value)
+				{
+					BeforedescriptionChanged(value);
+					_description = value;
+					AfterdescriptionChanged();
+
+					OndescriptionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforedescriptionChanged(string newValue);
+		partial void AfterdescriptionChanged();
+
+		public const string NameOfdescription = "description";
+
+		private static readonly PropertyChangedEventArgs _descriptionChangedEventArgs = new PropertyChangedEventArgs(NameOfdescription);
+
+		private void OndescriptionChanged()
+		{
+			OnPropertyChanged(_descriptionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region display_order : int
+
+		private int _display_order;
+		/// <summary>
+		/// 表示順
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  int  display_order
+		{
+			get { return _display_order; }
+			set
+			{
+				if (_display_order != value)
+				{
+					Beforedisplay_orderChanged(value);
+					_display_order = value;
+					Afterdisplay_orderChanged();
+
+					Ondisplay_orderChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforedisplay_orderChanged(int newValue);
+		partial void Afterdisplay_orderChanged();
+
+		public const string NameOfdisplay_order = "display_order";
+
+		private static readonly PropertyChangedEventArgs _display_orderChangedEventArgs = new PropertyChangedEventArgs(NameOfdisplay_order);
+
+		private void Ondisplay_orderChanged()
+		{
+			OnPropertyChanged(_display_orderChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		#endregion
+
+		#region Constructor
+
+		public WorkStyleType()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			work_style_type_id = 0;
+			name = "";
+			description = "";
+			display_order = 0;
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region 勤務形態種別条件
+	/// <summary>
+	/// 勤務形態種別条件
+	/// </summary>
+	[DataContract]
+	public partial class WorkStyleTypeCondition : WorkStyleTypeConditionBase
+	{
+	}
+
+	/// <summary>
+	/// 勤務形態種別条件ベース
+	/// </summary>
+	[DataContract]
+	public class WorkStyleTypeConditionBase : ConditionBase<WorkStyleType>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region work_style_type_id
+		[DataMember] public int? work_style_type_id_eq { get; set; }
+		[DataMember] public int? work_style_type_id_ne { get; set; }
+		[DataMember] public int? work_style_type_id_lt { get; set; }
+		[DataMember] public int? work_style_type_id_gt { get; set; }
+		[DataMember] public int? work_style_type_id_le { get; set; }
+		[DataMember] public int? work_style_type_id_ge { get; set; }
+		[DataMember] public IEnumerable<int> work_style_type_id_in { get; set; }
+		[DataMember] public IEnumerable<int> work_style_type_id_ni { get; set; }
+		[DataMember] public (int? low, int? high)? work_style_type_id_between { get; set; }
+		#endregion
+		#region name
+		[DataMember] public string name_eq { get; set; }
+		[DataMember] public string name_ne { get; set; }
+		[DataMember] public string name_lt { get; set; }
+		[DataMember] public string name_gt { get; set; }
+		[DataMember] public string name_le { get; set; }
+		[DataMember] public string name_ge { get; set; }
+		[DataMember] public IEnumerable<string> name_in { get; set; }
+		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		[DataMember] public (string low, string high)? name_between { get; set; }
+		[DataMember] public string name_like { get; set; }
+		#endregion
+		#region description
+		[DataMember] public string description_eq { get; set; }
+		[DataMember] public string description_ne { get; set; }
+		[DataMember] public string description_lt { get; set; }
+		[DataMember] public string description_gt { get; set; }
+		[DataMember] public string description_le { get; set; }
+		[DataMember] public string description_ge { get; set; }
+		[DataMember] public IEnumerable<string> description_in { get; set; }
+		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		[DataMember] public (string low, string high)? description_between { get; set; }
+		[DataMember] public string description_like { get; set; }
+		#endregion
+		#region display_order
+		[DataMember] public int? display_order_eq { get; set; }
+		[DataMember] public int? display_order_ne { get; set; }
+		[DataMember] public int? display_order_lt { get; set; }
+		[DataMember] public int? display_order_gt { get; set; }
+		[DataMember] public int? display_order_le { get; set; }
+		[DataMember] public int? display_order_ge { get; set; }
+		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<WorkStyleType, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region work_style_type_id
+			if (work_style_type_id_eq != null) predicate = predicate.And(_ => _.work_style_type_id == work_style_type_id_eq);
+			if (work_style_type_id_ne != null) predicate = predicate.And(_ => _.work_style_type_id != work_style_type_id_ne);
+			if (work_style_type_id_lt != null) predicate = predicate.And(_ => _.work_style_type_id < work_style_type_id_lt);
+			if (work_style_type_id_gt != null) predicate = predicate.And(_ => _.work_style_type_id > work_style_type_id_gt);
+			if (work_style_type_id_le != null) predicate = predicate.And(_ => _.work_style_type_id <= work_style_type_id_le);
+			if (work_style_type_id_ge != null) predicate = predicate.And(_ => _.work_style_type_id >= work_style_type_id_ge);
+			if (work_style_type_id_in != null) predicate = predicate.And(_ => work_style_type_id_in.Contains(_.work_style_type_id));
+			if (work_style_type_id_ni != null) predicate = predicate.And(_ => !work_style_type_id_ni.Contains(_.work_style_type_id));
+			#endregion
+			#region name
+			if (name_eq != null) predicate = predicate.And(_ => _.name == name_eq);
+			if (name_ne != null) predicate = predicate.And(_ => _.name != name_ne);
+			if (name_lt != null) predicate = predicate.And(_ => name_lt.CompareTo(_.name) > 0);
+			if (name_gt != null) predicate = predicate.And(_ => name_gt.CompareTo(_.name) < 0);
+			if (name_le != null) predicate = predicate.And(_ => name_le.CompareTo(_.name) >= 0);
+			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
+			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
+			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			#endregion
+			#region description
+			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
+			if (description_ne != null) predicate = predicate.And(_ => _.description != description_ne);
+			if (description_lt != null) predicate = predicate.And(_ => description_lt.CompareTo(_.description) > 0);
+			if (description_gt != null) predicate = predicate.And(_ => description_gt.CompareTo(_.description) < 0);
+			if (description_le != null) predicate = predicate.And(_ => description_le.CompareTo(_.description) >= 0);
+			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
+			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
+			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			#endregion
+			#region display_order
+			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
+			if (display_order_ne != null) predicate = predicate.And(_ => _.display_order != display_order_ne);
+			if (display_order_lt != null) predicate = predicate.And(_ => _.display_order < display_order_lt);
+			if (display_order_gt != null) predicate = predicate.And(_ => _.display_order > display_order_gt);
+			if (display_order_le != null) predicate = predicate.And(_ => _.display_order <= display_order_le);
+			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
+			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
+			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
+	#region 職階種別
+	/// <summary>
+	/// 職階種別
+	/// </summary>
+	[Table(Schema="Master", Name="PositionType"), DataContract]
+	public partial class PositionType : TableBase<PositionType>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region position_type_id : int
+
+		private int _position_type_id;
+		/// <summary>
+		/// 職階ID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
+		public  int  position_type_id
+		{
+			get { return _position_type_id; }
+			set
+			{
+				if (_position_type_id != value)
+				{
+					Beforeposition_type_idChanged(value);
+					_position_type_id = value;
+					Afterposition_type_idChanged();
+
+					Onposition_type_idChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeposition_type_idChanged(int newValue);
+		partial void Afterposition_type_idChanged();
+
+		public const string NameOfposition_type_id = "position_type_id";
+
+		private static readonly PropertyChangedEventArgs _position_type_idChangedEventArgs = new PropertyChangedEventArgs(NameOfposition_type_id);
+
+		private void Onposition_type_idChanged()
+		{
+			OnPropertyChanged(_position_type_idChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region name : string
+
+		private string _name;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  string  name
+		{
+			get { return _name; }
+			set
+			{
+				if (_name != value)
+				{
+					BeforenameChanged(value);
+					_name = value;
+					AfternameChanged();
+
+					OnnameChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforenameChanged(string newValue);
+		partial void AfternameChanged();
+
+		public const string NameOfname = "name";
+
+		private static readonly PropertyChangedEventArgs _nameChangedEventArgs = new PropertyChangedEventArgs(NameOfname);
+
+		private void OnnameChanged()
+		{
+			OnPropertyChanged(_nameChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region description : string
+
+		private string _description;
+		/// <summary>
+		/// 説明
+		/// </summary>
+		[Column(DbType="nvarchar(64)", DataType=DataType.NVarChar, Length=64), DataMember, NotNull]
+		public  string  description
+		{
+			get { return _description; }
+			set
+			{
+				if (_description != value)
+				{
+					BeforedescriptionChanged(value);
+					_description = value;
+					AfterdescriptionChanged();
+
+					OndescriptionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforedescriptionChanged(string newValue);
+		partial void AfterdescriptionChanged();
+
+		public const string NameOfdescription = "description";
+
+		private static readonly PropertyChangedEventArgs _descriptionChangedEventArgs = new PropertyChangedEventArgs(NameOfdescription);
+
+		private void OndescriptionChanged()
+		{
+			OnPropertyChanged(_descriptionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region display_order : int
+
+		private int _display_order;
+		/// <summary>
+		/// 表示順
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  int  display_order
+		{
+			get { return _display_order; }
+			set
+			{
+				if (_display_order != value)
+				{
+					Beforedisplay_orderChanged(value);
+					_display_order = value;
+					Afterdisplay_orderChanged();
+
+					Ondisplay_orderChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforedisplay_orderChanged(int newValue);
+		partial void Afterdisplay_orderChanged();
+
+		public const string NameOfdisplay_order = "display_order";
+
+		private static readonly PropertyChangedEventArgs _display_orderChangedEventArgs = new PropertyChangedEventArgs(NameOfdisplay_order);
+
+		private void Ondisplay_orderChanged()
+		{
+			OnPropertyChanged(_display_orderChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		#endregion
+
+		#region Constructor
+
+		public PositionType()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			position_type_id = 0;
+			name = "";
+			description = "";
+			display_order = 0;
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region 職階種別条件
+	/// <summary>
+	/// 職階種別条件
+	/// </summary>
+	[DataContract]
+	public partial class PositionTypeCondition : PositionTypeConditionBase
+	{
+	}
+
+	/// <summary>
+	/// 職階種別条件ベース
+	/// </summary>
+	[DataContract]
+	public class PositionTypeConditionBase : ConditionBase<PositionType>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region position_type_id
+		[DataMember] public int? position_type_id_eq { get; set; }
+		[DataMember] public int? position_type_id_ne { get; set; }
+		[DataMember] public int? position_type_id_lt { get; set; }
+		[DataMember] public int? position_type_id_gt { get; set; }
+		[DataMember] public int? position_type_id_le { get; set; }
+		[DataMember] public int? position_type_id_ge { get; set; }
+		[DataMember] public IEnumerable<int> position_type_id_in { get; set; }
+		[DataMember] public IEnumerable<int> position_type_id_ni { get; set; }
+		[DataMember] public (int? low, int? high)? position_type_id_between { get; set; }
+		#endregion
+		#region name
+		[DataMember] public string name_eq { get; set; }
+		[DataMember] public string name_ne { get; set; }
+		[DataMember] public string name_lt { get; set; }
+		[DataMember] public string name_gt { get; set; }
+		[DataMember] public string name_le { get; set; }
+		[DataMember] public string name_ge { get; set; }
+		[DataMember] public IEnumerable<string> name_in { get; set; }
+		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		[DataMember] public (string low, string high)? name_between { get; set; }
+		[DataMember] public string name_like { get; set; }
+		#endregion
+		#region description
+		[DataMember] public string description_eq { get; set; }
+		[DataMember] public string description_ne { get; set; }
+		[DataMember] public string description_lt { get; set; }
+		[DataMember] public string description_gt { get; set; }
+		[DataMember] public string description_le { get; set; }
+		[DataMember] public string description_ge { get; set; }
+		[DataMember] public IEnumerable<string> description_in { get; set; }
+		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		[DataMember] public (string low, string high)? description_between { get; set; }
+		[DataMember] public string description_like { get; set; }
+		#endregion
+		#region display_order
+		[DataMember] public int? display_order_eq { get; set; }
+		[DataMember] public int? display_order_ne { get; set; }
+		[DataMember] public int? display_order_lt { get; set; }
+		[DataMember] public int? display_order_gt { get; set; }
+		[DataMember] public int? display_order_le { get; set; }
+		[DataMember] public int? display_order_ge { get; set; }
+		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<PositionType, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region position_type_id
+			if (position_type_id_eq != null) predicate = predicate.And(_ => _.position_type_id == position_type_id_eq);
+			if (position_type_id_ne != null) predicate = predicate.And(_ => _.position_type_id != position_type_id_ne);
+			if (position_type_id_lt != null) predicate = predicate.And(_ => _.position_type_id < position_type_id_lt);
+			if (position_type_id_gt != null) predicate = predicate.And(_ => _.position_type_id > position_type_id_gt);
+			if (position_type_id_le != null) predicate = predicate.And(_ => _.position_type_id <= position_type_id_le);
+			if (position_type_id_ge != null) predicate = predicate.And(_ => _.position_type_id >= position_type_id_ge);
+			if (position_type_id_in != null) predicate = predicate.And(_ => position_type_id_in.Contains(_.position_type_id));
+			if (position_type_id_ni != null) predicate = predicate.And(_ => !position_type_id_ni.Contains(_.position_type_id));
+			#endregion
+			#region name
+			if (name_eq != null) predicate = predicate.And(_ => _.name == name_eq);
+			if (name_ne != null) predicate = predicate.And(_ => _.name != name_ne);
+			if (name_lt != null) predicate = predicate.And(_ => name_lt.CompareTo(_.name) > 0);
+			if (name_gt != null) predicate = predicate.And(_ => name_gt.CompareTo(_.name) < 0);
+			if (name_le != null) predicate = predicate.And(_ => name_le.CompareTo(_.name) >= 0);
+			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
+			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
+			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			#endregion
+			#region description
+			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
+			if (description_ne != null) predicate = predicate.And(_ => _.description != description_ne);
+			if (description_lt != null) predicate = predicate.And(_ => description_lt.CompareTo(_.description) > 0);
+			if (description_gt != null) predicate = predicate.And(_ => description_gt.CompareTo(_.description) < 0);
+			if (description_le != null) predicate = predicate.And(_ => description_le.CompareTo(_.description) >= 0);
+			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
+			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
+			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			#endregion
+			#region display_order
+			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
+			if (display_order_ne != null) predicate = predicate.And(_ => _.display_order != display_order_ne);
+			if (display_order_lt != null) predicate = predicate.And(_ => _.display_order < display_order_lt);
+			if (display_order_gt != null) predicate = predicate.And(_ => _.display_order > display_order_gt);
+			if (display_order_le != null) predicate = predicate.And(_ => _.display_order <= display_order_le);
+			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
+			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
+			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region created_at
+			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
+			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
+			if (created_at_lt != null) predicate = predicate.And(_ => _.created_at < created_at_lt);
+			if (created_at_gt != null) predicate = predicate.And(_ => _.created_at > created_at_gt);
+			if (created_at_le != null) predicate = predicate.And(_ => _.created_at <= created_at_le);
+			if (created_at_ge != null) predicate = predicate.And(_ => _.created_at >= created_at_ge);
+			if (created_at_in != null) predicate = predicate.And(_ => created_at_in.Contains(_.created_at));
+			if (created_at_ni != null) predicate = predicate.And(_ => !created_at_ni.Contains(_.created_at));
+			#endregion
+			#region created_by
+			if (created_by_eq != null) predicate = predicate.And(_ => _.created_by == created_by_eq);
+			if (created_by_ne != null) predicate = predicate.And(_ => _.created_by != created_by_ne);
+			if (created_by_lt != null) predicate = predicate.And(_ => _.created_by < created_by_lt);
+			if (created_by_gt != null) predicate = predicate.And(_ => _.created_by > created_by_gt);
+			if (created_by_le != null) predicate = predicate.And(_ => _.created_by <= created_by_le);
+			if (created_by_ge != null) predicate = predicate.And(_ => _.created_by >= created_by_ge);
+			if (created_by_in != null) predicate = predicate.And(_ => created_by_in.Contains(_.created_by.Value));
+			if (created_by_ni != null) predicate = predicate.And(_ => !created_by_ni.Contains(_.created_by.Value));
+			if (created_by_isnull) predicate = predicate.And(_ => _.created_by == null);
+			if (created_by_isnotnull) predicate = predicate.And(_ => _.created_by != null);
+			#endregion
+			#region modified_at
+			if (modified_at_eq != null) predicate = predicate.And(_ => _.modified_at == modified_at_eq);
+			if (modified_at_ne != null) predicate = predicate.And(_ => _.modified_at != modified_at_ne);
+			if (modified_at_lt != null) predicate = predicate.And(_ => _.modified_at < modified_at_lt);
+			if (modified_at_gt != null) predicate = predicate.And(_ => _.modified_at > modified_at_gt);
+			if (modified_at_le != null) predicate = predicate.And(_ => _.modified_at <= modified_at_le);
+			if (modified_at_ge != null) predicate = predicate.And(_ => _.modified_at >= modified_at_ge);
+			if (modified_at_in != null) predicate = predicate.And(_ => modified_at_in.Contains(_.modified_at));
+			if (modified_at_ni != null) predicate = predicate.And(_ => !modified_at_ni.Contains(_.modified_at));
+			#endregion
+			#region modified_by
+			if (modified_by_eq != null) predicate = predicate.And(_ => _.modified_by == modified_by_eq);
+			if (modified_by_ne != null) predicate = predicate.And(_ => _.modified_by != modified_by_ne);
+			if (modified_by_lt != null) predicate = predicate.And(_ => _.modified_by < modified_by_lt);
+			if (modified_by_gt != null) predicate = predicate.And(_ => _.modified_by > modified_by_gt);
+			if (modified_by_le != null) predicate = predicate.And(_ => _.modified_by <= modified_by_le);
+			if (modified_by_ge != null) predicate = predicate.And(_ => _.modified_by >= modified_by_ge);
+			if (modified_by_in != null) predicate = predicate.And(_ => modified_by_in.Contains(_.modified_by.Value));
+			if (modified_by_ni != null) predicate = predicate.And(_ => !modified_by_ni.Contains(_.modified_by.Value));
+			if (modified_by_isnull) predicate = predicate.And(_ => _.modified_by == null);
+			if (modified_by_isnotnull) predicate = predicate.And(_ => _.modified_by != null);
+			#endregion
+			#region removed_at
+			if (removed_at_eq != null) predicate = predicate.And(_ => _.removed_at == removed_at_eq);
+			if (removed_at_ne != null) predicate = predicate.And(_ => _.removed_at != removed_at_ne);
+			if (removed_at_lt != null) predicate = predicate.And(_ => _.removed_at < removed_at_lt);
+			if (removed_at_gt != null) predicate = predicate.And(_ => _.removed_at > removed_at_gt);
+			if (removed_at_le != null) predicate = predicate.And(_ => _.removed_at <= removed_at_le);
+			if (removed_at_ge != null) predicate = predicate.And(_ => _.removed_at >= removed_at_ge);
+			if (removed_at_in != null) predicate = predicate.And(_ => removed_at_in.Contains(_.removed_at.Value));
+			if (removed_at_ni != null) predicate = predicate.And(_ => !removed_at_ni.Contains(_.removed_at.Value));
+			if (removed_at_isnull) predicate = predicate.And(_ => _.removed_at == null);
+			if (removed_at_isnotnull) predicate = predicate.And(_ => _.removed_at != null);
+			#endregion
+			#region row_version
+			if (row_version_eq != null) predicate = predicate.And(_ => _.row_version == row_version_eq);
+			if (row_version_ne != null) predicate = predicate.And(_ => _.row_version != row_version_ne);
+			if (row_version_isnull) predicate = predicate.And(_ => _.row_version == null);
+			if (row_version_isnotnull) predicate = predicate.And(_ => _.row_version != null);
+			#endregion
+
+			return predicate;
+		}
+		#endregion
+	}
+	#endregion
+	#endregion
+	#region 教員資格種別
+	/// <summary>
+	/// 教員資格種別
+	/// </summary>
+	[Table(Schema="Master", Name="TeacherLisenceType"), DataContract]
+	public partial class TeacherLisenceType : TableBase<TeacherLisenceType>, INotifyPropertyChanged
+	{
+		#region uid : int
+
+		private int _uid;
+		/// <summary>
+		/// ユニークID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, Identity]
+		public  int  uid
+		{
+			get { return _uid; }
+			set
+			{
+				if (_uid != value)
+				{
+					BeforeuidChanged(value);
+					_uid = value;
+					AfteruidChanged();
+
+					OnuidChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeuidChanged(int newValue);
+		partial void AfteruidChanged();
+
+		public const string NameOfuid = "uid";
+
+		private static readonly PropertyChangedEventArgs _uidChangedEventArgs = new PropertyChangedEventArgs(NameOfuid);
+
+		private void OnuidChanged()
+		{
+			OnPropertyChanged(_uidChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region teacher_lisence_type_id : int
+
+		private int _teacher_lisence_type_id;
+		/// <summary>
+		/// 教員資格種別ID
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, PrimaryKey(Order = 1), System.ComponentModel.DataAnnotations.Required]
+		public  int  teacher_lisence_type_id
+		{
+			get { return _teacher_lisence_type_id; }
+			set
+			{
+				if (_teacher_lisence_type_id != value)
+				{
+					Beforeteacher_lisence_type_idChanged(value);
+					_teacher_lisence_type_id = value;
+					Afterteacher_lisence_type_idChanged();
+
+					Onteacher_lisence_type_idChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeteacher_lisence_type_idChanged(int newValue);
+		partial void Afterteacher_lisence_type_idChanged();
+
+		public const string NameOfteacher_lisence_type_id = "teacher_lisence_type_id";
+
+		private static readonly PropertyChangedEventArgs _teacher_lisence_type_idChangedEventArgs = new PropertyChangedEventArgs(NameOfteacher_lisence_type_id);
+
+		private void Onteacher_lisence_type_idChanged()
+		{
+			OnPropertyChanged(_teacher_lisence_type_idChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region name : string
+
+		private string _name;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[Column(DbType="nvarchar(10)", DataType=DataType.NVarChar, Length=10), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  string  name
+		{
+			get { return _name; }
+			set
+			{
+				if (_name != value)
+				{
+					BeforenameChanged(value);
+					_name = value;
+					AfternameChanged();
+
+					OnnameChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforenameChanged(string newValue);
+		partial void AfternameChanged();
+
+		public const string NameOfname = "name";
+
+		private static readonly PropertyChangedEventArgs _nameChangedEventArgs = new PropertyChangedEventArgs(NameOfname);
+
+		private void OnnameChanged()
+		{
+			OnPropertyChanged(_nameChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region rank : int
+
+		private int _rank;
+		/// <summary>
+		/// ランク
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  int  rank
+		{
+			get { return _rank; }
+			set
+			{
+				if (_rank != value)
+				{
+					BeforerankChanged(value);
+					_rank = value;
+					AfterrankChanged();
+
+					OnrankChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforerankChanged(int newValue);
+		partial void AfterrankChanged();
+
+		public const string NameOfrank = "rank";
+
+		private static readonly PropertyChangedEventArgs _rankChangedEventArgs = new PropertyChangedEventArgs(NameOfrank);
+
+		private void OnrankChanged()
+		{
+			OnPropertyChanged(_rankChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region description : string
+
+		private string _description;
+		/// <summary>
+		/// 説明
+		/// </summary>
+		[Column(DbType="nvarchar(64)", DataType=DataType.NVarChar, Length=64), DataMember, NotNull]
+		public  string  description
+		{
+			get { return _description; }
+			set
+			{
+				if (_description != value)
+				{
+					BeforedescriptionChanged(value);
+					_description = value;
+					AfterdescriptionChanged();
+
+					OndescriptionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforedescriptionChanged(string newValue);
+		partial void AfterdescriptionChanged();
+
+		public const string NameOfdescription = "description";
+
+		private static readonly PropertyChangedEventArgs _descriptionChangedEventArgs = new PropertyChangedEventArgs(NameOfdescription);
+
+		private void OndescriptionChanged()
+		{
+			OnPropertyChanged(_descriptionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region display_order : int
+
+		private int _display_order;
+		/// <summary>
+		/// 表示順
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, NotNull, System.ComponentModel.DataAnnotations.Required]
+		public  int  display_order
+		{
+			get { return _display_order; }
+			set
+			{
+				if (_display_order != value)
+				{
+					Beforedisplay_orderChanged(value);
+					_display_order = value;
+					Afterdisplay_orderChanged();
+
+					Ondisplay_orderChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforedisplay_orderChanged(int newValue);
+		partial void Afterdisplay_orderChanged();
+
+		public const string NameOfdisplay_order = "display_order";
+
+		private static readonly PropertyChangedEventArgs _display_orderChangedEventArgs = new PropertyChangedEventArgs(NameOfdisplay_order);
+
+		private void Ondisplay_orderChanged()
+		{
+			OnPropertyChanged(_display_orderChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_at : DateTime
+
+		private DateTime _created_at;
+		/// <summary>
+		/// 作成日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  created_at
+		{
+			get { return _created_at; }
+			set
+			{
+				if (_created_at != value)
+				{
+					Beforecreated_atChanged(value);
+					_created_at = value;
+					Aftercreated_atChanged();
+
+					Oncreated_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_atChanged(DateTime newValue);
+		partial void Aftercreated_atChanged();
+
+		public const string NameOfcreated_at = "created_at";
+
+		private static readonly PropertyChangedEventArgs _created_atChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_at);
+
+		private void Oncreated_atChanged()
+		{
+			OnPropertyChanged(_created_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region created_by : int?
+
+		private int? _created_by;
+		/// <summary>
+		/// 作成者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  created_by
+		{
+			get { return _created_by; }
+			set
+			{
+				if (_created_by != value)
+				{
+					Beforecreated_byChanged(value);
+					_created_by = value;
+					Aftercreated_byChanged();
+
+					Oncreated_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforecreated_byChanged(int? newValue);
+		partial void Aftercreated_byChanged();
+
+		public const string NameOfcreated_by = "created_by";
+
+		private static readonly PropertyChangedEventArgs _created_byChangedEventArgs = new PropertyChangedEventArgs(NameOfcreated_by);
+
+		private void Oncreated_byChanged()
+		{
+			OnPropertyChanged(_created_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_at : DateTime
+
+		private DateTime _modified_at;
+		/// <summary>
+		/// 更新日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  modified_at
+		{
+			get { return _modified_at; }
+			set
+			{
+				if (_modified_at != value)
+				{
+					Beforemodified_atChanged(value);
+					_modified_at = value;
+					Aftermodified_atChanged();
+
+					Onmodified_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_atChanged(DateTime newValue);
+		partial void Aftermodified_atChanged();
+
+		public const string NameOfmodified_at = "modified_at";
+
+		private static readonly PropertyChangedEventArgs _modified_atChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_at);
+
+		private void Onmodified_atChanged()
+		{
+			OnPropertyChanged(_modified_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region modified_by : int?
+
+		private int? _modified_by;
+		/// <summary>
+		/// 更新者
+		/// </summary>
+		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable]
+		public  int?  modified_by
+		{
+			get { return _modified_by; }
+			set
+			{
+				if (_modified_by != value)
+				{
+					Beforemodified_byChanged(value);
+					_modified_by = value;
+					Aftermodified_byChanged();
+
+					Onmodified_byChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforemodified_byChanged(int? newValue);
+		partial void Aftermodified_byChanged();
+
+		public const string NameOfmodified_by = "modified_by";
+
+		private static readonly PropertyChangedEventArgs _modified_byChangedEventArgs = new PropertyChangedEventArgs(NameOfmodified_by);
+
+		private void Onmodified_byChanged()
+		{
+			OnPropertyChanged(_modified_byChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region removed_at : DateTime?
+
+		private DateTime? _removed_at;
+		/// <summary>
+		/// 削除日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  removed_at
+		{
+			get { return _removed_at; }
+			set
+			{
+				if (_removed_at != value)
+				{
+					Beforeremoved_atChanged(value);
+					_removed_at = value;
+					Afterremoved_atChanged();
+
+					Onremoved_atChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeremoved_atChanged(DateTime? newValue);
+		partial void Afterremoved_atChanged();
+
+		public const string NameOfremoved_at = "removed_at";
+
+		private static readonly PropertyChangedEventArgs _removed_atChangedEventArgs = new PropertyChangedEventArgs(NameOfremoved_at);
+
+		private void Onremoved_atChanged()
+		{
+			OnPropertyChanged(_removed_atChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region row_version : byte[]
+
+		private byte[] _row_version;
+		/// <summary>
+		/// 版
+		/// </summary>
+		[Column(DbType="timestamp", DataType=DataType.Timestamp, SkipOnInsert=true, SkipOnUpdate=true), DataMember, Nullable]
+		public  byte[]  row_version
+		{
+			get { return _row_version; }
+			set
+			{
+				if (_row_version != value)
+				{
+					Beforerow_versionChanged(value);
+					_row_version = value;
+					Afterrow_versionChanged();
+
+					Onrow_versionChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforerow_versionChanged(byte[] newValue);
+		partial void Afterrow_versionChanged();
+
+		public const string NameOfrow_version = "row_version";
+
+		private static readonly PropertyChangedEventArgs _row_versionChangedEventArgs = new PropertyChangedEventArgs(NameOfrow_version);
+
+		private void Onrow_versionChanged()
+		{
+			OnPropertyChanged(_row_versionChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region enum用アクセスラッパー
+		#endregion
+
+		#region Constructor
+
+		public TeacherLisenceType()
+		{
+			#region フィールド初期化
+			uid = default(int);
+			teacher_lisence_type_id = 0;
+			name = "";
+			rank = 0;
+			description = "";
+			display_order = 0;
+			created_at = DateTime.UtcNow;
+			created_by = null;
+			modified_at = DateTime.UtcNow;
+			modified_by = null;
+			removed_at = null;
+			row_version = default(byte[]);
+			#endregion
+		}
+
+		#endregion
+
+		#region Association
+
+
+		#endregion
+
+		#region INotifyPropertyChanged support
+
+		[field : NonSerialized]
+		public virtual event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		protected void OnPropertyChanged(PropertyChangedEventArgs arg)
+		{
+			var propertyChanged = PropertyChanged;
+
+			if (propertyChanged != null)
+			{
+				propertyChanged(this, arg);
+			}
+		}
+
+		#endregion
+
+	}
+	#region 教員資格種別条件
+	/// <summary>
+	/// 教員資格種別条件
+	/// </summary>
+	[DataContract]
+	public partial class TeacherLisenceTypeCondition : TeacherLisenceTypeConditionBase
+	{
+	}
+
+	/// <summary>
+	/// 教員資格種別条件ベース
+	/// </summary>
+	[DataContract]
+	public class TeacherLisenceTypeConditionBase : ConditionBase<TeacherLisenceType>
+	{
+		#region properties
+		#region uid
+		[DataMember] public int? uid_eq { get; set; }
+		[DataMember] public int? uid_ne { get; set; }
+		[DataMember] public int? uid_lt { get; set; }
+		[DataMember] public int? uid_gt { get; set; }
+		[DataMember] public int? uid_le { get; set; }
+		[DataMember] public int? uid_ge { get; set; }
+		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		[DataMember] public (int? low, int? high)? uid_between { get; set; }
+		#endregion
+		#region teacher_lisence_type_id
+		[DataMember] public int? teacher_lisence_type_id_eq { get; set; }
+		[DataMember] public int? teacher_lisence_type_id_ne { get; set; }
+		[DataMember] public int? teacher_lisence_type_id_lt { get; set; }
+		[DataMember] public int? teacher_lisence_type_id_gt { get; set; }
+		[DataMember] public int? teacher_lisence_type_id_le { get; set; }
+		[DataMember] public int? teacher_lisence_type_id_ge { get; set; }
+		[DataMember] public IEnumerable<int> teacher_lisence_type_id_in { get; set; }
+		[DataMember] public IEnumerable<int> teacher_lisence_type_id_ni { get; set; }
+		[DataMember] public (int? low, int? high)? teacher_lisence_type_id_between { get; set; }
+		#endregion
+		#region name
+		[DataMember] public string name_eq { get; set; }
+		[DataMember] public string name_ne { get; set; }
+		[DataMember] public string name_lt { get; set; }
+		[DataMember] public string name_gt { get; set; }
+		[DataMember] public string name_le { get; set; }
+		[DataMember] public string name_ge { get; set; }
+		[DataMember] public IEnumerable<string> name_in { get; set; }
+		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		[DataMember] public (string low, string high)? name_between { get; set; }
+		[DataMember] public string name_like { get; set; }
+		#endregion
+		#region rank
+		[DataMember] public int? rank_eq { get; set; }
+		[DataMember] public int? rank_ne { get; set; }
+		[DataMember] public int? rank_lt { get; set; }
+		[DataMember] public int? rank_gt { get; set; }
+		[DataMember] public int? rank_le { get; set; }
+		[DataMember] public int? rank_ge { get; set; }
+		[DataMember] public IEnumerable<int> rank_in { get; set; }
+		[DataMember] public IEnumerable<int> rank_ni { get; set; }
+		[DataMember] public (int? low, int? high)? rank_between { get; set; }
+		#endregion
+		#region description
+		[DataMember] public string description_eq { get; set; }
+		[DataMember] public string description_ne { get; set; }
+		[DataMember] public string description_lt { get; set; }
+		[DataMember] public string description_gt { get; set; }
+		[DataMember] public string description_le { get; set; }
+		[DataMember] public string description_ge { get; set; }
+		[DataMember] public IEnumerable<string> description_in { get; set; }
+		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		[DataMember] public (string low, string high)? description_between { get; set; }
+		[DataMember] public string description_like { get; set; }
+		#endregion
+		#region display_order
+		[DataMember] public int? display_order_eq { get; set; }
+		[DataMember] public int? display_order_ne { get; set; }
+		[DataMember] public int? display_order_lt { get; set; }
+		[DataMember] public int? display_order_gt { get; set; }
+		[DataMember] public int? display_order_le { get; set; }
+		[DataMember] public int? display_order_ge { get; set; }
+		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region created_at
+		[DataMember] public DateTime? created_at_eq { get; set; }
+		[DataMember] public DateTime? created_at_ne { get; set; }
+		[DataMember] public DateTime? created_at_lt { get; set; }
+		[DataMember] public DateTime? created_at_gt { get; set; }
+		[DataMember] public DateTime? created_at_le { get; set; }
+		[DataMember] public DateTime? created_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
+		#endregion
+		#region created_by
+		[DataMember] public int? created_by_eq { get; set; }
+		[DataMember] public int? created_by_ne { get; set; }
+		[DataMember] public int? created_by_lt { get; set; }
+		[DataMember] public int? created_by_gt { get; set; }
+		[DataMember] public int? created_by_le { get; set; }
+		[DataMember] public int? created_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		[DataMember] public bool created_by_isnotnull { get; set; } = false;
+		#endregion
+		#region modified_at
+		[DataMember] public DateTime? modified_at_eq { get; set; }
+		[DataMember] public DateTime? modified_at_ne { get; set; }
+		[DataMember] public DateTime? modified_at_lt { get; set; }
+		[DataMember] public DateTime? modified_at_gt { get; set; }
+		[DataMember] public DateTime? modified_at_le { get; set; }
+		[DataMember] public DateTime? modified_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
+		#endregion
+		#region modified_by
+		[DataMember] public int? modified_by_eq { get; set; }
+		[DataMember] public int? modified_by_ne { get; set; }
+		[DataMember] public int? modified_by_lt { get; set; }
+		[DataMember] public int? modified_by_gt { get; set; }
+		[DataMember] public int? modified_by_le { get; set; }
+		[DataMember] public int? modified_by_ge { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
+		#endregion
+		#region removed_at
+		[DataMember] public DateTime? removed_at_eq { get; set; }
+		[DataMember] public DateTime? removed_at_ne { get; set; }
+		[DataMember] public DateTime? removed_at_lt { get; set; }
+		[DataMember] public DateTime? removed_at_gt { get; set; }
+		[DataMember] public DateTime? removed_at_le { get; set; }
+		[DataMember] public DateTime? removed_at_ge { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
+		#endregion
+		#region row_version
+		[DataMember] public byte[] row_version_eq { get; set; }
+		[DataMember] public byte[] row_version_ne { get; set; }
+		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		[DataMember] public bool row_version_isnotnull { get; set; } = false;
+		#endregion
+		#endregion
+
+		#region override
+		override public Expression<Func<TeacherLisenceType, bool>> CreatePredicate()
+		{
+			var predicate = base.CreatePredicate();
+
+			#region uid
+			if (uid_eq != null) predicate = predicate.And(_ => _.uid == uid_eq);
+			if (uid_ne != null) predicate = predicate.And(_ => _.uid != uid_ne);
+			if (uid_lt != null) predicate = predicate.And(_ => _.uid < uid_lt);
+			if (uid_gt != null) predicate = predicate.And(_ => _.uid > uid_gt);
+			if (uid_le != null) predicate = predicate.And(_ => _.uid <= uid_le);
+			if (uid_ge != null) predicate = predicate.And(_ => _.uid >= uid_ge);
+			if (uid_in != null) predicate = predicate.And(_ => uid_in.Contains(_.uid));
+			if (uid_ni != null) predicate = predicate.And(_ => !uid_ni.Contains(_.uid));
+			#endregion
+			#region teacher_lisence_type_id
+			if (teacher_lisence_type_id_eq != null) predicate = predicate.And(_ => _.teacher_lisence_type_id == teacher_lisence_type_id_eq);
+			if (teacher_lisence_type_id_ne != null) predicate = predicate.And(_ => _.teacher_lisence_type_id != teacher_lisence_type_id_ne);
+			if (teacher_lisence_type_id_lt != null) predicate = predicate.And(_ => _.teacher_lisence_type_id < teacher_lisence_type_id_lt);
+			if (teacher_lisence_type_id_gt != null) predicate = predicate.And(_ => _.teacher_lisence_type_id > teacher_lisence_type_id_gt);
+			if (teacher_lisence_type_id_le != null) predicate = predicate.And(_ => _.teacher_lisence_type_id <= teacher_lisence_type_id_le);
+			if (teacher_lisence_type_id_ge != null) predicate = predicate.And(_ => _.teacher_lisence_type_id >= teacher_lisence_type_id_ge);
+			if (teacher_lisence_type_id_in != null) predicate = predicate.And(_ => teacher_lisence_type_id_in.Contains(_.teacher_lisence_type_id));
+			if (teacher_lisence_type_id_ni != null) predicate = predicate.And(_ => !teacher_lisence_type_id_ni.Contains(_.teacher_lisence_type_id));
+			#endregion
+			#region name
+			if (name_eq != null) predicate = predicate.And(_ => _.name == name_eq);
+			if (name_ne != null) predicate = predicate.And(_ => _.name != name_ne);
+			if (name_lt != null) predicate = predicate.And(_ => name_lt.CompareTo(_.name) > 0);
+			if (name_gt != null) predicate = predicate.And(_ => name_gt.CompareTo(_.name) < 0);
+			if (name_le != null) predicate = predicate.And(_ => name_le.CompareTo(_.name) >= 0);
+			if (name_ge != null) predicate = predicate.And(_ => name_ge.CompareTo(_.name) <= 0);
+			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
+			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
+			#endregion
+			#region rank
+			if (rank_eq != null) predicate = predicate.And(_ => _.rank == rank_eq);
+			if (rank_ne != null) predicate = predicate.And(_ => _.rank != rank_ne);
+			if (rank_lt != null) predicate = predicate.And(_ => _.rank < rank_lt);
+			if (rank_gt != null) predicate = predicate.And(_ => _.rank > rank_gt);
+			if (rank_le != null) predicate = predicate.And(_ => _.rank <= rank_le);
+			if (rank_ge != null) predicate = predicate.And(_ => _.rank >= rank_ge);
+			if (rank_in != null) predicate = predicate.And(_ => rank_in.Contains(_.rank));
+			if (rank_ni != null) predicate = predicate.And(_ => !rank_ni.Contains(_.rank));
+			#endregion
+			#region description
+			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);
+			if (description_ne != null) predicate = predicate.And(_ => _.description != description_ne);
+			if (description_lt != null) predicate = predicate.And(_ => description_lt.CompareTo(_.description) > 0);
+			if (description_gt != null) predicate = predicate.And(_ => description_gt.CompareTo(_.description) < 0);
+			if (description_le != null) predicate = predicate.And(_ => description_le.CompareTo(_.description) >= 0);
+			if (description_ge != null) predicate = predicate.And(_ => description_ge.CompareTo(_.description) <= 0);
+			if (description_in != null) predicate = predicate.And(_ => description_in.Contains(_.description));
+			if (description_ni != null) predicate = predicate.And(_ => !description_ni.Contains(_.description));
+			#endregion
+			#region display_order
+			if (display_order_eq != null) predicate = predicate.And(_ => _.display_order == display_order_eq);
+			if (display_order_ne != null) predicate = predicate.And(_ => _.display_order != display_order_ne);
+			if (display_order_lt != null) predicate = predicate.And(_ => _.display_order < display_order_lt);
+			if (display_order_gt != null) predicate = predicate.And(_ => _.display_order > display_order_gt);
+			if (display_order_le != null) predicate = predicate.And(_ => _.display_order <= display_order_le);
+			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
+			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
+			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -19089,6 +23272,46 @@ namespace OpenAPITest.Domain
 		public static Staff Find(this ITable<Staff> table, string p_staff_no)
 		{
 			return table.SingleOrDefault(_ => _.staff_no == p_staff_no);
+		}
+		/// <summary>
+		/// 主キーを指定してTeacherデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_teacher_no">教員番号(teacher_no)</param>
+		/// <returns></returns>
+		public static Teacher Find(this ITable<Teacher> table, string p_teacher_no)
+		{
+			return table.SingleOrDefault(_ => _.teacher_no == p_teacher_no);
+		}
+		/// <summary>
+		/// 主キーを指定してWorkStyleTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_work_style_type_id">勤務形態種別ID(work_style_type_id)</param>
+		/// <returns></returns>
+		public static WorkStyleType Find(this ITable<WorkStyleType> table, int p_work_style_type_id)
+		{
+			return table.SingleOrDefault(_ => _.work_style_type_id == p_work_style_type_id);
+		}
+		/// <summary>
+		/// 主キーを指定してPositionTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_position_type_id">職階ID(position_type_id)</param>
+		/// <returns></returns>
+		public static PositionType Find(this ITable<PositionType> table, int p_position_type_id)
+		{
+			return table.SingleOrDefault(_ => _.position_type_id == p_position_type_id);
+		}
+		/// <summary>
+		/// 主キーを指定してTeacherLisenceTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_teacher_lisence_type_id">教員資格種別ID(teacher_lisence_type_id)</param>
+		/// <returns></returns>
+		public static TeacherLisenceType Find(this ITable<TeacherLisenceType> table, int p_teacher_lisence_type_id)
+		{
+			return table.SingleOrDefault(_ => _.teacher_lisence_type_id == p_teacher_lisence_type_id);
 		}
 		/// <summary>
 		/// 主キーを指定してPersonNameデータ取得
