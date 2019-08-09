@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_PersonName")]
+		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]PersonNameCondition c)
@@ -60,7 +61,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_PersonName")]
+		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<PersonName>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]PersonNameCondition c, [FromQuery]bool with_PersonNameType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
@@ -97,7 +98,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="seq">連番(seq)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_PersonName")]
+		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(PersonName), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -128,7 +129,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">PersonNameオブジェクト</returns>
-		[Authorize(Policy = "Create_PersonName")]
+		[PermissionTypeAuthorize("Create_PersonName")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -153,8 +154,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_PersonName")]
-		[Authorize(Policy = "Update_PersonName")]
+		[PermissionTypeAuthorize("Create_PersonName")]
+		[PermissionTypeAuthorize("Update_PersonName")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -179,7 +180,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_PersonName")]
+		[PermissionTypeAuthorize("Create_PersonName")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -204,8 +205,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_PersonName")]
-		[Authorize(Policy = "Update_PersonName")]
+		[PermissionTypeAuthorize("Create_PersonName")]
+		[PermissionTypeAuthorize("Update_PersonName")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -233,7 +234,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="seq">連番(seq)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_PersonName")]
+		[PermissionTypeAuthorize("Update_PersonName")]
 		[HttpPut, Route("modify/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -260,7 +261,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
 		/// <param name="seq">連番(seq)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PersonName")]
+		[PermissionTypeAuthorize("Delete_PersonName")]
 		[HttpDelete("remove/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int userType, string genericUserNo, int seq)
@@ -283,7 +284,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PersonName")]
+		[PermissionTypeAuthorize("Delete_PersonName")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]PersonNameCondition c)

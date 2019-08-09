@@ -1,14 +1,14 @@
 ﻿using LinqToDB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using OpenAPITest.Domain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace OpenAPITest.core
+using OpenAPITest.Domain;
+
+namespace OpenAPITest.CustomPolicyProvider
 {
     /// <summary>
     /// PermissionTypeRequirement要件ハンドラクラス

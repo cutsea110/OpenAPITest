@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_WorkStyleType")]
+		[PermissionTypeAuthorize("Read_WorkStyleType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]WorkStyleTypeCondition c)
@@ -58,7 +59,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_WorkStyleType")]
+		[PermissionTypeAuthorize("Read_WorkStyleType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<WorkStyleType>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]WorkStyleTypeCondition c, [FromQuery]string[] order)
@@ -83,7 +84,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="workStyleTypeId">勤務形態種別ID(work_style_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_WorkStyleType")]
+		[PermissionTypeAuthorize("Read_WorkStyleType")]
 		[HttpGet("get/{workStyleTypeId}")]
 		[ProducesResponseType(typeof(WorkStyleType), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,7 +107,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">WorkStyleTypeオブジェクト</returns>
-		[Authorize(Policy = "Create_WorkStyleType")]
+		[PermissionTypeAuthorize("Create_WorkStyleType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -131,8 +132,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_WorkStyleType")]
-		[Authorize(Policy = "Update_WorkStyleType")]
+		[PermissionTypeAuthorize("Create_WorkStyleType")]
+		[PermissionTypeAuthorize("Update_WorkStyleType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -157,7 +158,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_WorkStyleType")]
+		[PermissionTypeAuthorize("Create_WorkStyleType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -182,8 +183,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_WorkStyleType")]
-		[Authorize(Policy = "Update_WorkStyleType")]
+		[PermissionTypeAuthorize("Create_WorkStyleType")]
+		[PermissionTypeAuthorize("Update_WorkStyleType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -209,7 +210,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="workStyleTypeId">勤務形態種別ID(work_style_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_WorkStyleType")]
+		[PermissionTypeAuthorize("Update_WorkStyleType")]
 		[HttpPut, Route("modify/{workStyleTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -234,7 +235,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="workStyleTypeId">勤務形態種別ID(work_style_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_WorkStyleType")]
+		[PermissionTypeAuthorize("Delete_WorkStyleType")]
 		[HttpDelete("remove/{workStyleTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int workStyleTypeId)
@@ -258,7 +259,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_WorkStyleType")]
+		[PermissionTypeAuthorize("Delete_WorkStyleType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]WorkStyleTypeCondition c)
@@ -282,7 +283,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="workStyleTypeId">勤務形態種別ID(work_style_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_WorkStyleType")]
+		[PermissionTypeAuthorize("Delete_WorkStyleType")]
 		[HttpDelete("physically-remove/{workStyleTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int workStyleTypeId)
@@ -305,7 +306,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_WorkStyleType")]
+		[PermissionTypeAuthorize("Delete_WorkStyleType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]WorkStyleTypeCondition c)

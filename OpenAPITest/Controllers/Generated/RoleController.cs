@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_Role")]
+		[PermissionTypeAuthorize("Read_Role")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]RoleCondition c)
@@ -59,7 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_RolePermissionList">RolePermissionListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_Role")]
+		[PermissionTypeAuthorize("Read_Role")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Role>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order)
@@ -91,7 +92,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_Role")]
+		[PermissionTypeAuthorize("Read_Role")]
 		[HttpGet("get/{roleId}")]
 		[ProducesResponseType(typeof(Role), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -120,7 +121,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Roleオブジェクト</returns>
-		[Authorize(Policy = "Create_Role")]
+		[PermissionTypeAuthorize("Create_Role")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -145,8 +146,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_Role")]
-		[Authorize(Policy = "Update_Role")]
+		[PermissionTypeAuthorize("Create_Role")]
+		[PermissionTypeAuthorize("Update_Role")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -171,7 +172,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_Role")]
+		[PermissionTypeAuthorize("Create_Role")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -196,8 +197,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_Role")]
-		[Authorize(Policy = "Update_Role")]
+		[PermissionTypeAuthorize("Create_Role")]
+		[PermissionTypeAuthorize("Update_Role")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -223,7 +224,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_Role")]
+		[PermissionTypeAuthorize("Update_Role")]
 		[HttpPut, Route("modify/{roleId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -248,7 +249,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Role")]
+		[PermissionTypeAuthorize("Delete_Role")]
 		[HttpDelete("remove/{roleId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(string roleId)
@@ -272,7 +273,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Role")]
+		[PermissionTypeAuthorize("Delete_Role")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]RoleCondition c)
@@ -296,7 +297,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Role")]
+		[PermissionTypeAuthorize("Delete_Role")]
 		[HttpDelete("physically-remove/{roleId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(string roleId)
@@ -319,7 +320,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Role")]
+		[PermissionTypeAuthorize("Delete_Role")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]RoleCondition c)

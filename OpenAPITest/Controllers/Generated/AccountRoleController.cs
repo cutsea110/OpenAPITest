@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_AccountRole")]
+		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]AccountRoleCondition c)
@@ -59,7 +60,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Role">RoleをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_AccountRole")]
+		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<AccountRole>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]AccountRoleCondition c, [FromQuery]bool with_Role, [FromQuery]string[] order)
@@ -92,7 +93,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_AccountRole")]
+		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("get/{accountId}/{roleId}")]
 		[ProducesResponseType(typeof(AccountRole), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -121,7 +122,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">AccountRoleオブジェクト</returns>
-		[Authorize(Policy = "Create_AccountRole")]
+		[PermissionTypeAuthorize("Create_AccountRole")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -146,8 +147,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_AccountRole")]
-		[Authorize(Policy = "Update_AccountRole")]
+		[PermissionTypeAuthorize("Create_AccountRole")]
+		[PermissionTypeAuthorize("Update_AccountRole")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -172,7 +173,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_AccountRole")]
+		[PermissionTypeAuthorize("Create_AccountRole")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -197,8 +198,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_AccountRole")]
-		[Authorize(Policy = "Update_AccountRole")]
+		[PermissionTypeAuthorize("Create_AccountRole")]
+		[PermissionTypeAuthorize("Update_AccountRole")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -225,7 +226,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_AccountRole")]
+		[PermissionTypeAuthorize("Update_AccountRole")]
 		[HttpPut, Route("modify/{accountId}/{roleId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -251,7 +252,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_AccountRole")]
+		[PermissionTypeAuthorize("Delete_AccountRole")]
 		[HttpDelete("remove/{accountId}/{roleId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int accountId, string roleId)
@@ -274,7 +275,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_AccountRole")]
+		[PermissionTypeAuthorize("Delete_AccountRole")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]AccountRoleCondition c)

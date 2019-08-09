@@ -17,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OpenAPITest.core;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -188,17 +188,28 @@ namespace OpenAPITest
             #endregion
 
             #region Add to support Authorization by using PermissionType
-            // PermissionTypeを使った要件の定義
-            foreach (PermissionType p in Enum.GetValues(typeof(PermissionType)))
-            {
-                services.AddAuthorization(options =>
-                    options.AddPolicy(p.Val(), policy =>
-                        policy.Requirements.Add(new PermissionTypeRequirement(new[] { p }))));
-            }
-            // ASP.NET Coreのパイプラインにインジェクションする
+            // Replace the default authorization policy provider with our own
+            // custom provider which can return authorization policies for given
+            // policy names (instead of using the default policy provider)
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionTypePolicyProvider>();
+
+            // As always, handlers must be provided for the requirements of the authorization policies
             services.AddSingleton<IAuthorizationHandler, PermissionTypeHandler>();
-            // PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
+
+            //// PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
             services.AddHttpContextAccessor();
+            
+            //// PermissionTypeを使った要件の定義
+            //foreach (PermissionType p in Enum.GetValues(typeof(PermissionType)))
+            //{
+            //    services.AddAuthorization(options =>
+            //        options.AddPolicy(p.Val(), policy =>
+            //            policy.Requirements.Add(new PermissionTypeRequirement(new[] { p }))));
+            //}
+            //// ASP.NET Coreのパイプラインにインジェクションする
+            //services.AddSingleton<IAuthorizationHandler, PermissionTypeHandler>();
+            //// PermissionTypeHandlerのコンストラクタが引数にIHttpContextAccessorを要求するため
+            //services.AddHttpContextAccessor();
             #endregion
 
             #region Add to support Swagger UI

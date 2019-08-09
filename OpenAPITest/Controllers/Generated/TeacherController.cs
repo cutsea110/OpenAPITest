@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_Teacher")]
+		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]TeacherCondition c)
@@ -65,7 +66,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_Teacher")]
+		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Teacher>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
@@ -115,7 +116,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="teacherNo">教員番号(teacher_no)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_Teacher")]
+		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("get/{teacherNo}")]
 		[ProducesResponseType(typeof(Teacher), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -156,7 +157,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">Teacherオブジェクト</returns>
-		[Authorize(Policy = "Create_Teacher")]
+		[PermissionTypeAuthorize("Create_Teacher")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -181,8 +182,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_Teacher")]
-		[Authorize(Policy = "Update_Teacher")]
+		[PermissionTypeAuthorize("Create_Teacher")]
+		[PermissionTypeAuthorize("Update_Teacher")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -207,7 +208,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_Teacher")]
+		[PermissionTypeAuthorize("Create_Teacher")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -232,8 +233,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_Teacher")]
-		[Authorize(Policy = "Update_Teacher")]
+		[PermissionTypeAuthorize("Create_Teacher")]
+		[PermissionTypeAuthorize("Update_Teacher")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -259,7 +260,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="teacherNo">教員番号(teacher_no)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_Teacher")]
+		[PermissionTypeAuthorize("Update_Teacher")]
 		[HttpPut, Route("modify/{teacherNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -284,7 +285,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="teacherNo">教員番号(teacher_no)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_Teacher")]
 		[HttpDelete("remove/{teacherNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(string teacherNo)
@@ -308,7 +309,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_Teacher")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]TeacherCondition c)
@@ -332,7 +333,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="teacherNo">教員番号(teacher_no)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_Teacher")]
 		[HttpDelete("physically-remove/{teacherNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(string teacherNo)
@@ -355,7 +356,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_Teacher")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]TeacherCondition c)

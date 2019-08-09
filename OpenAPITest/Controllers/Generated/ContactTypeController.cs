@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_ContactType")]
+		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]ContactTypeCondition c)
@@ -58,7 +59,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_ContactType")]
+		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<ContactType>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]ContactTypeCondition c, [FromQuery]string[] order)
@@ -83,7 +84,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_ContactType")]
+		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("get/{contactTypeId}")]
 		[ProducesResponseType(typeof(ContactType), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,7 +107,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">ContactTypeオブジェクト</returns>
-		[Authorize(Policy = "Create_ContactType")]
+		[PermissionTypeAuthorize("Create_ContactType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -131,8 +132,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_ContactType")]
-		[Authorize(Policy = "Update_ContactType")]
+		[PermissionTypeAuthorize("Create_ContactType")]
+		[PermissionTypeAuthorize("Update_ContactType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -157,7 +158,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_ContactType")]
+		[PermissionTypeAuthorize("Create_ContactType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -182,8 +183,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_ContactType")]
-		[Authorize(Policy = "Update_ContactType")]
+		[PermissionTypeAuthorize("Create_ContactType")]
+		[PermissionTypeAuthorize("Update_ContactType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -209,7 +210,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_ContactType")]
+		[PermissionTypeAuthorize("Update_ContactType")]
 		[HttpPut, Route("modify/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -234,7 +235,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_ContactType")]
+		[PermissionTypeAuthorize("Delete_ContactType")]
 		[HttpDelete("remove/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int contactTypeId)
@@ -258,7 +259,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_ContactType")]
+		[PermissionTypeAuthorize("Delete_ContactType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]ContactTypeCondition c)
@@ -282,7 +283,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_ContactType")]
+		[PermissionTypeAuthorize("Delete_ContactType")]
 		[HttpDelete("physically-remove/{contactTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int contactTypeId)
@@ -305,7 +306,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_ContactType")]
+		[PermissionTypeAuthorize("Delete_ContactType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]ContactTypeCondition c)

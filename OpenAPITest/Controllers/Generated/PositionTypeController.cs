@@ -16,6 +16,7 @@ using LinqToDB;
 using LinqToDB.Data;
 
 using peppa.util;
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -34,7 +35,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[Authorize(Policy = "Read_PositionType")]
+		[PermissionTypeAuthorize("Read_PositionType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Count([FromQuery]PositionTypeCondition c)
@@ -58,7 +59,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[Authorize(Policy = "Read_PositionType")]
+		[PermissionTypeAuthorize("Read_PositionType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<PositionType>), StatusCodes.Status200OK)]
 		public IActionResult Search([FromQuery]PositionTypeCondition c, [FromQuery]string[] order)
@@ -83,7 +84,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="positionTypeId">職階ID(position_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[Authorize(Policy = "Read_PositionType")]
+		[PermissionTypeAuthorize("Read_PositionType")]
 		[HttpGet("get/{positionTypeId}")]
 		[ProducesResponseType(typeof(PositionType), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,7 +107,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="201">PositionTypeオブジェクト</returns>
-		[Authorize(Policy = "Create_PositionType")]
+		[PermissionTypeAuthorize("Create_PositionType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -131,8 +132,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_PositionType")]
-		[Authorize(Policy = "Update_PositionType")]
+		[PermissionTypeAuthorize("Create_PositionType")]
+		[PermissionTypeAuthorize("Update_PositionType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -157,7 +158,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[Authorize(Policy = "Create_PositionType")]
+		[PermissionTypeAuthorize("Create_PositionType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -182,8 +183,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Create_PositionType")]
-		[Authorize(Policy = "Update_PositionType")]
+		[PermissionTypeAuthorize("Create_PositionType")]
+		[PermissionTypeAuthorize("Update_PositionType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -209,7 +210,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="positionTypeId">職階ID(position_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[Authorize(Policy = "Update_PositionType")]
+		[PermissionTypeAuthorize("Update_PositionType")]
 		[HttpPut, Route("modify/{positionTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -234,7 +235,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="positionTypeId">職階ID(position_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PositionType")]
+		[PermissionTypeAuthorize("Delete_PositionType")]
 		[HttpDelete("remove/{positionTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove(int positionTypeId)
@@ -258,7 +259,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PositionType")]
+		[PermissionTypeAuthorize("Delete_PositionType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult Remove([FromQuery]PositionTypeCondition c)
@@ -282,7 +283,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="positionTypeId">職階ID(position_type_id)</param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PositionType")]
+		[PermissionTypeAuthorize("Delete_PositionType")]
 		[HttpDelete("physically-remove/{positionTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove(int positionTypeId)
@@ -305,7 +306,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[Authorize(Policy = "Delete_PositionType")]
+		[PermissionTypeAuthorize("Delete_PositionType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		public IActionResult PhysicallyRemove([FromQuery]PositionTypeCondition c)

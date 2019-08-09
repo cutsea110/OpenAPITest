@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using OpenAPITest.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace OpenAPITest.core
+using OpenAPITest.Domain;
+
+namespace OpenAPITest.CustomPolicyProvider
 {
     /// <summary>
     /// PermissionTypeによる独自ポリシーのための要件定義
