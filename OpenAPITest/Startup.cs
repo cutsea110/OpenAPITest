@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using LinqToDB.Configuration;
@@ -79,9 +80,30 @@ namespace OpenAPITest
             Life = section.GetValue<int>("Life");
         }
     }
+    #endregion
+
+    #region 内部アクセス設定
+    public class InsiderAccess
+    {
+        public IPAddress[] IpAddresses { get; set; }
+
+        public InsiderAccess(IConfiguration conf)
+        {
+            var section = conf.GetSection("Insider");
+            IpAddresses =
+                section.GetValue<string>("IpAddresses")
+                .Split(',')
+                .Select(s => IPAddress.Parse(s.Trim()))
+                .ToArray();
+        }
+    }
+    #endregion
+
+    #region AppSetting
     public static class AppConfiguration
     {
         public static JwtSecretKey JwtSecret { get; set; }
+        public static InsiderAccess Insider { get; set; }
     }
     #endregion
 
@@ -143,6 +165,7 @@ namespace OpenAPITest
         {
             DataConnection.DefaultSettings = new DbSettings(Configuration);
             AppConfiguration.JwtSecret = new JwtSecretKey(Configuration);
+            AppConfiguration.Insider = new InsiderAccess(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
