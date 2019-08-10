@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using peppa.util;
 
 using OpenAPITest.Domain;
+using OpenAPITest.CustomPolicyProvider;
 
 namespace OpenAPITest.Controllers
 {
@@ -168,7 +169,7 @@ namespace OpenAPITest.Controllers
             return BadRequest();
         }
 
-        [Authorize("Create_Password")]
+        [PermissionTypeAuthorize("Create_Password")]
         [HttpPost("init-password")]
         [ProducesResponseType(typeof(Password), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -203,7 +204,7 @@ namespace OpenAPITest.Controllers
         /// </summary>
         /// <param name="inputModel"></param>
         /// <returns></returns>
-        [Authorize("Change_Password")]
+        [PermissionTypeAuthorize("Change_Password")]
         [HttpPut("change-password")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

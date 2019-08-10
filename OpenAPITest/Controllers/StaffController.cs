@@ -7,7 +7,7 @@ using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.Domain;
 using peppa.util;
 
@@ -15,13 +15,14 @@ namespace OpenAPITest.Controllers
 {
 	public partial class StaffController : ControllerBase
 	{
-		/// <summary>
-		/// 職員の取得(フルセット)
-		/// </summary>
-		/// <param name="staffNo">職員番号(staff_no)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
-		[HttpGet("get-full/{staffNo}")]
+        /// <summary>
+        /// 職員の取得(フルセット)
+        /// </summary>
+        /// <param name="staffNo">職員番号(staff_no)</param>
+        /// <returns code="200">Found the Object</returns>
+        /// <returns code="404">Invalid identifiers</returns>
+        [PermissionTypeAuthorize("Read_Staff")]
+        [HttpGet("get-full/{staffNo}")]
 		[ProducesResponseType(typeof(Staff), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public IActionResult GetFull(string staffNo)
@@ -48,6 +49,7 @@ namespace OpenAPITest.Controllers
         /// <param name="c"></param>
         /// <param name="order">例) birth_date Desc, gender Asc, staff_no</param>
         /// <returns></returns>
+        [PermissionTypeAuthorize("Read_Staff")]
         [HttpGet("search-full")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
 		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order)
