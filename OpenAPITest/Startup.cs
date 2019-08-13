@@ -196,6 +196,14 @@ namespace OpenAPITest
     /// </summary>
     public class Startup
     {
+        #region プロパティ
+        /// <summary>
+        /// appsettings.jsonそのもの.
+        /// コンストラクタの引数として渡ってくるので保持するため
+        /// </summary>
+        public IConfiguration Configuration { get; }
+        #endregion
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -204,8 +212,6 @@ namespace OpenAPITest
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
