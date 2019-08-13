@@ -227,7 +227,7 @@ namespace OpenAPITest
             }).AddJwtBearer(opt =>
             {
                 opt.Audience = AppConfiguration.JwtSecret.SiteUri;
-                opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                opt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
