@@ -100,6 +100,9 @@ namespace OpenAPITest
     #endregion
 
     #region アクセス制御設定
+    /// <summary>
+    /// アクセス制御
+    /// </summary>
     public class AccessControl
     {
         /// <summary>
@@ -113,17 +116,15 @@ namespace OpenAPITest
         /// <summary>
         /// アクセス拒否ネットワークリスト
         /// </summary>
-        public IPNetwork[] ForbiddenNetworks { get; set; }
+        public IPNetwork[] DeniedNetworks { get; set; }
         /// <summary>
         /// アクセス拒否IPリスト
         /// </summary>
-        public IPAddress[] ForbiddenIpAddresses { get; set; }
-
+        public IPAddress[] DeniedIpAddresses { get; set; }
         /// <summary>
         /// 内部アクセスIPリスト
         /// </summary>
         public IPAddress[] InsiderIpAddresses { get; set; }
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -133,8 +134,8 @@ namespace OpenAPITest
             var section = conf.GetSection("AccessControl");
             AllowedNetworks = section.GetValue<string>("AllowedNetworks").ParseIPNetworks().ToArray();
             AllowedIpAddresses = section.GetValue<string>("AllowedIpAddresses").ParseIPAddresses().ToArray();
-            ForbiddenNetworks = section.GetValue<string>("ForbiddenNetworks").ParseIPNetworks().ToArray();
-            ForbiddenIpAddresses = section.GetValue<string>("ForbiddenIpAddresses").ParseIPAddresses().ToArray();
+            DeniedNetworks = section.GetValue<string>("DeniedNetworks").ParseIPNetworks().ToArray();
+            DeniedIpAddresses = section.GetValue<string>("DeniedIpAddresses").ParseIPAddresses().ToArray();
             InsiderIpAddresses = section.GetValue<string>("InsiderIpAddresses").ParseIPAddresses().ToArray();
         }
     }
