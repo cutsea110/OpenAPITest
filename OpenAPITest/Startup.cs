@@ -18,8 +18,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OpenAPITest.CustomPolicyProvider;
-using OpenAPITest.Domain;
 using Swashbuckle.AspNetCore.SwaggerGen;
+
+using peppa.util;
 
 namespace OpenAPITest
 {
@@ -82,19 +83,43 @@ namespace OpenAPITest
     }
     #endregion
 
-    #region 内部アクセス設定
-    public class InsiderAccess
+    #region アクセス制御設定
+    public class AccessControl
     {
-        public IPAddress[] IpAddresses { get; set; }
+        /// <summary>
+        /// アクセス許可ネットワークリスト
+        /// </summary>
+        public IPNetwork[] AllowedNetworks { get; set; }
+        /// <summary>
+        /// アクセス許可IPリスト
+        /// </summary>
+        public IPAddress[] AllowedIpAddresses { get; set; }
+        /// <summary>
+        /// アクセス拒否ネットワークリスト
+        /// </summary>
+        public IPNetwork[] ForbiddenNetworks { get; set; }
+        /// <summary>
+        /// アクセス拒否IPリスト
+        /// </summary>
+        public IPAddress[] ForbiddenIpAddresses { get; set; }
 
-        public InsiderAccess(IConfiguration conf)
+        /// <summary>
+        /// 内部アクセスIPリスト
+        /// </summary>
+        public IPAddress[] InsiderIpAddresses { get; set; }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="conf"></param>
+        public AccessControl(IConfiguration conf)
         {
-            var section = conf.GetSection("Insider");
-            IpAddresses =
-                section.GetValue<string>("IpAddresses")
-                .Split(',')
-                .Select(s => IPAddress.Parse(s.Trim()))
-                .ToArray();
+            var section = conf.GetSection("AccessControl");
+            AllowedNetworks = section.GetValue<string>("AllowedNetworks").ParseIPNetworks().ToArray();
+            AllowedIpAddresses = section.GetValue<string>("AllowedIpAddresses").ParseIPAddresses().ToArray();
+            ForbiddenNetworks = section.GetValue<string>("ForbiddenNetworks").ParseIPNetworks().ToArray();
+            ForbiddenIpAddresses = section.GetValue<string>("ForbiddenIpAddresses").ParseIPAddresses().ToArray();
+            InsiderIpAddresses = section.GetValue<string>("InsiderIpAddresses").ParseIPAddresses().ToArray();
         }
     }
     #endregion
@@ -103,7 +128,7 @@ namespace OpenAPITest
     public static class AppConfiguration
     {
         public static JwtSecretKey JwtSecret { get; set; }
-        public static InsiderAccess Insider { get; set; }
+        public static AccessControl AccessControl { get; set; }
     }
     #endregion
 
@@ -165,7 +190,7 @@ namespace OpenAPITest
         {
             DataConnection.DefaultSettings = new DbSettings(Configuration);
             AppConfiguration.JwtSecret = new JwtSecretKey(Configuration);
-            AppConfiguration.Insider = new InsiderAccess(Configuration);
+            AppConfiguration.AccessControl = new AccessControl(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
