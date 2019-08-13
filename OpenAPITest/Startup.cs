@@ -67,12 +67,28 @@ namespace OpenAPITest
     #endregion
 
     #region 鍵設定
+    /// <summary>
+    /// JWT Bearer認証鍵
+    /// </summary>
     public class JwtSecretKey
     {
+        /// <summary>
+        /// 認証されるサービスサイト
+        /// </summary>
         public string SiteUri { get; set; }
+        /// <summary>
+        /// 秘密鍵
+        /// </summary>
         public string SecretKey { get; set; }
+        /// <summary>
+        /// セッションの有効期間(日数)
+        /// </summary>
         public int Life { get; set; }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="conf"></param>
         public JwtSecretKey(IConfiguration conf)
         {
             var section = conf.GetSection("JwtSecretKey");
@@ -125,9 +141,18 @@ namespace OpenAPITest
     #endregion
 
     #region AppSetting
+    /// <summary>
+    /// アプリの設定
+    /// </summary>
     public static class AppConfiguration
     {
+        /// <summary>
+        /// JWT Bearerの鍵情報
+        /// </summary>
         public static JwtSecretKey JwtSecret { get; set; }
+        /// <summary>
+        /// アクセス制御
+        /// </summary>
         public static AccessControl AccessControl { get; set; }
     }
     #endregion
