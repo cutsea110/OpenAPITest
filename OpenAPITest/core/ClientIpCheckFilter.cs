@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Net;
-using System.Linq;
 
 namespace OpenAPITest.CustomFilter
 {
@@ -17,7 +14,7 @@ namespace OpenAPITest.CustomFilter
             (ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger(nameof(ClientIpCheckFilter));
-            // FIXME: Startupのあとで呼ばれるなら??以降は不要です.
+            // Startupのあとで呼ばれるので??以降は不要ではある.
             _acl = AppConfiguration.AccessControl ?? new AccessControl(configuration);
         }
 
@@ -32,7 +29,6 @@ namespace OpenAPITest.CustomFilter
             if (_acl.Allow(remoteIp))
             {
                 _logger.LogInformation($"Allow Request from Remote IP address: {remoteIp}");
-
                 base.OnActionExecuting(context);
             }
             else
