@@ -17,14 +17,16 @@ using LinqToDB.Data;
 
 using peppa.util;
 using OpenAPITest.CustomPolicyProvider;
+using OpenAPITest.CustomFilter;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
 {
-	/// <summary>
-	/// アカウントのWebAPI
-	/// </summary>
-	[Authorize]
+    /// <summary>
+    /// アカウントのWebAPI
+    /// </summary>
+    [ServiceFilter(typeof(ClientIpCheckFilter))]
+    [Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public partial class AccountController : ControllerBase

@@ -11,16 +11,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OpenAPITest.CustomPolicyProvider;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 using peppa.util;
+
+using OpenAPITest.CustomPolicyProvider;
+using OpenAPITest.CustomFilter;
 
 namespace OpenAPITest
 {
@@ -105,6 +107,7 @@ namespace OpenAPITest
     /// </summary>
     public class AccessControl
     {
+        #region properties
         /// <summary>
         /// アクセス許可ネットワークリスト
         /// </summary>
@@ -125,6 +128,9 @@ namespace OpenAPITest
         /// 内部アクセスIPリスト
         /// </summary>
         public IPAddress[] InsiderIpAddresses { get; set; }
+        #endregion
+
+        #region constructor
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -138,6 +144,67 @@ namespace OpenAPITest
             DeniedIpAddresses = section.GetValue<string>("DeniedIpAddresses").ParseIPAddresses().ToArray();
             InsiderIpAddresses = section.GetValue<string>("InsiderIpAddresses").ParseIPAddresses().ToArray();
         }
+        #endregion
+
+        #region methods
+        /// <summary>                                                                                                                                                         
+        /// 明示的に許可されている                                                                                                                                                       
+        /// </summary>                                                                                                                                                        
+        /// <param name="ip"></param>                                                                                                                                         
+        /// <returns></returns>                                                                                                                                               
+        private bool explicitAllowed(IPAddress ip)
+        {
+            return
+                AppConfiguration.AccessControl.AllowedIpAddresses.Contains(ip) || AppConfiguration.AccessControl.AllowedNetworks.Any(net => net.Contains(ip))
+                ;
+        }
+
+        /// <summary>                                                                                                                                                         
+        /// 暗黙的に許可されている                                                                                                                                                       
+        /// </summary>                                                                                                                                                        
+        /// <param name="ip"></param>                                                                                                                                         
+        /// <returns></returns>                                                                                                                                               
+        private bool implicitAllowed(IPAddress ip)
+        {
+            return
+                AppConfiguration.AccessControl.AllowedIpAddresses.Length == 0 && AppConfiguration.AccessControl.AllowedNetworks.Length == 0
+                ;
+        }
+        /// <summary>                                                                                                                                                         
+        /// 明示的もしくは暗黙的に許可されている                                                                                                                                                
+        /// </summary>                                                                                                                                                        
+        /// <param name="ip"></param>                                                                                                                                         
+        /// <returns></returns>                                                                                                                                               
+        private bool allowed(IPAddress ip)
+        {
+            return explicitDenied(ip) || implicitAllowed(ip);
+        }
+        /// <summary>                                                                                                                                                         
+        /// 明示的に拒否されている                                                                                                                                                       
+        /// </summary>                                                                                                                                                        
+        /// <param name="ip"></param>                                                                                                                                         
+        /// <returns></returns>                                                                                                                                               
+        private bool explicitDenied(IPAddress ip)
+        {
+            return
+                AppConfiguration.AccessControl.DeniedIpAddresses.Contains(ip) || AppConfiguration.AccessControl.DeniedNetworks.Any(net => net.Contains(ip))
+                ;
+        }
+
+        /// <summary>                                                                                                                                                         
+        /// 内部アクセスなら常に許可される                                                                                                                                                   
+        /// 内部アクセスでない場合、アクセス許可されていてかつ拒否されていない場合のみ真となる                                                                                                                         
+        /// </summary>                                                                                                                                                        
+        /// <param name="clientIp"></param>                                                                                                                                   
+        /// <returns></returns>                                                                                                                                               
+        public bool Allow(IPAddress clientIp)
+        {
+            return
+                AppConfiguration.AccessControl.InsiderIpAddresses.Contains(clientIp) ||
+                (allowed(clientIp) && explicitDenied(clientIp) == false)
+                ;
+        }
+        #endregion
     }
     #endregion
 
@@ -223,6 +290,8 @@ namespace OpenAPITest
             DataConnection.DefaultSettings = new DbSettings(Configuration);
             AppConfiguration.JwtSecret = new JwtSecretKey(Configuration);
             AppConfiguration.AccessControl = new AccessControl(Configuration);
+
+            services.AddScoped<ClientIpCheckFilter>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
