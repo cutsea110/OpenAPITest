@@ -4,11 +4,9 @@
 //	Changes to this file may cause incorrect behavior and will be lost if the code is regenerated.
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +15,7 @@ using LinqToDB.Data;
 
 using peppa.util;
 using OpenAPITest.CustomPolicyProvider;
+using OpenAPITest.CustomFilter;
 using OpenAPITest.Domain;
 
 namespace OpenAPITest.Controllers
@@ -24,6 +23,7 @@ namespace OpenAPITest.Controllers
 	/// <summary>
 	/// 連絡先種別のWebAPI
 	/// </summary>
+    [ServiceFilter(typeof(ClientIpCheckFilter))]
 	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
