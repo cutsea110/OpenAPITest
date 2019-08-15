@@ -5,8 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using LinqToDB.Configuration;
-using LinqToDB.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+using LinqToDB.Configuration;
+using LinqToDB.Data;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 using peppa.util;
@@ -27,31 +27,65 @@ using OpenAPITest.CustomFilter;
 namespace OpenAPITest
 {
     #region LinqToDB設定
+    /// <summary>
+    /// 接続文字列設定
+    /// </summary>
     public class ConnectionStringSettings : IConnectionStringSettings
     {
+        /// <summary>
+        /// 接続文字列
+        /// </summary>
         public string ConnectionString { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// プロバイダ名
+        /// </summary>
         public string ProviderName { get; set; }
+        /// <summary>
+        /// グローバル設定
+        /// </summary>
         public bool IsGlobal => false;
     }
 
+    /// <summary>
+    /// linq2dbのデータベース設定
+    /// </summary>
     public class DbSettings : ILinqToDBSettings
     {
         private IConfiguration configuration;
         private IConfigurationSection section;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="configuration"></param>
         public DbSettings(IConfiguration configuration)
         {
             this.configuration = configuration;
             this.section = configuration.GetSection("ConnectionStrings");
         }
 
+        /// <summary>
+        /// データプロバイダ設定
+        /// </summary>
         public IEnumerable<IDataProviderSettings> DataProviders => Enumerable.Empty<IDataProviderSettings>();
 
+        /// <summary>
+        /// デフォルトのデータプロバイダ設定
+        /// </summary>
         public string DefaultConfiguration => "SqlServer";
 
+        /// <summary>
+        /// デフォルトのデータプロバイダ
+        /// </summary>
         public string DefaultDataProvider => "SqlServer";
 
+        /// <summary>
+        /// 接続文字列
+        /// </summary>
         public IEnumerable<IConnectionStringSettings> ConnectionStrings
         {
             get
