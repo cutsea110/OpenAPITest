@@ -291,6 +291,7 @@ namespace OpenAPITest
             AppConfiguration.JwtSecret = new JwtSecretKey(Configuration);
             AppConfiguration.AccessControl = new AccessControl(Configuration);
 
+            // Check Client IP Address
             services.AddScoped<ClientIpCheckFilter>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
