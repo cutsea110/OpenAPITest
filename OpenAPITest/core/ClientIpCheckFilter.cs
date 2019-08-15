@@ -24,8 +24,7 @@ namespace OpenAPITest.CustomFilter
 		/// </summary>
 		/// <param name="loggerFactory"></param>
 		/// <param name="configuration"></param>
-		public ClientIpCheckFilter
-			(ILoggerFactory loggerFactory, IConfiguration configuration)
+		public ClientIpCheckFilter(ILoggerFactory loggerFactory, IConfiguration configuration)
 		{
 			_logger = loggerFactory.CreateLogger(nameof(ClientIpCheckFilter));
 			// Startupのあとで呼ばれるので??以降は不要ではある.
@@ -38,8 +37,7 @@ namespace OpenAPITest.CustomFilter
 		/// <param name="context"></param>
 		public override void OnActionExecuting(ActionExecutingContext context)
 		{
-			_logger.LogInformation(
-				$"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
+			_logger.LogInformation($"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
 
 			var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
 			_logger.LogDebug($"Request from Remote IP address: {remoteIp}");
