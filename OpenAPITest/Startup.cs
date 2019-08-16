@@ -189,7 +189,8 @@ namespace OpenAPITest
         private bool explicitAllowed(IPAddress ip)
         {
             return
-                AppConfiguration.AccessControl.AllowedIpAddresses.Contains(ip) || AppConfiguration.AccessControl.AllowedNetworks.Any(net => net.Contains(ip))
+                AppConfiguration.AccessControl.AllowedIpAddresses.Contains(ip) ||
+                AppConfiguration.AccessControl.AllowedNetworks.Any(net => net.Contains(ip))
                 ;
         }
 
@@ -201,7 +202,8 @@ namespace OpenAPITest
         private bool implicitAllowed(IPAddress ip)
         {
             return
-                AppConfiguration.AccessControl.AllowedIpAddresses.Length == 0 && AppConfiguration.AccessControl.AllowedNetworks.Length == 0
+                AppConfiguration.AccessControl.AllowedIpAddresses.Length == 0 &&
+                AppConfiguration.AccessControl.AllowedNetworks.Length == 0
                 ;
         }
         /// <summary>                                                                                                                                                         
@@ -211,7 +213,9 @@ namespace OpenAPITest
         /// <returns></returns>                                                                                                                                               
         private bool allowed(IPAddress ip)
         {
-            return explicitDenied(ip) || implicitAllowed(ip);
+            return
+                explicitDenied(ip) ||
+                implicitAllowed(ip);
         }
         /// <summary>                                                                                                                                                         
         /// 明示的に拒否されている                                                                                                                                                       
@@ -221,7 +225,8 @@ namespace OpenAPITest
         private bool explicitDenied(IPAddress ip)
         {
             return
-                AppConfiguration.AccessControl.DeniedIpAddresses.Contains(ip) || AppConfiguration.AccessControl.DeniedNetworks.Any(net => net.Contains(ip))
+                AppConfiguration.AccessControl.DeniedIpAddresses.Contains(ip) ||
+                AppConfiguration.AccessControl.DeniedNetworks.Any(net => net.Contains(ip))
                 ;
         }
 
