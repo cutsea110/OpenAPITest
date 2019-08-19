@@ -57,6 +57,7 @@ namespace OpenAPITest.Controllers
 		/// 職員の検索
 		/// </summary>
 		/// <param name="c"></param>
+		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
 		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
 		/// <param name="with_NameList">NameListをLoadWithするか</param>
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
@@ -66,7 +67,7 @@ namespace OpenAPITest.Controllers
 		[PermissionTypeAuthorize("Read_Staff")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]StaffCondition c, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]StaffCondition c, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -77,6 +78,8 @@ namespace OpenAPITest.Controllers
 				var q = db.Staff;
 
 				#region LoadWith
+				if (with_SexType)
+					q = q.LoadWith(_ => _.SexType);
 				if (with_AccountList)
 					q = q.LoadWith(_ => _.AccountList);
 				if (with_NameList)
@@ -97,6 +100,7 @@ namespace OpenAPITest.Controllers
 		/// <summary>
 		/// 職員の取得
 		/// </summary>
+		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
 		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
 		/// <param name="with_NameList">NameListをLoadWithするか</param>
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
@@ -108,7 +112,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{staffNo}")]
 		[ProducesResponseType(typeof(Staff), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public IActionResult Get(string staffNo, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
+		public IActionResult Get(string staffNo, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -119,6 +123,8 @@ namespace OpenAPITest.Controllers
 				var q = db.Staff;
 
 				#region LoadWith
+				if (with_SexType)
+					q = q.LoadWith(_ => _.SexType);
 				if (with_AccountList)
 					q = q.LoadWith(_ => _.AccountList);
 				if (with_NameList)

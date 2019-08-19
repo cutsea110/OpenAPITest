@@ -21,24 +21,24 @@ using OpenAPITest.Domain;
 namespace OpenAPITest.Controllers
 {
 	/// <summary>
-	/// 教員のWebAPI
+	/// 性別区分のWebAPI
 	/// </summary>
     [ServiceFilter(typeof(ClientIpCheckFilter))]
 	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
-	public partial class TeacherController : ControllerBase
+	public partial class SexTypeController : ControllerBase
 	{
 
 		/// <summary>
-		/// 教員の件数
+		/// 性別区分の件数
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>ヒットした件数</returns>
-		[PermissionTypeAuthorize("Read_Teacher")]
+		[PermissionTypeAuthorize("Read_SexType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Count([FromQuery]TeacherCondition c)
+		public IActionResult Count([FromQuery]SexTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -47,30 +47,22 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count =
-					c == null ? db.Teacher.Count() :
-					db.Teacher.Count(predicate: c.CreatePredicate());
+					c == null ? db.SexType.Count() :
+					db.SexType.Count(predicate: c.CreatePredicate());
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 教員の検索
+		/// 性別区分の検索
 		/// </summary>
 		/// <param name="c"></param>
-		/// <param name="with_WorkStyle">WorkStyleをLoadWithするか</param>
-		/// <param name="with_Position">PositionをLoadWithするか</param>
-		/// <param name="with_TeacherLisence">TeacherLisenceをLoadWithするか</param>
-		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
-		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
-		/// <param name="with_NameList">NameListをLoadWithするか</param>
-		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
-		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns></returns>
-		[PermissionTypeAuthorize("Read_Teacher")]
+		[PermissionTypeAuthorize("Read_SexType")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Teacher>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
+		[ProducesResponseType(typeof(IEnumerable<SexType>), StatusCodes.Status200OK)]
+		public IActionResult Search([FromQuery]SexTypeCondition c, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -78,27 +70,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Teacher;
-
-				#region LoadWith
-				if (with_WorkStyle)
-					q = q.LoadWith(_ => _.WorkStyle);
-				if (with_Position)
-					q = q.LoadWith(_ => _.Position);
-				if (with_TeacherLisence)
-					q = q.LoadWith(_ => _.TeacherLisence);
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
-				#endregion
-
+				var q = db.SexType;
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
 
@@ -107,24 +79,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の取得
+		/// 性別区分の取得
 		/// </summary>
-		/// <param name="with_WorkStyle">WorkStyleをLoadWithするか</param>
-		/// <param name="with_Position">PositionをLoadWithするか</param>
-		/// <param name="with_TeacherLisence">TeacherLisenceをLoadWithするか</param>
-		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
-		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
-		/// <param name="with_NameList">NameListをLoadWithするか</param>
-		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
-		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
-		/// <param name="teacherNo">教員番号(teacher_no)</param>
+		/// <param name="sexTypeId">性別区分ID(sex_type_id)</param>
 		/// <returns code="200">Found the Object</returns>
 		/// <returns code="404">Invalid identifiers</returns>
-		[PermissionTypeAuthorize("Read_Teacher")]
-		[HttpGet("get/{teacherNo}")]
-		[ProducesResponseType(typeof(Teacher), StatusCodes.Status200OK)]
+		[PermissionTypeAuthorize("Read_SexType")]
+		[HttpGet("get/{sexTypeId}")]
+		[ProducesResponseType(typeof(SexType), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public IActionResult Get(string teacherNo, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
+		public IActionResult Get(int sexTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -132,42 +96,22 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Teacher;
-
-				#region LoadWith
-				if (with_WorkStyle)
-					q = q.LoadWith(_ => _.WorkStyle);
-				if (with_Position)
-					q = q.LoadWith(_ => _.Position);
-				if (with_TeacherLisence)
-					q = q.LoadWith(_ => _.TeacherLisence);
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
-				#endregion
-
-				var o = q.Find(teacherNo);
+				var q = db.SexType;
+				var o = q.Find(sexTypeId);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
 		/// <summary>
-		/// 教員の作成
+		/// 性別区分の作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns code="201">Teacherオブジェクト</returns>
-		[PermissionTypeAuthorize("Create_Teacher")]
+		/// <returns code="201">SexTypeオブジェクト</returns>
+		[PermissionTypeAuthorize("Create_SexType")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Create([FromBody]Teacher o)
+		public IActionResult Create([FromBody]SexType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -176,24 +120,24 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
-					o.uid = db.InsertWithInt32Identity<Teacher>(o);
-					return CreatedAtAction(nameof(Get), new { teacherNo = o.teacher_no }, o);
+					o.uid = db.InsertWithInt32Identity<SexType>(o);
+					return CreatedAtAction(nameof(Get), new { sexTypeId = o.sex_type_id }, o);
 				}
 			}
 			return BadRequest();
 		}
 
 		/// <summary>
-		/// 教員の更新(必要時作成)
+		/// 性別区分の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Create_Teacher")]
-		[PermissionTypeAuthorize("Update_Teacher")]
+		[PermissionTypeAuthorize("Create_SexType")]
+		[PermissionTypeAuthorize("Update_SexType")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Upsert([FromBody]Teacher o)
+		public IActionResult Upsert([FromBody]SexType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -202,7 +146,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
-					int count = db.InsertOrReplace<Teacher>(o);
+					int count = db.InsertOrReplace<SexType>(o);
 					return Ok(count);
 				}
 			}
@@ -210,15 +154,15 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の一括作成
+		/// 性別区分の一括作成
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[PermissionTypeAuthorize("Create_Teacher")]
+		[PermissionTypeAuthorize("Create_SexType")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult MassiveCreate([FromBody]IEnumerable<Teacher> os)
+		public IActionResult MassiveCreate([FromBody]IEnumerable<SexType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -227,7 +171,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
-					var ret = db.BulkCopy<Teacher>(os);
+					var ret = db.BulkCopy<SexType>(os);
 					return Ok(ret);
 				}
 			}
@@ -235,16 +179,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員のマージ
+		/// 性別区分のマージ
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Create_Teacher")]
-		[PermissionTypeAuthorize("Update_Teacher")]
+		[PermissionTypeAuthorize("Create_SexType")]
+		[PermissionTypeAuthorize("Update_SexType")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Merge([FromBody]IEnumerable<Teacher> os)
+		public IActionResult Merge([FromBody]IEnumerable<SexType> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -253,7 +197,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
-					var count = db.Merge<Teacher>(os);
+					var count = db.Merge<SexType>(os);
 					return Ok(count);
 				}
 			}
@@ -261,16 +205,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の更新
+		/// 性別区分の更新
 		/// </summary>
-		/// <param name="teacherNo">教員番号(teacher_no)</param>
+		/// <param name="sexTypeId">性別区分ID(sex_type_id)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[PermissionTypeAuthorize("Update_Teacher")]
-		[HttpPut, Route("modify/{teacherNo}")]
+		[PermissionTypeAuthorize("Update_SexType")]
+		[HttpPut, Route("modify/{sexTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Modify(string teacherNo, [FromBody]Teacher o)
+		public IActionResult Modify(int sexTypeId, [FromBody]SexType o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -279,7 +223,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
-					var count = db.Update<Teacher>(o);
+					var count = db.Update<SexType>(o);
 					return Ok(count);
 				}
 			}
@@ -287,14 +231,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の削除(論理)
+		/// 性別区分の削除(論理)
 		/// </summary>
-		/// <param name="teacherNo">教員番号(teacher_no)</param>
+		/// <param name="sexTypeId">性別区分ID(sex_type_id)</param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Teacher")]
-		[HttpDelete("remove/{teacherNo}")]
+		[PermissionTypeAuthorize("Delete_SexType")]
+		[HttpDelete("remove/{sexTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Remove(string teacherNo)
+		public IActionResult Remove(int sexTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -302,8 +246,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Teacher
-					.Where(_ => _.teacher_no == teacherNo)
+				var count = db.SexType
+					.Where(_ => _.sex_type_id == sexTypeId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
 				return Ok(count);
@@ -311,14 +255,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の削除(論理)
+		/// 性別区分の削除(論理)
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_SexType")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Remove([FromQuery]TeacherCondition c)
+		public IActionResult Remove([FromQuery]SexTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -326,7 +270,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Teacher
+				var count = db.SexType
 					.Where(c.CreatePredicate())
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
@@ -335,14 +279,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// 教員の物理削除
+		/// 性別区分の物理削除
 		/// </summary>
-		/// <param name="teacherNo">教員番号(teacher_no)</param>
+		/// <param name="sexTypeId">性別区分ID(sex_type_id)</param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Teacher")]
-		[HttpDelete("physically-remove/{teacherNo}")]
+		[PermissionTypeAuthorize("Delete_SexType")]
+		[HttpDelete("physically-remove/{sexTypeId}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult PhysicallyRemove(string teacherNo)
+		public IActionResult PhysicallyRemove(int sexTypeId)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -350,22 +294,22 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Teacher
-					.Where(_ => _.teacher_no == teacherNo)
+				var count = db.SexType
+					.Where(_ => _.sex_type_id == sexTypeId)
 					.Delete();
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// 教員の物理削除
+		/// 性別区分の物理削除
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Teacher")]
+		[PermissionTypeAuthorize("Delete_SexType")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult PhysicallyRemove([FromQuery]TeacherCondition c)
+		public IActionResult PhysicallyRemove([FromQuery]SexTypeCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -373,7 +317,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Teacher
+				var count = db.SexType
 					.Where(c.CreatePredicate())
 					.Delete();
 				return Ok(count);
