@@ -47,4 +47,22 @@ namespace OpenAPITest.Domain
 			return predicate;
 		}
 	}
+
+	/// <summary>
+	/// 教員拡張メソッド用クラス
+	/// </summary>
+	static public partial class TeacherExtention
+	{
+		#region static methods
+		/// <summary>
+		/// サンプル実装
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		// static public IQueryable<Teacher> TheMethod(this ITable<Teacher> list)
+		// {
+		// 	throw new NotImplementedException();
+		// }
+		#endregion
+	}
 }

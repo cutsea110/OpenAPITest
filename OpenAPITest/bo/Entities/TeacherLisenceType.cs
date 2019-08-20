@@ -47,4 +47,22 @@ namespace OpenAPITest.Domain
 			return predicate;
 		}
 	}
+
+	/// <summary>
+	/// 教員資格種別拡張メソッド用クラス
+	/// </summary>
+	static public partial class TeacherLisenceTypeExtention
+	{
+		#region static methods
+		/// <summary>
+		/// サンプル実装
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		// static public IQueryable<TeacherLisenceType> TheMethod(this ITable<TeacherLisenceType> list)
+		// {
+		// 	throw new NotImplementedException();
+		// }
+		#endregion
+	}
 }

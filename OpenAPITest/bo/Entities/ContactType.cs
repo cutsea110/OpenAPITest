@@ -47,4 +47,22 @@ namespace OpenAPITest.Domain
 			return predicate;
 		}
 	}
+
+	/// <summary>
+	/// 連絡先種別拡張メソッド用クラス
+	/// </summary>
+	static public partial class ContactTypeExtention
+	{
+		#region static methods
+		/// <summary>
+		/// サンプル実装
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		// static public IQueryable<ContactType> TheMethod(this ITable<ContactType> list)
+		// {
+		// 	throw new NotImplementedException();
+		// }
+		#endregion
+	}
 }

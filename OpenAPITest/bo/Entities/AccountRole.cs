@@ -47,4 +47,22 @@ namespace OpenAPITest.Domain
 			return predicate;
 		}
 	}
+
+	/// <summary>
+	/// アカウントロール拡張メソッド用クラス
+	/// </summary>
+	static public partial class AccountRoleExtention
+	{
+		#region static methods
+		/// <summary>
+		/// サンプル実装
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		// static public IQueryable<AccountRole> TheMethod(this ITable<AccountRole> list)
+		// {
+		// 	throw new NotImplementedException();
+		// }
+		#endregion
+	}
 }

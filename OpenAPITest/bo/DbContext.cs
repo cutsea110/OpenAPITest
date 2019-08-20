@@ -282,8 +282,14 @@ namespace OpenAPITest.Domain
 		/// 名称 : 他ユーザ
 		/// 説明 : SEなどその他のシステムアカウント用ユーザ
 		/// </summary>
+		[MapValue(Value = 6), DataMember]
+		他ユーザ = 6,
+		/// <summary>
+		/// 名称 : ゴースト
+		/// 説明 : 人的リソースの関連なし
+		/// </summary>
 		[MapValue(Value = 99), DataMember]
-		他ユーザ = 99,
+		ゴースト = 99,
 	}
 	/// <summary>
 	/// 権限
@@ -1490,8 +1496,10 @@ namespace OpenAPITest.Domain
 					return UserType.除籍生;
 				case 5:
 					return UserType.保護者;
-				case 99:
+				case 6:
 					return UserType.他ユーザ;
+				case 99:
+					return UserType.ゴースト;
 				default:
 					return (UserType?)missing;
 			}
@@ -1517,6 +1525,8 @@ namespace OpenAPITest.Domain
 				case UserType.保護者:
 					return 5;
 				case UserType.他ユーザ:
+					return 6;
+				case UserType.ゴースト:
 					return 99;
 				default:
 					throw new Exception("Unknown UserType");
@@ -1545,6 +1555,8 @@ namespace OpenAPITest.Domain
 					return "保護者";
 				case UserType.他ユーザ:
 					return "他ユーザ";
+				case UserType.ゴースト:
+					return "ゴースト";
 				default:
 					return missing;
 			}
@@ -1572,6 +1584,8 @@ namespace OpenAPITest.Domain
 					return "保護者";
 				case UserType.他ユーザ:
 					return "他ユーザ";
+				case UserType.ゴースト:
+					return "ゴースト";
 				default:
 					return missing;
 			}
@@ -1599,6 +1613,8 @@ namespace OpenAPITest.Domain
 					return "親";
 				case UserType.他ユーザ:
 					return "他";
+				case UserType.ゴースト:
+					return "幽";
 				default:
 					return missing;
 			}
@@ -1626,6 +1642,8 @@ namespace OpenAPITest.Domain
 					return "Parent";
 				case UserType.他ユーザ:
 					return "User";
+				case UserType.ゴースト:
+					return "Ghost";
 				default:
 					return missing;
 			}
@@ -1653,6 +1671,8 @@ namespace OpenAPITest.Domain
 					return "Parent";
 				case UserType.他ユーザ:
 					return "User";
+				case UserType.ゴースト:
+					return "Ghost";
 				default:
 					return missing;
 			}
@@ -1680,6 +1700,8 @@ namespace OpenAPITest.Domain
 					return "P";
 				case UserType.他ユーザ:
 					return "U";
+				case UserType.ゴースト:
+					return "G";
 				default:
 					return missing;
 			}
@@ -9337,6 +9359,46 @@ namespace OpenAPITest.Domain
 		private void OnStaffChanged()
 		{
 			OnPropertyChanged(_StaffChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region Teacher : teacher_no (FK_Account_Teacher)
+
+		private Teacher _Teacher;
+		/// <summary>
+		/// FK_Account_Teacher
+		/// </summary>
+		[Association(ThisKey="teacher_no", OtherKey="teacher_no", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Account_Teacher", BackReferenceName="Account"), DataMember]
+		public  Teacher  Teacher
+		{
+			get { return _Teacher; }
+			set
+			{
+				if (_Teacher != value)
+				{
+					BeforeTeacherChanged(value);
+					_Teacher = value;
+					AfterTeacherChanged();
+
+					OnTeacherChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeTeacherChanged(Teacher newValue);
+		partial void AfterTeacherChanged ();
+
+		public const string NameOfTeacher = "Teacher";
+
+		private static readonly PropertyChangedEventArgs _TeacherChangedEventArgs = new PropertyChangedEventArgs(NameOfTeacher);
+
+		private void OnTeacherChanged()
+		{
+			OnPropertyChanged(_TeacherChangedEventArgs);
 		}
 
 		#endregion

@@ -28,6 +28,8 @@ namespace OpenAPITest.Controllers
     public class TokenInputModel
     {
         [Required]
+        public UserType UserType { get; set; }
+        [Required]
         public string ID { get; set; }
         [Required]
         public string Password { get; set; }
@@ -112,17 +114,12 @@ namespace OpenAPITest.Controllers
             {
                 using (var db = new peppaDB())
                 {
-                    var q = new AccountCondition
-                    {
-                        staff_no_eq = inputModel.ID,
-                    };
+                    var now = DateTime.UtcNow;
+
                     var accs = db.Account
-                        .LoadWith(_ => _.Staff)
-                        .LoadWith(_ => _.PasswordList)
-                        .Where(q.CreatePredicate())
+                        .GetAccounts(inputModel.UserType, inputModel.ID)
                         .ToList();
 
-                    var now = DateTime.UtcNow;
                     var validAccPw = accs.SelectMany(a => a.PasswordList.Select(p => (Acc: a, Pw: p))).FirstOrDefault(_ => _.Pw.IsActive(now));
 
                     if (validAccPw.Pw != null)

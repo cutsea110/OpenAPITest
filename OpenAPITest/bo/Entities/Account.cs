@@ -24,10 +24,10 @@ namespace OpenAPITest.Domain
         public string AccountID => account_id.ToString();
 	}
 
-	/// <summary>
-	/// アカウント条件
-	/// </summary>
-	public partial class AccountCondition
+    /// <summary>
+    /// アカウント条件
+    /// </summary>
+    public partial class AccountCondition
 	{
 		#region properties
 		// [DataMember]
@@ -50,4 +50,42 @@ namespace OpenAPITest.Domain
 			return predicate;
 		}
 	}
+
+    /// <summary>
+    /// アカウント拡張メソッド用クラス
+    /// </summary>
+    static public partial class AccountExtention
+    {
+        #region static methods
+        /// <summary>
+        /// UserTypeとそのユーザ種別に応じたidを指定してAccountを取得する
+        /// その際に適切にユーザリソースもLoadWithされる
+        /// </summary>
+        /// <param name="accounts"></param>
+        /// <param name="userType"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        static public IQueryable<Account> GetAccounts(this ITable<Account> accounts, UserType userType, string id)
+        {
+            var q = new AccountCondition();
+            switch (userType)
+            {
+                case UserType.職員:
+                    accounts.LoadWith(_ => _.Staff);
+                    q.staff_no_eq = id;
+                    break;
+                case UserType.教員:
+                    accounts.LoadWith(_ => _.Teacher);
+                    q.teacher_no_eq = id;
+                    break;
+                case UserType.ゴースト:
+                    q.account_id_eq = int.Parse(id);
+                    break;
+                default:
+                    break;
+            }
+            return accounts.Where(q.CreatePredicate());
+        }
+        #endregion
+    }
 }

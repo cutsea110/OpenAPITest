@@ -58,6 +58,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
 		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
@@ -65,7 +66,7 @@ namespace OpenAPITest.Controllers
 		[PermissionTypeAuthorize("Read_Account")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -78,6 +79,8 @@ namespace OpenAPITest.Controllers
 				#region LoadWith
 				if (with_Staff)
 					q = q.LoadWith(_ => _.Staff);
+				if (with_Teacher)
+					q = q.LoadWith(_ => _.Teacher);
 				if (with_AccountRoleList)
 					q = q.LoadWith(_ => _.AccountRoleList);
 				if (with_PasswordList)
@@ -95,6 +98,7 @@ namespace OpenAPITest.Controllers
 		/// アカウントの取得
 		/// </summary>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
 		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
@@ -104,7 +108,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList)
+		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -117,6 +121,8 @@ namespace OpenAPITest.Controllers
 				#region LoadWith
 				if (with_Staff)
 					q = q.LoadWith(_ => _.Staff);
+				if (with_Teacher)
+					q = q.LoadWith(_ => _.Teacher);
 				if (with_AccountRoleList)
 					q = q.LoadWith(_ => _.AccountRoleList);
 				if (with_PasswordList)

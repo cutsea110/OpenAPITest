@@ -33,11 +33,12 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var o = db.Staff
-					.LoadWith(_ => _.NameList.First().PersonNameType)
-					.LoadWith(_ => _.AddressList.First().AddressType)
-					.LoadWith(_ => _.ContactList.First().ContactType)
-					.Find(staffNo);
+                var o = db.Staff
+                    .LoadWith(_ => _.SexType)
+                    .LoadWith(_ => _.NameList.First().PersonNameType)
+                    .LoadWith(_ => _.AddressList.First().AddressType)
+                    .LoadWith(_ => _.ContactList.First().ContactType)
+                    .Find(staffNo);
 
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
@@ -62,6 +63,7 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
                 var q = db.Staff
+                    .LoadWith(_ => _.SexType)
                     .LoadWith(_ => _.NameList.First().PersonNameType)
                     .LoadWith(_ => _.AddressList.First().AddressType)
                     .LoadWith(_ => _.ContactList.First().ContactType);
