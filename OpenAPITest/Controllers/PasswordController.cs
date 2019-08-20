@@ -117,6 +117,7 @@ namespace OpenAPITest.Controllers
                     var now = DateTime.UtcNow;
 
                     var accs = db.Account
+                        .LoadWith(_ => _.PasswordList)
                         .GetAccounts(inputModel.UserType, inputModel.ID)
                         .ToList();
 
