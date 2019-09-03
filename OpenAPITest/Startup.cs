@@ -377,7 +377,8 @@ namespace OpenAPITest
                         Name = "Authorization",
                         In = ParameterLocation.Header,
                         Type = SecuritySchemeType.ApiKey,
-                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\""
+                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\". You should get the token from a response of 'token' API.",
+                        BearerFormat = "Bearer {token}",
                     });
 
                 // 入力したトークンをリクエストに含めるためのフィルタを追加
