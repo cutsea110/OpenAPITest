@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,10 @@ namespace OpenAPITest.Controllers
 	[ApiController]
 	public partial class PositionTypeController : ControllerBase
 	{
+        /// <summary>
+        /// Current Account ID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
 
 		/// <summary>
 		/// 職階種別の件数
@@ -120,6 +125,8 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					o.uid = db.InsertWithInt32Identity<PositionType>(o);
 					return CreatedAtAction(nameof(Get), new { positionTypeId = o.position_type_id }, o);
 				}
@@ -146,6 +153,9 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					if (o.uid == 0)
+						o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					int count = db.InsertOrReplace<PositionType>(o);
 					return Ok(count);
 				}
@@ -171,6 +181,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
+
 					var ret = db.BulkCopy<PositionType>(os);
 					return Ok(ret);
 				}
@@ -197,6 +213,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						if (o.uid == 0)
+							o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
 					var count = db.Merge<PositionType>(os);
 					return Ok(count);
 				}
@@ -223,6 +245,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.modified_by = CurrentAccountId;
 					var count = db.Update<PositionType>(o);
 					return Ok(count);
 				}
@@ -248,6 +271,7 @@ namespace OpenAPITest.Controllers
 			{
 				var count = db.PositionType
 					.Where(_ => _.position_type_id == positionTypeId)
+					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
 				return Ok(count);
@@ -272,6 +296,7 @@ namespace OpenAPITest.Controllers
 			{
 				var count = db.PositionType
 					.Where(c.CreatePredicate())
+					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
 				return Ok(count);

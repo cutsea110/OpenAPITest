@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,10 @@ namespace OpenAPITest.Controllers
 	[ApiController]
 	public partial class StaffController : ControllerBase
 	{
+        /// <summary>
+        /// Current Account ID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
 
 		/// <summary>
 		/// 職員の件数
@@ -158,6 +163,8 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					o.uid = db.InsertWithInt32Identity<Staff>(o);
 					return CreatedAtAction(nameof(Get), new { staffNo = o.staff_no }, o);
 				}
@@ -184,6 +191,9 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					if (o.uid == 0)
+						o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					int count = db.InsertOrReplace<Staff>(o);
 					return Ok(count);
 				}
@@ -209,6 +219,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
+
 					var ret = db.BulkCopy<Staff>(os);
 					return Ok(ret);
 				}
@@ -235,6 +251,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						if (o.uid == 0)
+							o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
 					var count = db.Merge<Staff>(os);
 					return Ok(count);
 				}
@@ -261,6 +283,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.modified_by = CurrentAccountId;
 					var count = db.Update<Staff>(o);
 					return Ok(count);
 				}
@@ -286,6 +309,7 @@ namespace OpenAPITest.Controllers
 			{
 				var count = db.Staff
 					.Where(_ => _.staff_no == staffNo)
+					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
 				return Ok(count);
@@ -310,6 +334,7 @@ namespace OpenAPITest.Controllers
 			{
 				var count = db.Staff
 					.Where(c.CreatePredicate())
+					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
 				return Ok(count);

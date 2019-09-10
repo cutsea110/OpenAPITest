@@ -66,11 +66,6 @@ namespace OpenAPITest.Controllers
 
     public partial class PasswordController : ControllerBase
     {
-        /// <summary>
-        /// 現在のアカウントID
-        /// </summary>
-        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
-
 
         private JwtSecurityToken CreateJwtSecurityToken(Auth user)
         {

@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,10 @@ namespace OpenAPITest.Controllers
 	[ApiController]
 	public partial class TestController : ControllerBase
 	{
+        /// <summary>
+        /// Current Account ID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
 
 		/// <summary>
 		/// テストの件数
@@ -171,6 +176,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+
 					var ret = db.BulkCopy<Test>(os);
 					return Ok(ret);
 				}

@@ -43,14 +43,8 @@ namespace OpenAPITest.CustomPolicyProvider
 
             using (var db = new peppaDB())
             {
-                // 現在の(認証済み)アカウント
-                var currentAccount = context.User.FindFirst(c => c.Type == ClaimTypes.Name);
-                // 認証されたアカウントがなければおしまい
-                if (currentAccount == null)
-                    return Task.CompletedTask;
-
-                // アカウントIDを取得
-                var currentAccountID = int.Parse(currentAccount.Value);
+                // 現在の(認証済み)アカウントID
+                var currentAccountID = int.Parse(context.User.FindFirst(c => c.Type == ClaimTypes.Name).Value);
                 // 所持している権限リスト
                 var permissions =
                     db.Account

@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,10 @@ namespace OpenAPITest.Controllers
 	[ApiController]
 	public partial class RolePermissionController : ControllerBase
 	{
+        /// <summary>
+        /// Current Account ID
+        /// </summary>
+        public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
 
 		/// <summary>
 		/// ロール権限の件数
@@ -121,6 +126,8 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					o.uid = db.InsertWithInt32Identity<RolePermission>(o);
 					return CreatedAtAction(nameof(Get), new { roleId = o.role_id, permissionId = o.permission_id }, o);
 				}
@@ -147,6 +154,9 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					if (o.uid == 0)
+						o.created_by = CurrentAccountId;
+					o.modified_by = CurrentAccountId;
 					int count = db.InsertOrReplace<RolePermission>(o);
 					return Ok(count);
 				}
@@ -172,6 +182,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
+
 					var ret = db.BulkCopy<RolePermission>(os);
 					return Ok(ret);
 				}
@@ -198,6 +214,12 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					foreach (var o in os)
+					{
+						if (o.uid == 0)
+							o.created_by = CurrentAccountId;
+						o.modified_by = CurrentAccountId;
+					}
 					var count = db.Merge<RolePermission>(os);
 					return Ok(count);
 				}
@@ -225,6 +247,7 @@ namespace OpenAPITest.Controllers
 			if (ModelState.IsValid) {
 				using (var db = new peppaDB())
 				{
+					o.modified_by = CurrentAccountId;
 					var count = db.Update<RolePermission>(o);
 					return Ok(count);
 				}
