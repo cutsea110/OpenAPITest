@@ -9290,6 +9290,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// is_validのenumラッパー
 		/// </summary>
+		[ColumnAlias("is_valid")]
 		public ValidityFlag IsValid
 		{
 			get => (ValidityFlag)is_valid;
@@ -10622,6 +10623,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// lock_reasonのenumラッパー
 		/// </summary>
+		[ColumnAlias("lock_reason")]
 		public LockReason? LockReason
 		{
 			get => (LockReason?)lock_reason;
@@ -13180,6 +13182,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// user_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("user_type")]
 		public UserType UserType
 		{
 			get => (UserType)user_type;
@@ -14331,6 +14334,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// user_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("user_type")]
 		public UserType UserType
 		{
 			get => (UserType)user_type;
@@ -15588,6 +15592,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// genderのenumラッパー
 		/// </summary>
+		[ColumnAlias("gender")]
 		public Gender? Gender
 		{
 			get => (Gender?)gender;
@@ -18983,6 +18988,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// user_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("user_type")]
 		public UserType UserType
 		{
 			get => (UserType)user_type;
@@ -21066,6 +21072,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// user_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("user_type")]
 		public UserType UserType
 		{
 			get => (UserType)user_type;
@@ -22972,6 +22979,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// user_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("user_type")]
 		public UserType UserType
 		{
 			get => (UserType)user_type;
