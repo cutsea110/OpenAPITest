@@ -21,47 +21,116 @@ using OpenAPITest.CustomPolicyProvider;
 namespace OpenAPITest.Controllers
 {
     #region Models
+    /// <summary>
+    /// 認証
+    /// </summary>
     public class Auth
     {
+        /// <summary>
+        /// アカウントID
+        /// </summary>
         public string ID { get; set; }
+        /// <summary>
+        /// アカウント名
+        /// </summary>
         public string Name { get; set; }
     }
+    /// <summary>
+    /// パスワード認証用入力モデル
+    /// </summary>
     public class TokenInputModel
     {
+        /// <summary>
+        /// 利用者種別
+        /// </summary>
         [Required]
         public UserType UserType { get; set; }
+        /// <summary>
+        /// アカウントID
+        /// </summary>
         [Required]
         public string ID { get; set; }
+        /// <summary>
+        /// パスワード
+        /// </summary>
         [Required]
         public string Password { get; set; }
     }
+    /// <summary>
+    /// 認証トークン
+    /// </summary>
     public class TokenViewModel
     {
+        /// <summary>
+        /// トークン
+        /// </summary>
         public string Token { get; set; }
+        /// <summary>
+        /// 有効期限
+        /// </summary>
         public DateTime Expiration { get; set; }
     }
+    /// <summary>
+    /// パスワード入力モデル
+    /// </summary>
     public class PasswordInputModel
     {
+        /// <summary>
+        /// アカウントID
+        /// </summary>
         [Required]
         public int AccountId { get; set; }
+        /// <summary>
+        /// パスワードハッシュ化方式
+        /// </summary>
         public HashMethod Method { get; set; } = HashMethod.SHA256;
+        /// <summary>
+        /// 新しいパスワード
+        /// </summary>
         [Required]
         public string NewPassword { get; set; }
+        /// <summary>
+        /// 新しいパスワード(確認)
+        /// </summary>
         [Required]
         [Compare(nameof(NewPassword))]
         public string ConfirmNewPassword { get; set; }
+        /// <summary>
+        /// 有効期限
+        /// </summary>
         public DateTime? ExpiredOn { get; set; }
+        /// <summary>
+        /// パスワード更新時の有効期間の延長日数
+        /// </summary>
         public int? PasswordLifeDays { get; set; } = 90;
+        /// <summary>
+        /// 連続での認証失敗を許容する回数の上限
+        /// </summary>
         public int CanFailTimes { get; set; } = 3;
     }
+    /// <summary>
+    /// パスワード変更入力モデル
+    /// </summary>
     public class ChangePasswordInputModel
     {
+        /// <summary>
+        /// パスワードのハッシュ化方式
+        /// </summary>
         [Required]
         public HashMethod Method { get; set; } = HashMethod.SHA256;
+        /// <summary>
+        /// 現在のパスワード
+        /// </summary>
         [Required]
         public string OrigPassword { get; set; }
+        /// <summary>
+        /// 新しいパスワード
+        /// </summary>
         [Required]
         public string NewPassword { get; set; }
+        /// <summary>
+        /// 新しいパスワード(確認)
+        /// </summary>
         [Required]
         [Compare(nameof(NewPassword))]
         public string ConfirmNewPassword { get; set; }
@@ -166,6 +235,11 @@ namespace OpenAPITest.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// パスワードを初期化する
+        /// </summary>
+        /// <param name="inputModel"></param>
+        /// <returns></returns>
         [PermissionTypeAuthorize("Create_Password")]
         [HttpPost("init-password")]
         [ProducesResponseType(typeof(Password), StatusCodes.Status201Created)]
