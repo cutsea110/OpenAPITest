@@ -20,6 +20,7 @@ using OpenAPITest.CustomPolicyProvider;
 
 namespace OpenAPITest.Controllers
 {
+    #region Models
     public class Auth
     {
         public string ID { get; set; }
@@ -65,6 +66,7 @@ namespace OpenAPITest.Controllers
         [Compare(nameof(NewPassword))]
         public string ConfirmNewPassword { get; set; }
     }
+    #endregion
 
     public partial class PasswordController : ControllerBase
     {
