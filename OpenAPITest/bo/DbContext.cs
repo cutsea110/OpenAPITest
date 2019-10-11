@@ -164,13 +164,13 @@ namespace OpenAPITest.Domain
 		/// 名称 : 無効
 		/// 説明 : 無効
 		/// </summary>
-		[MapValue(Value = 0), DataMember]
+		[MapValue(Value = 0), DataMember, EnumMember, Description("無効")]
 		無効 = 0,
 		/// <summary>
 		/// 名称 : 有効
 		/// 説明 : 有効
 		/// </summary>
-		[MapValue(Value = 1), DataMember]
+		[MapValue(Value = 1), DataMember, EnumMember, Description("有効")]
 		有効 = 1,
 	}
 	/// <summary>
@@ -183,13 +183,13 @@ namespace OpenAPITest.Domain
 		/// 名称 : SHA256
 		/// 説明 : SHA256
 		/// </summary>
-		[MapValue(Value = "SHA256"), DataMember]
+		[MapValue(Value = "SHA256"), DataMember, EnumMember, Description("SHA256")]
 		SHA256,
 		/// <summary>
 		/// 名称 : 平文のまま
 		/// 説明 : 平文のまま保持
 		/// </summary>
-		[MapValue(Value = "RAW"), DataMember]
+		[MapValue(Value = "RAW"), DataMember, EnumMember, Description("平文のまま保持")]
 		平文,
 	}
 	/// <summary>
@@ -202,25 +202,25 @@ namespace OpenAPITest.Domain
 		/// 名称 : なし
 		/// 説明 : 理由なし
 		/// </summary>
-		[MapValue(Value = 0), DataMember]
+		[MapValue(Value = 0), DataMember, EnumMember, Description("理由なし")]
 		なし = 0,
 		/// <summary>
 		/// 名称 : 認証失敗
 		/// 説明 : 連続的な認証エラーによる
 		/// </summary>
-		[MapValue(Value = 1), DataMember]
+		[MapValue(Value = 1), DataMember, EnumMember, Description("連続的な認証エラーによる")]
 		失敗 = 1,
 		/// <summary>
 		/// 名称 : アカウント凍結
 		/// 説明 : アカウントを凍結するため
 		/// </summary>
-		[MapValue(Value = 2), DataMember]
+		[MapValue(Value = 2), DataMember, EnumMember, Description("アカウントを凍結するため")]
 		凍結 = 2,
 		/// <summary>
 		/// 名称 : その他
 		/// 説明 : その他
 		/// </summary>
-		[MapValue(Value = 9), DataMember]
+		[MapValue(Value = 9), DataMember, EnumMember, Description("その他")]
 		その他 = 9,
 	}
 	/// <summary>
@@ -233,13 +233,13 @@ namespace OpenAPITest.Domain
 		/// 名称 : 男性
 		/// 説明 : 男性
 		/// </summary>
-		[MapValue(Value = 1), DataMember]
+		[MapValue(Value = 1), DataMember, EnumMember, Description("男性")]
 		男性 = 1,
 		/// <summary>
 		/// 名称 : 女性
 		/// 説明 : 女性
 		/// </summary>
-		[MapValue(Value = 2), DataMember]
+		[MapValue(Value = 2), DataMember, EnumMember, Description("女性")]
 		女性 = 2,
 	}
 	/// <summary>
@@ -252,43 +252,43 @@ namespace OpenAPITest.Domain
 		/// 名称 : 職員
 		/// 説明 : 職員
 		/// </summary>
-		[MapValue(Value = 1), DataMember]
+		[MapValue(Value = 1), DataMember, EnumMember, Description("職員")]
 		職員 = 1,
 		/// <summary>
 		/// 名称 : 教員
 		/// 説明 : 教員
 		/// </summary>
-		[MapValue(Value = 2), DataMember]
+		[MapValue(Value = 2), DataMember, EnumMember, Description("教員")]
 		教員 = 2,
 		/// <summary>
 		/// 名称 : 在学生
 		/// 説明 : 在学生
 		/// </summary>
-		[MapValue(Value = 3), DataMember]
+		[MapValue(Value = 3), DataMember, EnumMember, Description("在学生")]
 		在学生 = 3,
 		/// <summary>
 		/// 名称 : 除籍生
 		/// 説明 : 除籍生
 		/// </summary>
-		[MapValue(Value = 4), DataMember]
+		[MapValue(Value = 4), DataMember, EnumMember, Description("除籍生")]
 		除籍生 = 4,
 		/// <summary>
 		/// 名称 : 保護者
 		/// 説明 : 保護者
 		/// </summary>
-		[MapValue(Value = 5), DataMember]
+		[MapValue(Value = 5), DataMember, EnumMember, Description("保護者")]
 		保護者 = 5,
 		/// <summary>
 		/// 名称 : 他ユーザ
 		/// 説明 : SEなどその他のシステムアカウント用ユーザ
 		/// </summary>
-		[MapValue(Value = 6), DataMember]
+		[MapValue(Value = 6), DataMember, EnumMember, Description("SEなどその他のシステムアカウント用ユーザ")]
 		他ユーザ = 6,
 		/// <summary>
 		/// 名称 : ゴースト
 		/// 説明 : 人的リソースの関連なし
 		/// </summary>
-		[MapValue(Value = 99), DataMember]
+		[MapValue(Value = 99), DataMember, EnumMember, Description("人的リソースの関連なし")]
 		ゴースト = 99,
 	}
 	/// <summary>
@@ -301,481 +301,481 @@ namespace OpenAPITest.Domain
 		/// 名称 : ロール作成
 		/// 説明 : ロールマスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Role"), DataMember]
+		[MapValue(Value = "Create_Role"), DataMember, EnumMember, Description("ロールマスタの新規作成")]
 		ロール作成,
 		/// <summary>
 		/// 名称 : ロール表示
 		/// 説明 : ロールマスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Role"), DataMember]
+		[MapValue(Value = "Read_Role"), DataMember, EnumMember, Description("ロールマスタの閲覧")]
 		ロール表示,
 		/// <summary>
 		/// 名称 : ロール更新
 		/// 説明 : ロールマスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_Role"), DataMember]
+		[MapValue(Value = "Update_Role"), DataMember, EnumMember, Description("ロールマスタの更新")]
 		ロール更新,
 		/// <summary>
 		/// 名称 : ロール削除
 		/// 説明 : ロールマスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Role"), DataMember]
+		[MapValue(Value = "Delete_Role"), DataMember, EnumMember, Description("ロールマスタの削除")]
 		ロール削除,
 		/// <summary>
 		/// 名称 : ロール権限作成
 		/// 説明 : ロール権限の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_RolePermission"), DataMember]
+		[MapValue(Value = "Create_RolePermission"), DataMember, EnumMember, Description("ロール権限の新規作成")]
 		ロール権限作成,
 		/// <summary>
 		/// 名称 : ロール権限表示
 		/// 説明 : ロール権限の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_RolePermission"), DataMember]
+		[MapValue(Value = "Read_RolePermission"), DataMember, EnumMember, Description("ロール権限の閲覧")]
 		ロール権限表示,
 		/// <summary>
 		/// 名称 : ロール権限更新
 		/// 説明 : ロール権限の更新
 		/// </summary>
-		[MapValue(Value = "Update_RolePermission"), DataMember]
+		[MapValue(Value = "Update_RolePermission"), DataMember, EnumMember, Description("ロール権限の更新")]
 		ロール権限更新,
 		/// <summary>
 		/// 名称 : ロール権限削除
 		/// 説明 : ロール権限の削除
 		/// </summary>
-		[MapValue(Value = "Delete_RolePermission"), DataMember]
+		[MapValue(Value = "Delete_RolePermission"), DataMember, EnumMember, Description("ロール権限の削除")]
 		ロール権限削除,
 		/// <summary>
 		/// 名称 : アカウント作成
 		/// 説明 : アカウントの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Account"), DataMember]
+		[MapValue(Value = "Create_Account"), DataMember, EnumMember, Description("アカウントの新規作成")]
 		アカウント作成,
 		/// <summary>
 		/// 名称 : アカウント表示
 		/// 説明 : アカウントの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Account"), DataMember]
+		[MapValue(Value = "Read_Account"), DataMember, EnumMember, Description("アカウントの閲覧")]
 		アカウント表示,
 		/// <summary>
 		/// 名称 : アカウント更新
 		/// 説明 : アカウントの更新
 		/// </summary>
-		[MapValue(Value = "Update_Account"), DataMember]
+		[MapValue(Value = "Update_Account"), DataMember, EnumMember, Description("アカウントの更新")]
 		アカウント更新,
 		/// <summary>
 		/// 名称 : アカウント削除
 		/// 説明 : アカウントの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Account"), DataMember]
+		[MapValue(Value = "Delete_Account"), DataMember, EnumMember, Description("アカウントの削除")]
 		アカウント削除,
 		/// <summary>
 		/// 名称 : アカウントロール作成
 		/// 説明 : アカウントロールの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_AccountRole"), DataMember]
+		[MapValue(Value = "Create_AccountRole"), DataMember, EnumMember, Description("アカウントロールの新規作成")]
 		アカウントロール作成,
 		/// <summary>
 		/// 名称 : アカウントロール表示
 		/// 説明 : アカウントロールの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_AccountRole"), DataMember]
+		[MapValue(Value = "Read_AccountRole"), DataMember, EnumMember, Description("アカウントロールの閲覧")]
 		アカウントロール表示,
 		/// <summary>
 		/// 名称 : アカウントロール更新
 		/// 説明 : アカウントロールの更新
 		/// </summary>
-		[MapValue(Value = "Update_AccountRole"), DataMember]
+		[MapValue(Value = "Update_AccountRole"), DataMember, EnumMember, Description("アカウントロールの更新")]
 		アカウントロール更新,
 		/// <summary>
 		/// 名称 : アカウントロール削除
 		/// 説明 : アカウントロールの削除
 		/// </summary>
-		[MapValue(Value = "Delete_AccountRole"), DataMember]
+		[MapValue(Value = "Delete_AccountRole"), DataMember, EnumMember, Description("アカウントロールの削除")]
 		アカウントロール削除,
 		/// <summary>
 		/// 名称 : パスワード作成
 		/// 説明 : パスワードの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Password"), DataMember]
+		[MapValue(Value = "Create_Password"), DataMember, EnumMember, Description("パスワードの新規作成")]
 		パスワード作成,
 		/// <summary>
 		/// 名称 : パスワード表示
 		/// 説明 : パスワードの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Password"), DataMember]
+		[MapValue(Value = "Read_Password"), DataMember, EnumMember, Description("パスワードの閲覧")]
 		パスワード表示,
 		/// <summary>
 		/// 名称 : パスワード更新
 		/// 説明 : パスワードの更新
 		/// </summary>
-		[MapValue(Value = "Update_Password"), DataMember]
+		[MapValue(Value = "Update_Password"), DataMember, EnumMember, Description("パスワードの更新")]
 		パスワード更新,
 		/// <summary>
 		/// 名称 : パスワード変更
 		/// 説明 : パスワードの変更
 		/// </summary>
-		[MapValue(Value = "Change_Password"), DataMember]
+		[MapValue(Value = "Change_Password"), DataMember, EnumMember, Description("パスワードの変更")]
 		パスワード変更,
 		/// <summary>
 		/// 名称 : パスワード削除
 		/// 説明 : パスワードの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Password"), DataMember]
+		[MapValue(Value = "Delete_Password"), DataMember, EnumMember, Description("パスワードの削除")]
 		パスワード削除,
 		/// <summary>
 		/// 名称 : 職員作成
 		/// 説明 : 職員マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Staff"), DataMember]
+		[MapValue(Value = "Create_Staff"), DataMember, EnumMember, Description("職員マスタの新規作成")]
 		職員作成,
 		/// <summary>
 		/// 名称 : 職員表示
 		/// 説明 : 職員マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Staff"), DataMember]
+		[MapValue(Value = "Read_Staff"), DataMember, EnumMember, Description("職員マスタの閲覧")]
 		職員表示,
 		/// <summary>
 		/// 名称 : 職員更新
 		/// 説明 : 職員マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_Staff"), DataMember]
+		[MapValue(Value = "Update_Staff"), DataMember, EnumMember, Description("職員マスタの更新")]
 		職員更新,
 		/// <summary>
 		/// 名称 : 職員削除
 		/// 説明 : 職員マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Staff"), DataMember]
+		[MapValue(Value = "Delete_Staff"), DataMember, EnumMember, Description("職員マスタの削除")]
 		職員削除,
 		/// <summary>
 		/// 名称 : 教員作成
 		/// 説明 : 教員マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Teacher"), DataMember]
+		[MapValue(Value = "Create_Teacher"), DataMember, EnumMember, Description("教員マスタの新規作成")]
 		教員作成,
 		/// <summary>
 		/// 名称 : 教員表示
 		/// 説明 : 教員マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Teacher"), DataMember]
+		[MapValue(Value = "Read_Teacher"), DataMember, EnumMember, Description("教員マスタの閲覧")]
 		教員表示,
 		/// <summary>
 		/// 名称 : 教員更新
 		/// 説明 : 教員マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_Teacher"), DataMember]
+		[MapValue(Value = "Update_Teacher"), DataMember, EnumMember, Description("教員マスタの更新")]
 		教員更新,
 		/// <summary>
 		/// 名称 : 教員削除
 		/// 説明 : 教員マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Teacher"), DataMember]
+		[MapValue(Value = "Delete_Teacher"), DataMember, EnumMember, Description("教員マスタの削除")]
 		教員削除,
 		/// <summary>
 		/// 名称 : 性別区分作成
 		/// 説明 : 性別区分マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_SexType"), DataMember]
+		[MapValue(Value = "Create_SexType"), DataMember, EnumMember, Description("性別区分マスタの新規作成")]
 		性別区分作成,
 		/// <summary>
 		/// 名称 : 性別区分表示
 		/// 説明 : 性別区分マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_SexType"), DataMember]
+		[MapValue(Value = "Read_SexType"), DataMember, EnumMember, Description("性別区分マスタの閲覧")]
 		性別区分表示,
 		/// <summary>
 		/// 名称 : 性別区分更新
 		/// 説明 : 性別区分マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_SexType"), DataMember]
+		[MapValue(Value = "Update_SexType"), DataMember, EnumMember, Description("性別区分マスタの更新")]
 		性別区分更新,
 		/// <summary>
 		/// 名称 : 性別区分削除
 		/// 説明 : 性別区分マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_SexType"), DataMember]
+		[MapValue(Value = "Delete_SexType"), DataMember, EnumMember, Description("性別区分マスタの削除")]
 		性別区分削除,
 		/// <summary>
 		/// 名称 : 勤務形態種別作成
 		/// 説明 : 勤務形態種別マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_WorkStyleType"), DataMember]
+		[MapValue(Value = "Create_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの新規作成")]
 		勤務形態種別作成,
 		/// <summary>
 		/// 名称 : 勤務形態種別表示
 		/// 説明 : 勤務形態種別マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_WorkStyleType"), DataMember]
+		[MapValue(Value = "Read_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの閲覧")]
 		勤務形態種別表示,
 		/// <summary>
 		/// 名称 : 勤務形態種別更新
 		/// 説明 : 勤務形態種別マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_WorkStyleType"), DataMember]
+		[MapValue(Value = "Update_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの更新")]
 		勤務形態種別更新,
 		/// <summary>
 		/// 名称 : 勤務形態種別削除
 		/// 説明 : 勤務形態種別マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_WorkStyleType"), DataMember]
+		[MapValue(Value = "Delete_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの削除")]
 		勤務形態種別削除,
 		/// <summary>
 		/// 名称 : 職階種別作成
 		/// 説明 : 職階種別マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_PositionType"), DataMember]
+		[MapValue(Value = "Create_PositionType"), DataMember, EnumMember, Description("職階種別マスタの新規作成")]
 		職階種別作成,
 		/// <summary>
 		/// 名称 : 職階種別表示
 		/// 説明 : 職階種別マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_PositionType"), DataMember]
+		[MapValue(Value = "Read_PositionType"), DataMember, EnumMember, Description("職階種別マスタの閲覧")]
 		職階種別表示,
 		/// <summary>
 		/// 名称 : 職階種別更新
 		/// 説明 : 職階種別マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_PositionType"), DataMember]
+		[MapValue(Value = "Update_PositionType"), DataMember, EnumMember, Description("職階種別マスタの更新")]
 		職階種別更新,
 		/// <summary>
 		/// 名称 : 職階種別削除
 		/// 説明 : 職階種別マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_PositionType"), DataMember]
+		[MapValue(Value = "Delete_PositionType"), DataMember, EnumMember, Description("職階種別マスタの削除")]
 		職階種別削除,
 		/// <summary>
 		/// 名称 : 教員資格種別作成
 		/// 説明 : 教員資格種別マスタの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_TeacherLisenceType"), DataMember]
+		[MapValue(Value = "Create_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの新規作成")]
 		教員資格種別作成,
 		/// <summary>
 		/// 名称 : 教員資格種別表示
 		/// 説明 : 教員資格種別マスタの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_TeacherLisenceType"), DataMember]
+		[MapValue(Value = "Read_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの閲覧")]
 		教員資格種別表示,
 		/// <summary>
 		/// 名称 : 教員資格種別更新
 		/// 説明 : 教員資格種別マスタの更新
 		/// </summary>
-		[MapValue(Value = "Update_TeacherLisenceType"), DataMember]
+		[MapValue(Value = "Update_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの更新")]
 		教員資格種別更新,
 		/// <summary>
 		/// 名称 : 教員資格種別削除
 		/// 説明 : 教員資格種別マスタの削除
 		/// </summary>
-		[MapValue(Value = "Delete_TeacherLisenceType"), DataMember]
+		[MapValue(Value = "Delete_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの削除")]
 		教員資格種別削除,
 		/// <summary>
 		/// 名称 : 人名作成
 		/// 説明 : 人名の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_PersonName"), DataMember]
+		[MapValue(Value = "Create_PersonName"), DataMember, EnumMember, Description("人名の新規作成")]
 		人名作成,
 		/// <summary>
 		/// 名称 : 人名表示
 		/// 説明 : 人名の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_PersonName"), DataMember]
+		[MapValue(Value = "Read_PersonName"), DataMember, EnumMember, Description("人名の閲覧")]
 		人名表示,
 		/// <summary>
 		/// 名称 : 人名更新
 		/// 説明 : 人名の更新
 		/// </summary>
-		[MapValue(Value = "Update_PersonName"), DataMember]
+		[MapValue(Value = "Update_PersonName"), DataMember, EnumMember, Description("人名の更新")]
 		人名更新,
 		/// <summary>
 		/// 名称 : 人名変更
 		/// 説明 : 人名の変更
 		/// </summary>
-		[MapValue(Value = "Change_PersonName"), DataMember]
+		[MapValue(Value = "Change_PersonName"), DataMember, EnumMember, Description("人名の変更")]
 		人名変更,
 		/// <summary>
 		/// 名称 : 人名削除
 		/// 説明 : 人名の削除
 		/// </summary>
-		[MapValue(Value = "Delete_PersonName"), DataMember]
+		[MapValue(Value = "Delete_PersonName"), DataMember, EnumMember, Description("人名の削除")]
 		人名削除,
 		/// <summary>
 		/// 名称 : 人名種別作成
 		/// 説明 : 人名種別の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_PersonNameType"), DataMember]
+		[MapValue(Value = "Create_PersonNameType"), DataMember, EnumMember, Description("人名種別の新規作成")]
 		人名種別作成,
 		/// <summary>
 		/// 名称 : 人名種別表示
 		/// 説明 : 人名種別の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_PersonNameType"), DataMember]
+		[MapValue(Value = "Read_PersonNameType"), DataMember, EnumMember, Description("人名種別の閲覧")]
 		人名種別表示,
 		/// <summary>
 		/// 名称 : 人名種別更新
 		/// 説明 : 人名種別の更新
 		/// </summary>
-		[MapValue(Value = "Update_PersonNameType"), DataMember]
+		[MapValue(Value = "Update_PersonNameType"), DataMember, EnumMember, Description("人名種別の更新")]
 		人名種別更新,
 		/// <summary>
 		/// 名称 : 人名種別削除
 		/// 説明 : 人名種別の削除
 		/// </summary>
-		[MapValue(Value = "Delete_PersonNameType"), DataMember]
+		[MapValue(Value = "Delete_PersonNameType"), DataMember, EnumMember, Description("人名種別の削除")]
 		人名種別削除,
 		/// <summary>
 		/// 名称 : 住所作成
 		/// 説明 : 住所の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Address"), DataMember]
+		[MapValue(Value = "Create_Address"), DataMember, EnumMember, Description("住所の新規作成")]
 		住所作成,
 		/// <summary>
 		/// 名称 : 住所表示
 		/// 説明 : 住所の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Address"), DataMember]
+		[MapValue(Value = "Read_Address"), DataMember, EnumMember, Description("住所の閲覧")]
 		住所表示,
 		/// <summary>
 		/// 名称 : 住所更新
 		/// 説明 : 住所の更新
 		/// </summary>
-		[MapValue(Value = "Update_Address"), DataMember]
+		[MapValue(Value = "Update_Address"), DataMember, EnumMember, Description("住所の更新")]
 		住所更新,
 		/// <summary>
 		/// 名称 : 住所変更
 		/// 説明 : 住所の変更
 		/// </summary>
-		[MapValue(Value = "Change_Address"), DataMember]
+		[MapValue(Value = "Change_Address"), DataMember, EnumMember, Description("住所の変更")]
 		住所変更,
 		/// <summary>
 		/// 名称 : 住所削除
 		/// 説明 : 住所の削除
 		/// </summary>
-		[MapValue(Value = "Delete_Address"), DataMember]
+		[MapValue(Value = "Delete_Address"), DataMember, EnumMember, Description("住所の削除")]
 		住所削除,
 		/// <summary>
 		/// 名称 : 住所種別作成
 		/// 説明 : 住所種別の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_AddressType"), DataMember]
+		[MapValue(Value = "Create_AddressType"), DataMember, EnumMember, Description("住所種別の新規作成")]
 		住所種別作成,
 		/// <summary>
 		/// 名称 : 住所種別表示
 		/// 説明 : 住所種別の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_AddressType"), DataMember]
+		[MapValue(Value = "Read_AddressType"), DataMember, EnumMember, Description("住所種別の閲覧")]
 		住所種別表示,
 		/// <summary>
 		/// 名称 : 住所種別更新
 		/// 説明 : 住所種別の更新
 		/// </summary>
-		[MapValue(Value = "Update_AddressType"), DataMember]
+		[MapValue(Value = "Update_AddressType"), DataMember, EnumMember, Description("住所種別の更新")]
 		住所種別更新,
 		/// <summary>
 		/// 名称 : 住所種別削除
 		/// 説明 : 住所種別の削除
 		/// </summary>
-		[MapValue(Value = "Delete_AddressType"), DataMember]
+		[MapValue(Value = "Delete_AddressType"), DataMember, EnumMember, Description("住所種別の削除")]
 		住所種別削除,
 		/// <summary>
 		/// 名称 : 連絡先作成
 		/// 説明 : 連絡先の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Contact"), DataMember]
+		[MapValue(Value = "Create_Contact"), DataMember, EnumMember, Description("連絡先の新規作成")]
 		連絡先作成,
 		/// <summary>
 		/// 名称 : 連絡先表示
 		/// 説明 : 連絡先の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Contact"), DataMember]
+		[MapValue(Value = "Read_Contact"), DataMember, EnumMember, Description("連絡先の閲覧")]
 		連絡先表示,
 		/// <summary>
 		/// 名称 : 連絡先更新
 		/// 説明 : 連絡先の更新
 		/// </summary>
-		[MapValue(Value = "Update_Contact"), DataMember]
+		[MapValue(Value = "Update_Contact"), DataMember, EnumMember, Description("連絡先の更新")]
 		連絡先更新,
 		/// <summary>
 		/// 名称 : 連絡先変更
 		/// 説明 : 連絡先の変更
 		/// </summary>
-		[MapValue(Value = "Change_Contact"), DataMember]
+		[MapValue(Value = "Change_Contact"), DataMember, EnumMember, Description("連絡先の変更")]
 		連絡先変更,
 		/// <summary>
 		/// 名称 : 連絡先削除
 		/// 説明 : 連絡先の削除
 		/// </summary>
-		[MapValue(Value = "Delete_Contact"), DataMember]
+		[MapValue(Value = "Delete_Contact"), DataMember, EnumMember, Description("連絡先の削除")]
 		連絡先削除,
 		/// <summary>
 		/// 名称 : 連絡先種別作成
 		/// 説明 : 連絡先種別の新規作成
 		/// </summary>
-		[MapValue(Value = "Create_ContactType"), DataMember]
+		[MapValue(Value = "Create_ContactType"), DataMember, EnumMember, Description("連絡先種別の新規作成")]
 		連絡先種別作成,
 		/// <summary>
 		/// 名称 : 連絡先種別表示
 		/// 説明 : 連絡先種別の閲覧
 		/// </summary>
-		[MapValue(Value = "Read_ContactType"), DataMember]
+		[MapValue(Value = "Read_ContactType"), DataMember, EnumMember, Description("連絡先種別の閲覧")]
 		連絡先種別表示,
 		/// <summary>
 		/// 名称 : 連絡先種別更新
 		/// 説明 : 連絡先種別の更新
 		/// </summary>
-		[MapValue(Value = "Update_ContactType"), DataMember]
+		[MapValue(Value = "Update_ContactType"), DataMember, EnumMember, Description("連絡先種別の更新")]
 		連絡先種別更新,
 		/// <summary>
 		/// 名称 : 連絡先種別削除
 		/// 説明 : 連絡先種別の削除
 		/// </summary>
-		[MapValue(Value = "Delete_ContactType"), DataMember]
+		[MapValue(Value = "Delete_ContactType"), DataMember, EnumMember, Description("連絡先種別の削除")]
 		連絡先種別削除,
 		/// <summary>
 		/// 名称 : エラーログ作成
 		/// 説明 : エラーログの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_ErrorLog"), DataMember]
+		[MapValue(Value = "Create_ErrorLog"), DataMember, EnumMember, Description("エラーログの新規作成")]
 		エラーログ作成,
 		/// <summary>
 		/// 名称 : エラーログ表示
 		/// 説明 : エラーログの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_ErrorLog"), DataMember]
+		[MapValue(Value = "Read_ErrorLog"), DataMember, EnumMember, Description("エラーログの閲覧")]
 		エラーログ表示,
 		/// <summary>
 		/// 名称 : エラーログ更新
 		/// 説明 : エラーログの更新
 		/// </summary>
-		[MapValue(Value = "Update_ErrorLog"), DataMember]
+		[MapValue(Value = "Update_ErrorLog"), DataMember, EnumMember, Description("エラーログの更新")]
 		エラーログ更新,
 		/// <summary>
 		/// 名称 : エラーログ削除
 		/// 説明 : エラーログの削除
 		/// </summary>
-		[MapValue(Value = "Delete_ErrorLog"), DataMember]
+		[MapValue(Value = "Delete_ErrorLog"), DataMember, EnumMember, Description("エラーログの削除")]
 		エラーログ削除,
 		/// <summary>
 		/// 名称 : テスト作成
 		/// 説明 : テストの新規作成
 		/// </summary>
-		[MapValue(Value = "Create_Test"), DataMember]
+		[MapValue(Value = "Create_Test"), DataMember, EnumMember, Description("テストの新規作成")]
 		テスト作成,
 		/// <summary>
 		/// 名称 : テスト表示
 		/// 説明 : テストの閲覧
 		/// </summary>
-		[MapValue(Value = "Read_Test"), DataMember]
+		[MapValue(Value = "Read_Test"), DataMember, EnumMember, Description("テストの閲覧")]
 		テスト表示,
 		/// <summary>
 		/// 名称 : テスト更新
 		/// 説明 : テストの更新
 		/// </summary>
-		[MapValue(Value = "Update_Test"), DataMember]
+		[MapValue(Value = "Update_Test"), DataMember, EnumMember, Description("テストの更新")]
 		テスト更新,
 		/// <summary>
 		/// 名称 : テスト削除
 		/// 説明 : テストの削除
 		/// </summary>
-		[MapValue(Value = "Delete_Test"), DataMember]
+		[MapValue(Value = "Delete_Test"), DataMember, EnumMember, Description("テストの削除")]
 		テスト削除,
 	}
 	#endregion

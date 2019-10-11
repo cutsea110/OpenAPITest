@@ -367,6 +367,7 @@ namespace OpenAPITest
             #endregion
 
             #region Add to support Swagger UI
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>
             {
