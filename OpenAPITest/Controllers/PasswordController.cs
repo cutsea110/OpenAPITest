@@ -56,6 +56,8 @@ namespace OpenAPITest.Controllers
     public class ChangePasswordInputModel
     {
         [Required]
+        public HashMethod Method { get; set; } = HashMethod.SHA256;
+        [Required]
         public string OrigPassword { get; set; }
         [Required]
         public string NewPassword { get; set; }
@@ -219,12 +221,13 @@ namespace OpenAPITest.Controllers
 
                     if (pw != null)
                     {
-                        var new_password = pw.Encrypt(inputModel.NewPassword);
+                        var new_password = pw.Encrypt(inputModel.Method, inputModel.NewPassword);
                         var new_life = pw.NewLifeExpectancy;
                         var ret = db.Password
                             .Where(q.CreatePredicate())
                             .Update(_ => new Password
                             {
+                                HashType = inputModel.Method,
                                 password_hash = new_password,
                                 expiration_on = new_life,
                                 modified_by = CurrentAccountId,

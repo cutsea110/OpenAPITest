@@ -7963,6 +7963,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// permission_idのenumラッパー
 		/// </summary>
+		[ColumnAlias("permission_id")]
 		public PermissionType PermissionId
 		{
 			get
@@ -10591,6 +10592,7 @@ namespace OpenAPITest.Domain
 		/// <summary>
 		/// hash_typeのenumラッパー
 		/// </summary>
+		[ColumnAlias("hash_type")]
 		public HashMethod HashType
 		{
 			get

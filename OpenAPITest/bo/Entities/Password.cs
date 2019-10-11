@@ -53,7 +53,17 @@ namespace OpenAPITest.Domain
         /// <returns></returns>
         public string Encrypt(string password)
         {
-            switch (HashType)
+            return Encrypt(HashType, password);
+        }
+        /// <summary>
+        /// パスワード化方式に応じてパスワードの暗号化
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public string Encrypt(HashMethod method, string password)
+        {
+            switch (method)
             {
                 case HashMethod.SHA256:
                     return password.EncryptBySHA256WithSalt();
