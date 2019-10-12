@@ -156,18 +156,23 @@ namespace OpenAPITest.Domain
 	#region enum
 	/// <summary>
 	/// 有効フラグ
+	///
+	///  0 : 無効 (無効)
+	///  1 : 有効 (有効)
 	/// </summary>
 	[DataContract]
 	public enum ValidityFlag
 	{
 		/// <summary>
 		/// 名称 : 無効
+		/// 値 : 0
 		/// 説明 : 無効
 		/// </summary>
 		[MapValue(Value = 0), DataMember, EnumMember, Description("無効")]
 		無効 = 0,
 		/// <summary>
 		/// 名称 : 有効
+		/// 値 : 1
 		/// 説明 : 有効
 		/// </summary>
 		[MapValue(Value = 1), DataMember, EnumMember, Description("有効")]
@@ -175,18 +180,23 @@ namespace OpenAPITest.Domain
 	}
 	/// <summary>
 	/// パスワードハッシュ化方式
+	///
+	///  "SHA256" : SHA256 (SHA256)
+	///  "RAW" : 平文のまま (平文のまま保持)
 	/// </summary>
 	[DataContract]
 	public enum HashMethod
 	{
 		/// <summary>
 		/// 名称 : SHA256
+		/// 値 : "SHA256"
 		/// 説明 : SHA256
 		/// </summary>
 		[MapValue(Value = "SHA256"), DataMember, EnumMember, Description("SHA256")]
 		SHA256,
 		/// <summary>
 		/// 名称 : 平文のまま
+		/// 値 : "RAW"
 		/// 説明 : 平文のまま保持
 		/// </summary>
 		[MapValue(Value = "RAW"), DataMember, EnumMember, Description("平文のまま保持")]
@@ -194,30 +204,39 @@ namespace OpenAPITest.Domain
 	}
 	/// <summary>
 	/// ロック理由
+	///
+	///  0 : なし (理由なし)
+	///  1 : 認証失敗 (連続的な認証エラーによる)
+	///  2 : アカウント凍結 (アカウントを凍結するため)
+	///  9 : その他 (その他)
 	/// </summary>
 	[DataContract]
 	public enum LockReason
 	{
 		/// <summary>
 		/// 名称 : なし
+		/// 値 : 0
 		/// 説明 : 理由なし
 		/// </summary>
 		[MapValue(Value = 0), DataMember, EnumMember, Description("理由なし")]
 		なし = 0,
 		/// <summary>
 		/// 名称 : 認証失敗
+		/// 値 : 1
 		/// 説明 : 連続的な認証エラーによる
 		/// </summary>
 		[MapValue(Value = 1), DataMember, EnumMember, Description("連続的な認証エラーによる")]
 		失敗 = 1,
 		/// <summary>
 		/// 名称 : アカウント凍結
+		/// 値 : 2
 		/// 説明 : アカウントを凍結するため
 		/// </summary>
 		[MapValue(Value = 2), DataMember, EnumMember, Description("アカウントを凍結するため")]
 		凍結 = 2,
 		/// <summary>
 		/// 名称 : その他
+		/// 値 : 9
 		/// 説明 : その他
 		/// </summary>
 		[MapValue(Value = 9), DataMember, EnumMember, Description("その他")]
@@ -225,18 +244,23 @@ namespace OpenAPITest.Domain
 	}
 	/// <summary>
 	/// 性別
+	///
+	///  1 : 男性 (男性)
+	///  2 : 女性 (女性)
 	/// </summary>
 	[DataContract]
 	public enum Gender
 	{
 		/// <summary>
 		/// 名称 : 男性
+		/// 値 : 1
 		/// 説明 : 男性
 		/// </summary>
 		[MapValue(Value = 1), DataMember, EnumMember, Description("男性")]
 		男性 = 1,
 		/// <summary>
 		/// 名称 : 女性
+		/// 値 : 2
 		/// 説明 : 女性
 		/// </summary>
 		[MapValue(Value = 2), DataMember, EnumMember, Description("女性")]
@@ -244,48 +268,63 @@ namespace OpenAPITest.Domain
 	}
 	/// <summary>
 	/// ユーザ種別
+	///
+	///  1 : 職員 (職員)
+	///  2 : 教員 (教員)
+	///  3 : 在学生 (在学生)
+	///  4 : 除籍生 (除籍生)
+	///  5 : 保護者 (保護者)
+	///  6 : 他ユーザ (SEなどその他のシステムアカウント用ユーザ)
+	///  99 : ゴースト (人的リソースの関連なし)
 	/// </summary>
 	[DataContract]
 	public enum UserType
 	{
 		/// <summary>
 		/// 名称 : 職員
+		/// 値 : 1
 		/// 説明 : 職員
 		/// </summary>
 		[MapValue(Value = 1), DataMember, EnumMember, Description("職員")]
 		職員 = 1,
 		/// <summary>
 		/// 名称 : 教員
+		/// 値 : 2
 		/// 説明 : 教員
 		/// </summary>
 		[MapValue(Value = 2), DataMember, EnumMember, Description("教員")]
 		教員 = 2,
 		/// <summary>
 		/// 名称 : 在学生
+		/// 値 : 3
 		/// 説明 : 在学生
 		/// </summary>
 		[MapValue(Value = 3), DataMember, EnumMember, Description("在学生")]
 		在学生 = 3,
 		/// <summary>
 		/// 名称 : 除籍生
+		/// 値 : 4
 		/// 説明 : 除籍生
 		/// </summary>
 		[MapValue(Value = 4), DataMember, EnumMember, Description("除籍生")]
 		除籍生 = 4,
 		/// <summary>
 		/// 名称 : 保護者
+		/// 値 : 5
 		/// 説明 : 保護者
 		/// </summary>
 		[MapValue(Value = 5), DataMember, EnumMember, Description("保護者")]
 		保護者 = 5,
 		/// <summary>
 		/// 名称 : 他ユーザ
+		/// 値 : 6
 		/// 説明 : SEなどその他のシステムアカウント用ユーザ
 		/// </summary>
 		[MapValue(Value = 6), DataMember, EnumMember, Description("SEなどその他のシステムアカウント用ユーザ")]
 		他ユーザ = 6,
 		/// <summary>
 		/// 名称 : ゴースト
+		/// 値 : 99
 		/// 説明 : 人的リソースの関連なし
 		/// </summary>
 		[MapValue(Value = 99), DataMember, EnumMember, Description("人的リソースの関連なし")]
@@ -293,486 +332,647 @@ namespace OpenAPITest.Domain
 	}
 	/// <summary>
 	/// 権限
+	///
+	///  "Create_Role" : ロール作成 (ロールマスタの新規作成)
+	///  "Read_Role" : ロール表示 (ロールマスタの閲覧)
+	///  "Update_Role" : ロール更新 (ロールマスタの更新)
+	///  "Delete_Role" : ロール削除 (ロールマスタの削除)
+	///  "Create_RolePermission" : ロール権限作成 (ロール権限の新規作成)
+	///  "Read_RolePermission" : ロール権限表示 (ロール権限の閲覧)
+	///  "Update_RolePermission" : ロール権限更新 (ロール権限の更新)
+	///  "Delete_RolePermission" : ロール権限削除 (ロール権限の削除)
+	///  "Create_Account" : アカウント作成 (アカウントの新規作成)
+	///  "Read_Account" : アカウント表示 (アカウントの閲覧)
+	///  "Update_Account" : アカウント更新 (アカウントの更新)
+	///  "Delete_Account" : アカウント削除 (アカウントの削除)
+	///  "Create_AccountRole" : アカウントロール作成 (アカウントロールの新規作成)
+	///  "Read_AccountRole" : アカウントロール表示 (アカウントロールの閲覧)
+	///  "Update_AccountRole" : アカウントロール更新 (アカウントロールの更新)
+	///  "Delete_AccountRole" : アカウントロール削除 (アカウントロールの削除)
+	///  "Create_Password" : パスワード作成 (パスワードの新規作成)
+	///  "Read_Password" : パスワード表示 (パスワードの閲覧)
+	///  "Update_Password" : パスワード更新 (パスワードの更新)
+	///  "Change_Password" : パスワード変更 (パスワードの変更)
+	///  "Delete_Password" : パスワード削除 (パスワードの削除)
+	///  "Create_Staff" : 職員作成 (職員マスタの新規作成)
+	///  "Read_Staff" : 職員表示 (職員マスタの閲覧)
+	///  "Update_Staff" : 職員更新 (職員マスタの更新)
+	///  "Delete_Staff" : 職員削除 (職員マスタの削除)
+	///  "Create_Teacher" : 教員作成 (教員マスタの新規作成)
+	///  "Read_Teacher" : 教員表示 (教員マスタの閲覧)
+	///  "Update_Teacher" : 教員更新 (教員マスタの更新)
+	///  "Delete_Teacher" : 教員削除 (教員マスタの削除)
+	///  "Create_SexType" : 性別区分作成 (性別区分マスタの新規作成)
+	///  "Read_SexType" : 性別区分表示 (性別区分マスタの閲覧)
+	///  "Update_SexType" : 性別区分更新 (性別区分マスタの更新)
+	///  "Delete_SexType" : 性別区分削除 (性別区分マスタの削除)
+	///  "Create_WorkStyleType" : 勤務形態種別作成 (勤務形態種別マスタの新規作成)
+	///  "Read_WorkStyleType" : 勤務形態種別表示 (勤務形態種別マスタの閲覧)
+	///  "Update_WorkStyleType" : 勤務形態種別更新 (勤務形態種別マスタの更新)
+	///  "Delete_WorkStyleType" : 勤務形態種別削除 (勤務形態種別マスタの削除)
+	///  "Create_PositionType" : 職階種別作成 (職階種別マスタの新規作成)
+	///  "Read_PositionType" : 職階種別表示 (職階種別マスタの閲覧)
+	///  "Update_PositionType" : 職階種別更新 (職階種別マスタの更新)
+	///  "Delete_PositionType" : 職階種別削除 (職階種別マスタの削除)
+	///  "Create_TeacherLisenceType" : 教員資格種別作成 (教員資格種別マスタの新規作成)
+	///  "Read_TeacherLisenceType" : 教員資格種別表示 (教員資格種別マスタの閲覧)
+	///  "Update_TeacherLisenceType" : 教員資格種別更新 (教員資格種別マスタの更新)
+	///  "Delete_TeacherLisenceType" : 教員資格種別削除 (教員資格種別マスタの削除)
+	///  "Create_PersonName" : 人名作成 (人名の新規作成)
+	///  "Read_PersonName" : 人名表示 (人名の閲覧)
+	///  "Update_PersonName" : 人名更新 (人名の更新)
+	///  "Change_PersonName" : 人名変更 (人名の変更)
+	///  "Delete_PersonName" : 人名削除 (人名の削除)
+	///  "Create_PersonNameType" : 人名種別作成 (人名種別の新規作成)
+	///  "Read_PersonNameType" : 人名種別表示 (人名種別の閲覧)
+	///  "Update_PersonNameType" : 人名種別更新 (人名種別の更新)
+	///  "Delete_PersonNameType" : 人名種別削除 (人名種別の削除)
+	///  "Create_Address" : 住所作成 (住所の新規作成)
+	///  "Read_Address" : 住所表示 (住所の閲覧)
+	///  "Update_Address" : 住所更新 (住所の更新)
+	///  "Change_Address" : 住所変更 (住所の変更)
+	///  "Delete_Address" : 住所削除 (住所の削除)
+	///  "Create_AddressType" : 住所種別作成 (住所種別の新規作成)
+	///  "Read_AddressType" : 住所種別表示 (住所種別の閲覧)
+	///  "Update_AddressType" : 住所種別更新 (住所種別の更新)
+	///  "Delete_AddressType" : 住所種別削除 (住所種別の削除)
+	///  "Create_Contact" : 連絡先作成 (連絡先の新規作成)
+	///  "Read_Contact" : 連絡先表示 (連絡先の閲覧)
+	///  "Update_Contact" : 連絡先更新 (連絡先の更新)
+	///  "Change_Contact" : 連絡先変更 (連絡先の変更)
+	///  "Delete_Contact" : 連絡先削除 (連絡先の削除)
+	///  "Create_ContactType" : 連絡先種別作成 (連絡先種別の新規作成)
+	///  "Read_ContactType" : 連絡先種別表示 (連絡先種別の閲覧)
+	///  "Update_ContactType" : 連絡先種別更新 (連絡先種別の更新)
+	///  "Delete_ContactType" : 連絡先種別削除 (連絡先種別の削除)
+	///  "Create_ErrorLog" : エラーログ作成 (エラーログの新規作成)
+	///  "Read_ErrorLog" : エラーログ表示 (エラーログの閲覧)
+	///  "Update_ErrorLog" : エラーログ更新 (エラーログの更新)
+	///  "Delete_ErrorLog" : エラーログ削除 (エラーログの削除)
+	///  "Create_Test" : テスト作成 (テストの新規作成)
+	///  "Read_Test" : テスト表示 (テストの閲覧)
+	///  "Update_Test" : テスト更新 (テストの更新)
+	///  "Delete_Test" : テスト削除 (テストの削除)
 	/// </summary>
 	[DataContract]
 	public enum PermissionType
 	{
 		/// <summary>
 		/// 名称 : ロール作成
+		/// 値 : "Create_Role"
 		/// 説明 : ロールマスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Role"), DataMember, EnumMember, Description("ロールマスタの新規作成")]
 		ロール作成,
 		/// <summary>
 		/// 名称 : ロール表示
+		/// 値 : "Read_Role"
 		/// 説明 : ロールマスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Role"), DataMember, EnumMember, Description("ロールマスタの閲覧")]
 		ロール表示,
 		/// <summary>
 		/// 名称 : ロール更新
+		/// 値 : "Update_Role"
 		/// 説明 : ロールマスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_Role"), DataMember, EnumMember, Description("ロールマスタの更新")]
 		ロール更新,
 		/// <summary>
 		/// 名称 : ロール削除
+		/// 値 : "Delete_Role"
 		/// 説明 : ロールマスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Role"), DataMember, EnumMember, Description("ロールマスタの削除")]
 		ロール削除,
 		/// <summary>
 		/// 名称 : ロール権限作成
+		/// 値 : "Create_RolePermission"
 		/// 説明 : ロール権限の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_RolePermission"), DataMember, EnumMember, Description("ロール権限の新規作成")]
 		ロール権限作成,
 		/// <summary>
 		/// 名称 : ロール権限表示
+		/// 値 : "Read_RolePermission"
 		/// 説明 : ロール権限の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_RolePermission"), DataMember, EnumMember, Description("ロール権限の閲覧")]
 		ロール権限表示,
 		/// <summary>
 		/// 名称 : ロール権限更新
+		/// 値 : "Update_RolePermission"
 		/// 説明 : ロール権限の更新
 		/// </summary>
 		[MapValue(Value = "Update_RolePermission"), DataMember, EnumMember, Description("ロール権限の更新")]
 		ロール権限更新,
 		/// <summary>
 		/// 名称 : ロール権限削除
+		/// 値 : "Delete_RolePermission"
 		/// 説明 : ロール権限の削除
 		/// </summary>
 		[MapValue(Value = "Delete_RolePermission"), DataMember, EnumMember, Description("ロール権限の削除")]
 		ロール権限削除,
 		/// <summary>
 		/// 名称 : アカウント作成
+		/// 値 : "Create_Account"
 		/// 説明 : アカウントの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Account"), DataMember, EnumMember, Description("アカウントの新規作成")]
 		アカウント作成,
 		/// <summary>
 		/// 名称 : アカウント表示
+		/// 値 : "Read_Account"
 		/// 説明 : アカウントの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Account"), DataMember, EnumMember, Description("アカウントの閲覧")]
 		アカウント表示,
 		/// <summary>
 		/// 名称 : アカウント更新
+		/// 値 : "Update_Account"
 		/// 説明 : アカウントの更新
 		/// </summary>
 		[MapValue(Value = "Update_Account"), DataMember, EnumMember, Description("アカウントの更新")]
 		アカウント更新,
 		/// <summary>
 		/// 名称 : アカウント削除
+		/// 値 : "Delete_Account"
 		/// 説明 : アカウントの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Account"), DataMember, EnumMember, Description("アカウントの削除")]
 		アカウント削除,
 		/// <summary>
 		/// 名称 : アカウントロール作成
+		/// 値 : "Create_AccountRole"
 		/// 説明 : アカウントロールの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_AccountRole"), DataMember, EnumMember, Description("アカウントロールの新規作成")]
 		アカウントロール作成,
 		/// <summary>
 		/// 名称 : アカウントロール表示
+		/// 値 : "Read_AccountRole"
 		/// 説明 : アカウントロールの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_AccountRole"), DataMember, EnumMember, Description("アカウントロールの閲覧")]
 		アカウントロール表示,
 		/// <summary>
 		/// 名称 : アカウントロール更新
+		/// 値 : "Update_AccountRole"
 		/// 説明 : アカウントロールの更新
 		/// </summary>
 		[MapValue(Value = "Update_AccountRole"), DataMember, EnumMember, Description("アカウントロールの更新")]
 		アカウントロール更新,
 		/// <summary>
 		/// 名称 : アカウントロール削除
+		/// 値 : "Delete_AccountRole"
 		/// 説明 : アカウントロールの削除
 		/// </summary>
 		[MapValue(Value = "Delete_AccountRole"), DataMember, EnumMember, Description("アカウントロールの削除")]
 		アカウントロール削除,
 		/// <summary>
 		/// 名称 : パスワード作成
+		/// 値 : "Create_Password"
 		/// 説明 : パスワードの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Password"), DataMember, EnumMember, Description("パスワードの新規作成")]
 		パスワード作成,
 		/// <summary>
 		/// 名称 : パスワード表示
+		/// 値 : "Read_Password"
 		/// 説明 : パスワードの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Password"), DataMember, EnumMember, Description("パスワードの閲覧")]
 		パスワード表示,
 		/// <summary>
 		/// 名称 : パスワード更新
+		/// 値 : "Update_Password"
 		/// 説明 : パスワードの更新
 		/// </summary>
 		[MapValue(Value = "Update_Password"), DataMember, EnumMember, Description("パスワードの更新")]
 		パスワード更新,
 		/// <summary>
 		/// 名称 : パスワード変更
+		/// 値 : "Change_Password"
 		/// 説明 : パスワードの変更
 		/// </summary>
 		[MapValue(Value = "Change_Password"), DataMember, EnumMember, Description("パスワードの変更")]
 		パスワード変更,
 		/// <summary>
 		/// 名称 : パスワード削除
+		/// 値 : "Delete_Password"
 		/// 説明 : パスワードの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Password"), DataMember, EnumMember, Description("パスワードの削除")]
 		パスワード削除,
 		/// <summary>
 		/// 名称 : 職員作成
+		/// 値 : "Create_Staff"
 		/// 説明 : 職員マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Staff"), DataMember, EnumMember, Description("職員マスタの新規作成")]
 		職員作成,
 		/// <summary>
 		/// 名称 : 職員表示
+		/// 値 : "Read_Staff"
 		/// 説明 : 職員マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Staff"), DataMember, EnumMember, Description("職員マスタの閲覧")]
 		職員表示,
 		/// <summary>
 		/// 名称 : 職員更新
+		/// 値 : "Update_Staff"
 		/// 説明 : 職員マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_Staff"), DataMember, EnumMember, Description("職員マスタの更新")]
 		職員更新,
 		/// <summary>
 		/// 名称 : 職員削除
+		/// 値 : "Delete_Staff"
 		/// 説明 : 職員マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Staff"), DataMember, EnumMember, Description("職員マスタの削除")]
 		職員削除,
 		/// <summary>
 		/// 名称 : 教員作成
+		/// 値 : "Create_Teacher"
 		/// 説明 : 教員マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Teacher"), DataMember, EnumMember, Description("教員マスタの新規作成")]
 		教員作成,
 		/// <summary>
 		/// 名称 : 教員表示
+		/// 値 : "Read_Teacher"
 		/// 説明 : 教員マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Teacher"), DataMember, EnumMember, Description("教員マスタの閲覧")]
 		教員表示,
 		/// <summary>
 		/// 名称 : 教員更新
+		/// 値 : "Update_Teacher"
 		/// 説明 : 教員マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_Teacher"), DataMember, EnumMember, Description("教員マスタの更新")]
 		教員更新,
 		/// <summary>
 		/// 名称 : 教員削除
+		/// 値 : "Delete_Teacher"
 		/// 説明 : 教員マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Teacher"), DataMember, EnumMember, Description("教員マスタの削除")]
 		教員削除,
 		/// <summary>
 		/// 名称 : 性別区分作成
+		/// 値 : "Create_SexType"
 		/// 説明 : 性別区分マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_SexType"), DataMember, EnumMember, Description("性別区分マスタの新規作成")]
 		性別区分作成,
 		/// <summary>
 		/// 名称 : 性別区分表示
+		/// 値 : "Read_SexType"
 		/// 説明 : 性別区分マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_SexType"), DataMember, EnumMember, Description("性別区分マスタの閲覧")]
 		性別区分表示,
 		/// <summary>
 		/// 名称 : 性別区分更新
+		/// 値 : "Update_SexType"
 		/// 説明 : 性別区分マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_SexType"), DataMember, EnumMember, Description("性別区分マスタの更新")]
 		性別区分更新,
 		/// <summary>
 		/// 名称 : 性別区分削除
+		/// 値 : "Delete_SexType"
 		/// 説明 : 性別区分マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_SexType"), DataMember, EnumMember, Description("性別区分マスタの削除")]
 		性別区分削除,
 		/// <summary>
 		/// 名称 : 勤務形態種別作成
+		/// 値 : "Create_WorkStyleType"
 		/// 説明 : 勤務形態種別マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの新規作成")]
 		勤務形態種別作成,
 		/// <summary>
 		/// 名称 : 勤務形態種別表示
+		/// 値 : "Read_WorkStyleType"
 		/// 説明 : 勤務形態種別マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの閲覧")]
 		勤務形態種別表示,
 		/// <summary>
 		/// 名称 : 勤務形態種別更新
+		/// 値 : "Update_WorkStyleType"
 		/// 説明 : 勤務形態種別マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの更新")]
 		勤務形態種別更新,
 		/// <summary>
 		/// 名称 : 勤務形態種別削除
+		/// 値 : "Delete_WorkStyleType"
 		/// 説明 : 勤務形態種別マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_WorkStyleType"), DataMember, EnumMember, Description("勤務形態種別マスタの削除")]
 		勤務形態種別削除,
 		/// <summary>
 		/// 名称 : 職階種別作成
+		/// 値 : "Create_PositionType"
 		/// 説明 : 職階種別マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_PositionType"), DataMember, EnumMember, Description("職階種別マスタの新規作成")]
 		職階種別作成,
 		/// <summary>
 		/// 名称 : 職階種別表示
+		/// 値 : "Read_PositionType"
 		/// 説明 : 職階種別マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_PositionType"), DataMember, EnumMember, Description("職階種別マスタの閲覧")]
 		職階種別表示,
 		/// <summary>
 		/// 名称 : 職階種別更新
+		/// 値 : "Update_PositionType"
 		/// 説明 : 職階種別マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_PositionType"), DataMember, EnumMember, Description("職階種別マスタの更新")]
 		職階種別更新,
 		/// <summary>
 		/// 名称 : 職階種別削除
+		/// 値 : "Delete_PositionType"
 		/// 説明 : 職階種別マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_PositionType"), DataMember, EnumMember, Description("職階種別マスタの削除")]
 		職階種別削除,
 		/// <summary>
 		/// 名称 : 教員資格種別作成
+		/// 値 : "Create_TeacherLisenceType"
 		/// 説明 : 教員資格種別マスタの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの新規作成")]
 		教員資格種別作成,
 		/// <summary>
 		/// 名称 : 教員資格種別表示
+		/// 値 : "Read_TeacherLisenceType"
 		/// 説明 : 教員資格種別マスタの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの閲覧")]
 		教員資格種別表示,
 		/// <summary>
 		/// 名称 : 教員資格種別更新
+		/// 値 : "Update_TeacherLisenceType"
 		/// 説明 : 教員資格種別マスタの更新
 		/// </summary>
 		[MapValue(Value = "Update_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの更新")]
 		教員資格種別更新,
 		/// <summary>
 		/// 名称 : 教員資格種別削除
+		/// 値 : "Delete_TeacherLisenceType"
 		/// 説明 : 教員資格種別マスタの削除
 		/// </summary>
 		[MapValue(Value = "Delete_TeacherLisenceType"), DataMember, EnumMember, Description("教員資格種別マスタの削除")]
 		教員資格種別削除,
 		/// <summary>
 		/// 名称 : 人名作成
+		/// 値 : "Create_PersonName"
 		/// 説明 : 人名の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_PersonName"), DataMember, EnumMember, Description("人名の新規作成")]
 		人名作成,
 		/// <summary>
 		/// 名称 : 人名表示
+		/// 値 : "Read_PersonName"
 		/// 説明 : 人名の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_PersonName"), DataMember, EnumMember, Description("人名の閲覧")]
 		人名表示,
 		/// <summary>
 		/// 名称 : 人名更新
+		/// 値 : "Update_PersonName"
 		/// 説明 : 人名の更新
 		/// </summary>
 		[MapValue(Value = "Update_PersonName"), DataMember, EnumMember, Description("人名の更新")]
 		人名更新,
 		/// <summary>
 		/// 名称 : 人名変更
+		/// 値 : "Change_PersonName"
 		/// 説明 : 人名の変更
 		/// </summary>
 		[MapValue(Value = "Change_PersonName"), DataMember, EnumMember, Description("人名の変更")]
 		人名変更,
 		/// <summary>
 		/// 名称 : 人名削除
+		/// 値 : "Delete_PersonName"
 		/// 説明 : 人名の削除
 		/// </summary>
 		[MapValue(Value = "Delete_PersonName"), DataMember, EnumMember, Description("人名の削除")]
 		人名削除,
 		/// <summary>
 		/// 名称 : 人名種別作成
+		/// 値 : "Create_PersonNameType"
 		/// 説明 : 人名種別の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_PersonNameType"), DataMember, EnumMember, Description("人名種別の新規作成")]
 		人名種別作成,
 		/// <summary>
 		/// 名称 : 人名種別表示
+		/// 値 : "Read_PersonNameType"
 		/// 説明 : 人名種別の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_PersonNameType"), DataMember, EnumMember, Description("人名種別の閲覧")]
 		人名種別表示,
 		/// <summary>
 		/// 名称 : 人名種別更新
+		/// 値 : "Update_PersonNameType"
 		/// 説明 : 人名種別の更新
 		/// </summary>
 		[MapValue(Value = "Update_PersonNameType"), DataMember, EnumMember, Description("人名種別の更新")]
 		人名種別更新,
 		/// <summary>
 		/// 名称 : 人名種別削除
+		/// 値 : "Delete_PersonNameType"
 		/// 説明 : 人名種別の削除
 		/// </summary>
 		[MapValue(Value = "Delete_PersonNameType"), DataMember, EnumMember, Description("人名種別の削除")]
 		人名種別削除,
 		/// <summary>
 		/// 名称 : 住所作成
+		/// 値 : "Create_Address"
 		/// 説明 : 住所の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Address"), DataMember, EnumMember, Description("住所の新規作成")]
 		住所作成,
 		/// <summary>
 		/// 名称 : 住所表示
+		/// 値 : "Read_Address"
 		/// 説明 : 住所の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Address"), DataMember, EnumMember, Description("住所の閲覧")]
 		住所表示,
 		/// <summary>
 		/// 名称 : 住所更新
+		/// 値 : "Update_Address"
 		/// 説明 : 住所の更新
 		/// </summary>
 		[MapValue(Value = "Update_Address"), DataMember, EnumMember, Description("住所の更新")]
 		住所更新,
 		/// <summary>
 		/// 名称 : 住所変更
+		/// 値 : "Change_Address"
 		/// 説明 : 住所の変更
 		/// </summary>
 		[MapValue(Value = "Change_Address"), DataMember, EnumMember, Description("住所の変更")]
 		住所変更,
 		/// <summary>
 		/// 名称 : 住所削除
+		/// 値 : "Delete_Address"
 		/// 説明 : 住所の削除
 		/// </summary>
 		[MapValue(Value = "Delete_Address"), DataMember, EnumMember, Description("住所の削除")]
 		住所削除,
 		/// <summary>
 		/// 名称 : 住所種別作成
+		/// 値 : "Create_AddressType"
 		/// 説明 : 住所種別の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_AddressType"), DataMember, EnumMember, Description("住所種別の新規作成")]
 		住所種別作成,
 		/// <summary>
 		/// 名称 : 住所種別表示
+		/// 値 : "Read_AddressType"
 		/// 説明 : 住所種別の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_AddressType"), DataMember, EnumMember, Description("住所種別の閲覧")]
 		住所種別表示,
 		/// <summary>
 		/// 名称 : 住所種別更新
+		/// 値 : "Update_AddressType"
 		/// 説明 : 住所種別の更新
 		/// </summary>
 		[MapValue(Value = "Update_AddressType"), DataMember, EnumMember, Description("住所種別の更新")]
 		住所種別更新,
 		/// <summary>
 		/// 名称 : 住所種別削除
+		/// 値 : "Delete_AddressType"
 		/// 説明 : 住所種別の削除
 		/// </summary>
 		[MapValue(Value = "Delete_AddressType"), DataMember, EnumMember, Description("住所種別の削除")]
 		住所種別削除,
 		/// <summary>
 		/// 名称 : 連絡先作成
+		/// 値 : "Create_Contact"
 		/// 説明 : 連絡先の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Contact"), DataMember, EnumMember, Description("連絡先の新規作成")]
 		連絡先作成,
 		/// <summary>
 		/// 名称 : 連絡先表示
+		/// 値 : "Read_Contact"
 		/// 説明 : 連絡先の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Contact"), DataMember, EnumMember, Description("連絡先の閲覧")]
 		連絡先表示,
 		/// <summary>
 		/// 名称 : 連絡先更新
+		/// 値 : "Update_Contact"
 		/// 説明 : 連絡先の更新
 		/// </summary>
 		[MapValue(Value = "Update_Contact"), DataMember, EnumMember, Description("連絡先の更新")]
 		連絡先更新,
 		/// <summary>
 		/// 名称 : 連絡先変更
+		/// 値 : "Change_Contact"
 		/// 説明 : 連絡先の変更
 		/// </summary>
 		[MapValue(Value = "Change_Contact"), DataMember, EnumMember, Description("連絡先の変更")]
 		連絡先変更,
 		/// <summary>
 		/// 名称 : 連絡先削除
+		/// 値 : "Delete_Contact"
 		/// 説明 : 連絡先の削除
 		/// </summary>
 		[MapValue(Value = "Delete_Contact"), DataMember, EnumMember, Description("連絡先の削除")]
 		連絡先削除,
 		/// <summary>
 		/// 名称 : 連絡先種別作成
+		/// 値 : "Create_ContactType"
 		/// 説明 : 連絡先種別の新規作成
 		/// </summary>
 		[MapValue(Value = "Create_ContactType"), DataMember, EnumMember, Description("連絡先種別の新規作成")]
 		連絡先種別作成,
 		/// <summary>
 		/// 名称 : 連絡先種別表示
+		/// 値 : "Read_ContactType"
 		/// 説明 : 連絡先種別の閲覧
 		/// </summary>
 		[MapValue(Value = "Read_ContactType"), DataMember, EnumMember, Description("連絡先種別の閲覧")]
 		連絡先種別表示,
 		/// <summary>
 		/// 名称 : 連絡先種別更新
+		/// 値 : "Update_ContactType"
 		/// 説明 : 連絡先種別の更新
 		/// </summary>
 		[MapValue(Value = "Update_ContactType"), DataMember, EnumMember, Description("連絡先種別の更新")]
 		連絡先種別更新,
 		/// <summary>
 		/// 名称 : 連絡先種別削除
+		/// 値 : "Delete_ContactType"
 		/// 説明 : 連絡先種別の削除
 		/// </summary>
 		[MapValue(Value = "Delete_ContactType"), DataMember, EnumMember, Description("連絡先種別の削除")]
 		連絡先種別削除,
 		/// <summary>
 		/// 名称 : エラーログ作成
+		/// 値 : "Create_ErrorLog"
 		/// 説明 : エラーログの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_ErrorLog"), DataMember, EnumMember, Description("エラーログの新規作成")]
 		エラーログ作成,
 		/// <summary>
 		/// 名称 : エラーログ表示
+		/// 値 : "Read_ErrorLog"
 		/// 説明 : エラーログの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_ErrorLog"), DataMember, EnumMember, Description("エラーログの閲覧")]
 		エラーログ表示,
 		/// <summary>
 		/// 名称 : エラーログ更新
+		/// 値 : "Update_ErrorLog"
 		/// 説明 : エラーログの更新
 		/// </summary>
 		[MapValue(Value = "Update_ErrorLog"), DataMember, EnumMember, Description("エラーログの更新")]
 		エラーログ更新,
 		/// <summary>
 		/// 名称 : エラーログ削除
+		/// 値 : "Delete_ErrorLog"
 		/// 説明 : エラーログの削除
 		/// </summary>
 		[MapValue(Value = "Delete_ErrorLog"), DataMember, EnumMember, Description("エラーログの削除")]
 		エラーログ削除,
 		/// <summary>
 		/// 名称 : テスト作成
+		/// 値 : "Create_Test"
 		/// 説明 : テストの新規作成
 		/// </summary>
 		[MapValue(Value = "Create_Test"), DataMember, EnumMember, Description("テストの新規作成")]
 		テスト作成,
 		/// <summary>
 		/// 名称 : テスト表示
+		/// 値 : "Read_Test"
 		/// 説明 : テストの閲覧
 		/// </summary>
 		[MapValue(Value = "Read_Test"), DataMember, EnumMember, Description("テストの閲覧")]
 		テスト表示,
 		/// <summary>
 		/// 名称 : テスト更新
+		/// 値 : "Update_Test"
 		/// 説明 : テストの更新
 		/// </summary>
 		[MapValue(Value = "Update_Test"), DataMember, EnumMember, Description("テストの更新")]
 		テスト更新,
 		/// <summary>
 		/// 名称 : テスト削除
+		/// 値 : "Delete_Test"
 		/// 説明 : テストの削除
 		/// </summary>
 		[MapValue(Value = "Delete_Test"), DataMember, EnumMember, Description("テストの削除")]
@@ -10373,54 +10573,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region permission_id (PermissionId)
 		private string _permission_id_eq;
+		/// <summary>
+		/// PermissionId_eqと等しい
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_eq
 		{
 			get => _permission_id_eq?.ToPermissionType();
 			set => _permission_id_eq = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _permission_id_ne;
+		/// <summary>
+		/// PermissionId_neと等しくない
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_ne
 		{
 			get => _permission_id_ne?.ToPermissionType();
 			set => _permission_id_ne = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _permission_id_lt;
+		/// <summary>
+		/// PermissionId_ltより小さい
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_lt
 		{
 			get => _permission_id_lt?.ToPermissionType();
 			set => _permission_id_lt = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _permission_id_gt;
+		/// <summary>
+		/// PermissionId_gtより大きい
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_gt
 		{
 			get => _permission_id_gt?.ToPermissionType();
 			set => _permission_id_gt = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _permission_id_le;
+		/// <summary>
+		/// PermissionId_le以下
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_le
 		{
 			get => _permission_id_le?.ToPermissionType();
 			set => _permission_id_le = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _permission_id_ge;
+		/// <summary>
+		/// PermissionId_ge以上
+		/// </summary>
 		[DataMember] public PermissionType? PermissionId_ge
 		{
 			get => _permission_id_ge?.ToPermissionType();
 			set => _permission_id_ge = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private IEnumerable<string> _permission_id_in;
+		/// <summary>
+		/// PermissionId_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<PermissionType> PermissionId_in
 		{
 			get => _permission_id_in?.Select(_ => _.ToPermissionType().Value) ?? Enumerable.Empty<PermissionType>();
 			set => _permission_id_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<string> _permission_id_ni;
+		/// <summary>
+		/// PermissionId_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<PermissionType> PermissionId_ni
 		{
 			get => _permission_id_ni?.Select(_ => _.ToPermissionType().Value) ?? Enumerable.Empty<PermissionType>();
 			set => _permission_id_ni = value.Select(_ => _.Val());
 		}
 		private (string low, string high)? _permission_id_between;
+		/// <summary>
+		/// PermissionId_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (PermissionType low, PermissionType high)? PermissionId_between
 		{
 			get => _permission_id_between.HasValue ? (_permission_id_between.Value.low.ToPermissionType().Value, _permission_id_between.Value.high.ToPermissionType().Value) : ((PermissionType, PermissionType)?)null;
@@ -11939,54 +12166,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region is_valid (IsValid)
 		private int? _is_valid_eq;
+		/// <summary>
+		/// IsValid_eqと等しい
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_eq
 		{
 			get => _is_valid_eq?.ToValidityFlag();
 			set => _is_valid_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _is_valid_ne;
+		/// <summary>
+		/// IsValid_neと等しくない
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_ne
 		{
 			get => _is_valid_ne?.ToValidityFlag();
 			set => _is_valid_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _is_valid_lt;
+		/// <summary>
+		/// IsValid_ltより小さい
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_lt
 		{
 			get => _is_valid_lt?.ToValidityFlag();
 			set => _is_valid_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _is_valid_gt;
+		/// <summary>
+		/// IsValid_gtより大きい
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_gt
 		{
 			get => _is_valid_gt?.ToValidityFlag();
 			set => _is_valid_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _is_valid_le;
+		/// <summary>
+		/// IsValid_le以下
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_le
 		{
 			get => _is_valid_le?.ToValidityFlag();
 			set => _is_valid_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _is_valid_ge;
+		/// <summary>
+		/// IsValid_ge以上
+		/// </summary>
 		[DataMember] public ValidityFlag? IsValid_ge
 		{
 			get => _is_valid_ge?.ToValidityFlag();
 			set => _is_valid_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _is_valid_in;
+		/// <summary>
+		/// IsValid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<ValidityFlag> IsValid_in
 		{
 			get => _is_valid_in?.Select(_ => _.ToValidityFlag().Value) ?? Enumerable.Empty<ValidityFlag>();
 			set => _is_valid_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _is_valid_ni;
+		/// <summary>
+		/// IsValid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<ValidityFlag> IsValid_ni
 		{
 			get => _is_valid_ni?.Select(_ => _.ToValidityFlag().Value) ?? Enumerable.Empty<ValidityFlag>();
 			set => _is_valid_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _is_valid_between;
+		/// <summary>
+		/// IsValid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (ValidityFlag low, ValidityFlag high)? IsValid_between
 		{
 			get => _is_valid_between.HasValue ? (_is_valid_between.Value.low.ToValidityFlag().Value, _is_valid_between.Value.high.ToValidityFlag().Value) : ((ValidityFlag, ValidityFlag)?)null;
@@ -13331,54 +13585,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region hash_type (HashType)
 		private string _hash_type_eq;
+		/// <summary>
+		/// HashType_eqと等しい
+		/// </summary>
 		[DataMember] public HashMethod? HashType_eq
 		{
 			get => _hash_type_eq?.ToHashMethod();
 			set => _hash_type_eq = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _hash_type_ne;
+		/// <summary>
+		/// HashType_neと等しくない
+		/// </summary>
 		[DataMember] public HashMethod? HashType_ne
 		{
 			get => _hash_type_ne?.ToHashMethod();
 			set => _hash_type_ne = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _hash_type_lt;
+		/// <summary>
+		/// HashType_ltより小さい
+		/// </summary>
 		[DataMember] public HashMethod? HashType_lt
 		{
 			get => _hash_type_lt?.ToHashMethod();
 			set => _hash_type_lt = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _hash_type_gt;
+		/// <summary>
+		/// HashType_gtより大きい
+		/// </summary>
 		[DataMember] public HashMethod? HashType_gt
 		{
 			get => _hash_type_gt?.ToHashMethod();
 			set => _hash_type_gt = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _hash_type_le;
+		/// <summary>
+		/// HashType_le以下
+		/// </summary>
 		[DataMember] public HashMethod? HashType_le
 		{
 			get => _hash_type_le?.ToHashMethod();
 			set => _hash_type_le = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private string _hash_type_ge;
+		/// <summary>
+		/// HashType_ge以上
+		/// </summary>
 		[DataMember] public HashMethod? HashType_ge
 		{
 			get => _hash_type_ge?.ToHashMethod();
 			set => _hash_type_ge = value.HasValue ? value.Value.Val() : (string)null;
 		}
 		private IEnumerable<string> _hash_type_in;
+		/// <summary>
+		/// HashType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<HashMethod> HashType_in
 		{
 			get => _hash_type_in?.Select(_ => _.ToHashMethod().Value) ?? Enumerable.Empty<HashMethod>();
 			set => _hash_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<string> _hash_type_ni;
+		/// <summary>
+		/// HashType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<HashMethod> HashType_ni
 		{
 			get => _hash_type_ni?.Select(_ => _.ToHashMethod().Value) ?? Enumerable.Empty<HashMethod>();
 			set => _hash_type_ni = value.Select(_ => _.Val());
 		}
 		private (string low, string high)? _hash_type_between;
+		/// <summary>
+		/// HashType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (HashMethod low, HashMethod high)? HashType_between
 		{
 			get => _hash_type_between.HasValue ? (_hash_type_between.Value.low.ToHashMethod().Value, _hash_type_between.Value.high.ToHashMethod().Value) : ((HashMethod, HashMethod)?)null;
@@ -13593,66 +13874,99 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region lock_reason (LockReason)
 		private int? _lock_reason_eq;
+		/// <summary>
+		/// LockReason_eqと等しい
+		/// </summary>
 		[DataMember] public LockReason? LockReason_eq
 		{
 			get => _lock_reason_eq?.ToLockReason();
 			set => _lock_reason_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _lock_reason_ne;
+		/// <summary>
+		/// LockReason_neと等しくない
+		/// </summary>
 		[DataMember] public LockReason? LockReason_ne
 		{
 			get => _lock_reason_ne?.ToLockReason();
 			set => _lock_reason_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _lock_reason_lt;
+		/// <summary>
+		/// LockReason_ltより小さい
+		/// </summary>
 		[DataMember] public LockReason? LockReason_lt
 		{
 			get => _lock_reason_lt?.ToLockReason();
 			set => _lock_reason_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _lock_reason_gt;
+		/// <summary>
+		/// LockReason_gtより大きい
+		/// </summary>
 		[DataMember] public LockReason? LockReason_gt
 		{
 			get => _lock_reason_gt?.ToLockReason();
 			set => _lock_reason_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _lock_reason_le;
+		/// <summary>
+		/// LockReason_le以下
+		/// </summary>
 		[DataMember] public LockReason? LockReason_le
 		{
 			get => _lock_reason_le?.ToLockReason();
 			set => _lock_reason_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _lock_reason_ge;
+		/// <summary>
+		/// LockReason_ge以上
+		/// </summary>
 		[DataMember] public LockReason? LockReason_ge
 		{
 			get => _lock_reason_ge?.ToLockReason();
 			set => _lock_reason_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _lock_reason_in;
+		/// <summary>
+		/// LockReason_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<LockReason> LockReason_in
 		{
 			get => _lock_reason_in?.Select(_ => _.ToLockReason().Value) ?? Enumerable.Empty<LockReason>();
 			set => _lock_reason_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _lock_reason_ni;
+		/// <summary>
+		/// LockReason_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<LockReason> LockReason_ni
 		{
 			get => _lock_reason_ni?.Select(_ => _.ToLockReason().Value) ?? Enumerable.Empty<LockReason>();
 			set => _lock_reason_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _lock_reason_between;
+		/// <summary>
+		/// LockReason_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (LockReason low, LockReason high)? LockReason_between
 		{
 			get => _lock_reason_between.HasValue ? (_lock_reason_between.Value.low.ToLockReason().Value, _lock_reason_between.Value.high.ToLockReason().Value) : ((LockReason, LockReason)?)null;
 			set => _lock_reason_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
 		}
 		private bool _lock_reason_isnull { get; set; } =  false ;
+		/// <summary>
+		/// LockReasonがNULLか
+		/// </summary>
 		[DataMember] public bool LockReason_isnull
 		{
 			get => _lock_reason_isnull;
 			set => _lock_reason_isnull = value;
 		}
 		private bool _lock_reason_isnotnull { get; set; } = false;
+		/// <summary>
+		/// LockReasonがNULLではないか
+		/// </summary>
 		[DataMember] public bool LockReason_isnotnull
 		{
 			get => _lock_reason_isnotnull;
@@ -16946,54 +17260,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region user_type (UserType)
 		private int? _user_type_eq;
+		/// <summary>
+		/// UserType_eqと等しい
+		/// </summary>
 		[DataMember] public UserType? UserType_eq
 		{
 			get => _user_type_eq?.ToUserType();
 			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ne;
+		/// <summary>
+		/// UserType_neと等しくない
+		/// </summary>
 		[DataMember] public UserType? UserType_ne
 		{
 			get => _user_type_ne?.ToUserType();
 			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_lt;
+		/// <summary>
+		/// UserType_ltより小さい
+		/// </summary>
 		[DataMember] public UserType? UserType_lt
 		{
 			get => _user_type_lt?.ToUserType();
 			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_gt;
+		/// <summary>
+		/// UserType_gtより大きい
+		/// </summary>
 		[DataMember] public UserType? UserType_gt
 		{
 			get => _user_type_gt?.ToUserType();
 			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_le;
+		/// <summary>
+		/// UserType_le以下
+		/// </summary>
 		[DataMember] public UserType? UserType_le
 		{
 			get => _user_type_le?.ToUserType();
 			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ge;
+		/// <summary>
+		/// UserType_ge以上
+		/// </summary>
 		[DataMember] public UserType? UserType_ge
 		{
 			get => _user_type_ge?.ToUserType();
 			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _user_type_in;
+		/// <summary>
+		/// UserType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_in
 		{
 			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _user_type_ni;
+		/// <summary>
+		/// UserType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_ni
 		{
 			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _user_type_between;
+		/// <summary>
+		/// UserType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (UserType low, UserType high)? UserType_between
 		{
 			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
@@ -18509,54 +18850,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region user_type (UserType)
 		private int? _user_type_eq;
+		/// <summary>
+		/// UserType_eqと等しい
+		/// </summary>
 		[DataMember] public UserType? UserType_eq
 		{
 			get => _user_type_eq?.ToUserType();
 			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ne;
+		/// <summary>
+		/// UserType_neと等しくない
+		/// </summary>
 		[DataMember] public UserType? UserType_ne
 		{
 			get => _user_type_ne?.ToUserType();
 			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_lt;
+		/// <summary>
+		/// UserType_ltより小さい
+		/// </summary>
 		[DataMember] public UserType? UserType_lt
 		{
 			get => _user_type_lt?.ToUserType();
 			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_gt;
+		/// <summary>
+		/// UserType_gtより大きい
+		/// </summary>
 		[DataMember] public UserType? UserType_gt
 		{
 			get => _user_type_gt?.ToUserType();
 			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_le;
+		/// <summary>
+		/// UserType_le以下
+		/// </summary>
 		[DataMember] public UserType? UserType_le
 		{
 			get => _user_type_le?.ToUserType();
 			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ge;
+		/// <summary>
+		/// UserType_ge以上
+		/// </summary>
 		[DataMember] public UserType? UserType_ge
 		{
 			get => _user_type_ge?.ToUserType();
 			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _user_type_in;
+		/// <summary>
+		/// UserType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_in
 		{
 			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _user_type_ni;
+		/// <summary>
+		/// UserType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_ni
 		{
 			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _user_type_between;
+		/// <summary>
+		/// UserType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (UserType low, UserType high)? UserType_between
 		{
 			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
@@ -19894,66 +20262,99 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region gender (Gender)
 		private int? _gender_eq;
+		/// <summary>
+		/// Gender_eqと等しい
+		/// </summary>
 		[DataMember] public Gender? Gender_eq
 		{
 			get => _gender_eq?.ToGender();
 			set => _gender_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _gender_ne;
+		/// <summary>
+		/// Gender_neと等しくない
+		/// </summary>
 		[DataMember] public Gender? Gender_ne
 		{
 			get => _gender_ne?.ToGender();
 			set => _gender_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _gender_lt;
+		/// <summary>
+		/// Gender_ltより小さい
+		/// </summary>
 		[DataMember] public Gender? Gender_lt
 		{
 			get => _gender_lt?.ToGender();
 			set => _gender_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _gender_gt;
+		/// <summary>
+		/// Gender_gtより大きい
+		/// </summary>
 		[DataMember] public Gender? Gender_gt
 		{
 			get => _gender_gt?.ToGender();
 			set => _gender_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _gender_le;
+		/// <summary>
+		/// Gender_le以下
+		/// </summary>
 		[DataMember] public Gender? Gender_le
 		{
 			get => _gender_le?.ToGender();
 			set => _gender_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _gender_ge;
+		/// <summary>
+		/// Gender_ge以上
+		/// </summary>
 		[DataMember] public Gender? Gender_ge
 		{
 			get => _gender_ge?.ToGender();
 			set => _gender_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _gender_in;
+		/// <summary>
+		/// Gender_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<Gender> Gender_in
 		{
 			get => _gender_in?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
 			set => _gender_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _gender_ni;
+		/// <summary>
+		/// Gender_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<Gender> Gender_ni
 		{
 			get => _gender_ni?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
 			set => _gender_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _gender_between;
+		/// <summary>
+		/// Gender_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (Gender low, Gender high)? Gender_between
 		{
 			get => _gender_between.HasValue ? (_gender_between.Value.low.ToGender().Value, _gender_between.Value.high.ToGender().Value) : ((Gender, Gender)?)null;
 			set => _gender_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
 		}
 		private bool _gender_isnull { get; set; } =  false ;
+		/// <summary>
+		/// GenderがNULLか
+		/// </summary>
 		[DataMember] public bool Gender_isnull
 		{
 			get => _gender_isnull;
 			set => _gender_isnull = value;
 		}
 		private bool _gender_isnotnull { get; set; } = false;
+		/// <summary>
+		/// GenderがNULLではないか
+		/// </summary>
 		[DataMember] public bool Gender_isnotnull
 		{
 			get => _gender_isnotnull;
@@ -24544,54 +24945,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region user_type (UserType)
 		private int? _user_type_eq;
+		/// <summary>
+		/// UserType_eqと等しい
+		/// </summary>
 		[DataMember] public UserType? UserType_eq
 		{
 			get => _user_type_eq?.ToUserType();
 			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ne;
+		/// <summary>
+		/// UserType_neと等しくない
+		/// </summary>
 		[DataMember] public UserType? UserType_ne
 		{
 			get => _user_type_ne?.ToUserType();
 			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_lt;
+		/// <summary>
+		/// UserType_ltより小さい
+		/// </summary>
 		[DataMember] public UserType? UserType_lt
 		{
 			get => _user_type_lt?.ToUserType();
 			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_gt;
+		/// <summary>
+		/// UserType_gtより大きい
+		/// </summary>
 		[DataMember] public UserType? UserType_gt
 		{
 			get => _user_type_gt?.ToUserType();
 			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_le;
+		/// <summary>
+		/// UserType_le以下
+		/// </summary>
 		[DataMember] public UserType? UserType_le
 		{
 			get => _user_type_le?.ToUserType();
 			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ge;
+		/// <summary>
+		/// UserType_ge以上
+		/// </summary>
 		[DataMember] public UserType? UserType_ge
 		{
 			get => _user_type_ge?.ToUserType();
 			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _user_type_in;
+		/// <summary>
+		/// UserType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_in
 		{
 			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _user_type_ni;
+		/// <summary>
+		/// UserType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_ni
 		{
 			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _user_type_between;
+		/// <summary>
+		/// UserType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (UserType low, UserType high)? UserType_between
 		{
 			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
@@ -27331,54 +27759,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region user_type (UserType)
 		private int? _user_type_eq;
+		/// <summary>
+		/// UserType_eqと等しい
+		/// </summary>
 		[DataMember] public UserType? UserType_eq
 		{
 			get => _user_type_eq?.ToUserType();
 			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ne;
+		/// <summary>
+		/// UserType_neと等しくない
+		/// </summary>
 		[DataMember] public UserType? UserType_ne
 		{
 			get => _user_type_ne?.ToUserType();
 			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_lt;
+		/// <summary>
+		/// UserType_ltより小さい
+		/// </summary>
 		[DataMember] public UserType? UserType_lt
 		{
 			get => _user_type_lt?.ToUserType();
 			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_gt;
+		/// <summary>
+		/// UserType_gtより大きい
+		/// </summary>
 		[DataMember] public UserType? UserType_gt
 		{
 			get => _user_type_gt?.ToUserType();
 			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_le;
+		/// <summary>
+		/// UserType_le以下
+		/// </summary>
 		[DataMember] public UserType? UserType_le
 		{
 			get => _user_type_le?.ToUserType();
 			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ge;
+		/// <summary>
+		/// UserType_ge以上
+		/// </summary>
 		[DataMember] public UserType? UserType_ge
 		{
 			get => _user_type_ge?.ToUserType();
 			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _user_type_in;
+		/// <summary>
+		/// UserType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_in
 		{
 			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _user_type_ni;
+		/// <summary>
+		/// UserType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_ni
 		{
 			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _user_type_between;
+		/// <summary>
+		/// UserType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (UserType low, UserType high)? UserType_between
 		{
 			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
@@ -30059,54 +30514,81 @@ namespace OpenAPITest.Domain
 		#endregion
 		#region user_type (UserType)
 		private int? _user_type_eq;
+		/// <summary>
+		/// UserType_eqと等しい
+		/// </summary>
 		[DataMember] public UserType? UserType_eq
 		{
 			get => _user_type_eq?.ToUserType();
 			set => _user_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ne;
+		/// <summary>
+		/// UserType_neと等しくない
+		/// </summary>
 		[DataMember] public UserType? UserType_ne
 		{
 			get => _user_type_ne?.ToUserType();
 			set => _user_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_lt;
+		/// <summary>
+		/// UserType_ltより小さい
+		/// </summary>
 		[DataMember] public UserType? UserType_lt
 		{
 			get => _user_type_lt?.ToUserType();
 			set => _user_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_gt;
+		/// <summary>
+		/// UserType_gtより大きい
+		/// </summary>
 		[DataMember] public UserType? UserType_gt
 		{
 			get => _user_type_gt?.ToUserType();
 			set => _user_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_le;
+		/// <summary>
+		/// UserType_le以下
+		/// </summary>
 		[DataMember] public UserType? UserType_le
 		{
 			get => _user_type_le?.ToUserType();
 			set => _user_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private int? _user_type_ge;
+		/// <summary>
+		/// UserType_ge以上
+		/// </summary>
 		[DataMember] public UserType? UserType_ge
 		{
 			get => _user_type_ge?.ToUserType();
 			set => _user_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
 		private IEnumerable<int> _user_type_in;
+		/// <summary>
+		/// UserType_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_in
 		{
 			get => _user_type_in?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_in = value.Select(_ => _.Val());
 		}
 		private IEnumerable<int> _user_type_ni;
+		/// <summary>
+		/// UserType_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<UserType> UserType_ni
 		{
 			get => _user_type_ni?.Select(_ => _.ToUserType().Value) ?? Enumerable.Empty<UserType>();
 			set => _user_type_ni = value.Select(_ => _.Val());
 		}
 		private (int low, int high)? _user_type_between;
+		/// <summary>
+		/// UserType_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (UserType low, UserType high)? UserType_between
 		{
 			get => _user_type_between.HasValue ? (_user_type_between.Value.low.ToUserType().Value, _user_type_between.Value.high.ToUserType().Value) : ((UserType, UserType)?)null;
