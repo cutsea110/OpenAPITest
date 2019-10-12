@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +22,7 @@ using peppa.util;
 
 using OpenAPITest.CustomPolicyProvider;
 using OpenAPITest.CustomFilter;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace OpenAPITest
 {
@@ -333,7 +333,9 @@ namespace OpenAPITest
             // Check Client IP Address
             services.AddScoped<ClientIpCheckFilter>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc(options => options.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             #region Add to support Authentication With Jwt
             services.AddAuthentication(opt =>
@@ -367,6 +369,9 @@ namespace OpenAPITest
             #endregion
 
             #region Add to support Swagger UI
+            services
+                .AddControllers()
+                .AddNewtonsoftJson();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(option =>

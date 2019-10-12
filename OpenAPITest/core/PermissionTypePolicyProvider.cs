@@ -49,5 +49,10 @@ namespace OpenAPITest.CustomPolicyProvider
             }
             return FallbackPolicyProvider.GetPolicyAsync(policyName);
         }
+
+        public Task<AuthorizationPolicy> GetFallbackPolicyAsync()
+        {
+            return ((IAuthorizationPolicyProvider)FallbackPolicyProvider).GetFallbackPolicyAsync();
+        }
     }
 }
