@@ -392,6 +392,7 @@ namespace OpenAPITest
 
                 option.IncludeXmlComments(XmlCommentsPath);
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
+                option.DescribeAllEnumsAsStrings();
             });
             #endregion
         }
