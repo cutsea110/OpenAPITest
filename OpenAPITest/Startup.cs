@@ -422,9 +422,9 @@ namespace OpenAPITest
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(opions =>
+            app.UseSwaggerUI(options =>
             {
-                opions.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "PeppaWeb API V1");
             });
         }
     }
