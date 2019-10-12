@@ -5569,618 +5569,2115 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region col01
+		/// <summary>
+		/// col01_eqと等しい
+		/// </summary>
 		[DataMember] public char? col01_eq { get; set; }
+		/// <summary>
+		/// col01_neと等しくない
+		/// </summary>
 		[DataMember] public char? col01_ne { get; set; }
+		/// <summary>
+		/// col01_ltより小さい
+		/// </summary>
 		[DataMember] public char? col01_lt { get; set; }
+		/// <summary>
+		/// col01_gtより大きい
+		/// </summary>
 		[DataMember] public char? col01_gt { get; set; }
+		/// <summary>
+		/// col01_le以下
+		/// </summary>
 		[DataMember] public char? col01_le { get; set; }
+		/// <summary>
+		/// col01_ge以上
+		/// </summary>
 		[DataMember] public char? col01_ge { get; set; }
+		/// <summary>
+		/// col01_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<char> col01_in { get; set; }
+		/// <summary>
+		/// col01_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<char> col01_ni { get; set; }
+		/// <summary>
+		/// col01_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (char? low, char? high)? col01_between { get; set; }
 		#endregion
 		#region col01_
+		/// <summary>
+		/// col01__eqと等しい
+		/// </summary>
 		[DataMember] public char? col01__eq { get; set; }
+		/// <summary>
+		/// col01__neと等しくない
+		/// </summary>
 		[DataMember] public char? col01__ne { get; set; }
+		/// <summary>
+		/// col01__ltより小さい
+		/// </summary>
 		[DataMember] public char? col01__lt { get; set; }
+		/// <summary>
+		/// col01__gtより大きい
+		/// </summary>
 		[DataMember] public char? col01__gt { get; set; }
+		/// <summary>
+		/// col01__le以下
+		/// </summary>
 		[DataMember] public char? col01__le { get; set; }
+		/// <summary>
+		/// col01__ge以上
+		/// </summary>
 		[DataMember] public char? col01__ge { get; set; }
+		/// <summary>
+		/// col01__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<char> col01__in { get; set; }
+		/// <summary>
+		/// col01__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<char> col01__ni { get; set; }
+		/// <summary>
+		/// col01__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (char? low, char? high)? col01__between { get; set; }
+		/// <summary>
+		/// col01_がNULLか
+		/// </summary>
 		[DataMember] public bool col01__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col01_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col01__isnotnull { get; set; } = false;
 		#endregion
 		#region col02
+		/// <summary>
+		/// col02_eqと等しい
+		/// </summary>
 		[DataMember] public string col02_eq { get; set; }
+		/// <summary>
+		/// col02_neと等しくない
+		/// </summary>
 		[DataMember] public string col02_ne { get; set; }
+		/// <summary>
+		/// col02_ltより小さい
+		/// </summary>
 		[DataMember] public string col02_lt { get; set; }
+		/// <summary>
+		/// col02_gtより大きい
+		/// </summary>
 		[DataMember] public string col02_gt { get; set; }
+		/// <summary>
+		/// col02_le以下
+		/// </summary>
 		[DataMember] public string col02_le { get; set; }
+		/// <summary>
+		/// col02_ge以上
+		/// </summary>
 		[DataMember] public string col02_ge { get; set; }
+		/// <summary>
+		/// col02_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col02_in { get; set; }
+		/// <summary>
+		/// col02_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col02_ni { get; set; }
+		/// <summary>
+		/// col02_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col02_between { get; set; }
+		/// <summary>
+		/// col02_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col02_like { get; set; }
 		#endregion
 		#region col02_
+		/// <summary>
+		/// col02__eqと等しい
+		/// </summary>
 		[DataMember] public string col02__eq { get; set; }
+		/// <summary>
+		/// col02__neと等しくない
+		/// </summary>
 		[DataMember] public string col02__ne { get; set; }
+		/// <summary>
+		/// col02__ltより小さい
+		/// </summary>
 		[DataMember] public string col02__lt { get; set; }
+		/// <summary>
+		/// col02__gtより大きい
+		/// </summary>
 		[DataMember] public string col02__gt { get; set; }
+		/// <summary>
+		/// col02__le以下
+		/// </summary>
 		[DataMember] public string col02__le { get; set; }
+		/// <summary>
+		/// col02__ge以上
+		/// </summary>
 		[DataMember] public string col02__ge { get; set; }
+		/// <summary>
+		/// col02__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col02__in { get; set; }
+		/// <summary>
+		/// col02__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col02__ni { get; set; }
+		/// <summary>
+		/// col02__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col02__between { get; set; }
+		/// <summary>
+		/// col02_がNULLか
+		/// </summary>
 		[DataMember] public bool col02__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col02_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col02__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col02__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col02__like { get; set; }
 		#endregion
 		#region col03
+		/// <summary>
+		/// col03_eqと等しい
+		/// </summary>
 		[DataMember] public string col03_eq { get; set; }
+		/// <summary>
+		/// col03_neと等しくない
+		/// </summary>
 		[DataMember] public string col03_ne { get; set; }
+		/// <summary>
+		/// col03_ltより小さい
+		/// </summary>
 		[DataMember] public string col03_lt { get; set; }
+		/// <summary>
+		/// col03_gtより大きい
+		/// </summary>
 		[DataMember] public string col03_gt { get; set; }
+		/// <summary>
+		/// col03_le以下
+		/// </summary>
 		[DataMember] public string col03_le { get; set; }
+		/// <summary>
+		/// col03_ge以上
+		/// </summary>
 		[DataMember] public string col03_ge { get; set; }
+		/// <summary>
+		/// col03_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col03_in { get; set; }
+		/// <summary>
+		/// col03_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col03_ni { get; set; }
+		/// <summary>
+		/// col03_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col03_between { get; set; }
+		/// <summary>
+		/// col03_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col03_like { get; set; }
 		#endregion
 		#region col03_
+		/// <summary>
+		/// col03__eqと等しい
+		/// </summary>
 		[DataMember] public string col03__eq { get; set; }
+		/// <summary>
+		/// col03__neと等しくない
+		/// </summary>
 		[DataMember] public string col03__ne { get; set; }
+		/// <summary>
+		/// col03__ltより小さい
+		/// </summary>
 		[DataMember] public string col03__lt { get; set; }
+		/// <summary>
+		/// col03__gtより大きい
+		/// </summary>
 		[DataMember] public string col03__gt { get; set; }
+		/// <summary>
+		/// col03__le以下
+		/// </summary>
 		[DataMember] public string col03__le { get; set; }
+		/// <summary>
+		/// col03__ge以上
+		/// </summary>
 		[DataMember] public string col03__ge { get; set; }
+		/// <summary>
+		/// col03__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col03__in { get; set; }
+		/// <summary>
+		/// col03__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col03__ni { get; set; }
+		/// <summary>
+		/// col03__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col03__between { get; set; }
+		/// <summary>
+		/// col03_がNULLか
+		/// </summary>
 		[DataMember] public bool col03__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col03_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col03__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col03__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col03__like { get; set; }
 		#endregion
 		#region col04
+		/// <summary>
+		/// col04_eqと等しい
+		/// </summary>
 		[DataMember] public string col04_eq { get; set; }
+		/// <summary>
+		/// col04_neと等しくない
+		/// </summary>
 		[DataMember] public string col04_ne { get; set; }
+		/// <summary>
+		/// col04_ltより小さい
+		/// </summary>
 		[DataMember] public string col04_lt { get; set; }
+		/// <summary>
+		/// col04_gtより大きい
+		/// </summary>
 		[DataMember] public string col04_gt { get; set; }
+		/// <summary>
+		/// col04_le以下
+		/// </summary>
 		[DataMember] public string col04_le { get; set; }
+		/// <summary>
+		/// col04_ge以上
+		/// </summary>
 		[DataMember] public string col04_ge { get; set; }
+		/// <summary>
+		/// col04_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col04_in { get; set; }
+		/// <summary>
+		/// col04_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col04_ni { get; set; }
+		/// <summary>
+		/// col04_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col04_between { get; set; }
+		/// <summary>
+		/// col04_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col04_like { get; set; }
 		#endregion
 		#region col04_
+		/// <summary>
+		/// col04__eqと等しい
+		/// </summary>
 		[DataMember] public string col04__eq { get; set; }
+		/// <summary>
+		/// col04__neと等しくない
+		/// </summary>
 		[DataMember] public string col04__ne { get; set; }
+		/// <summary>
+		/// col04__ltより小さい
+		/// </summary>
 		[DataMember] public string col04__lt { get; set; }
+		/// <summary>
+		/// col04__gtより大きい
+		/// </summary>
 		[DataMember] public string col04__gt { get; set; }
+		/// <summary>
+		/// col04__le以下
+		/// </summary>
 		[DataMember] public string col04__le { get; set; }
+		/// <summary>
+		/// col04__ge以上
+		/// </summary>
 		[DataMember] public string col04__ge { get; set; }
+		/// <summary>
+		/// col04__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col04__in { get; set; }
+		/// <summary>
+		/// col04__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col04__ni { get; set; }
+		/// <summary>
+		/// col04__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col04__between { get; set; }
+		/// <summary>
+		/// col04_がNULLか
+		/// </summary>
 		[DataMember] public bool col04__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col04_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col04__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col04__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col04__like { get; set; }
 		#endregion
 		#region col05
+		/// <summary>
+		/// col05_eqと等しい
+		/// </summary>
 		[DataMember] public char? col05_eq { get; set; }
+		/// <summary>
+		/// col05_neと等しくない
+		/// </summary>
 		[DataMember] public char? col05_ne { get; set; }
+		/// <summary>
+		/// col05_ltより小さい
+		/// </summary>
 		[DataMember] public char? col05_lt { get; set; }
+		/// <summary>
+		/// col05_gtより大きい
+		/// </summary>
 		[DataMember] public char? col05_gt { get; set; }
+		/// <summary>
+		/// col05_le以下
+		/// </summary>
 		[DataMember] public char? col05_le { get; set; }
+		/// <summary>
+		/// col05_ge以上
+		/// </summary>
 		[DataMember] public char? col05_ge { get; set; }
+		/// <summary>
+		/// col05_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<char> col05_in { get; set; }
+		/// <summary>
+		/// col05_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<char> col05_ni { get; set; }
+		/// <summary>
+		/// col05_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (char? low, char? high)? col05_between { get; set; }
 		#endregion
 		#region col05_
+		/// <summary>
+		/// col05__eqと等しい
+		/// </summary>
 		[DataMember] public char? col05__eq { get; set; }
+		/// <summary>
+		/// col05__neと等しくない
+		/// </summary>
 		[DataMember] public char? col05__ne { get; set; }
+		/// <summary>
+		/// col05__ltより小さい
+		/// </summary>
 		[DataMember] public char? col05__lt { get; set; }
+		/// <summary>
+		/// col05__gtより大きい
+		/// </summary>
 		[DataMember] public char? col05__gt { get; set; }
+		/// <summary>
+		/// col05__le以下
+		/// </summary>
 		[DataMember] public char? col05__le { get; set; }
+		/// <summary>
+		/// col05__ge以上
+		/// </summary>
 		[DataMember] public char? col05__ge { get; set; }
+		/// <summary>
+		/// col05__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<char> col05__in { get; set; }
+		/// <summary>
+		/// col05__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<char> col05__ni { get; set; }
+		/// <summary>
+		/// col05__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (char? low, char? high)? col05__between { get; set; }
+		/// <summary>
+		/// col05_がNULLか
+		/// </summary>
 		[DataMember] public bool col05__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col05_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col05__isnotnull { get; set; } = false;
 		#endregion
 		#region col06
+		/// <summary>
+		/// col06_eqと等しい
+		/// </summary>
 		[DataMember] public string col06_eq { get; set; }
+		/// <summary>
+		/// col06_neと等しくない
+		/// </summary>
 		[DataMember] public string col06_ne { get; set; }
+		/// <summary>
+		/// col06_ltより小さい
+		/// </summary>
 		[DataMember] public string col06_lt { get; set; }
+		/// <summary>
+		/// col06_gtより大きい
+		/// </summary>
 		[DataMember] public string col06_gt { get; set; }
+		/// <summary>
+		/// col06_le以下
+		/// </summary>
 		[DataMember] public string col06_le { get; set; }
+		/// <summary>
+		/// col06_ge以上
+		/// </summary>
 		[DataMember] public string col06_ge { get; set; }
+		/// <summary>
+		/// col06_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col06_in { get; set; }
+		/// <summary>
+		/// col06_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col06_ni { get; set; }
+		/// <summary>
+		/// col06_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col06_between { get; set; }
+		/// <summary>
+		/// col06_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col06_like { get; set; }
 		#endregion
 		#region col06_
+		/// <summary>
+		/// col06__eqと等しい
+		/// </summary>
 		[DataMember] public string col06__eq { get; set; }
+		/// <summary>
+		/// col06__neと等しくない
+		/// </summary>
 		[DataMember] public string col06__ne { get; set; }
+		/// <summary>
+		/// col06__ltより小さい
+		/// </summary>
 		[DataMember] public string col06__lt { get; set; }
+		/// <summary>
+		/// col06__gtより大きい
+		/// </summary>
 		[DataMember] public string col06__gt { get; set; }
+		/// <summary>
+		/// col06__le以下
+		/// </summary>
 		[DataMember] public string col06__le { get; set; }
+		/// <summary>
+		/// col06__ge以上
+		/// </summary>
 		[DataMember] public string col06__ge { get; set; }
+		/// <summary>
+		/// col06__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col06__in { get; set; }
+		/// <summary>
+		/// col06__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col06__ni { get; set; }
+		/// <summary>
+		/// col06__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col06__between { get; set; }
+		/// <summary>
+		/// col06_がNULLか
+		/// </summary>
 		[DataMember] public bool col06__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col06_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col06__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col06__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col06__like { get; set; }
 		#endregion
 		#region col07
+		/// <summary>
+		/// col07_eqと等しい
+		/// </summary>
 		[DataMember] public string col07_eq { get; set; }
+		/// <summary>
+		/// col07_neと等しくない
+		/// </summary>
 		[DataMember] public string col07_ne { get; set; }
+		/// <summary>
+		/// col07_ltより小さい
+		/// </summary>
 		[DataMember] public string col07_lt { get; set; }
+		/// <summary>
+		/// col07_gtより大きい
+		/// </summary>
 		[DataMember] public string col07_gt { get; set; }
+		/// <summary>
+		/// col07_le以下
+		/// </summary>
 		[DataMember] public string col07_le { get; set; }
+		/// <summary>
+		/// col07_ge以上
+		/// </summary>
 		[DataMember] public string col07_ge { get; set; }
+		/// <summary>
+		/// col07_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col07_in { get; set; }
+		/// <summary>
+		/// col07_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col07_ni { get; set; }
+		/// <summary>
+		/// col07_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col07_between { get; set; }
+		/// <summary>
+		/// col07_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col07_like { get; set; }
 		#endregion
 		#region col07_
+		/// <summary>
+		/// col07__eqと等しい
+		/// </summary>
 		[DataMember] public string col07__eq { get; set; }
+		/// <summary>
+		/// col07__neと等しくない
+		/// </summary>
 		[DataMember] public string col07__ne { get; set; }
+		/// <summary>
+		/// col07__ltより小さい
+		/// </summary>
 		[DataMember] public string col07__lt { get; set; }
+		/// <summary>
+		/// col07__gtより大きい
+		/// </summary>
 		[DataMember] public string col07__gt { get; set; }
+		/// <summary>
+		/// col07__le以下
+		/// </summary>
 		[DataMember] public string col07__le { get; set; }
+		/// <summary>
+		/// col07__ge以上
+		/// </summary>
 		[DataMember] public string col07__ge { get; set; }
+		/// <summary>
+		/// col07__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col07__in { get; set; }
+		/// <summary>
+		/// col07__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col07__ni { get; set; }
+		/// <summary>
+		/// col07__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col07__between { get; set; }
+		/// <summary>
+		/// col07_がNULLか
+		/// </summary>
 		[DataMember] public bool col07__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col07_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col07__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col07__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col07__like { get; set; }
 		#endregion
 		#region col08
+		/// <summary>
+		/// col08_eqと等しい
+		/// </summary>
 		[DataMember] public string col08_eq { get; set; }
+		/// <summary>
+		/// col08_neと等しくない
+		/// </summary>
 		[DataMember] public string col08_ne { get; set; }
+		/// <summary>
+		/// col08_ltより小さい
+		/// </summary>
 		[DataMember] public string col08_lt { get; set; }
+		/// <summary>
+		/// col08_gtより大きい
+		/// </summary>
 		[DataMember] public string col08_gt { get; set; }
+		/// <summary>
+		/// col08_le以下
+		/// </summary>
 		[DataMember] public string col08_le { get; set; }
+		/// <summary>
+		/// col08_ge以上
+		/// </summary>
 		[DataMember] public string col08_ge { get; set; }
+		/// <summary>
+		/// col08_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col08_in { get; set; }
+		/// <summary>
+		/// col08_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col08_ni { get; set; }
+		/// <summary>
+		/// col08_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col08_between { get; set; }
+		/// <summary>
+		/// col08_likeと部分一致する
+		/// </summary>
 		[DataMember] public string col08_like { get; set; }
 		#endregion
 		#region col08_
+		/// <summary>
+		/// col08__eqと等しい
+		/// </summary>
 		[DataMember] public string col08__eq { get; set; }
+		/// <summary>
+		/// col08__neと等しくない
+		/// </summary>
 		[DataMember] public string col08__ne { get; set; }
+		/// <summary>
+		/// col08__ltより小さい
+		/// </summary>
 		[DataMember] public string col08__lt { get; set; }
+		/// <summary>
+		/// col08__gtより大きい
+		/// </summary>
 		[DataMember] public string col08__gt { get; set; }
+		/// <summary>
+		/// col08__le以下
+		/// </summary>
 		[DataMember] public string col08__le { get; set; }
+		/// <summary>
+		/// col08__ge以上
+		/// </summary>
 		[DataMember] public string col08__ge { get; set; }
+		/// <summary>
+		/// col08__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> col08__in { get; set; }
+		/// <summary>
+		/// col08__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> col08__ni { get; set; }
+		/// <summary>
+		/// col08__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? col08__between { get; set; }
+		/// <summary>
+		/// col08_がNULLか
+		/// </summary>
 		[DataMember] public bool col08__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col08_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col08__isnotnull { get; set; } = false;
+		/// <summary>
+		/// col08__likeと部分一致する
+		/// </summary>
 		[DataMember] public string col08__like { get; set; }
 		#endregion
 		#region col09
+		/// <summary>
+		/// col09_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col09_eq { get; set; }
+		/// <summary>
+		/// col09_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col09_ne { get; set; }
 		#endregion
 		#region col09_
+		/// <summary>
+		/// col09__eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col09__eq { get; set; }
+		/// <summary>
+		/// col09__neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col09__ne { get; set; }
+		/// <summary>
+		/// col09_がNULLか
+		/// </summary>
 		[DataMember] public bool col09__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col09_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col09__isnotnull { get; set; } = false;
 		#endregion
 		#region col10
+		/// <summary>
+		/// col10_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col10_eq { get; set; }
+		/// <summary>
+		/// col10_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col10_ne { get; set; }
 		#endregion
 		#region col10_
+		/// <summary>
+		/// col10__eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col10__eq { get; set; }
+		/// <summary>
+		/// col10__neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col10__ne { get; set; }
+		/// <summary>
+		/// col10_がNULLか
+		/// </summary>
 		[DataMember] public bool col10__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col10_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col10__isnotnull { get; set; } = false;
 		#endregion
 		#region col11
+		/// <summary>
+		/// col11_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col11_eq { get; set; }
+		/// <summary>
+		/// col11_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col11_ne { get; set; }
 		#endregion
 		#region col11_
+		/// <summary>
+		/// col11__eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col11__eq { get; set; }
+		/// <summary>
+		/// col11__neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col11__ne { get; set; }
+		/// <summary>
+		/// col11_がNULLか
+		/// </summary>
 		[DataMember] public bool col11__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col11_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col11__isnotnull { get; set; } = false;
 		#endregion
 		#region col12
+		/// <summary>
+		/// col12_eqと等しい
+		/// </summary>
 		[DataMember] public bool? col12_eq { get; set; }
+		/// <summary>
+		/// col12_neと等しくない
+		/// </summary>
 		[DataMember] public bool? col12_ne { get; set; }
 		#endregion
 		#region col12_
+		/// <summary>
+		/// col12__eqと等しい
+		/// </summary>
 		[DataMember] public bool? col12__eq { get; set; }
+		/// <summary>
+		/// col12__neと等しくない
+		/// </summary>
 		[DataMember] public bool? col12__ne { get; set; }
+		/// <summary>
+		/// col12_がNULLか
+		/// </summary>
 		[DataMember] public bool col12__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col12_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col12__isnotnull { get; set; } = false;
 		#endregion
 		#region col13
+		/// <summary>
+		/// col13_eqと等しい
+		/// </summary>
 		[DataMember] public Guid? col13_eq { get; set; }
+		/// <summary>
+		/// col13_neと等しくない
+		/// </summary>
 		[DataMember] public Guid? col13_ne { get; set; }
 		#endregion
 		#region col13_
+		/// <summary>
+		/// col13__eqと等しい
+		/// </summary>
 		[DataMember] public Guid? col13__eq { get; set; }
+		/// <summary>
+		/// col13__neと等しくない
+		/// </summary>
 		[DataMember] public Guid? col13__ne { get; set; }
+		/// <summary>
+		/// col13_がNULLか
+		/// </summary>
 		[DataMember] public bool col13__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col13_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col13__isnotnull { get; set; } = false;
 		#endregion
 		#region col14
+		/// <summary>
+		/// col14_eqと等しい
+		/// </summary>
 		[DataMember] public Int16? col14_eq { get; set; }
+		/// <summary>
+		/// col14_neと等しくない
+		/// </summary>
 		[DataMember] public Int16? col14_ne { get; set; }
+		/// <summary>
+		/// col14_ltより小さい
+		/// </summary>
 		[DataMember] public Int16? col14_lt { get; set; }
+		/// <summary>
+		/// col14_gtより大きい
+		/// </summary>
 		[DataMember] public Int16? col14_gt { get; set; }
+		/// <summary>
+		/// col14_le以下
+		/// </summary>
 		[DataMember] public Int16? col14_le { get; set; }
+		/// <summary>
+		/// col14_ge以上
+		/// </summary>
 		[DataMember] public Int16? col14_ge { get; set; }
+		/// <summary>
+		/// col14_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<Int16> col14_in { get; set; }
+		/// <summary>
+		/// col14_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<Int16> col14_ni { get; set; }
+		/// <summary>
+		/// col14_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (Int16? low, Int16? high)? col14_between { get; set; }
 		#endregion
 		#region col14_
+		/// <summary>
+		/// col14__eqと等しい
+		/// </summary>
 		[DataMember] public Int16? col14__eq { get; set; }
+		/// <summary>
+		/// col14__neと等しくない
+		/// </summary>
 		[DataMember] public Int16? col14__ne { get; set; }
+		/// <summary>
+		/// col14__ltより小さい
+		/// </summary>
 		[DataMember] public Int16? col14__lt { get; set; }
+		/// <summary>
+		/// col14__gtより大きい
+		/// </summary>
 		[DataMember] public Int16? col14__gt { get; set; }
+		/// <summary>
+		/// col14__le以下
+		/// </summary>
 		[DataMember] public Int16? col14__le { get; set; }
+		/// <summary>
+		/// col14__ge以上
+		/// </summary>
 		[DataMember] public Int16? col14__ge { get; set; }
+		/// <summary>
+		/// col14__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<Int16> col14__in { get; set; }
+		/// <summary>
+		/// col14__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<Int16> col14__ni { get; set; }
+		/// <summary>
+		/// col14__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (Int16? low, Int16? high)? col14__between { get; set; }
+		/// <summary>
+		/// col14_がNULLか
+		/// </summary>
 		[DataMember] public bool col14__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col14_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col14__isnotnull { get; set; } = false;
 		#endregion
 		#region col15
+		/// <summary>
+		/// col15_eqと等しい
+		/// </summary>
 		[DataMember] public int? col15_eq { get; set; }
+		/// <summary>
+		/// col15_neと等しくない
+		/// </summary>
 		[DataMember] public int? col15_ne { get; set; }
+		/// <summary>
+		/// col15_ltより小さい
+		/// </summary>
 		[DataMember] public int? col15_lt { get; set; }
+		/// <summary>
+		/// col15_gtより大きい
+		/// </summary>
 		[DataMember] public int? col15_gt { get; set; }
+		/// <summary>
+		/// col15_le以下
+		/// </summary>
 		[DataMember] public int? col15_le { get; set; }
+		/// <summary>
+		/// col15_ge以上
+		/// </summary>
 		[DataMember] public int? col15_ge { get; set; }
+		/// <summary>
+		/// col15_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> col15_in { get; set; }
+		/// <summary>
+		/// col15_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> col15_ni { get; set; }
+		/// <summary>
+		/// col15_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? col15_between { get; set; }
 		#endregion
 		#region col15_
+		/// <summary>
+		/// col15__eqと等しい
+		/// </summary>
 		[DataMember] public int? col15__eq { get; set; }
+		/// <summary>
+		/// col15__neと等しくない
+		/// </summary>
 		[DataMember] public int? col15__ne { get; set; }
+		/// <summary>
+		/// col15__ltより小さい
+		/// </summary>
 		[DataMember] public int? col15__lt { get; set; }
+		/// <summary>
+		/// col15__gtより大きい
+		/// </summary>
 		[DataMember] public int? col15__gt { get; set; }
+		/// <summary>
+		/// col15__le以下
+		/// </summary>
 		[DataMember] public int? col15__le { get; set; }
+		/// <summary>
+		/// col15__ge以上
+		/// </summary>
 		[DataMember] public int? col15__ge { get; set; }
+		/// <summary>
+		/// col15__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> col15__in { get; set; }
+		/// <summary>
+		/// col15__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> col15__ni { get; set; }
+		/// <summary>
+		/// col15__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? col15__between { get; set; }
+		/// <summary>
+		/// col15_がNULLか
+		/// </summary>
 		[DataMember] public bool col15__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col15_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col15__isnotnull { get; set; } = false;
 		#endregion
 		#region col16
+		/// <summary>
+		/// col16_eqと等しい
+		/// </summary>
 		[DataMember] public Int64? col16_eq { get; set; }
+		/// <summary>
+		/// col16_neと等しくない
+		/// </summary>
 		[DataMember] public Int64? col16_ne { get; set; }
+		/// <summary>
+		/// col16_ltより小さい
+		/// </summary>
 		[DataMember] public Int64? col16_lt { get; set; }
+		/// <summary>
+		/// col16_gtより大きい
+		/// </summary>
 		[DataMember] public Int64? col16_gt { get; set; }
+		/// <summary>
+		/// col16_le以下
+		/// </summary>
 		[DataMember] public Int64? col16_le { get; set; }
+		/// <summary>
+		/// col16_ge以上
+		/// </summary>
 		[DataMember] public Int64? col16_ge { get; set; }
+		/// <summary>
+		/// col16_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<Int64> col16_in { get; set; }
+		/// <summary>
+		/// col16_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<Int64> col16_ni { get; set; }
+		/// <summary>
+		/// col16_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (Int64? low, Int64? high)? col16_between { get; set; }
 		#endregion
 		#region col16_
+		/// <summary>
+		/// col16__eqと等しい
+		/// </summary>
 		[DataMember] public Int64? col16__eq { get; set; }
+		/// <summary>
+		/// col16__neと等しくない
+		/// </summary>
 		[DataMember] public Int64? col16__ne { get; set; }
+		/// <summary>
+		/// col16__ltより小さい
+		/// </summary>
 		[DataMember] public Int64? col16__lt { get; set; }
+		/// <summary>
+		/// col16__gtより大きい
+		/// </summary>
 		[DataMember] public Int64? col16__gt { get; set; }
+		/// <summary>
+		/// col16__le以下
+		/// </summary>
 		[DataMember] public Int64? col16__le { get; set; }
+		/// <summary>
+		/// col16__ge以上
+		/// </summary>
 		[DataMember] public Int64? col16__ge { get; set; }
+		/// <summary>
+		/// col16__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<Int64> col16__in { get; set; }
+		/// <summary>
+		/// col16__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<Int64> col16__ni { get; set; }
+		/// <summary>
+		/// col16__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (Int64? low, Int64? high)? col16__between { get; set; }
+		/// <summary>
+		/// col16_がNULLか
+		/// </summary>
 		[DataMember] public bool col16__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col16_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col16__isnotnull { get; set; } = false;
 		#endregion
 		#region col17
+		/// <summary>
+		/// col17_eqと等しい
+		/// </summary>
 		[DataMember] public byte? col17_eq { get; set; }
+		/// <summary>
+		/// col17_neと等しくない
+		/// </summary>
 		[DataMember] public byte? col17_ne { get; set; }
 		#endregion
 		#region col17_
+		/// <summary>
+		/// col17__eqと等しい
+		/// </summary>
 		[DataMember] public byte? col17__eq { get; set; }
+		/// <summary>
+		/// col17__neと等しくない
+		/// </summary>
 		[DataMember] public byte? col17__ne { get; set; }
+		/// <summary>
+		/// col17_がNULLか
+		/// </summary>
 		[DataMember] public bool col17__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col17_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col17__isnotnull { get; set; } = false;
 		#endregion
 		#region col18
+		/// <summary>
+		/// col18_eqと等しい
+		/// </summary>
 		[DataMember] public float? col18_eq { get; set; }
+		/// <summary>
+		/// col18_neと等しくない
+		/// </summary>
 		[DataMember] public float? col18_ne { get; set; }
+		/// <summary>
+		/// col18_ltより小さい
+		/// </summary>
 		[DataMember] public float? col18_lt { get; set; }
+		/// <summary>
+		/// col18_gtより大きい
+		/// </summary>
 		[DataMember] public float? col18_gt { get; set; }
+		/// <summary>
+		/// col18_le以下
+		/// </summary>
 		[DataMember] public float? col18_le { get; set; }
+		/// <summary>
+		/// col18_ge以上
+		/// </summary>
 		[DataMember] public float? col18_ge { get; set; }
+		/// <summary>
+		/// col18_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<float> col18_in { get; set; }
+		/// <summary>
+		/// col18_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<float> col18_ni { get; set; }
+		/// <summary>
+		/// col18_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (float? low, float? high)? col18_between { get; set; }
 		#endregion
 		#region col18_
+		/// <summary>
+		/// col18__eqと等しい
+		/// </summary>
 		[DataMember] public float? col18__eq { get; set; }
+		/// <summary>
+		/// col18__neと等しくない
+		/// </summary>
 		[DataMember] public float? col18__ne { get; set; }
+		/// <summary>
+		/// col18__ltより小さい
+		/// </summary>
 		[DataMember] public float? col18__lt { get; set; }
+		/// <summary>
+		/// col18__gtより大きい
+		/// </summary>
 		[DataMember] public float? col18__gt { get; set; }
+		/// <summary>
+		/// col18__le以下
+		/// </summary>
 		[DataMember] public float? col18__le { get; set; }
+		/// <summary>
+		/// col18__ge以上
+		/// </summary>
 		[DataMember] public float? col18__ge { get; set; }
+		/// <summary>
+		/// col18__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<float> col18__in { get; set; }
+		/// <summary>
+		/// col18__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<float> col18__ni { get; set; }
+		/// <summary>
+		/// col18__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (float? low, float? high)? col18__between { get; set; }
+		/// <summary>
+		/// col18_がNULLか
+		/// </summary>
 		[DataMember] public bool col18__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col18_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col18__isnotnull { get; set; } = false;
 		#endregion
 		#region col19
+		/// <summary>
+		/// col19_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col19_eq { get; set; }
+		/// <summary>
+		/// col19_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col19_ne { get; set; }
+		/// <summary>
+		/// col19_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col19_lt { get; set; }
+		/// <summary>
+		/// col19_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col19_gt { get; set; }
+		/// <summary>
+		/// col19_le以下
+		/// </summary>
 		[DataMember] public decimal? col19_le { get; set; }
+		/// <summary>
+		/// col19_ge以上
+		/// </summary>
 		[DataMember] public decimal? col19_ge { get; set; }
+		/// <summary>
+		/// col19_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col19_in { get; set; }
+		/// <summary>
+		/// col19_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col19_ni { get; set; }
+		/// <summary>
+		/// col19_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col19_between { get; set; }
 		#endregion
 		#region col19_
+		/// <summary>
+		/// col19__eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col19__eq { get; set; }
+		/// <summary>
+		/// col19__neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col19__ne { get; set; }
+		/// <summary>
+		/// col19__ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col19__lt { get; set; }
+		/// <summary>
+		/// col19__gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col19__gt { get; set; }
+		/// <summary>
+		/// col19__le以下
+		/// </summary>
 		[DataMember] public decimal? col19__le { get; set; }
+		/// <summary>
+		/// col19__ge以上
+		/// </summary>
 		[DataMember] public decimal? col19__ge { get; set; }
+		/// <summary>
+		/// col19__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col19__in { get; set; }
+		/// <summary>
+		/// col19__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col19__ni { get; set; }
+		/// <summary>
+		/// col19__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col19__between { get; set; }
+		/// <summary>
+		/// col19_がNULLか
+		/// </summary>
 		[DataMember] public bool col19__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col19_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col19__isnotnull { get; set; } = false;
 		#endregion
 		#region col20
+		/// <summary>
+		/// col20_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col20_eq { get; set; }
+		/// <summary>
+		/// col20_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col20_ne { get; set; }
+		/// <summary>
+		/// col20_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col20_lt { get; set; }
+		/// <summary>
+		/// col20_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col20_gt { get; set; }
+		/// <summary>
+		/// col20_le以下
+		/// </summary>
 		[DataMember] public decimal? col20_le { get; set; }
+		/// <summary>
+		/// col20_ge以上
+		/// </summary>
 		[DataMember] public decimal? col20_ge { get; set; }
+		/// <summary>
+		/// col20_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col20_in { get; set; }
+		/// <summary>
+		/// col20_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col20_ni { get; set; }
+		/// <summary>
+		/// col20_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col20_between { get; set; }
 		#endregion
 		#region col20_
+		/// <summary>
+		/// col20__eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col20__eq { get; set; }
+		/// <summary>
+		/// col20__neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col20__ne { get; set; }
+		/// <summary>
+		/// col20__ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col20__lt { get; set; }
+		/// <summary>
+		/// col20__gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col20__gt { get; set; }
+		/// <summary>
+		/// col20__le以下
+		/// </summary>
 		[DataMember] public decimal? col20__le { get; set; }
+		/// <summary>
+		/// col20__ge以上
+		/// </summary>
 		[DataMember] public decimal? col20__ge { get; set; }
+		/// <summary>
+		/// col20__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col20__in { get; set; }
+		/// <summary>
+		/// col20__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col20__ni { get; set; }
+		/// <summary>
+		/// col20__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col20__between { get; set; }
+		/// <summary>
+		/// col20_がNULLか
+		/// </summary>
 		[DataMember] public bool col20__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col20_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col20__isnotnull { get; set; } = false;
 		#endregion
 		#region col21
+		/// <summary>
+		/// col21_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col21_eq { get; set; }
+		/// <summary>
+		/// col21_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col21_ne { get; set; }
+		/// <summary>
+		/// col21_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col21_lt { get; set; }
+		/// <summary>
+		/// col21_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col21_gt { get; set; }
+		/// <summary>
+		/// col21_le以下
+		/// </summary>
 		[DataMember] public decimal? col21_le { get; set; }
+		/// <summary>
+		/// col21_ge以上
+		/// </summary>
 		[DataMember] public decimal? col21_ge { get; set; }
+		/// <summary>
+		/// col21_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col21_in { get; set; }
+		/// <summary>
+		/// col21_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col21_ni { get; set; }
+		/// <summary>
+		/// col21_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col21_between { get; set; }
 		#endregion
 		#region col21_
+		/// <summary>
+		/// col21__eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col21__eq { get; set; }
+		/// <summary>
+		/// col21__neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col21__ne { get; set; }
+		/// <summary>
+		/// col21__ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col21__lt { get; set; }
+		/// <summary>
+		/// col21__gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col21__gt { get; set; }
+		/// <summary>
+		/// col21__le以下
+		/// </summary>
 		[DataMember] public decimal? col21__le { get; set; }
+		/// <summary>
+		/// col21__ge以上
+		/// </summary>
 		[DataMember] public decimal? col21__ge { get; set; }
+		/// <summary>
+		/// col21__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col21__in { get; set; }
+		/// <summary>
+		/// col21__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col21__ni { get; set; }
+		/// <summary>
+		/// col21__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col21__between { get; set; }
+		/// <summary>
+		/// col21_がNULLか
+		/// </summary>
 		[DataMember] public bool col21__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col21_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col21__isnotnull { get; set; } = false;
 		#endregion
 		#region col22
+		/// <summary>
+		/// col22_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col22_eq { get; set; }
+		/// <summary>
+		/// col22_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col22_ne { get; set; }
+		/// <summary>
+		/// col22_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col22_lt { get; set; }
+		/// <summary>
+		/// col22_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col22_gt { get; set; }
+		/// <summary>
+		/// col22_le以下
+		/// </summary>
 		[DataMember] public decimal? col22_le { get; set; }
+		/// <summary>
+		/// col22_ge以上
+		/// </summary>
 		[DataMember] public decimal? col22_ge { get; set; }
+		/// <summary>
+		/// col22_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col22_in { get; set; }
+		/// <summary>
+		/// col22_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col22_ni { get; set; }
+		/// <summary>
+		/// col22_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col22_between { get; set; }
 		#endregion
 		#region col22_
+		/// <summary>
+		/// col22__eqと等しい
+		/// </summary>
 		[DataMember] public decimal? col22__eq { get; set; }
+		/// <summary>
+		/// col22__neと等しくない
+		/// </summary>
 		[DataMember] public decimal? col22__ne { get; set; }
+		/// <summary>
+		/// col22__ltより小さい
+		/// </summary>
 		[DataMember] public decimal? col22__lt { get; set; }
+		/// <summary>
+		/// col22__gtより大きい
+		/// </summary>
 		[DataMember] public decimal? col22__gt { get; set; }
+		/// <summary>
+		/// col22__le以下
+		/// </summary>
 		[DataMember] public decimal? col22__le { get; set; }
+		/// <summary>
+		/// col22__ge以上
+		/// </summary>
 		[DataMember] public decimal? col22__ge { get; set; }
+		/// <summary>
+		/// col22__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col22__in { get; set; }
+		/// <summary>
+		/// col22__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> col22__ni { get; set; }
+		/// <summary>
+		/// col22__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? col22__between { get; set; }
+		/// <summary>
+		/// col22_がNULLか
+		/// </summary>
 		[DataMember] public bool col22__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col22_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col22__isnotnull { get; set; } = false;
 		#endregion
 		#region col23
+		/// <summary>
+		/// col23_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col23_eq { get; set; }
+		/// <summary>
+		/// col23_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col23_ne { get; set; }
+		/// <summary>
+		/// col23_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col23_lt { get; set; }
+		/// <summary>
+		/// col23_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col23_gt { get; set; }
+		/// <summary>
+		/// col23_le以下
+		/// </summary>
 		[DataMember] public DateTime? col23_le { get; set; }
+		/// <summary>
+		/// col23_ge以上
+		/// </summary>
 		[DataMember] public DateTime? col23_ge { get; set; }
+		/// <summary>
+		/// col23_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col23_in { get; set; }
+		/// <summary>
+		/// col23_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col23_ni { get; set; }
+		/// <summary>
+		/// col23_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col23_between { get; set; }
 		#endregion
 		#region col23_
+		/// <summary>
+		/// col23__eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col23__eq { get; set; }
+		/// <summary>
+		/// col23__neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col23__ne { get; set; }
+		/// <summary>
+		/// col23__ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col23__lt { get; set; }
+		/// <summary>
+		/// col23__gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col23__gt { get; set; }
+		/// <summary>
+		/// col23__le以下
+		/// </summary>
 		[DataMember] public DateTime? col23__le { get; set; }
+		/// <summary>
+		/// col23__ge以上
+		/// </summary>
 		[DataMember] public DateTime? col23__ge { get; set; }
+		/// <summary>
+		/// col23__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col23__in { get; set; }
+		/// <summary>
+		/// col23__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col23__ni { get; set; }
+		/// <summary>
+		/// col23__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col23__between { get; set; }
+		/// <summary>
+		/// col23_がNULLか
+		/// </summary>
 		[DataMember] public bool col23__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col23_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col23__isnotnull { get; set; } = false;
 		#endregion
 		#region col24
+		/// <summary>
+		/// col24_eqと等しい
+		/// </summary>
 		[DataMember] public TimeSpan? col24_eq { get; set; }
+		/// <summary>
+		/// col24_neと等しくない
+		/// </summary>
 		[DataMember] public TimeSpan? col24_ne { get; set; }
+		/// <summary>
+		/// col24_ltより小さい
+		/// </summary>
 		[DataMember] public TimeSpan? col24_lt { get; set; }
+		/// <summary>
+		/// col24_gtより大きい
+		/// </summary>
 		[DataMember] public TimeSpan? col24_gt { get; set; }
+		/// <summary>
+		/// col24_le以下
+		/// </summary>
 		[DataMember] public TimeSpan? col24_le { get; set; }
+		/// <summary>
+		/// col24_ge以上
+		/// </summary>
 		[DataMember] public TimeSpan? col24_ge { get; set; }
+		/// <summary>
+		/// col24_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<TimeSpan> col24_in { get; set; }
+		/// <summary>
+		/// col24_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<TimeSpan> col24_ni { get; set; }
+		/// <summary>
+		/// col24_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (TimeSpan? low, TimeSpan? high)? col24_between { get; set; }
 		#endregion
 		#region col24_
+		/// <summary>
+		/// col24__eqと等しい
+		/// </summary>
 		[DataMember] public TimeSpan? col24__eq { get; set; }
+		/// <summary>
+		/// col24__neと等しくない
+		/// </summary>
 		[DataMember] public TimeSpan? col24__ne { get; set; }
+		/// <summary>
+		/// col24__ltより小さい
+		/// </summary>
 		[DataMember] public TimeSpan? col24__lt { get; set; }
+		/// <summary>
+		/// col24__gtより大きい
+		/// </summary>
 		[DataMember] public TimeSpan? col24__gt { get; set; }
+		/// <summary>
+		/// col24__le以下
+		/// </summary>
 		[DataMember] public TimeSpan? col24__le { get; set; }
+		/// <summary>
+		/// col24__ge以上
+		/// </summary>
 		[DataMember] public TimeSpan? col24__ge { get; set; }
+		/// <summary>
+		/// col24__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<TimeSpan> col24__in { get; set; }
+		/// <summary>
+		/// col24__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<TimeSpan> col24__ni { get; set; }
+		/// <summary>
+		/// col24__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (TimeSpan? low, TimeSpan? high)? col24__between { get; set; }
+		/// <summary>
+		/// col24_がNULLか
+		/// </summary>
 		[DataMember] public bool col24__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col24_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col24__isnotnull { get; set; } = false;
 		#endregion
 		#region col25
+		/// <summary>
+		/// col25_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col25_eq { get; set; }
+		/// <summary>
+		/// col25_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col25_ne { get; set; }
+		/// <summary>
+		/// col25_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col25_lt { get; set; }
+		/// <summary>
+		/// col25_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col25_gt { get; set; }
+		/// <summary>
+		/// col25_le以下
+		/// </summary>
 		[DataMember] public DateTime? col25_le { get; set; }
+		/// <summary>
+		/// col25_ge以上
+		/// </summary>
 		[DataMember] public DateTime? col25_ge { get; set; }
+		/// <summary>
+		/// col25_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col25_in { get; set; }
+		/// <summary>
+		/// col25_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col25_ni { get; set; }
+		/// <summary>
+		/// col25_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col25_between { get; set; }
 		#endregion
 		#region col25_
+		/// <summary>
+		/// col25__eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col25__eq { get; set; }
+		/// <summary>
+		/// col25__neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col25__ne { get; set; }
+		/// <summary>
+		/// col25__ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col25__lt { get; set; }
+		/// <summary>
+		/// col25__gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col25__gt { get; set; }
+		/// <summary>
+		/// col25__le以下
+		/// </summary>
 		[DataMember] public DateTime? col25__le { get; set; }
+		/// <summary>
+		/// col25__ge以上
+		/// </summary>
 		[DataMember] public DateTime? col25__ge { get; set; }
+		/// <summary>
+		/// col25__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col25__in { get; set; }
+		/// <summary>
+		/// col25__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col25__ni { get; set; }
+		/// <summary>
+		/// col25__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col25__between { get; set; }
+		/// <summary>
+		/// col25_がNULLか
+		/// </summary>
 		[DataMember] public bool col25__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col25_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col25__isnotnull { get; set; } = false;
 		#endregion
 		#region col26
+		/// <summary>
+		/// col26_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col26_eq { get; set; }
+		/// <summary>
+		/// col26_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col26_ne { get; set; }
+		/// <summary>
+		/// col26_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col26_lt { get; set; }
+		/// <summary>
+		/// col26_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col26_gt { get; set; }
+		/// <summary>
+		/// col26_le以下
+		/// </summary>
 		[DataMember] public DateTime? col26_le { get; set; }
+		/// <summary>
+		/// col26_ge以上
+		/// </summary>
 		[DataMember] public DateTime? col26_ge { get; set; }
+		/// <summary>
+		/// col26_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col26_in { get; set; }
+		/// <summary>
+		/// col26_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col26_ni { get; set; }
+		/// <summary>
+		/// col26_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col26_between { get; set; }
 		#endregion
 		#region col26_
+		/// <summary>
+		/// col26__eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col26__eq { get; set; }
+		/// <summary>
+		/// col26__neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col26__ne { get; set; }
+		/// <summary>
+		/// col26__ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col26__lt { get; set; }
+		/// <summary>
+		/// col26__gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col26__gt { get; set; }
+		/// <summary>
+		/// col26__le以下
+		/// </summary>
 		[DataMember] public DateTime? col26__le { get; set; }
+		/// <summary>
+		/// col26__ge以上
+		/// </summary>
 		[DataMember] public DateTime? col26__ge { get; set; }
+		/// <summary>
+		/// col26__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col26__in { get; set; }
+		/// <summary>
+		/// col26__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col26__ni { get; set; }
+		/// <summary>
+		/// col26__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col26__between { get; set; }
+		/// <summary>
+		/// col26_がNULLか
+		/// </summary>
 		[DataMember] public bool col26__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col26_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col26__isnotnull { get; set; } = false;
 		#endregion
 		#region col27
+		/// <summary>
+		/// col27_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col27_eq { get; set; }
+		/// <summary>
+		/// col27_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col27_ne { get; set; }
+		/// <summary>
+		/// col27_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col27_lt { get; set; }
+		/// <summary>
+		/// col27_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col27_gt { get; set; }
+		/// <summary>
+		/// col27_le以下
+		/// </summary>
 		[DataMember] public DateTime? col27_le { get; set; }
+		/// <summary>
+		/// col27_ge以上
+		/// </summary>
 		[DataMember] public DateTime? col27_ge { get; set; }
+		/// <summary>
+		/// col27_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col27_in { get; set; }
+		/// <summary>
+		/// col27_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col27_ni { get; set; }
+		/// <summary>
+		/// col27_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col27_between { get; set; }
 		#endregion
 		#region col27_
+		/// <summary>
+		/// col27__eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? col27__eq { get; set; }
+		/// <summary>
+		/// col27__neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? col27__ne { get; set; }
+		/// <summary>
+		/// col27__ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? col27__lt { get; set; }
+		/// <summary>
+		/// col27__gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? col27__gt { get; set; }
+		/// <summary>
+		/// col27__le以下
+		/// </summary>
 		[DataMember] public DateTime? col27__le { get; set; }
+		/// <summary>
+		/// col27__ge以上
+		/// </summary>
 		[DataMember] public DateTime? col27__ge { get; set; }
+		/// <summary>
+		/// col27__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col27__in { get; set; }
+		/// <summary>
+		/// col27__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> col27__ni { get; set; }
+		/// <summary>
+		/// col27__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? col27__between { get; set; }
+		/// <summary>
+		/// col27_がNULLか
+		/// </summary>
 		[DataMember] public bool col27__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col27_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col27__isnotnull { get; set; } = false;
 		#endregion
 		#region col28
+		/// <summary>
+		/// col28_eqと等しい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_eq { get; set; }
+		/// <summary>
+		/// col28_neと等しくない
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_ne { get; set; }
+		/// <summary>
+		/// col28_ltより小さい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_lt { get; set; }
+		/// <summary>
+		/// col28_gtより大きい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_gt { get; set; }
+		/// <summary>
+		/// col28_le以下
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_le { get; set; }
+		/// <summary>
+		/// col28_ge以上
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28_ge { get; set; }
+		/// <summary>
+		/// col28_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTimeOffset> col28_in { get; set; }
+		/// <summary>
+		/// col28_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTimeOffset> col28_ni { get; set; }
+		/// <summary>
+		/// col28_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTimeOffset? low, DateTimeOffset? high)? col28_between { get; set; }
 		#endregion
 		#region col28_
+		/// <summary>
+		/// col28__eqと等しい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__eq { get; set; }
+		/// <summary>
+		/// col28__neと等しくない
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__ne { get; set; }
+		/// <summary>
+		/// col28__ltより小さい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__lt { get; set; }
+		/// <summary>
+		/// col28__gtより大きい
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__gt { get; set; }
+		/// <summary>
+		/// col28__le以下
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__le { get; set; }
+		/// <summary>
+		/// col28__ge以上
+		/// </summary>
 		[DataMember] public DateTimeOffset? col28__ge { get; set; }
+		/// <summary>
+		/// col28__inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTimeOffset> col28__in { get; set; }
+		/// <summary>
+		/// col28__niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTimeOffset> col28__ni { get; set; }
+		/// <summary>
+		/// col28__betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTimeOffset? low, DateTimeOffset? high)? col28__between { get; set; }
+		/// <summary>
+		/// col28_がNULLか
+		/// </summary>
 		[DataMember] public bool col28__isnull { get; set; } =  false ;
+		/// <summary>
+		/// col28_がNULLではないか
+		/// </summary>
 		[DataMember] public bool col28__isnotnull { get; set; } = false;
 		#endregion
 		#region col29
+		/// <summary>
+		/// col29_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] col29_eq { get; set; }
+		/// <summary>
+		/// col29_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] col29_ne { get; set; }
 		#endregion
 		#endregion
@@ -7358,141 +8855,483 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region role_id
+		/// <summary>
+		/// role_id_eqと等しい
+		/// </summary>
 		[DataMember] public string role_id_eq { get; set; }
+		/// <summary>
+		/// role_id_neと等しくない
+		/// </summary>
 		[DataMember] public string role_id_ne { get; set; }
+		/// <summary>
+		/// role_id_ltより小さい
+		/// </summary>
 		[DataMember] public string role_id_lt { get; set; }
+		/// <summary>
+		/// role_id_gtより大きい
+		/// </summary>
 		[DataMember] public string role_id_gt { get; set; }
+		/// <summary>
+		/// role_id_le以下
+		/// </summary>
 		[DataMember] public string role_id_le { get; set; }
+		/// <summary>
+		/// role_id_ge以上
+		/// </summary>
 		[DataMember] public string role_id_ge { get; set; }
+		/// <summary>
+		/// role_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
+		/// <summary>
+		/// role_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
+		/// <summary>
+		/// role_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
+		/// <summary>
+		/// role_id_likeと部分一致する
+		/// </summary>
 		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region abbrev
+		/// <summary>
+		/// abbrev_eqと等しい
+		/// </summary>
 		[DataMember] public string abbrev_eq { get; set; }
+		/// <summary>
+		/// abbrev_neと等しくない
+		/// </summary>
 		[DataMember] public string abbrev_ne { get; set; }
+		/// <summary>
+		/// abbrev_ltより小さい
+		/// </summary>
 		[DataMember] public string abbrev_lt { get; set; }
+		/// <summary>
+		/// abbrev_gtより大きい
+		/// </summary>
 		[DataMember] public string abbrev_gt { get; set; }
+		/// <summary>
+		/// abbrev_le以下
+		/// </summary>
 		[DataMember] public string abbrev_le { get; set; }
+		/// <summary>
+		/// abbrev_ge以上
+		/// </summary>
 		[DataMember] public string abbrev_ge { get; set; }
+		/// <summary>
+		/// abbrev_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> abbrev_in { get; set; }
+		/// <summary>
+		/// abbrev_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> abbrev_ni { get; set; }
+		/// <summary>
+		/// abbrev_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? abbrev_between { get; set; }
+		/// <summary>
+		/// abbrev_likeと部分一致する
+		/// </summary>
 		[DataMember] public string abbrev_like { get; set; }
 		#endregion
 		#region name_en
+		/// <summary>
+		/// name_en_eqと等しい
+		/// </summary>
 		[DataMember] public string name_en_eq { get; set; }
+		/// <summary>
+		/// name_en_neと等しくない
+		/// </summary>
 		[DataMember] public string name_en_ne { get; set; }
+		/// <summary>
+		/// name_en_ltより小さい
+		/// </summary>
 		[DataMember] public string name_en_lt { get; set; }
+		/// <summary>
+		/// name_en_gtより大きい
+		/// </summary>
 		[DataMember] public string name_en_gt { get; set; }
+		/// <summary>
+		/// name_en_le以下
+		/// </summary>
 		[DataMember] public string name_en_le { get; set; }
+		/// <summary>
+		/// name_en_ge以上
+		/// </summary>
 		[DataMember] public string name_en_ge { get; set; }
+		/// <summary>
+		/// name_en_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_en_in { get; set; }
+		/// <summary>
+		/// name_en_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_en_ni { get; set; }
+		/// <summary>
+		/// name_en_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_en_between { get; set; }
+		/// <summary>
+		/// name_en_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_en_like { get; set; }
 		#endregion
 		#region abbrev_en
+		/// <summary>
+		/// abbrev_en_eqと等しい
+		/// </summary>
 		[DataMember] public string abbrev_en_eq { get; set; }
+		/// <summary>
+		/// abbrev_en_neと等しくない
+		/// </summary>
 		[DataMember] public string abbrev_en_ne { get; set; }
+		/// <summary>
+		/// abbrev_en_ltより小さい
+		/// </summary>
 		[DataMember] public string abbrev_en_lt { get; set; }
+		/// <summary>
+		/// abbrev_en_gtより大きい
+		/// </summary>
 		[DataMember] public string abbrev_en_gt { get; set; }
+		/// <summary>
+		/// abbrev_en_le以下
+		/// </summary>
 		[DataMember] public string abbrev_en_le { get; set; }
+		/// <summary>
+		/// abbrev_en_ge以上
+		/// </summary>
 		[DataMember] public string abbrev_en_ge { get; set; }
+		/// <summary>
+		/// abbrev_en_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> abbrev_en_in { get; set; }
+		/// <summary>
+		/// abbrev_en_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> abbrev_en_ni { get; set; }
+		/// <summary>
+		/// abbrev_en_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? abbrev_en_between { get; set; }
+		/// <summary>
+		/// abbrev_en_likeと部分一致する
+		/// </summary>
 		[DataMember] public string abbrev_en_like { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -8453,26 +10292,83 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region role_id
+		/// <summary>
+		/// role_id_eqと等しい
+		/// </summary>
 		[DataMember] public string role_id_eq { get; set; }
+		/// <summary>
+		/// role_id_neと等しくない
+		/// </summary>
 		[DataMember] public string role_id_ne { get; set; }
+		/// <summary>
+		/// role_id_ltより小さい
+		/// </summary>
 		[DataMember] public string role_id_lt { get; set; }
+		/// <summary>
+		/// role_id_gtより大きい
+		/// </summary>
 		[DataMember] public string role_id_gt { get; set; }
+		/// <summary>
+		/// role_id_le以下
+		/// </summary>
 		[DataMember] public string role_id_le { get; set; }
+		/// <summary>
+		/// role_id_ge以上
+		/// </summary>
 		[DataMember] public string role_id_ge { get; set; }
+		/// <summary>
+		/// role_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
+		/// <summary>
+		/// role_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
+		/// <summary>
+		/// role_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
+		/// <summary>
+		/// role_id_likeと部分一致する
+		/// </summary>
 		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region permission_id (PermissionId)
@@ -8532,57 +10428,189 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -9534,109 +11562,379 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region account_id
+		/// <summary>
+		/// account_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? account_id_eq { get; set; }
+		/// <summary>
+		/// account_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? account_id_ne { get; set; }
+		/// <summary>
+		/// account_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? account_id_lt { get; set; }
+		/// <summary>
+		/// account_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? account_id_gt { get; set; }
+		/// <summary>
+		/// account_id_le以下
+		/// </summary>
 		[DataMember] public int? account_id_le { get; set; }
+		/// <summary>
+		/// account_id_ge以上
+		/// </summary>
 		[DataMember] public int? account_id_ge { get; set; }
+		/// <summary>
+		/// account_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_in { get; set; }
+		/// <summary>
+		/// account_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_ni { get; set; }
+		/// <summary>
+		/// account_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? account_id_between { get; set; }
 		#endregion
 		#region staff_no
+		/// <summary>
+		/// staff_no_eqと等しい
+		/// </summary>
 		[DataMember] public string staff_no_eq { get; set; }
+		/// <summary>
+		/// staff_no_neと等しくない
+		/// </summary>
 		[DataMember] public string staff_no_ne { get; set; }
+		/// <summary>
+		/// staff_no_ltより小さい
+		/// </summary>
 		[DataMember] public string staff_no_lt { get; set; }
+		/// <summary>
+		/// staff_no_gtより大きい
+		/// </summary>
 		[DataMember] public string staff_no_gt { get; set; }
+		/// <summary>
+		/// staff_no_le以下
+		/// </summary>
 		[DataMember] public string staff_no_le { get; set; }
+		/// <summary>
+		/// staff_no_ge以上
+		/// </summary>
 		[DataMember] public string staff_no_ge { get; set; }
+		/// <summary>
+		/// staff_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> staff_no_in { get; set; }
+		/// <summary>
+		/// staff_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> staff_no_ni { get; set; }
+		/// <summary>
+		/// staff_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
+		/// <summary>
+		/// staff_noがNULLか
+		/// </summary>
 		[DataMember] public bool staff_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// staff_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool staff_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// staff_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string staff_no_like { get; set; }
 		#endregion
 		#region teacher_no
+		/// <summary>
+		/// teacher_no_eqと等しい
+		/// </summary>
 		[DataMember] public string teacher_no_eq { get; set; }
+		/// <summary>
+		/// teacher_no_neと等しくない
+		/// </summary>
 		[DataMember] public string teacher_no_ne { get; set; }
+		/// <summary>
+		/// teacher_no_ltより小さい
+		/// </summary>
 		[DataMember] public string teacher_no_lt { get; set; }
+		/// <summary>
+		/// teacher_no_gtより大きい
+		/// </summary>
 		[DataMember] public string teacher_no_gt { get; set; }
+		/// <summary>
+		/// teacher_no_le以下
+		/// </summary>
 		[DataMember] public string teacher_no_le { get; set; }
+		/// <summary>
+		/// teacher_no_ge以上
+		/// </summary>
 		[DataMember] public string teacher_no_ge { get; set; }
+		/// <summary>
+		/// teacher_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> teacher_no_in { get; set; }
+		/// <summary>
+		/// teacher_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> teacher_no_ni { get; set; }
+		/// <summary>
+		/// teacher_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? teacher_no_between { get; set; }
+		/// <summary>
+		/// teacher_noがNULLか
+		/// </summary>
 		[DataMember] public bool teacher_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// teacher_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool teacher_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// teacher_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string teacher_no_like { get; set; }
 		#endregion
 		#region student_no
+		/// <summary>
+		/// student_no_eqと等しい
+		/// </summary>
 		[DataMember] public string student_no_eq { get; set; }
+		/// <summary>
+		/// student_no_neと等しくない
+		/// </summary>
 		[DataMember] public string student_no_ne { get; set; }
+		/// <summary>
+		/// student_no_ltより小さい
+		/// </summary>
 		[DataMember] public string student_no_lt { get; set; }
+		/// <summary>
+		/// student_no_gtより大きい
+		/// </summary>
 		[DataMember] public string student_no_gt { get; set; }
+		/// <summary>
+		/// student_no_le以下
+		/// </summary>
 		[DataMember] public string student_no_le { get; set; }
+		/// <summary>
+		/// student_no_ge以上
+		/// </summary>
 		[DataMember] public string student_no_ge { get; set; }
+		/// <summary>
+		/// student_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> student_no_in { get; set; }
+		/// <summary>
+		/// student_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> student_no_ni { get; set; }
+		/// <summary>
+		/// student_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? student_no_between { get; set; }
+		/// <summary>
+		/// student_noがNULLか
+		/// </summary>
 		[DataMember] public bool student_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// student_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool student_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// student_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string student_no_like { get; set; }
 		#endregion
 		#region out_student_no
+		/// <summary>
+		/// out_student_no_eqと等しい
+		/// </summary>
 		[DataMember] public string out_student_no_eq { get; set; }
+		/// <summary>
+		/// out_student_no_neと等しくない
+		/// </summary>
 		[DataMember] public string out_student_no_ne { get; set; }
+		/// <summary>
+		/// out_student_no_ltより小さい
+		/// </summary>
 		[DataMember] public string out_student_no_lt { get; set; }
+		/// <summary>
+		/// out_student_no_gtより大きい
+		/// </summary>
 		[DataMember] public string out_student_no_gt { get; set; }
+		/// <summary>
+		/// out_student_no_le以下
+		/// </summary>
 		[DataMember] public string out_student_no_le { get; set; }
+		/// <summary>
+		/// out_student_no_ge以上
+		/// </summary>
 		[DataMember] public string out_student_no_ge { get; set; }
+		/// <summary>
+		/// out_student_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> out_student_no_in { get; set; }
+		/// <summary>
+		/// out_student_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> out_student_no_ni { get; set; }
+		/// <summary>
+		/// out_student_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? out_student_no_between { get; set; }
+		/// <summary>
+		/// out_student_noがNULLか
+		/// </summary>
 		[DataMember] public bool out_student_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// out_student_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool out_student_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// out_student_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string out_student_no_like { get; set; }
 		#endregion
 		#region parent_no
+		/// <summary>
+		/// parent_no_eqと等しい
+		/// </summary>
 		[DataMember] public string parent_no_eq { get; set; }
+		/// <summary>
+		/// parent_no_neと等しくない
+		/// </summary>
 		[DataMember] public string parent_no_ne { get; set; }
+		/// <summary>
+		/// parent_no_ltより小さい
+		/// </summary>
 		[DataMember] public string parent_no_lt { get; set; }
+		/// <summary>
+		/// parent_no_gtより大きい
+		/// </summary>
 		[DataMember] public string parent_no_gt { get; set; }
+		/// <summary>
+		/// parent_no_le以下
+		/// </summary>
 		[DataMember] public string parent_no_le { get; set; }
+		/// <summary>
+		/// parent_no_ge以上
+		/// </summary>
 		[DataMember] public string parent_no_ge { get; set; }
+		/// <summary>
+		/// parent_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> parent_no_in { get; set; }
+		/// <summary>
+		/// parent_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> parent_no_ni { get; set; }
+		/// <summary>
+		/// parent_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? parent_no_between { get; set; }
+		/// <summary>
+		/// parent_noがNULLか
+		/// </summary>
 		[DataMember] public bool parent_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// parent_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool parent_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// parent_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string parent_no_like { get; set; }
 		#endregion
 		#region user_no
+		/// <summary>
+		/// user_no_eqと等しい
+		/// </summary>
 		[DataMember] public string user_no_eq { get; set; }
+		/// <summary>
+		/// user_no_neと等しくない
+		/// </summary>
 		[DataMember] public string user_no_ne { get; set; }
+		/// <summary>
+		/// user_no_ltより小さい
+		/// </summary>
 		[DataMember] public string user_no_lt { get; set; }
+		/// <summary>
+		/// user_no_gtより大きい
+		/// </summary>
 		[DataMember] public string user_no_gt { get; set; }
+		/// <summary>
+		/// user_no_le以下
+		/// </summary>
 		[DataMember] public string user_no_le { get; set; }
+		/// <summary>
+		/// user_no_ge以上
+		/// </summary>
 		[DataMember] public string user_no_ge { get; set; }
+		/// <summary>
+		/// user_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> user_no_in { get; set; }
+		/// <summary>
+		/// user_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> user_no_ni { get; set; }
+		/// <summary>
+		/// user_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? user_no_between { get; set; }
+		/// <summary>
+		/// user_noがNULLか
+		/// </summary>
 		[DataMember] public bool user_no_isnull { get; set; } =  false ;
+		/// <summary>
+		/// user_noがNULLではないか
+		/// </summary>
 		[DataMember] public bool user_no_isnotnull { get; set; } = false;
+		/// <summary>
+		/// user_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string user_no_like { get; set; }
 		#endregion
 		#region is_valid (IsValid)
@@ -9696,70 +11994,235 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -10749,37 +13212,121 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region account_id
+		/// <summary>
+		/// account_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? account_id_eq { get; set; }
+		/// <summary>
+		/// account_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? account_id_ne { get; set; }
+		/// <summary>
+		/// account_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? account_id_lt { get; set; }
+		/// <summary>
+		/// account_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? account_id_gt { get; set; }
+		/// <summary>
+		/// account_id_le以下
+		/// </summary>
 		[DataMember] public int? account_id_le { get; set; }
+		/// <summary>
+		/// account_id_ge以上
+		/// </summary>
 		[DataMember] public int? account_id_ge { get; set; }
+		/// <summary>
+		/// account_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_in { get; set; }
+		/// <summary>
+		/// account_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_ni { get; set; }
+		/// <summary>
+		/// account_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? account_id_between { get; set; }
 		#endregion
 		#region password_hash
+		/// <summary>
+		/// password_hash_eqと等しい
+		/// </summary>
 		[DataMember] public string password_hash_eq { get; set; }
+		/// <summary>
+		/// password_hash_neと等しくない
+		/// </summary>
 		[DataMember] public string password_hash_ne { get; set; }
+		/// <summary>
+		/// password_hash_ltより小さい
+		/// </summary>
 		[DataMember] public string password_hash_lt { get; set; }
+		/// <summary>
+		/// password_hash_gtより大きい
+		/// </summary>
 		[DataMember] public string password_hash_gt { get; set; }
+		/// <summary>
+		/// password_hash_le以下
+		/// </summary>
 		[DataMember] public string password_hash_le { get; set; }
+		/// <summary>
+		/// password_hash_ge以上
+		/// </summary>
 		[DataMember] public string password_hash_ge { get; set; }
+		/// <summary>
+		/// password_hash_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> password_hash_in { get; set; }
+		/// <summary>
+		/// password_hash_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> password_hash_ni { get; set; }
+		/// <summary>
+		/// password_hash_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? password_hash_between { get; set; }
+		/// <summary>
+		/// password_hash_likeと部分一致する
+		/// </summary>
 		[DataMember] public string password_hash_like { get; set; }
 		#endregion
 		#region hash_type (HashType)
@@ -10839,62 +13386,209 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region expiration_on
+		/// <summary>
+		/// expiration_on_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_eq { get; set; }
+		/// <summary>
+		/// expiration_on_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_ne { get; set; }
+		/// <summary>
+		/// expiration_on_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_lt { get; set; }
+		/// <summary>
+		/// expiration_on_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_gt { get; set; }
+		/// <summary>
+		/// expiration_on_le以下
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_le { get; set; }
+		/// <summary>
+		/// expiration_on_ge以上
+		/// </summary>
 		[DataMember] public DateTime? expiration_on_ge { get; set; }
+		/// <summary>
+		/// expiration_on_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> expiration_on_in { get; set; }
+		/// <summary>
+		/// expiration_on_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> expiration_on_ni { get; set; }
+		/// <summary>
+		/// expiration_on_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? expiration_on_between { get; set; }
+		/// <summary>
+		/// expiration_onがNULLか
+		/// </summary>
 		[DataMember] public bool expiration_on_isnull { get; set; } =  false ;
+		/// <summary>
+		/// expiration_onがNULLではないか
+		/// </summary>
 		[DataMember] public bool expiration_on_isnotnull { get; set; } = false;
 		#endregion
 		#region password_life_days
+		/// <summary>
+		/// password_life_days_eqと等しい
+		/// </summary>
 		[DataMember] public int? password_life_days_eq { get; set; }
+		/// <summary>
+		/// password_life_days_neと等しくない
+		/// </summary>
 		[DataMember] public int? password_life_days_ne { get; set; }
+		/// <summary>
+		/// password_life_days_ltより小さい
+		/// </summary>
 		[DataMember] public int? password_life_days_lt { get; set; }
+		/// <summary>
+		/// password_life_days_gtより大きい
+		/// </summary>
 		[DataMember] public int? password_life_days_gt { get; set; }
+		/// <summary>
+		/// password_life_days_le以下
+		/// </summary>
 		[DataMember] public int? password_life_days_le { get; set; }
+		/// <summary>
+		/// password_life_days_ge以上
+		/// </summary>
 		[DataMember] public int? password_life_days_ge { get; set; }
+		/// <summary>
+		/// password_life_days_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> password_life_days_in { get; set; }
+		/// <summary>
+		/// password_life_days_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> password_life_days_ni { get; set; }
+		/// <summary>
+		/// password_life_days_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? password_life_days_between { get; set; }
+		/// <summary>
+		/// password_life_daysがNULLか
+		/// </summary>
 		[DataMember] public bool password_life_days_isnull { get; set; } =  false ;
+		/// <summary>
+		/// password_life_daysがNULLではないか
+		/// </summary>
 		[DataMember] public bool password_life_days_isnotnull { get; set; } = false;
 		#endregion
 		#region can_fail_times
+		/// <summary>
+		/// can_fail_times_eqと等しい
+		/// </summary>
 		[DataMember] public int? can_fail_times_eq { get; set; }
+		/// <summary>
+		/// can_fail_times_neと等しくない
+		/// </summary>
 		[DataMember] public int? can_fail_times_ne { get; set; }
+		/// <summary>
+		/// can_fail_times_ltより小さい
+		/// </summary>
 		[DataMember] public int? can_fail_times_lt { get; set; }
+		/// <summary>
+		/// can_fail_times_gtより大きい
+		/// </summary>
 		[DataMember] public int? can_fail_times_gt { get; set; }
+		/// <summary>
+		/// can_fail_times_le以下
+		/// </summary>
 		[DataMember] public int? can_fail_times_le { get; set; }
+		/// <summary>
+		/// can_fail_times_ge以上
+		/// </summary>
 		[DataMember] public int? can_fail_times_ge { get; set; }
+		/// <summary>
+		/// can_fail_times_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> can_fail_times_in { get; set; }
+		/// <summary>
+		/// can_fail_times_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> can_fail_times_ni { get; set; }
+		/// <summary>
+		/// can_fail_times_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? can_fail_times_between { get; set; }
 		#endregion
 		#region fail_times
+		/// <summary>
+		/// fail_times_eqと等しい
+		/// </summary>
 		[DataMember] public int? fail_times_eq { get; set; }
+		/// <summary>
+		/// fail_times_neと等しくない
+		/// </summary>
 		[DataMember] public int? fail_times_ne { get; set; }
+		/// <summary>
+		/// fail_times_ltより小さい
+		/// </summary>
 		[DataMember] public int? fail_times_lt { get; set; }
+		/// <summary>
+		/// fail_times_gtより大きい
+		/// </summary>
 		[DataMember] public int? fail_times_gt { get; set; }
+		/// <summary>
+		/// fail_times_le以下
+		/// </summary>
 		[DataMember] public int? fail_times_le { get; set; }
+		/// <summary>
+		/// fail_times_ge以上
+		/// </summary>
 		[DataMember] public int? fail_times_ge { get; set; }
+		/// <summary>
+		/// fail_times_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> fail_times_in { get; set; }
+		/// <summary>
+		/// fail_times_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> fail_times_ni { get; set; }
+		/// <summary>
+		/// fail_times_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? fail_times_between { get; set; }
 		#endregion
 		#region lock_flg
+		/// <summary>
+		/// lock_flg_eqと等しい
+		/// </summary>
 		[DataMember] public int? lock_flg_eq { get; set; }
+		/// <summary>
+		/// lock_flg_neと等しくない
+		/// </summary>
 		[DataMember] public int? lock_flg_ne { get; set; }
+		/// <summary>
+		/// lock_flg_ltより小さい
+		/// </summary>
 		[DataMember] public int? lock_flg_lt { get; set; }
+		/// <summary>
+		/// lock_flg_gtより大きい
+		/// </summary>
 		[DataMember] public int? lock_flg_gt { get; set; }
+		/// <summary>
+		/// lock_flg_le以下
+		/// </summary>
 		[DataMember] public int? lock_flg_le { get; set; }
+		/// <summary>
+		/// lock_flg_ge以上
+		/// </summary>
 		[DataMember] public int? lock_flg_ge { get; set; }
+		/// <summary>
+		/// lock_flg_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> lock_flg_in { get; set; }
+		/// <summary>
+		/// lock_flg_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> lock_flg_ni { get; set; }
+		/// <summary>
+		/// lock_flg_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? lock_flg_between { get; set; }
 		#endregion
 		#region lock_reason (LockReason)
@@ -10966,70 +13660,235 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -11694,103 +14553,349 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region account_id
+		/// <summary>
+		/// account_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? account_id_eq { get; set; }
+		/// <summary>
+		/// account_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? account_id_ne { get; set; }
+		/// <summary>
+		/// account_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? account_id_lt { get; set; }
+		/// <summary>
+		/// account_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? account_id_gt { get; set; }
+		/// <summary>
+		/// account_id_le以下
+		/// </summary>
 		[DataMember] public int? account_id_le { get; set; }
+		/// <summary>
+		/// account_id_ge以上
+		/// </summary>
 		[DataMember] public int? account_id_ge { get; set; }
+		/// <summary>
+		/// account_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_in { get; set; }
+		/// <summary>
+		/// account_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> account_id_ni { get; set; }
+		/// <summary>
+		/// account_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? account_id_between { get; set; }
 		#endregion
 		#region role_id
+		/// <summary>
+		/// role_id_eqと等しい
+		/// </summary>
 		[DataMember] public string role_id_eq { get; set; }
+		/// <summary>
+		/// role_id_neと等しくない
+		/// </summary>
 		[DataMember] public string role_id_ne { get; set; }
+		/// <summary>
+		/// role_id_ltより小さい
+		/// </summary>
 		[DataMember] public string role_id_lt { get; set; }
+		/// <summary>
+		/// role_id_gtより大きい
+		/// </summary>
 		[DataMember] public string role_id_gt { get; set; }
+		/// <summary>
+		/// role_id_le以下
+		/// </summary>
 		[DataMember] public string role_id_le { get; set; }
+		/// <summary>
+		/// role_id_ge以上
+		/// </summary>
 		[DataMember] public string role_id_ge { get; set; }
+		/// <summary>
+		/// role_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_in { get; set; }
+		/// <summary>
+		/// role_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> role_id_ni { get; set; }
+		/// <summary>
+		/// role_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? role_id_between { get; set; }
+		/// <summary>
+		/// role_id_likeと部分一致する
+		/// </summary>
 		[DataMember] public string role_id_like { get; set; }
 		#endregion
 		#region note
+		/// <summary>
+		/// note_eqと等しい
+		/// </summary>
 		[DataMember] public string note_eq { get; set; }
+		/// <summary>
+		/// note_neと等しくない
+		/// </summary>
 		[DataMember] public string note_ne { get; set; }
+		/// <summary>
+		/// note_ltより小さい
+		/// </summary>
 		[DataMember] public string note_lt { get; set; }
+		/// <summary>
+		/// note_gtより大きい
+		/// </summary>
 		[DataMember] public string note_gt { get; set; }
+		/// <summary>
+		/// note_le以下
+		/// </summary>
 		[DataMember] public string note_le { get; set; }
+		/// <summary>
+		/// note_ge以上
+		/// </summary>
 		[DataMember] public string note_ge { get; set; }
+		/// <summary>
+		/// note_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> note_in { get; set; }
+		/// <summary>
+		/// note_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
+		/// <summary>
+		/// note_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? note_between { get; set; }
+		/// <summary>
+		/// note_likeと部分一致する
+		/// </summary>
 		[DataMember] public string note_like { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -12460,140 +15565,479 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region category
+		/// <summary>
+		/// category_eqと等しい
+		/// </summary>
 		[DataMember] public string category_eq { get; set; }
+		/// <summary>
+		/// category_neと等しくない
+		/// </summary>
 		[DataMember] public string category_ne { get; set; }
+		/// <summary>
+		/// category_ltより小さい
+		/// </summary>
 		[DataMember] public string category_lt { get; set; }
+		/// <summary>
+		/// category_gtより大きい
+		/// </summary>
 		[DataMember] public string category_gt { get; set; }
+		/// <summary>
+		/// category_le以下
+		/// </summary>
 		[DataMember] public string category_le { get; set; }
+		/// <summary>
+		/// category_ge以上
+		/// </summary>
 		[DataMember] public string category_ge { get; set; }
+		/// <summary>
+		/// category_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> category_in { get; set; }
+		/// <summary>
+		/// category_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> category_ni { get; set; }
+		/// <summary>
+		/// category_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? category_between { get; set; }
+		/// <summary>
+		/// category_likeと部分一致する
+		/// </summary>
 		[DataMember] public string category_like { get; set; }
 		#endregion
 		#region type
+		/// <summary>
+		/// type_eqと等しい
+		/// </summary>
 		[DataMember] public string type_eq { get; set; }
+		/// <summary>
+		/// type_neと等しくない
+		/// </summary>
 		[DataMember] public string type_ne { get; set; }
+		/// <summary>
+		/// type_ltより小さい
+		/// </summary>
 		[DataMember] public string type_lt { get; set; }
+		/// <summary>
+		/// type_gtより大きい
+		/// </summary>
 		[DataMember] public string type_gt { get; set; }
+		/// <summary>
+		/// type_le以下
+		/// </summary>
 		[DataMember] public string type_le { get; set; }
+		/// <summary>
+		/// type_ge以上
+		/// </summary>
 		[DataMember] public string type_ge { get; set; }
+		/// <summary>
+		/// type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> type_in { get; set; }
+		/// <summary>
+		/// type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> type_ni { get; set; }
+		/// <summary>
+		/// type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? type_between { get; set; }
+		/// <summary>
+		/// type_likeと部分一致する
+		/// </summary>
 		[DataMember] public string type_like { get; set; }
 		#endregion
 		#region level
+		/// <summary>
+		/// level_eqと等しい
+		/// </summary>
 		[DataMember] public int? level_eq { get; set; }
+		/// <summary>
+		/// level_neと等しくない
+		/// </summary>
 		[DataMember] public int? level_ne { get; set; }
+		/// <summary>
+		/// level_ltより小さい
+		/// </summary>
 		[DataMember] public int? level_lt { get; set; }
+		/// <summary>
+		/// level_gtより大きい
+		/// </summary>
 		[DataMember] public int? level_gt { get; set; }
+		/// <summary>
+		/// level_le以下
+		/// </summary>
 		[DataMember] public int? level_le { get; set; }
+		/// <summary>
+		/// level_ge以上
+		/// </summary>
 		[DataMember] public int? level_ge { get; set; }
+		/// <summary>
+		/// level_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> level_in { get; set; }
+		/// <summary>
+		/// level_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> level_ni { get; set; }
+		/// <summary>
+		/// level_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? level_between { get; set; }
 		#endregion
 		#region url
+		/// <summary>
+		/// url_eqと等しい
+		/// </summary>
 		[DataMember] public string url_eq { get; set; }
+		/// <summary>
+		/// url_neと等しくない
+		/// </summary>
 		[DataMember] public string url_ne { get; set; }
+		/// <summary>
+		/// url_ltより小さい
+		/// </summary>
 		[DataMember] public string url_lt { get; set; }
+		/// <summary>
+		/// url_gtより大きい
+		/// </summary>
 		[DataMember] public string url_gt { get; set; }
+		/// <summary>
+		/// url_le以下
+		/// </summary>
 		[DataMember] public string url_le { get; set; }
+		/// <summary>
+		/// url_ge以上
+		/// </summary>
 		[DataMember] public string url_ge { get; set; }
+		/// <summary>
+		/// url_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> url_in { get; set; }
+		/// <summary>
+		/// url_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> url_ni { get; set; }
+		/// <summary>
+		/// url_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? url_between { get; set; }
+		/// <summary>
+		/// url_likeと部分一致する
+		/// </summary>
 		[DataMember] public string url_like { get; set; }
 		#endregion
 		#region methods
+		/// <summary>
+		/// methods_eqと等しい
+		/// </summary>
 		[DataMember] public string methods_eq { get; set; }
+		/// <summary>
+		/// methods_neと等しくない
+		/// </summary>
 		[DataMember] public string methods_ne { get; set; }
+		/// <summary>
+		/// methods_ltより小さい
+		/// </summary>
 		[DataMember] public string methods_lt { get; set; }
+		/// <summary>
+		/// methods_gtより大きい
+		/// </summary>
 		[DataMember] public string methods_gt { get; set; }
+		/// <summary>
+		/// methods_le以下
+		/// </summary>
 		[DataMember] public string methods_le { get; set; }
+		/// <summary>
+		/// methods_ge以上
+		/// </summary>
 		[DataMember] public string methods_ge { get; set; }
+		/// <summary>
+		/// methods_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> methods_in { get; set; }
+		/// <summary>
+		/// methods_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> methods_ni { get; set; }
+		/// <summary>
+		/// methods_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? methods_between { get; set; }
+		/// <summary>
+		/// methods_likeと部分一致する
+		/// </summary>
 		[DataMember] public string methods_like { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -13463,14 +16907,41 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region user_type (UserType)
@@ -13530,108 +17001,369 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region staff_no
+		/// <summary>
+		/// staff_no_eqと等しい
+		/// </summary>
 		[DataMember] public string staff_no_eq { get; set; }
+		/// <summary>
+		/// staff_no_neと等しくない
+		/// </summary>
 		[DataMember] public string staff_no_ne { get; set; }
+		/// <summary>
+		/// staff_no_ltより小さい
+		/// </summary>
 		[DataMember] public string staff_no_lt { get; set; }
+		/// <summary>
+		/// staff_no_gtより大きい
+		/// </summary>
 		[DataMember] public string staff_no_gt { get; set; }
+		/// <summary>
+		/// staff_no_le以下
+		/// </summary>
 		[DataMember] public string staff_no_le { get; set; }
+		/// <summary>
+		/// staff_no_ge以上
+		/// </summary>
 		[DataMember] public string staff_no_ge { get; set; }
+		/// <summary>
+		/// staff_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> staff_no_in { get; set; }
+		/// <summary>
+		/// staff_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> staff_no_ni { get; set; }
+		/// <summary>
+		/// staff_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? staff_no_between { get; set; }
+		/// <summary>
+		/// staff_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string staff_no_like { get; set; }
 		#endregion
 		#region sex_type
+		/// <summary>
+		/// sex_type_eqと等しい
+		/// </summary>
 		[DataMember] public int? sex_type_eq { get; set; }
+		/// <summary>
+		/// sex_type_neと等しくない
+		/// </summary>
 		[DataMember] public int? sex_type_ne { get; set; }
+		/// <summary>
+		/// sex_type_ltより小さい
+		/// </summary>
 		[DataMember] public int? sex_type_lt { get; set; }
+		/// <summary>
+		/// sex_type_gtより大きい
+		/// </summary>
 		[DataMember] public int? sex_type_gt { get; set; }
+		/// <summary>
+		/// sex_type_le以下
+		/// </summary>
 		[DataMember] public int? sex_type_le { get; set; }
+		/// <summary>
+		/// sex_type_ge以上
+		/// </summary>
 		[DataMember] public int? sex_type_ge { get; set; }
+		/// <summary>
+		/// sex_type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_in { get; set; }
+		/// <summary>
+		/// sex_type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_ni { get; set; }
+		/// <summary>
+		/// sex_type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? sex_type_between { get; set; }
+		/// <summary>
+		/// sex_typeがNULLか
+		/// </summary>
 		[DataMember] public bool sex_type_isnull { get; set; } =  false ;
+		/// <summary>
+		/// sex_typeがNULLではないか
+		/// </summary>
 		[DataMember] public bool sex_type_isnotnull { get; set; } = false;
 		#endregion
 		#region birth_date
+		/// <summary>
+		/// birth_date_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_eq { get; set; }
+		/// <summary>
+		/// birth_date_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? birth_date_ne { get; set; }
+		/// <summary>
+		/// birth_date_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_lt { get; set; }
+		/// <summary>
+		/// birth_date_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_gt { get; set; }
+		/// <summary>
+		/// birth_date_le以下
+		/// </summary>
 		[DataMember] public DateTime? birth_date_le { get; set; }
+		/// <summary>
+		/// birth_date_ge以上
+		/// </summary>
 		[DataMember] public DateTime? birth_date_ge { get; set; }
+		/// <summary>
+		/// birth_date_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> birth_date_in { get; set; }
+		/// <summary>
+		/// birth_date_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> birth_date_ni { get; set; }
+		/// <summary>
+		/// birth_date_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? birth_date_between { get; set; }
+		/// <summary>
+		/// birth_dateがNULLか
+		/// </summary>
 		[DataMember] public bool birth_date_isnull { get; set; } =  false ;
+		/// <summary>
+		/// birth_dateがNULLではないか
+		/// </summary>
 		[DataMember] public bool birth_date_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -14738,14 +18470,41 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region user_type (UserType)
@@ -14805,141 +18564,483 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region teacher_no
+		/// <summary>
+		/// teacher_no_eqと等しい
+		/// </summary>
 		[DataMember] public string teacher_no_eq { get; set; }
+		/// <summary>
+		/// teacher_no_neと等しくない
+		/// </summary>
 		[DataMember] public string teacher_no_ne { get; set; }
+		/// <summary>
+		/// teacher_no_ltより小さい
+		/// </summary>
 		[DataMember] public string teacher_no_lt { get; set; }
+		/// <summary>
+		/// teacher_no_gtより大きい
+		/// </summary>
 		[DataMember] public string teacher_no_gt { get; set; }
+		/// <summary>
+		/// teacher_no_le以下
+		/// </summary>
 		[DataMember] public string teacher_no_le { get; set; }
+		/// <summary>
+		/// teacher_no_ge以上
+		/// </summary>
 		[DataMember] public string teacher_no_ge { get; set; }
+		/// <summary>
+		/// teacher_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> teacher_no_in { get; set; }
+		/// <summary>
+		/// teacher_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> teacher_no_ni { get; set; }
+		/// <summary>
+		/// teacher_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? teacher_no_between { get; set; }
+		/// <summary>
+		/// teacher_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string teacher_no_like { get; set; }
 		#endregion
 		#region sex_type
+		/// <summary>
+		/// sex_type_eqと等しい
+		/// </summary>
 		[DataMember] public int? sex_type_eq { get; set; }
+		/// <summary>
+		/// sex_type_neと等しくない
+		/// </summary>
 		[DataMember] public int? sex_type_ne { get; set; }
+		/// <summary>
+		/// sex_type_ltより小さい
+		/// </summary>
 		[DataMember] public int? sex_type_lt { get; set; }
+		/// <summary>
+		/// sex_type_gtより大きい
+		/// </summary>
 		[DataMember] public int? sex_type_gt { get; set; }
+		/// <summary>
+		/// sex_type_le以下
+		/// </summary>
 		[DataMember] public int? sex_type_le { get; set; }
+		/// <summary>
+		/// sex_type_ge以上
+		/// </summary>
 		[DataMember] public int? sex_type_ge { get; set; }
+		/// <summary>
+		/// sex_type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_in { get; set; }
+		/// <summary>
+		/// sex_type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_ni { get; set; }
+		/// <summary>
+		/// sex_type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? sex_type_between { get; set; }
+		/// <summary>
+		/// sex_typeがNULLか
+		/// </summary>
 		[DataMember] public bool sex_type_isnull { get; set; } =  false ;
+		/// <summary>
+		/// sex_typeがNULLではないか
+		/// </summary>
 		[DataMember] public bool sex_type_isnotnull { get; set; } = false;
 		#endregion
 		#region birth_date
+		/// <summary>
+		/// birth_date_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_eq { get; set; }
+		/// <summary>
+		/// birth_date_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? birth_date_ne { get; set; }
+		/// <summary>
+		/// birth_date_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_lt { get; set; }
+		/// <summary>
+		/// birth_date_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? birth_date_gt { get; set; }
+		/// <summary>
+		/// birth_date_le以下
+		/// </summary>
 		[DataMember] public DateTime? birth_date_le { get; set; }
+		/// <summary>
+		/// birth_date_ge以上
+		/// </summary>
 		[DataMember] public DateTime? birth_date_ge { get; set; }
+		/// <summary>
+		/// birth_date_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> birth_date_in { get; set; }
+		/// <summary>
+		/// birth_date_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> birth_date_ni { get; set; }
+		/// <summary>
+		/// birth_date_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? birth_date_between { get; set; }
+		/// <summary>
+		/// birth_dateがNULLか
+		/// </summary>
 		[DataMember] public bool birth_date_isnull { get; set; } =  false ;
+		/// <summary>
+		/// birth_dateがNULLではないか
+		/// </summary>
 		[DataMember] public bool birth_date_isnotnull { get; set; } = false;
 		#endregion
 		#region work_style_type
+		/// <summary>
+		/// work_style_type_eqと等しい
+		/// </summary>
 		[DataMember] public int? work_style_type_eq { get; set; }
+		/// <summary>
+		/// work_style_type_neと等しくない
+		/// </summary>
 		[DataMember] public int? work_style_type_ne { get; set; }
+		/// <summary>
+		/// work_style_type_ltより小さい
+		/// </summary>
 		[DataMember] public int? work_style_type_lt { get; set; }
+		/// <summary>
+		/// work_style_type_gtより大きい
+		/// </summary>
 		[DataMember] public int? work_style_type_gt { get; set; }
+		/// <summary>
+		/// work_style_type_le以下
+		/// </summary>
 		[DataMember] public int? work_style_type_le { get; set; }
+		/// <summary>
+		/// work_style_type_ge以上
+		/// </summary>
 		[DataMember] public int? work_style_type_ge { get; set; }
+		/// <summary>
+		/// work_style_type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> work_style_type_in { get; set; }
+		/// <summary>
+		/// work_style_type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> work_style_type_ni { get; set; }
+		/// <summary>
+		/// work_style_type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? work_style_type_between { get; set; }
 		#endregion
 		#region position_type
+		/// <summary>
+		/// position_type_eqと等しい
+		/// </summary>
 		[DataMember] public int? position_type_eq { get; set; }
+		/// <summary>
+		/// position_type_neと等しくない
+		/// </summary>
 		[DataMember] public int? position_type_ne { get; set; }
+		/// <summary>
+		/// position_type_ltより小さい
+		/// </summary>
 		[DataMember] public int? position_type_lt { get; set; }
+		/// <summary>
+		/// position_type_gtより大きい
+		/// </summary>
 		[DataMember] public int? position_type_gt { get; set; }
+		/// <summary>
+		/// position_type_le以下
+		/// </summary>
 		[DataMember] public int? position_type_le { get; set; }
+		/// <summary>
+		/// position_type_ge以上
+		/// </summary>
 		[DataMember] public int? position_type_ge { get; set; }
+		/// <summary>
+		/// position_type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> position_type_in { get; set; }
+		/// <summary>
+		/// position_type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> position_type_ni { get; set; }
+		/// <summary>
+		/// position_type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? position_type_between { get; set; }
 		#endregion
 		#region teacher_lisence_type
+		/// <summary>
+		/// teacher_lisence_type_eqと等しい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_eq { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_neと等しくない
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_ne { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_ltより小さい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_lt { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_gtより大きい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_gt { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_le以下
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_le { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_ge以上
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_ge { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> teacher_lisence_type_in { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> teacher_lisence_type_ni { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? teacher_lisence_type_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -15674,37 +19775,121 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region sex_type_id
+		/// <summary>
+		/// sex_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? sex_type_id_eq { get; set; }
+		/// <summary>
+		/// sex_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? sex_type_id_ne { get; set; }
+		/// <summary>
+		/// sex_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? sex_type_id_lt { get; set; }
+		/// <summary>
+		/// sex_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? sex_type_id_gt { get; set; }
+		/// <summary>
+		/// sex_type_id_le以下
+		/// </summary>
 		[DataMember] public int? sex_type_id_le { get; set; }
+		/// <summary>
+		/// sex_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? sex_type_id_ge { get; set; }
+		/// <summary>
+		/// sex_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_id_in { get; set; }
+		/// <summary>
+		/// sex_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> sex_type_id_ni { get; set; }
+		/// <summary>
+		/// sex_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? sex_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region gender (Gender)
@@ -15776,93 +19961,315 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -16525,127 +20932,433 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region work_style_type_id
+		/// <summary>
+		/// work_style_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? work_style_type_id_eq { get; set; }
+		/// <summary>
+		/// work_style_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? work_style_type_id_ne { get; set; }
+		/// <summary>
+		/// work_style_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? work_style_type_id_lt { get; set; }
+		/// <summary>
+		/// work_style_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? work_style_type_id_gt { get; set; }
+		/// <summary>
+		/// work_style_type_id_le以下
+		/// </summary>
 		[DataMember] public int? work_style_type_id_le { get; set; }
+		/// <summary>
+		/// work_style_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? work_style_type_id_ge { get; set; }
+		/// <summary>
+		/// work_style_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> work_style_type_id_in { get; set; }
+		/// <summary>
+		/// work_style_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> work_style_type_id_ni { get; set; }
+		/// <summary>
+		/// work_style_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? work_style_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -17296,127 +22009,433 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region position_type_id
+		/// <summary>
+		/// position_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? position_type_id_eq { get; set; }
+		/// <summary>
+		/// position_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? position_type_id_ne { get; set; }
+		/// <summary>
+		/// position_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? position_type_id_lt { get; set; }
+		/// <summary>
+		/// position_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? position_type_id_gt { get; set; }
+		/// <summary>
+		/// position_type_id_le以下
+		/// </summary>
 		[DataMember] public int? position_type_id_le { get; set; }
+		/// <summary>
+		/// position_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? position_type_id_ge { get; set; }
+		/// <summary>
+		/// position_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> position_type_id_in { get; set; }
+		/// <summary>
+		/// position_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> position_type_id_ni { get; set; }
+		/// <summary>
+		/// position_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? position_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -18108,138 +23127,471 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region teacher_lisence_type_id
+		/// <summary>
+		/// teacher_lisence_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_eq { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_ne { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_lt { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_gt { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_le以下
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_le { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? teacher_lisence_type_id_ge { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> teacher_lisence_type_id_in { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> teacher_lisence_type_id_ni { get; set; }
+		/// <summary>
+		/// teacher_lisence_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? teacher_lisence_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region rank
+		/// <summary>
+		/// rank_eqと等しい
+		/// </summary>
 		[DataMember] public int? rank_eq { get; set; }
+		/// <summary>
+		/// rank_neと等しくない
+		/// </summary>
 		[DataMember] public int? rank_ne { get; set; }
+		/// <summary>
+		/// rank_ltより小さい
+		/// </summary>
 		[DataMember] public int? rank_lt { get; set; }
+		/// <summary>
+		/// rank_gtより大きい
+		/// </summary>
 		[DataMember] public int? rank_gt { get; set; }
+		/// <summary>
+		/// rank_le以下
+		/// </summary>
 		[DataMember] public int? rank_le { get; set; }
+		/// <summary>
+		/// rank_ge以上
+		/// </summary>
 		[DataMember] public int? rank_ge { get; set; }
+		/// <summary>
+		/// rank_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> rank_in { get; set; }
+		/// <summary>
+		/// rank_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> rank_ni { get; set; }
+		/// <summary>
+		/// rank_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? rank_between { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -19153,14 +24505,41 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region user_type (UserType)
@@ -19220,151 +24599,517 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region generic_user_no
+		/// <summary>
+		/// generic_user_no_eqと等しい
+		/// </summary>
 		[DataMember] public string generic_user_no_eq { get; set; }
+		/// <summary>
+		/// generic_user_no_neと等しくない
+		/// </summary>
 		[DataMember] public string generic_user_no_ne { get; set; }
+		/// <summary>
+		/// generic_user_no_ltより小さい
+		/// </summary>
 		[DataMember] public string generic_user_no_lt { get; set; }
+		/// <summary>
+		/// generic_user_no_gtより大きい
+		/// </summary>
 		[DataMember] public string generic_user_no_gt { get; set; }
+		/// <summary>
+		/// generic_user_no_le以下
+		/// </summary>
 		[DataMember] public string generic_user_no_le { get; set; }
+		/// <summary>
+		/// generic_user_no_ge以上
+		/// </summary>
 		[DataMember] public string generic_user_no_ge { get; set; }
+		/// <summary>
+		/// generic_user_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
+		/// <summary>
+		/// generic_user_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
+		/// <summary>
+		/// generic_user_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
+		/// <summary>
+		/// generic_user_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
+		/// <summary>
+		/// seq_eqと等しい
+		/// </summary>
 		[DataMember] public int? seq_eq { get; set; }
+		/// <summary>
+		/// seq_neと等しくない
+		/// </summary>
 		[DataMember] public int? seq_ne { get; set; }
+		/// <summary>
+		/// seq_ltより小さい
+		/// </summary>
 		[DataMember] public int? seq_lt { get; set; }
+		/// <summary>
+		/// seq_gtより大きい
+		/// </summary>
 		[DataMember] public int? seq_gt { get; set; }
+		/// <summary>
+		/// seq_le以下
+		/// </summary>
 		[DataMember] public int? seq_le { get; set; }
+		/// <summary>
+		/// seq_ge以上
+		/// </summary>
 		[DataMember] public int? seq_ge { get; set; }
+		/// <summary>
+		/// seq_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_in { get; set; }
+		/// <summary>
+		/// seq_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_ni { get; set; }
+		/// <summary>
+		/// seq_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? seq_between { get; set; }
 		#endregion
 		#region person_name_type_id
+		/// <summary>
+		/// person_name_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_eq { get; set; }
+		/// <summary>
+		/// person_name_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? person_name_type_id_ne { get; set; }
+		/// <summary>
+		/// person_name_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_lt { get; set; }
+		/// <summary>
+		/// person_name_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_gt { get; set; }
+		/// <summary>
+		/// person_name_type_id_le以下
+		/// </summary>
 		[DataMember] public int? person_name_type_id_le { get; set; }
+		/// <summary>
+		/// person_name_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? person_name_type_id_ge { get; set; }
+		/// <summary>
+		/// person_name_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> person_name_type_id_in { get; set; }
+		/// <summary>
+		/// person_name_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> person_name_type_id_ni { get; set; }
+		/// <summary>
+		/// person_name_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? person_name_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region kana
+		/// <summary>
+		/// kana_eqと等しい
+		/// </summary>
 		[DataMember] public string kana_eq { get; set; }
+		/// <summary>
+		/// kana_neと等しくない
+		/// </summary>
 		[DataMember] public string kana_ne { get; set; }
+		/// <summary>
+		/// kana_ltより小さい
+		/// </summary>
 		[DataMember] public string kana_lt { get; set; }
+		/// <summary>
+		/// kana_gtより大きい
+		/// </summary>
 		[DataMember] public string kana_gt { get; set; }
+		/// <summary>
+		/// kana_le以下
+		/// </summary>
 		[DataMember] public string kana_le { get; set; }
+		/// <summary>
+		/// kana_ge以上
+		/// </summary>
 		[DataMember] public string kana_ge { get; set; }
+		/// <summary>
+		/// kana_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> kana_in { get; set; }
+		/// <summary>
+		/// kana_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> kana_ni { get; set; }
+		/// <summary>
+		/// kana_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? kana_between { get; set; }
+		/// <summary>
+		/// kana_likeと部分一致する
+		/// </summary>
 		[DataMember] public string kana_like { get; set; }
 		#endregion
 		#region name_abbrev
+		/// <summary>
+		/// name_abbrev_eqと等しい
+		/// </summary>
 		[DataMember] public string name_abbrev_eq { get; set; }
+		/// <summary>
+		/// name_abbrev_neと等しくない
+		/// </summary>
 		[DataMember] public string name_abbrev_ne { get; set; }
+		/// <summary>
+		/// name_abbrev_ltより小さい
+		/// </summary>
 		[DataMember] public string name_abbrev_lt { get; set; }
+		/// <summary>
+		/// name_abbrev_gtより大きい
+		/// </summary>
 		[DataMember] public string name_abbrev_gt { get; set; }
+		/// <summary>
+		/// name_abbrev_le以下
+		/// </summary>
 		[DataMember] public string name_abbrev_le { get; set; }
+		/// <summary>
+		/// name_abbrev_ge以上
+		/// </summary>
 		[DataMember] public string name_abbrev_ge { get; set; }
+		/// <summary>
+		/// name_abbrev_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_abbrev_in { get; set; }
+		/// <summary>
+		/// name_abbrev_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_abbrev_ni { get; set; }
+		/// <summary>
+		/// name_abbrev_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_abbrev_between { get; set; }
+		/// <summary>
+		/// name_abbrev_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_abbrev_like { get; set; }
 		#endregion
 		#region name_eng
+		/// <summary>
+		/// name_eng_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eng_eq { get; set; }
+		/// <summary>
+		/// name_eng_neと等しくない
+		/// </summary>
 		[DataMember] public string name_eng_ne { get; set; }
+		/// <summary>
+		/// name_eng_ltより小さい
+		/// </summary>
 		[DataMember] public string name_eng_lt { get; set; }
+		/// <summary>
+		/// name_eng_gtより大きい
+		/// </summary>
 		[DataMember] public string name_eng_gt { get; set; }
+		/// <summary>
+		/// name_eng_le以下
+		/// </summary>
 		[DataMember] public string name_eng_le { get; set; }
+		/// <summary>
+		/// name_eng_ge以上
+		/// </summary>
 		[DataMember] public string name_eng_ge { get; set; }
+		/// <summary>
+		/// name_eng_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_eng_in { get; set; }
+		/// <summary>
+		/// name_eng_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_eng_ni { get; set; }
+		/// <summary>
+		/// name_eng_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_eng_between { get; set; }
+		/// <summary>
+		/// name_eng_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_eng_like { get; set; }
 		#endregion
 		#region name_eng_abbrev
+		/// <summary>
+		/// name_eng_abbrev_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_eq { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_neと等しくない
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_ne { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_ltより小さい
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_lt { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_gtより大きい
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_gt { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_le以下
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_le { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_ge以上
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_ge { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_eng_abbrev_in { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_eng_abbrev_ni { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_eng_abbrev_between { get; set; }
+		/// <summary>
+		/// name_eng_abbrev_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_eng_abbrev_like { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -20053,127 +25798,433 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region person_name_type_id
+		/// <summary>
+		/// person_name_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_eq { get; set; }
+		/// <summary>
+		/// person_name_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? person_name_type_id_ne { get; set; }
+		/// <summary>
+		/// person_name_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_lt { get; set; }
+		/// <summary>
+		/// person_name_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? person_name_type_id_gt { get; set; }
+		/// <summary>
+		/// person_name_type_id_le以下
+		/// </summary>
 		[DataMember] public int? person_name_type_id_le { get; set; }
+		/// <summary>
+		/// person_name_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? person_name_type_id_ge { get; set; }
+		/// <summary>
+		/// person_name_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> person_name_type_id_in { get; set; }
+		/// <summary>
+		/// person_name_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> person_name_type_id_ni { get; set; }
+		/// <summary>
+		/// person_name_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? person_name_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -21241,14 +27292,41 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region user_type (UserType)
@@ -21308,202 +27386,697 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region generic_user_no
+		/// <summary>
+		/// generic_user_no_eqと等しい
+		/// </summary>
 		[DataMember] public string generic_user_no_eq { get; set; }
+		/// <summary>
+		/// generic_user_no_neと等しくない
+		/// </summary>
 		[DataMember] public string generic_user_no_ne { get; set; }
+		/// <summary>
+		/// generic_user_no_ltより小さい
+		/// </summary>
 		[DataMember] public string generic_user_no_lt { get; set; }
+		/// <summary>
+		/// generic_user_no_gtより大きい
+		/// </summary>
 		[DataMember] public string generic_user_no_gt { get; set; }
+		/// <summary>
+		/// generic_user_no_le以下
+		/// </summary>
 		[DataMember] public string generic_user_no_le { get; set; }
+		/// <summary>
+		/// generic_user_no_ge以上
+		/// </summary>
 		[DataMember] public string generic_user_no_ge { get; set; }
+		/// <summary>
+		/// generic_user_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
+		/// <summary>
+		/// generic_user_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
+		/// <summary>
+		/// generic_user_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
+		/// <summary>
+		/// generic_user_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
+		/// <summary>
+		/// seq_eqと等しい
+		/// </summary>
 		[DataMember] public int? seq_eq { get; set; }
+		/// <summary>
+		/// seq_neと等しくない
+		/// </summary>
 		[DataMember] public int? seq_ne { get; set; }
+		/// <summary>
+		/// seq_ltより小さい
+		/// </summary>
 		[DataMember] public int? seq_lt { get; set; }
+		/// <summary>
+		/// seq_gtより大きい
+		/// </summary>
 		[DataMember] public int? seq_gt { get; set; }
+		/// <summary>
+		/// seq_le以下
+		/// </summary>
 		[DataMember] public int? seq_le { get; set; }
+		/// <summary>
+		/// seq_ge以上
+		/// </summary>
 		[DataMember] public int? seq_ge { get; set; }
+		/// <summary>
+		/// seq_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_in { get; set; }
+		/// <summary>
+		/// seq_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_ni { get; set; }
+		/// <summary>
+		/// seq_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? seq_between { get; set; }
 		#endregion
 		#region address_type_id
+		/// <summary>
+		/// address_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? address_type_id_eq { get; set; }
+		/// <summary>
+		/// address_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? address_type_id_ne { get; set; }
+		/// <summary>
+		/// address_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? address_type_id_lt { get; set; }
+		/// <summary>
+		/// address_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? address_type_id_gt { get; set; }
+		/// <summary>
+		/// address_type_id_le以下
+		/// </summary>
 		[DataMember] public int? address_type_id_le { get; set; }
+		/// <summary>
+		/// address_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? address_type_id_ge { get; set; }
+		/// <summary>
+		/// address_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> address_type_id_in { get; set; }
+		/// <summary>
+		/// address_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> address_type_id_ni { get; set; }
+		/// <summary>
+		/// address_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? address_type_id_between { get; set; }
 		#endregion
 		#region postal_code
+		/// <summary>
+		/// postal_code_eqと等しい
+		/// </summary>
 		[DataMember] public string postal_code_eq { get; set; }
+		/// <summary>
+		/// postal_code_neと等しくない
+		/// </summary>
 		[DataMember] public string postal_code_ne { get; set; }
+		/// <summary>
+		/// postal_code_ltより小さい
+		/// </summary>
 		[DataMember] public string postal_code_lt { get; set; }
+		/// <summary>
+		/// postal_code_gtより大きい
+		/// </summary>
 		[DataMember] public string postal_code_gt { get; set; }
+		/// <summary>
+		/// postal_code_le以下
+		/// </summary>
 		[DataMember] public string postal_code_le { get; set; }
+		/// <summary>
+		/// postal_code_ge以上
+		/// </summary>
 		[DataMember] public string postal_code_ge { get; set; }
+		/// <summary>
+		/// postal_code_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> postal_code_in { get; set; }
+		/// <summary>
+		/// postal_code_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> postal_code_ni { get; set; }
+		/// <summary>
+		/// postal_code_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? postal_code_between { get; set; }
+		/// <summary>
+		/// postal_code_likeと部分一致する
+		/// </summary>
 		[DataMember] public string postal_code_like { get; set; }
 		#endregion
 		#region prefecture_code
+		/// <summary>
+		/// prefecture_code_eqと等しい
+		/// </summary>
 		[DataMember] public int? prefecture_code_eq { get; set; }
+		/// <summary>
+		/// prefecture_code_neと等しくない
+		/// </summary>
 		[DataMember] public int? prefecture_code_ne { get; set; }
+		/// <summary>
+		/// prefecture_code_ltより小さい
+		/// </summary>
 		[DataMember] public int? prefecture_code_lt { get; set; }
+		/// <summary>
+		/// prefecture_code_gtより大きい
+		/// </summary>
 		[DataMember] public int? prefecture_code_gt { get; set; }
+		/// <summary>
+		/// prefecture_code_le以下
+		/// </summary>
 		[DataMember] public int? prefecture_code_le { get; set; }
+		/// <summary>
+		/// prefecture_code_ge以上
+		/// </summary>
 		[DataMember] public int? prefecture_code_ge { get; set; }
+		/// <summary>
+		/// prefecture_code_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> prefecture_code_in { get; set; }
+		/// <summary>
+		/// prefecture_code_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> prefecture_code_ni { get; set; }
+		/// <summary>
+		/// prefecture_code_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? prefecture_code_between { get; set; }
 		#endregion
 		#region address1
+		/// <summary>
+		/// address1_eqと等しい
+		/// </summary>
 		[DataMember] public string address1_eq { get; set; }
+		/// <summary>
+		/// address1_neと等しくない
+		/// </summary>
 		[DataMember] public string address1_ne { get; set; }
+		/// <summary>
+		/// address1_ltより小さい
+		/// </summary>
 		[DataMember] public string address1_lt { get; set; }
+		/// <summary>
+		/// address1_gtより大きい
+		/// </summary>
 		[DataMember] public string address1_gt { get; set; }
+		/// <summary>
+		/// address1_le以下
+		/// </summary>
 		[DataMember] public string address1_le { get; set; }
+		/// <summary>
+		/// address1_ge以上
+		/// </summary>
 		[DataMember] public string address1_ge { get; set; }
+		/// <summary>
+		/// address1_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> address1_in { get; set; }
+		/// <summary>
+		/// address1_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> address1_ni { get; set; }
+		/// <summary>
+		/// address1_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? address1_between { get; set; }
+		/// <summary>
+		/// address1_likeと部分一致する
+		/// </summary>
 		[DataMember] public string address1_like { get; set; }
 		#endregion
 		#region address2
+		/// <summary>
+		/// address2_eqと等しい
+		/// </summary>
 		[DataMember] public string address2_eq { get; set; }
+		/// <summary>
+		/// address2_neと等しくない
+		/// </summary>
 		[DataMember] public string address2_ne { get; set; }
+		/// <summary>
+		/// address2_ltより小さい
+		/// </summary>
 		[DataMember] public string address2_lt { get; set; }
+		/// <summary>
+		/// address2_gtより大きい
+		/// </summary>
 		[DataMember] public string address2_gt { get; set; }
+		/// <summary>
+		/// address2_le以下
+		/// </summary>
 		[DataMember] public string address2_le { get; set; }
+		/// <summary>
+		/// address2_ge以上
+		/// </summary>
 		[DataMember] public string address2_ge { get; set; }
+		/// <summary>
+		/// address2_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> address2_in { get; set; }
+		/// <summary>
+		/// address2_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> address2_ni { get; set; }
+		/// <summary>
+		/// address2_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? address2_between { get; set; }
+		/// <summary>
+		/// address2_likeと部分一致する
+		/// </summary>
 		[DataMember] public string address2_like { get; set; }
 		#endregion
 		#region address3
+		/// <summary>
+		/// address3_eqと等しい
+		/// </summary>
 		[DataMember] public string address3_eq { get; set; }
+		/// <summary>
+		/// address3_neと等しくない
+		/// </summary>
 		[DataMember] public string address3_ne { get; set; }
+		/// <summary>
+		/// address3_ltより小さい
+		/// </summary>
 		[DataMember] public string address3_lt { get; set; }
+		/// <summary>
+		/// address3_gtより大きい
+		/// </summary>
 		[DataMember] public string address3_gt { get; set; }
+		/// <summary>
+		/// address3_le以下
+		/// </summary>
 		[DataMember] public string address3_le { get; set; }
+		/// <summary>
+		/// address3_ge以上
+		/// </summary>
 		[DataMember] public string address3_ge { get; set; }
+		/// <summary>
+		/// address3_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> address3_in { get; set; }
+		/// <summary>
+		/// address3_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> address3_ni { get; set; }
+		/// <summary>
+		/// address3_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? address3_between { get; set; }
+		/// <summary>
+		/// address3_likeと部分一致する
+		/// </summary>
 		[DataMember] public string address3_like { get; set; }
 		#endregion
 		#region latitude
+		/// <summary>
+		/// latitude_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? latitude_eq { get; set; }
+		/// <summary>
+		/// latitude_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? latitude_ne { get; set; }
+		/// <summary>
+		/// latitude_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? latitude_lt { get; set; }
+		/// <summary>
+		/// latitude_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? latitude_gt { get; set; }
+		/// <summary>
+		/// latitude_le以下
+		/// </summary>
 		[DataMember] public decimal? latitude_le { get; set; }
+		/// <summary>
+		/// latitude_ge以上
+		/// </summary>
 		[DataMember] public decimal? latitude_ge { get; set; }
+		/// <summary>
+		/// latitude_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> latitude_in { get; set; }
+		/// <summary>
+		/// latitude_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> latitude_ni { get; set; }
+		/// <summary>
+		/// latitude_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? latitude_between { get; set; }
+		/// <summary>
+		/// latitudeがNULLか
+		/// </summary>
 		[DataMember] public bool latitude_isnull { get; set; } =  false ;
+		/// <summary>
+		/// latitudeがNULLではないか
+		/// </summary>
 		[DataMember] public bool latitude_isnotnull { get; set; } = false;
 		#endregion
 		#region longitude
+		/// <summary>
+		/// longitude_eqと等しい
+		/// </summary>
 		[DataMember] public decimal? longitude_eq { get; set; }
+		/// <summary>
+		/// longitude_neと等しくない
+		/// </summary>
 		[DataMember] public decimal? longitude_ne { get; set; }
+		/// <summary>
+		/// longitude_ltより小さい
+		/// </summary>
 		[DataMember] public decimal? longitude_lt { get; set; }
+		/// <summary>
+		/// longitude_gtより大きい
+		/// </summary>
 		[DataMember] public decimal? longitude_gt { get; set; }
+		/// <summary>
+		/// longitude_le以下
+		/// </summary>
 		[DataMember] public decimal? longitude_le { get; set; }
+		/// <summary>
+		/// longitude_ge以上
+		/// </summary>
 		[DataMember] public decimal? longitude_ge { get; set; }
+		/// <summary>
+		/// longitude_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> longitude_in { get; set; }
+		/// <summary>
+		/// longitude_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<decimal> longitude_ni { get; set; }
+		/// <summary>
+		/// longitude_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (decimal? low, decimal? high)? longitude_between { get; set; }
+		/// <summary>
+		/// longitudeがNULLか
+		/// </summary>
 		[DataMember] public bool longitude_isnull { get; set; } =  false ;
+		/// <summary>
+		/// longitudeがNULLではないか
+		/// </summary>
 		[DataMember] public bool longitude_isnotnull { get; set; } = false;
 		#endregion
 		#region enter_date
+		/// <summary>
+		/// enter_date_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? enter_date_eq { get; set; }
+		/// <summary>
+		/// enter_date_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? enter_date_ne { get; set; }
+		/// <summary>
+		/// enter_date_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? enter_date_lt { get; set; }
+		/// <summary>
+		/// enter_date_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? enter_date_gt { get; set; }
+		/// <summary>
+		/// enter_date_le以下
+		/// </summary>
 		[DataMember] public DateTime? enter_date_le { get; set; }
+		/// <summary>
+		/// enter_date_ge以上
+		/// </summary>
 		[DataMember] public DateTime? enter_date_ge { get; set; }
+		/// <summary>
+		/// enter_date_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> enter_date_in { get; set; }
+		/// <summary>
+		/// enter_date_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> enter_date_ni { get; set; }
+		/// <summary>
+		/// enter_date_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? enter_date_between { get; set; }
+		/// <summary>
+		/// enter_dateがNULLか
+		/// </summary>
 		[DataMember] public bool enter_date_isnull { get; set; } =  false ;
+		/// <summary>
+		/// enter_dateがNULLではないか
+		/// </summary>
 		[DataMember] public bool enter_date_isnotnull { get; set; } = false;
 		#endregion
 		#region leave_date
+		/// <summary>
+		/// leave_date_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? leave_date_eq { get; set; }
+		/// <summary>
+		/// leave_date_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? leave_date_ne { get; set; }
+		/// <summary>
+		/// leave_date_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? leave_date_lt { get; set; }
+		/// <summary>
+		/// leave_date_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? leave_date_gt { get; set; }
+		/// <summary>
+		/// leave_date_le以下
+		/// </summary>
 		[DataMember] public DateTime? leave_date_le { get; set; }
+		/// <summary>
+		/// leave_date_ge以上
+		/// </summary>
 		[DataMember] public DateTime? leave_date_ge { get; set; }
+		/// <summary>
+		/// leave_date_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> leave_date_in { get; set; }
+		/// <summary>
+		/// leave_date_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> leave_date_ni { get; set; }
+		/// <summary>
+		/// leave_date_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? leave_date_between { get; set; }
+		/// <summary>
+		/// leave_dateがNULLか
+		/// </summary>
 		[DataMember] public bool leave_date_isnull { get; set; } =  false ;
+		/// <summary>
+		/// leave_dateがNULLではないか
+		/// </summary>
 		[DataMember] public bool leave_date_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -22240,127 +28813,433 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region address_type_id
+		/// <summary>
+		/// address_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? address_type_id_eq { get; set; }
+		/// <summary>
+		/// address_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? address_type_id_ne { get; set; }
+		/// <summary>
+		/// address_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? address_type_id_lt { get; set; }
+		/// <summary>
+		/// address_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? address_type_id_gt { get; set; }
+		/// <summary>
+		/// address_type_id_le以下
+		/// </summary>
 		[DataMember] public int? address_type_id_le { get; set; }
+		/// <summary>
+		/// address_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? address_type_id_ge { get; set; }
+		/// <summary>
+		/// address_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> address_type_id_in { get; set; }
+		/// <summary>
+		/// address_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> address_type_id_ni { get; set; }
+		/// <summary>
+		/// address_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? address_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -23141,14 +30020,41 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region user_type (UserType)
@@ -23208,115 +30114,391 @@ namespace OpenAPITest.Domain
 		}
 		#endregion
 		#region generic_user_no
+		/// <summary>
+		/// generic_user_no_eqと等しい
+		/// </summary>
 		[DataMember] public string generic_user_no_eq { get; set; }
+		/// <summary>
+		/// generic_user_no_neと等しくない
+		/// </summary>
 		[DataMember] public string generic_user_no_ne { get; set; }
+		/// <summary>
+		/// generic_user_no_ltより小さい
+		/// </summary>
 		[DataMember] public string generic_user_no_lt { get; set; }
+		/// <summary>
+		/// generic_user_no_gtより大きい
+		/// </summary>
 		[DataMember] public string generic_user_no_gt { get; set; }
+		/// <summary>
+		/// generic_user_no_le以下
+		/// </summary>
 		[DataMember] public string generic_user_no_le { get; set; }
+		/// <summary>
+		/// generic_user_no_ge以上
+		/// </summary>
 		[DataMember] public string generic_user_no_ge { get; set; }
+		/// <summary>
+		/// generic_user_no_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_in { get; set; }
+		/// <summary>
+		/// generic_user_no_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> generic_user_no_ni { get; set; }
+		/// <summary>
+		/// generic_user_no_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? generic_user_no_between { get; set; }
+		/// <summary>
+		/// generic_user_no_likeと部分一致する
+		/// </summary>
 		[DataMember] public string generic_user_no_like { get; set; }
 		#endregion
 		#region seq
+		/// <summary>
+		/// seq_eqと等しい
+		/// </summary>
 		[DataMember] public int? seq_eq { get; set; }
+		/// <summary>
+		/// seq_neと等しくない
+		/// </summary>
 		[DataMember] public int? seq_ne { get; set; }
+		/// <summary>
+		/// seq_ltより小さい
+		/// </summary>
 		[DataMember] public int? seq_lt { get; set; }
+		/// <summary>
+		/// seq_gtより大きい
+		/// </summary>
 		[DataMember] public int? seq_gt { get; set; }
+		/// <summary>
+		/// seq_le以下
+		/// </summary>
 		[DataMember] public int? seq_le { get; set; }
+		/// <summary>
+		/// seq_ge以上
+		/// </summary>
 		[DataMember] public int? seq_ge { get; set; }
+		/// <summary>
+		/// seq_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_in { get; set; }
+		/// <summary>
+		/// seq_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> seq_ni { get; set; }
+		/// <summary>
+		/// seq_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? seq_between { get; set; }
 		#endregion
 		#region contact_type_id
+		/// <summary>
+		/// contact_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? contact_type_id_eq { get; set; }
+		/// <summary>
+		/// contact_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? contact_type_id_ne { get; set; }
+		/// <summary>
+		/// contact_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? contact_type_id_lt { get; set; }
+		/// <summary>
+		/// contact_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? contact_type_id_gt { get; set; }
+		/// <summary>
+		/// contact_type_id_le以下
+		/// </summary>
 		[DataMember] public int? contact_type_id_le { get; set; }
+		/// <summary>
+		/// contact_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? contact_type_id_ge { get; set; }
+		/// <summary>
+		/// contact_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> contact_type_id_in { get; set; }
+		/// <summary>
+		/// contact_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> contact_type_id_ni { get; set; }
+		/// <summary>
+		/// contact_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? contact_type_id_between { get; set; }
 		#endregion
 		#region contact
+		/// <summary>
+		/// contact_eqと等しい
+		/// </summary>
 		[DataMember] public string contact_eq { get; set; }
+		/// <summary>
+		/// contact_neと等しくない
+		/// </summary>
 		[DataMember] public string contact_ne { get; set; }
+		/// <summary>
+		/// contact_ltより小さい
+		/// </summary>
 		[DataMember] public string contact_lt { get; set; }
+		/// <summary>
+		/// contact_gtより大きい
+		/// </summary>
 		[DataMember] public string contact_gt { get; set; }
+		/// <summary>
+		/// contact_le以下
+		/// </summary>
 		[DataMember] public string contact_le { get; set; }
+		/// <summary>
+		/// contact_ge以上
+		/// </summary>
 		[DataMember] public string contact_ge { get; set; }
+		/// <summary>
+		/// contact_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> contact_in { get; set; }
+		/// <summary>
+		/// contact_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> contact_ni { get; set; }
+		/// <summary>
+		/// contact_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? contact_between { get; set; }
+		/// <summary>
+		/// contact_likeと部分一致する
+		/// </summary>
 		[DataMember] public string contact_like { get; set; }
 		#endregion
 		#region note
+		/// <summary>
+		/// note_eqと等しい
+		/// </summary>
 		[DataMember] public string note_eq { get; set; }
+		/// <summary>
+		/// note_neと等しくない
+		/// </summary>
 		[DataMember] public string note_ne { get; set; }
+		/// <summary>
+		/// note_ltより小さい
+		/// </summary>
 		[DataMember] public string note_lt { get; set; }
+		/// <summary>
+		/// note_gtより大きい
+		/// </summary>
 		[DataMember] public string note_gt { get; set; }
+		/// <summary>
+		/// note_le以下
+		/// </summary>
 		[DataMember] public string note_le { get; set; }
+		/// <summary>
+		/// note_ge以上
+		/// </summary>
 		[DataMember] public string note_ge { get; set; }
+		/// <summary>
+		/// note_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> note_in { get; set; }
+		/// <summary>
+		/// note_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> note_ni { get; set; }
+		/// <summary>
+		/// note_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? note_between { get; set; }
+		/// <summary>
+		/// note_likeと部分一致する
+		/// </summary>
 		[DataMember] public string note_like { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
@@ -23975,127 +31157,433 @@ namespace OpenAPITest.Domain
 	{
 		#region properties
 		#region uid
+		/// <summary>
+		/// uid_eqと等しい
+		/// </summary>
 		[DataMember] public int? uid_eq { get; set; }
+		/// <summary>
+		/// uid_neと等しくない
+		/// </summary>
 		[DataMember] public int? uid_ne { get; set; }
+		/// <summary>
+		/// uid_ltより小さい
+		/// </summary>
 		[DataMember] public int? uid_lt { get; set; }
+		/// <summary>
+		/// uid_gtより大きい
+		/// </summary>
 		[DataMember] public int? uid_gt { get; set; }
+		/// <summary>
+		/// uid_le以下
+		/// </summary>
 		[DataMember] public int? uid_le { get; set; }
+		/// <summary>
+		/// uid_ge以上
+		/// </summary>
 		[DataMember] public int? uid_ge { get; set; }
+		/// <summary>
+		/// uid_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_in { get; set; }
+		/// <summary>
+		/// uid_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> uid_ni { get; set; }
+		/// <summary>
+		/// uid_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? uid_between { get; set; }
 		#endregion
 		#region contact_type_id
+		/// <summary>
+		/// contact_type_id_eqと等しい
+		/// </summary>
 		[DataMember] public int? contact_type_id_eq { get; set; }
+		/// <summary>
+		/// contact_type_id_neと等しくない
+		/// </summary>
 		[DataMember] public int? contact_type_id_ne { get; set; }
+		/// <summary>
+		/// contact_type_id_ltより小さい
+		/// </summary>
 		[DataMember] public int? contact_type_id_lt { get; set; }
+		/// <summary>
+		/// contact_type_id_gtより大きい
+		/// </summary>
 		[DataMember] public int? contact_type_id_gt { get; set; }
+		/// <summary>
+		/// contact_type_id_le以下
+		/// </summary>
 		[DataMember] public int? contact_type_id_le { get; set; }
+		/// <summary>
+		/// contact_type_id_ge以上
+		/// </summary>
 		[DataMember] public int? contact_type_id_ge { get; set; }
+		/// <summary>
+		/// contact_type_id_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> contact_type_id_in { get; set; }
+		/// <summary>
+		/// contact_type_id_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> contact_type_id_ni { get; set; }
+		/// <summary>
+		/// contact_type_id_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? contact_type_id_between { get; set; }
 		#endregion
 		#region name
+		/// <summary>
+		/// name_eqと等しい
+		/// </summary>
 		[DataMember] public string name_eq { get; set; }
+		/// <summary>
+		/// name_neと等しくない
+		/// </summary>
 		[DataMember] public string name_ne { get; set; }
+		/// <summary>
+		/// name_ltより小さい
+		/// </summary>
 		[DataMember] public string name_lt { get; set; }
+		/// <summary>
+		/// name_gtより大きい
+		/// </summary>
 		[DataMember] public string name_gt { get; set; }
+		/// <summary>
+		/// name_le以下
+		/// </summary>
 		[DataMember] public string name_le { get; set; }
+		/// <summary>
+		/// name_ge以上
+		/// </summary>
 		[DataMember] public string name_ge { get; set; }
+		/// <summary>
+		/// name_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_in { get; set; }
+		/// <summary>
+		/// name_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> name_ni { get; set; }
+		/// <summary>
+		/// name_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? name_between { get; set; }
+		/// <summary>
+		/// name_likeと部分一致する
+		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
 		#region description
+		/// <summary>
+		/// description_eqと等しい
+		/// </summary>
 		[DataMember] public string description_eq { get; set; }
+		/// <summary>
+		/// description_neと等しくない
+		/// </summary>
 		[DataMember] public string description_ne { get; set; }
+		/// <summary>
+		/// description_ltより小さい
+		/// </summary>
 		[DataMember] public string description_lt { get; set; }
+		/// <summary>
+		/// description_gtより大きい
+		/// </summary>
 		[DataMember] public string description_gt { get; set; }
+		/// <summary>
+		/// description_le以下
+		/// </summary>
 		[DataMember] public string description_le { get; set; }
+		/// <summary>
+		/// description_ge以上
+		/// </summary>
 		[DataMember] public string description_ge { get; set; }
+		/// <summary>
+		/// description_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_in { get; set; }
+		/// <summary>
+		/// description_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<string> description_ni { get; set; }
+		/// <summary>
+		/// description_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (string low, string high)? description_between { get; set; }
+		/// <summary>
+		/// description_likeと部分一致する
+		/// </summary>
 		[DataMember] public string description_like { get; set; }
 		#endregion
 		#region display_order
+		/// <summary>
+		/// display_order_eqと等しい
+		/// </summary>
 		[DataMember] public int? display_order_eq { get; set; }
+		/// <summary>
+		/// display_order_neと等しくない
+		/// </summary>
 		[DataMember] public int? display_order_ne { get; set; }
+		/// <summary>
+		/// display_order_ltより小さい
+		/// </summary>
 		[DataMember] public int? display_order_lt { get; set; }
+		/// <summary>
+		/// display_order_gtより大きい
+		/// </summary>
 		[DataMember] public int? display_order_gt { get; set; }
+		/// <summary>
+		/// display_order_le以下
+		/// </summary>
 		[DataMember] public int? display_order_le { get; set; }
+		/// <summary>
+		/// display_order_ge以上
+		/// </summary>
 		[DataMember] public int? display_order_ge { get; set; }
+		/// <summary>
+		/// display_order_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_in { get; set; }
+		/// <summary>
+		/// display_order_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> display_order_ni { get; set; }
+		/// <summary>
+		/// display_order_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
 		#region created_at
+		/// <summary>
+		/// created_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? created_at_eq { get; set; }
+		/// <summary>
+		/// created_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? created_at_ne { get; set; }
+		/// <summary>
+		/// created_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? created_at_lt { get; set; }
+		/// <summary>
+		/// created_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? created_at_gt { get; set; }
+		/// <summary>
+		/// created_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? created_at_le { get; set; }
+		/// <summary>
+		/// created_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? created_at_ge { get; set; }
+		/// <summary>
+		/// created_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_in { get; set; }
+		/// <summary>
+		/// created_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> created_at_ni { get; set; }
+		/// <summary>
+		/// created_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? created_at_between { get; set; }
 		#endregion
 		#region created_by
+		/// <summary>
+		/// created_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? created_by_eq { get; set; }
+		/// <summary>
+		/// created_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? created_by_ne { get; set; }
+		/// <summary>
+		/// created_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? created_by_lt { get; set; }
+		/// <summary>
+		/// created_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? created_by_gt { get; set; }
+		/// <summary>
+		/// created_by_le以下
+		/// </summary>
 		[DataMember] public int? created_by_le { get; set; }
+		/// <summary>
+		/// created_by_ge以上
+		/// </summary>
 		[DataMember] public int? created_by_ge { get; set; }
+		/// <summary>
+		/// created_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_in { get; set; }
+		/// <summary>
+		/// created_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> created_by_ni { get; set; }
+		/// <summary>
+		/// created_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? created_by_between { get; set; }
+		/// <summary>
+		/// created_byがNULLか
+		/// </summary>
 		[DataMember] public bool created_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// created_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool created_by_isnotnull { get; set; } = false;
 		#endregion
 		#region modified_at
+		/// <summary>
+		/// modified_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_eq { get; set; }
+		/// <summary>
+		/// modified_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ne { get; set; }
+		/// <summary>
+		/// modified_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_lt { get; set; }
+		/// <summary>
+		/// modified_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? modified_at_gt { get; set; }
+		/// <summary>
+		/// modified_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? modified_at_le { get; set; }
+		/// <summary>
+		/// modified_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? modified_at_ge { get; set; }
+		/// <summary>
+		/// modified_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_in { get; set; }
+		/// <summary>
+		/// modified_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> modified_at_ni { get; set; }
+		/// <summary>
+		/// modified_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? modified_at_between { get; set; }
 		#endregion
 		#region modified_by
+		/// <summary>
+		/// modified_by_eqと等しい
+		/// </summary>
 		[DataMember] public int? modified_by_eq { get; set; }
+		/// <summary>
+		/// modified_by_neと等しくない
+		/// </summary>
 		[DataMember] public int? modified_by_ne { get; set; }
+		/// <summary>
+		/// modified_by_ltより小さい
+		/// </summary>
 		[DataMember] public int? modified_by_lt { get; set; }
+		/// <summary>
+		/// modified_by_gtより大きい
+		/// </summary>
 		[DataMember] public int? modified_by_gt { get; set; }
+		/// <summary>
+		/// modified_by_le以下
+		/// </summary>
 		[DataMember] public int? modified_by_le { get; set; }
+		/// <summary>
+		/// modified_by_ge以上
+		/// </summary>
 		[DataMember] public int? modified_by_ge { get; set; }
+		/// <summary>
+		/// modified_by_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_in { get; set; }
+		/// <summary>
+		/// modified_by_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<int> modified_by_ni { get; set; }
+		/// <summary>
+		/// modified_by_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (int? low, int? high)? modified_by_between { get; set; }
+		/// <summary>
+		/// modified_byがNULLか
+		/// </summary>
 		[DataMember] public bool modified_by_isnull { get; set; } =  false ;
+		/// <summary>
+		/// modified_byがNULLではないか
+		/// </summary>
 		[DataMember] public bool modified_by_isnotnull { get; set; } = false;
 		#endregion
 		#region removed_at
+		/// <summary>
+		/// removed_at_eqと等しい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_eq { get; set; }
+		/// <summary>
+		/// removed_at_neと等しくない
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ne { get; set; }
+		/// <summary>
+		/// removed_at_ltより小さい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_lt { get; set; }
+		/// <summary>
+		/// removed_at_gtより大きい
+		/// </summary>
 		[DataMember] public DateTime? removed_at_gt { get; set; }
+		/// <summary>
+		/// removed_at_le以下
+		/// </summary>
 		[DataMember] public DateTime? removed_at_le { get; set; }
+		/// <summary>
+		/// removed_at_ge以上
+		/// </summary>
 		[DataMember] public DateTime? removed_at_ge { get; set; }
+		/// <summary>
+		/// removed_at_inに含まれる
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_in { get; set; }
+		/// <summary>
+		/// removed_at_niに含まれない
+		/// </summary>
 		[DataMember] public IEnumerable<DateTime> removed_at_ni { get; set; }
+		/// <summary>
+		/// removed_at_betweenの範囲内にある
+		/// </summary>
 		[DataMember] public (DateTime? low, DateTime? high)? removed_at_between { get; set; }
+		/// <summary>
+		/// removed_atがNULLか
+		/// </summary>
 		[DataMember] public bool removed_at_isnull { get; set; } =  true ;
+		/// <summary>
+		/// removed_atがNULLではないか
+		/// </summary>
 		[DataMember] public bool removed_at_isnotnull { get; set; } = false;
 		#endregion
 		#region row_version
+		/// <summary>
+		/// row_version_eqと等しい
+		/// </summary>
 		[DataMember] public byte[] row_version_eq { get; set; }
+		/// <summary>
+		/// row_version_neと等しくない
+		/// </summary>
 		[DataMember] public byte[] row_version_ne { get; set; }
+		/// <summary>
+		/// row_versionがNULLか
+		/// </summary>
 		[DataMember] public bool row_version_isnull { get; set; } =  false ;
+		/// <summary>
+		/// row_versionがNULLではないか
+		/// </summary>
 		[DataMember] public bool row_version_isnotnull { get; set; } = false;
 		#endregion
 		#endregion
