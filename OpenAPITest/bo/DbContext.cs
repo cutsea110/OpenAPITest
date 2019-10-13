@@ -19698,41 +19698,41 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
-		#region gender : int?
+		#region gender_type : int?
 
-		private int? _gender;
+		private int? _gender_type;
 		/// <summary>
 		/// 公的性別区分
 		/// </summary>
 		[Column(DbType="int", DataType=DataType.Int32), DataMember, Nullable, System.ComponentModel.DataAnnotations.Required]
-		public  int?  gender
+		public  int?  gender_type
 		{
-			get { return _gender; }
+			get { return _gender_type; }
 			set
 			{
-				if (_gender != value)
+				if (_gender_type != value)
 				{
-					BeforegenderChanged(value);
-					_gender = value;
-					AftergenderChanged();
+					Beforegender_typeChanged(value);
+					_gender_type = value;
+					Aftergender_typeChanged();
 
-					OngenderChanged();
+					Ongender_typeChanged();
 				}
 			}
 		}
 
 		#region INotifyPropertyChanged support
 
-		partial void BeforegenderChanged(int? newValue);
-		partial void AftergenderChanged();
+		partial void Beforegender_typeChanged(int? newValue);
+		partial void Aftergender_typeChanged();
 
-		public const string NameOfgender = "gender";
+		public const string NameOfgender_type = "gender_type";
 
-		private static readonly PropertyChangedEventArgs _genderChangedEventArgs = new PropertyChangedEventArgs(NameOfgender);
+		private static readonly PropertyChangedEventArgs _gender_typeChangedEventArgs = new PropertyChangedEventArgs(NameOfgender_type);
 
-		private void OngenderChanged()
+		private void Ongender_typeChanged()
 		{
-			OnPropertyChanged(_genderChangedEventArgs);
+			OnPropertyChanged(_gender_typeChangedEventArgs);
 		}
 
 		#endregion
@@ -20061,13 +20061,13 @@ namespace OpenAPITest.Domain
 
 		#region enum用アクセスラッパー
 		/// <summary>
-		/// genderのenumラッパー
+		/// gender_typeのenumラッパー
 		/// </summary>
-		[ColumnAlias("gender")]
-		public Gender? Gender
+		[ColumnAlias("gender_type")]
+		public Gender? GenderType
 		{
-			get => (Gender?)gender;
-			set => gender = value?.Val();
+			get => (Gender?)gender_type;
+			set => gender_type = value?.Val();
 		}
 		#endregion
 
@@ -20079,7 +20079,7 @@ namespace OpenAPITest.Domain
 			uid = default(int);
 			sex_type_id = 0;
 			name = "";
-			gender = 1;
+			gender_type = 1;
 			description = "";
 			display_order = 0;
 			created_at = DateTime.UtcNow;
@@ -20260,105 +20260,105 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public string name_like { get; set; }
 		#endregion
-		#region gender (Gender)
-		private int? _gender_eq;
+		#region gender_type (GenderType)
+		private int? _gender_type_eq;
 		/// <summary>
-		/// Gender_eqと等しい
+		/// GenderType_eqと等しい
 		/// </summary>
-		[DataMember] public Gender? Gender_eq
+		[DataMember] public Gender? GenderType_eq
 		{
-			get => _gender_eq?.ToGender();
-			set => _gender_eq = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_eq?.ToGender();
+			set => _gender_type_eq = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private int? _gender_ne;
+		private int? _gender_type_ne;
 		/// <summary>
-		/// Gender_neと等しくない
+		/// GenderType_neと等しくない
 		/// </summary>
-		[DataMember] public Gender? Gender_ne
+		[DataMember] public Gender? GenderType_ne
 		{
-			get => _gender_ne?.ToGender();
-			set => _gender_ne = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_ne?.ToGender();
+			set => _gender_type_ne = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private int? _gender_lt;
+		private int? _gender_type_lt;
 		/// <summary>
-		/// Gender_ltより小さい
+		/// GenderType_ltより小さい
 		/// </summary>
-		[DataMember] public Gender? Gender_lt
+		[DataMember] public Gender? GenderType_lt
 		{
-			get => _gender_lt?.ToGender();
-			set => _gender_lt = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_lt?.ToGender();
+			set => _gender_type_lt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private int? _gender_gt;
+		private int? _gender_type_gt;
 		/// <summary>
-		/// Gender_gtより大きい
+		/// GenderType_gtより大きい
 		/// </summary>
-		[DataMember] public Gender? Gender_gt
+		[DataMember] public Gender? GenderType_gt
 		{
-			get => _gender_gt?.ToGender();
-			set => _gender_gt = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_gt?.ToGender();
+			set => _gender_type_gt = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private int? _gender_le;
+		private int? _gender_type_le;
 		/// <summary>
-		/// Gender_le以下
+		/// GenderType_le以下
 		/// </summary>
-		[DataMember] public Gender? Gender_le
+		[DataMember] public Gender? GenderType_le
 		{
-			get => _gender_le?.ToGender();
-			set => _gender_le = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_le?.ToGender();
+			set => _gender_type_le = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private int? _gender_ge;
+		private int? _gender_type_ge;
 		/// <summary>
-		/// Gender_ge以上
+		/// GenderType_ge以上
 		/// </summary>
-		[DataMember] public Gender? Gender_ge
+		[DataMember] public Gender? GenderType_ge
 		{
-			get => _gender_ge?.ToGender();
-			set => _gender_ge = value.HasValue ? value.Value.Val() : (int?)null;
+			get => _gender_type_ge?.ToGender();
+			set => _gender_type_ge = value.HasValue ? value.Value.Val() : (int?)null;
 		}
-		private IEnumerable<int> _gender_in;
+		private IEnumerable<int> _gender_type_in;
 		/// <summary>
-		/// Gender_inに含まれる
+		/// GenderType_inに含まれる
 		/// </summary>
-		[DataMember] public IEnumerable<Gender> Gender_in
+		[DataMember] public IEnumerable<Gender> GenderType_in
 		{
-			get => _gender_in?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
-			set => _gender_in = value.Select(_ => _.Val());
+			get => _gender_type_in?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
+			set => _gender_type_in = value.Select(_ => _.Val());
 		}
-		private IEnumerable<int> _gender_ni;
+		private IEnumerable<int> _gender_type_ni;
 		/// <summary>
-		/// Gender_niに含まれない
+		/// GenderType_niに含まれない
 		/// </summary>
-		[DataMember] public IEnumerable<Gender> Gender_ni
+		[DataMember] public IEnumerable<Gender> GenderType_ni
 		{
-			get => _gender_ni?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
-			set => _gender_ni = value.Select(_ => _.Val());
+			get => _gender_type_ni?.Select(_ => _.ToGender().Value) ?? Enumerable.Empty<Gender>();
+			set => _gender_type_ni = value.Select(_ => _.Val());
 		}
-		private (int low, int high)? _gender_between;
+		private (int low, int high)? _gender_type_between;
 		/// <summary>
-		/// Gender_betweenの範囲内にある
+		/// GenderType_betweenの範囲内にある
 		/// </summary>
-		[DataMember] public (Gender low, Gender high)? Gender_between
+		[DataMember] public (Gender low, Gender high)? GenderType_between
 		{
-			get => _gender_between.HasValue ? (_gender_between.Value.low.ToGender().Value, _gender_between.Value.high.ToGender().Value) : ((Gender, Gender)?)null;
-			set => _gender_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
+			get => _gender_type_between.HasValue ? (_gender_type_between.Value.low.ToGender().Value, _gender_type_between.Value.high.ToGender().Value) : ((Gender, Gender)?)null;
+			set => _gender_type_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
 		}
-		private bool _gender_isnull { get; set; } =  false ;
+		private bool _gender_type_isnull { get; set; } =  false ;
 		/// <summary>
-		/// GenderがNULLか
+		/// GenderTypeがNULLか
 		/// </summary>
-		[DataMember] public bool Gender_isnull
+		[DataMember] public bool GenderType_isnull
 		{
-			get => _gender_isnull;
-			set => _gender_isnull = value;
+			get => _gender_type_isnull;
+			set => _gender_type_isnull = value;
 		}
-		private bool _gender_isnotnull { get; set; } = false;
+		private bool _gender_type_isnotnull { get; set; } = false;
 		/// <summary>
-		/// GenderがNULLではないか
+		/// GenderTypeがNULLではないか
 		/// </summary>
-		[DataMember] public bool Gender_isnotnull
+		[DataMember] public bool GenderType_isnotnull
 		{
-			get => _gender_isnotnull;
-			set => _gender_isnotnull = value;
+			get => _gender_type_isnotnull;
+			set => _gender_type_isnotnull = value;
 		}
 		#endregion
 		#region description
@@ -20710,17 +20710,17 @@ namespace OpenAPITest.Domain
 			if (name_in != null) predicate = predicate.And(_ => name_in.Contains(_.name));
 			if (name_ni != null) predicate = predicate.And(_ => !name_ni.Contains(_.name));
 			#endregion
-			#region gender
-			if (_gender_eq != null) predicate = predicate.And(_ => _.gender == _gender_eq);
-			if (_gender_ne != null) predicate = predicate.And(_ => _.gender != _gender_ne);
-			if (_gender_lt != null) predicate = predicate.And(_ => _.gender < _gender_lt);
-			if (_gender_gt != null) predicate = predicate.And(_ => _.gender > _gender_gt);
-			if (_gender_le != null) predicate = predicate.And(_ => _.gender <= _gender_le);
-			if (_gender_ge != null) predicate = predicate.And(_ => _.gender >= _gender_ge);
-			if (_gender_in != null) predicate = predicate.And(_ => _gender_in.Contains(_.gender.Value));
-			if (_gender_ni != null) predicate = predicate.And(_ => !_gender_ni.Contains(_.gender.Value));
-			if (_gender_isnull) predicate = predicate.And(_ => _.gender == null);
-			if (_gender_isnotnull) predicate = predicate.And(_ => _.gender != null);
+			#region gender_type
+			if (_gender_type_eq != null) predicate = predicate.And(_ => _.gender_type == _gender_type_eq);
+			if (_gender_type_ne != null) predicate = predicate.And(_ => _.gender_type != _gender_type_ne);
+			if (_gender_type_lt != null) predicate = predicate.And(_ => _.gender_type < _gender_type_lt);
+			if (_gender_type_gt != null) predicate = predicate.And(_ => _.gender_type > _gender_type_gt);
+			if (_gender_type_le != null) predicate = predicate.And(_ => _.gender_type <= _gender_type_le);
+			if (_gender_type_ge != null) predicate = predicate.And(_ => _.gender_type >= _gender_type_ge);
+			if (_gender_type_in != null) predicate = predicate.And(_ => _gender_type_in.Contains(_.gender_type.Value));
+			if (_gender_type_ni != null) predicate = predicate.And(_ => !_gender_type_ni.Contains(_.gender_type.Value));
+			if (_gender_type_isnull) predicate = predicate.And(_ => _.gender_type == null);
+			if (_gender_type_isnotnull) predicate = predicate.And(_ => _.gender_type != null);
 			#endregion
 			#region description
 			if (description_eq != null) predicate = predicate.And(_ => _.description == description_eq);

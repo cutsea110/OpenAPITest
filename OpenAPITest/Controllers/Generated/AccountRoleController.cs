@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// アカウントロールの件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -64,7 +64,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="with_Role">RoleをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">AccountRoleのリスト</returns>
 		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<AccountRole>), StatusCodes.Status200OK)]
@@ -96,8 +96,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_Role">RoleをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
 		/// <param name="roleId">ロールID(role_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">AccountRoleオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_AccountRole")]
 		[HttpGet("get/{accountId}/{roleId}")]
 		[ProducesResponseType(typeof(AccountRole), StatusCodes.Status200OK)]
@@ -153,7 +153,8 @@ namespace OpenAPITest.Controllers
 		/// アカウントロールの更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_AccountRole")]
 		[PermissionTypeAuthorize("Update_AccountRole")]
 		[HttpPost("upsert")]

@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 住所種別の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_AddressType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -63,7 +63,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">AddressTypeのリスト</returns>
 		[PermissionTypeAuthorize("Read_AddressType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<AddressType>), StatusCodes.Status200OK)]
@@ -87,8 +87,8 @@ namespace OpenAPITest.Controllers
 		/// 住所種別の取得
 		/// </summary>
 		/// <param name="addressTypeId">住所種別ID(address_type_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">AddressTypeオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_AddressType")]
 		[HttpGet("get/{addressTypeId}")]
 		[ProducesResponseType(typeof(AddressType), StatusCodes.Status200OK)]
@@ -138,7 +138,8 @@ namespace OpenAPITest.Controllers
 		/// 住所種別の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_AddressType")]
 		[PermissionTypeAuthorize("Update_AddressType")]
 		[HttpPost("upsert")]

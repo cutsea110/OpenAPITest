@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 性別区分の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_SexType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -63,7 +63,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">SexTypeのリスト</returns>
 		[PermissionTypeAuthorize("Read_SexType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<SexType>), StatusCodes.Status200OK)]
@@ -87,8 +87,8 @@ namespace OpenAPITest.Controllers
 		/// 性別区分の取得
 		/// </summary>
 		/// <param name="sexTypeId">性別区分ID(sex_type_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">SexTypeオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_SexType")]
 		[HttpGet("get/{sexTypeId}")]
 		[ProducesResponseType(typeof(SexType), StatusCodes.Status200OK)]
@@ -138,7 +138,8 @@ namespace OpenAPITest.Controllers
 		/// 性別区分の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_SexType")]
 		[PermissionTypeAuthorize("Update_SexType")]
 		[HttpPost("upsert")]

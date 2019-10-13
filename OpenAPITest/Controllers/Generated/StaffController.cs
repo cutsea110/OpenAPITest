@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 職員の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_Staff")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -68,7 +68,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">Staffのリスト</returns>
 		[PermissionTypeAuthorize("Read_Staff")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
@@ -111,8 +111,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="staffNo">職員番号(staff_no)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">Staffオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_Staff")]
 		[HttpGet("get/{staffNo}")]
 		[ProducesResponseType(typeof(Staff), StatusCodes.Status200OK)]
@@ -176,7 +176,8 @@ namespace OpenAPITest.Controllers
 		/// 職員の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_Staff")]
 		[PermissionTypeAuthorize("Update_Staff")]
 		[HttpPost("upsert")]

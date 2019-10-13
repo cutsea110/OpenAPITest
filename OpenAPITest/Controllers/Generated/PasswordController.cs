@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// パスワード認証の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_Password")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -64,7 +64,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="with_Account">AccountをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">Passwordのリスト</returns>
 		[PermissionTypeAuthorize("Read_Password")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Password>), StatusCodes.Status200OK)]
@@ -95,8 +95,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="with_Account">AccountをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">Passwordオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_Password")]
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Password), StatusCodes.Status200OK)]
@@ -152,7 +152,8 @@ namespace OpenAPITest.Controllers
 		/// パスワード認証の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_Password")]
 		[PermissionTypeAuthorize("Update_Password")]
 		[HttpPost("upsert")]

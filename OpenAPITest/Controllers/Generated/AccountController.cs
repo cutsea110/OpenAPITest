@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// アカウントの件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_Account")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -67,7 +67,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
 		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">Accountのリスト</returns>
 		[PermissionTypeAuthorize("Read_Account")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), StatusCodes.Status200OK)]
@@ -107,8 +107,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
 		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
 		/// <param name="accountId">アカウントID(account_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">Accountオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_Account")]
 		[HttpGet("get/{accountId}")]
 		[ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
@@ -170,7 +170,8 @@ namespace OpenAPITest.Controllers
 		/// アカウントの更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_Account")]
 		[PermissionTypeAuthorize("Update_Account")]
 		[HttpPost("upsert")]

@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 教員の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -71,7 +71,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">Teacherのリスト</returns>
 		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Teacher>), StatusCodes.Status200OK)]
@@ -123,8 +123,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="teacherNo">教員番号(teacher_no)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">Teacherオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("get/{teacherNo}")]
 		[ProducesResponseType(typeof(Teacher), StatusCodes.Status200OK)]
@@ -194,7 +194,8 @@ namespace OpenAPITest.Controllers
 		/// 教員の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_Teacher")]
 		[PermissionTypeAuthorize("Update_Teacher")]
 		[HttpPost("upsert")]

@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 人名の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -65,7 +65,7 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_PersonNameType">PersonNameTypeをLoadWithするか</param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">PersonNameのリスト</returns>
 		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<PersonName>), StatusCodes.Status200OK)]
@@ -101,8 +101,8 @@ namespace OpenAPITest.Controllers
 		/// <param name="userType">利用者種別(user_type)</param>
 		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
 		/// <param name="seq">連番(seq)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">PersonNameオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_PersonName")]
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(PersonName), StatusCodes.Status200OK)]
@@ -160,7 +160,8 @@ namespace OpenAPITest.Controllers
 		/// 人名の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_PersonName")]
 		[PermissionTypeAuthorize("Update_PersonName")]
 		[HttpPost("upsert")]

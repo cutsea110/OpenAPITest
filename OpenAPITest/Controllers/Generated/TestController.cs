@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// テストの件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_Test")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -63,7 +63,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">Testのリスト</returns>
 		[PermissionTypeAuthorize("Read_Test")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Test>), StatusCodes.Status200OK)]
@@ -87,8 +87,8 @@ namespace OpenAPITest.Controllers
 		/// テストの取得
 		/// </summary>
 		/// <param name="uid">ユニークID(uid)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">Testオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_Test")]
 		[HttpGet("get/{uid}")]
 		[ProducesResponseType(typeof(Test), StatusCodes.Status200OK)]
@@ -136,7 +136,8 @@ namespace OpenAPITest.Controllers
 		/// テストの更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_Test")]
 		[PermissionTypeAuthorize("Update_Test")]
 		[HttpPost("upsert")]

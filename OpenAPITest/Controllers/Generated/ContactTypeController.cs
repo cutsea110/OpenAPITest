@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// 連絡先種別の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -63,7 +63,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">ContactTypeのリスト</returns>
 		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<ContactType>), StatusCodes.Status200OK)]
@@ -87,8 +87,8 @@ namespace OpenAPITest.Controllers
 		/// 連絡先種別の取得
 		/// </summary>
 		/// <param name="contactTypeId">連絡先種別ID(contact_type_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">ContactTypeオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_ContactType")]
 		[HttpGet("get/{contactTypeId}")]
 		[ProducesResponseType(typeof(ContactType), StatusCodes.Status200OK)]
@@ -138,7 +138,8 @@ namespace OpenAPITest.Controllers
 		/// 連絡先種別の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_ContactType")]
 		[PermissionTypeAuthorize("Update_ContactType")]
 		[HttpPost("upsert")]

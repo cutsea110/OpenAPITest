@@ -39,7 +39,7 @@ namespace OpenAPITest.Controllers
 		/// ロール権限の件数
 		/// </summary>
 		/// <param name="c"></param>
-		/// <returns>ヒットした件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
 		[PermissionTypeAuthorize("Read_RolePermission")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
@@ -63,7 +63,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="c"></param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns></returns>
+		/// <returns code="200">RolePermissionのリスト</returns>
 		[PermissionTypeAuthorize("Read_RolePermission")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<RolePermission>), StatusCodes.Status200OK)]
@@ -88,8 +88,8 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="roleId">ロールID(role_id)</param>
 		/// <param name="permissionId">権限ID(permission_id)</param>
-		/// <returns code="200">Found the Object</returns>
-		/// <returns code="404">Invalid identifiers</returns>
+		/// <returns code="200">RolePermissionオブジェクト</returns>
+		/// <returns code="404">無効な識別子</returns>
 		[PermissionTypeAuthorize("Read_RolePermission")]
 		[HttpGet("get/{roleId}/{permissionId}")]
 		[ProducesResponseType(typeof(RolePermission), StatusCodes.Status200OK)]
@@ -139,7 +139,8 @@ namespace OpenAPITest.Controllers
 		/// ロール権限の更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns>件数</returns>
+		/// <returns code="200">ヒットした件数</returns>
+		/// <returns code="404"></returns>
 		[PermissionTypeAuthorize("Create_RolePermission")]
 		[PermissionTypeAuthorize("Update_RolePermission")]
 		[HttpPost("upsert")]
