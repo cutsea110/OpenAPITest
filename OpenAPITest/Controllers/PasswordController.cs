@@ -207,7 +207,7 @@ namespace OpenAPITest.Controllers
                             var token = CreateJwtSecurityToken(new Auth
                             {
                                 ID = validAccPw.Acc.AccountID,
-                                Name = validAccPw.Acc.staff_no,
+                                Name = validAccPw.Acc?.staff_no ?? string.Empty, // [FIXME]
                             });
                             return Ok(new TokenViewModel
                             {
