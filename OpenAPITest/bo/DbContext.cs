@@ -24858,6 +24858,46 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region Teacher : user_type,generic_user_no (FK_PersonName_Teacher)
+
+		private Teacher _Teacher;
+		/// <summary>
+		/// FK_PersonName_Teacher
+		/// </summary>
+		[Association(ThisKey="user_type,generic_user_no", OtherKey="user_type,teacher_no", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_PersonName_Teacher", BackReferenceName="PersonName"), DataMember]
+		public  Teacher  Teacher
+		{
+			get { return _Teacher; }
+			set
+			{
+				if (_Teacher != value)
+				{
+					BeforeTeacherChanged(value);
+					_Teacher = value;
+					AfterTeacherChanged();
+
+					OnTeacherChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeTeacherChanged(Teacher newValue);
+		partial void AfterTeacherChanged ();
+
+		public const string NameOfTeacher = "Teacher";
+
+		private static readonly PropertyChangedEventArgs _TeacherChangedEventArgs = new PropertyChangedEventArgs(NameOfTeacher);
+
+		private void OnTeacherChanged()
+		{
+			OnPropertyChanged(_TeacherChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 
 		#endregion
 
@@ -27672,6 +27712,46 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region Teacher : user_type,generic_user_no (FK_Address_Teacher)
+
+		private Teacher _Teacher;
+		/// <summary>
+		/// FK_Address_Teacher
+		/// </summary>
+		[Association(ThisKey="user_type,generic_user_no", OtherKey="user_type,teacher_no", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Address_Teacher", BackReferenceName="Address"), DataMember]
+		public  Teacher  Teacher
+		{
+			get { return _Teacher; }
+			set
+			{
+				if (_Teacher != value)
+				{
+					BeforeTeacherChanged(value);
+					_Teacher = value;
+					AfterTeacherChanged();
+
+					OnTeacherChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeTeacherChanged(Teacher newValue);
+		partial void AfterTeacherChanged ();
+
+		public const string NameOfTeacher = "Teacher";
+
+		private static readonly PropertyChangedEventArgs _TeacherChangedEventArgs = new PropertyChangedEventArgs(NameOfTeacher);
+
+		private void OnTeacherChanged()
+		{
+			OnPropertyChanged(_TeacherChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 
 		#endregion
 
@@ -30422,6 +30502,46 @@ namespace OpenAPITest.Domain
 		private void OnStaffChanged()
 		{
 			OnPropertyChanged(_StaffChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region Teacher : user_type,generic_user_no (FK_Contack_Teacher)
+
+		private Teacher _Teacher;
+		/// <summary>
+		/// FK_Contack_Teacher
+		/// </summary>
+		[Association(ThisKey="user_type,generic_user_no", OtherKey="user_type,teacher_no", CanBeNull=true, Relationship=Relationship.ManyToOne, KeyName="FK_Contack_Teacher", BackReferenceName="Contact"), DataMember]
+		public  Teacher  Teacher
+		{
+			get { return _Teacher; }
+			set
+			{
+				if (_Teacher != value)
+				{
+					BeforeTeacherChanged(value);
+					_Teacher = value;
+					AfterTeacherChanged();
+
+					OnTeacherChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void BeforeTeacherChanged(Teacher newValue);
+		partial void AfterTeacherChanged ();
+
+		public const string NameOfTeacher = "Teacher";
+
+		private static readonly PropertyChangedEventArgs _TeacherChangedEventArgs = new PropertyChangedEventArgs(NameOfTeacher);
+
+		private void OnTeacherChanged()
+		{
+			OnPropertyChanged(_TeacherChangedEventArgs);
 		}
 
 		#endregion

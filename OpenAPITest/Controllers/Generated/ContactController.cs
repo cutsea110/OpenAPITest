@@ -64,12 +64,13 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="with_ContactType">ContactTypeをLoadWithするか</param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <returns code="200">Contactのリスト</returns>
 		[PermissionTypeAuthorize("Read_Contact")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Contact>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]ContactCondition c, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]ContactCondition c, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -84,6 +85,8 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.ContactType);
 				if (with_Staff)
 					q = q.LoadWith(_ => _.Staff);
+				if (with_Teacher)
+					q = q.LoadWith(_ => _.Teacher);
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -98,6 +101,7 @@ namespace OpenAPITest.Controllers
 		/// </summary>
 		/// <param name="with_ContactType">ContactTypeをLoadWithするか</param>
 		/// <param name="with_Staff">StaffをLoadWithするか</param>
+		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
 		/// <param name="userType">利用者種別(user_type)</param>
 		/// <param name="genericUserNo">利用者番号(generic_user_no)</param>
 		/// <param name="seq">連番(seq)</param>
@@ -107,7 +111,7 @@ namespace OpenAPITest.Controllers
 		[HttpGet("get/{userType}/{genericUserNo}/{seq}")]
 		[ProducesResponseType(typeof(Contact), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public IActionResult Get(int userType, string genericUserNo, int seq, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff)
+		public IActionResult Get(int userType, string genericUserNo, int seq, [FromQuery]bool with_ContactType, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -122,6 +126,8 @@ namespace OpenAPITest.Controllers
 					q = q.LoadWith(_ => _.ContactType);
 				if (with_Staff)
 					q = q.LoadWith(_ => _.Staff);
+				if (with_Teacher)
+					q = q.LoadWith(_ => _.Teacher);
 				#endregion
 
 				var o = q.Find(userType, genericUserNo, seq);

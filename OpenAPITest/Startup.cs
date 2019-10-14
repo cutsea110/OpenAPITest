@@ -338,21 +338,23 @@ namespace OpenAPITest
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             #region Add to support Authentication With Jwt
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(opt =>
-            {
-                opt.Audience = AppConfiguration.JwtSecret.SiteUri;
-                opt.TokenValidationParameters = new TokenValidationParameters
+            services
+                .AddAuthentication(opt =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidIssuer = AppConfiguration.JwtSecret.SiteUri,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey))
-                };
-            });
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(opt =>
+                {
+                    opt.Audience = AppConfiguration.JwtSecret.SiteUri;
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = true,
+                        ValidIssuer = AppConfiguration.JwtSecret.SiteUri,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.JwtSecret.SecretKey))
+                    };
+                });
             #endregion
 
             #region Add to support Authorization by using PermissionType
@@ -374,25 +376,26 @@ namespace OpenAPITest
                 .AddNewtonsoftJson();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(option =>
-            {
-                //トークン認証用のUIを追加する
-                option.AddSecurityDefinition("JwtBearerAuth",
-                    new OpenApiSecurityScheme
-                    {
-                        Name = "Authorization",
-                        In = ParameterLocation.Header,
-                        Type = SecuritySchemeType.ApiKey,
-                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\". You should get the token from a response of 'token' API.",
-                        BearerFormat = "Bearer {token}",
-                    });
+            services
+                .AddSwaggerGen(option =>
+                {
+                    //トークン認証用のUIを追加する
+                    option.AddSecurityDefinition("JwtBearerAuth",
+                        new OpenApiSecurityScheme
+                        {
+                            Name = "Authorization",
+                            In = ParameterLocation.Header,
+                            Type = SecuritySchemeType.ApiKey,
+                            Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\". You should get the token from a response of 'token' API.",
+                            BearerFormat = "Bearer {token}",
+                        });
 
-                // 入力したトークンをリクエストに含めるためのフィルタを追加
-                option.OperationFilter<AssignJwtSecurityRequirements>();
+                    // 入力したトークンをリクエストに含めるためのフィルタを追加
+                    option.OperationFilter<AssignJwtSecurityRequirements>();
 
-                option.IncludeXmlComments(XmlCommentsPath);
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
-            });
+                    option.IncludeXmlComments(XmlCommentsPath);
+                    option.SwaggerDoc("v1", new OpenApiInfo { Title = "PeppaWeb API", Version = "v1" });
+                });
             #endregion
         }
 
