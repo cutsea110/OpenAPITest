@@ -22,13 +22,13 @@ using OpenAPITest.Domain;
 namespace OpenAPITest.Controllers
 {
 	/// <summary>
-	/// アカウントのWebAPI
+	/// 他ユーザのWebAPI
 	/// </summary>
     [ServiceFilter(typeof(ClientIpCheckFilter))]
 	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
-	public partial class AccountController : ControllerBase
+	public partial class UserController : ControllerBase
 	{
         /// <summary>
         /// Current Account ID
@@ -36,14 +36,14 @@ namespace OpenAPITest.Controllers
         public int CurrentAccountId => int.Parse(this.User.FindFirst(ClaimTypes.Name).Value);
 
 		/// <summary>
-		/// アカウントの件数
+		/// 他ユーザの件数
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns code="200">ヒットした件数</returns>
-		[PermissionTypeAuthorize("Read_Account")]
+		[PermissionTypeAuthorize("Read_User")]
 		[HttpGet("count")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Count([FromQuery]AccountCondition c)
+		public IActionResult Count([FromQuery]UserCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -52,27 +52,27 @@ namespace OpenAPITest.Controllers
 			using (var db = new peppaDB())
 			{
 				var count =
-					c == null ? db.Account.Count() :
-					db.Account.Count(predicate: c.CreatePredicate());
+					c == null ? db.User.Count() :
+					db.User.Count(predicate: c.CreatePredicate());
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// アカウントの検索
+		/// 他ユーザの検索
 		/// </summary>
 		/// <param name="c"></param>
-		/// <param name="with_Staff">StaffをLoadWithするか</param>
-		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
-		/// <param name="with_User">UserをLoadWithするか</param>
-		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
-		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
+		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
+		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
+		/// <param name="with_NameList">NameListをLoadWithするか</param>
+		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
+		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
-		/// <returns code="200">Accountのリスト</returns>
-		[PermissionTypeAuthorize("Read_Account")]
+		/// <returns code="200">Userのリスト</returns>
+		[PermissionTypeAuthorize("Read_User")]
 		[HttpGet("search")]
-		[ProducesResponseType(typeof(IEnumerable<Account>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_User, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order)
+		[ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
+		public IActionResult Search([FromQuery]UserCondition c, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -80,19 +80,19 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Account;
+				var q = db.User;
 
 				#region LoadWith
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
-				if (with_User)
-					q = q.LoadWith(_ => _.User);
-				if (with_AccountRoleList)
-					q = q.LoadWith(_ => _.AccountRoleList);
-				if (with_PasswordList)
-					q = q.LoadWith(_ => _.PasswordList);
+				if (with_SexType)
+					q = q.LoadWith(_ => _.SexType);
+				if (with_AccountList)
+					q = q.LoadWith(_ => _.AccountList);
+				if (with_NameList)
+					q = q.LoadWith(_ => _.NameList);
+				if (with_AddressList)
+					q = q.LoadWith(_ => _.AddressList);
+				if (with_ContactList)
+					q = q.LoadWith(_ => _.ContactList);
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -103,21 +103,21 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの取得
+		/// 他ユーザの取得
 		/// </summary>
-		/// <param name="with_Staff">StaffをLoadWithするか</param>
-		/// <param name="with_Teacher">TeacherをLoadWithするか</param>
-		/// <param name="with_User">UserをLoadWithするか</param>
-		/// <param name="with_AccountRoleList">AccountRoleListをLoadWithするか</param>
-		/// <param name="with_PasswordList">PasswordListをLoadWithするか</param>
-		/// <param name="accountId">アカウントID(account_id)</param>
-		/// <returns code="200">Accountオブジェクト</returns>
+		/// <param name="with_SexType">SexTypeをLoadWithするか</param>
+		/// <param name="with_AccountList">AccountListをLoadWithするか</param>
+		/// <param name="with_NameList">NameListをLoadWithするか</param>
+		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
+		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
+		/// <param name="userNo">利用者番号(user_no)</param>
+		/// <returns code="200">Userオブジェクト</returns>
 		/// <returns code="404">無効な識別子</returns>
-		[PermissionTypeAuthorize("Read_Account")]
-		[HttpGet("get/{accountId}")]
-		[ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
+		[PermissionTypeAuthorize("Read_User")]
+		[HttpGet("get/{userNo}")]
+		[ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public IActionResult Get(int accountId, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_User, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList)
+		public IActionResult Get(string userNo, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -125,36 +125,36 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Account;
+				var q = db.User;
 
 				#region LoadWith
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
-				if (with_User)
-					q = q.LoadWith(_ => _.User);
-				if (with_AccountRoleList)
-					q = q.LoadWith(_ => _.AccountRoleList);
-				if (with_PasswordList)
-					q = q.LoadWith(_ => _.PasswordList);
+				if (with_SexType)
+					q = q.LoadWith(_ => _.SexType);
+				if (with_AccountList)
+					q = q.LoadWith(_ => _.AccountList);
+				if (with_NameList)
+					q = q.LoadWith(_ => _.NameList);
+				if (with_AddressList)
+					q = q.LoadWith(_ => _.AddressList);
+				if (with_ContactList)
+					q = q.LoadWith(_ => _.ContactList);
 				#endregion
 
-				var o = q.Find(accountId);
+				var o = q.Find(userNo);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
 		}
 
 		/// <summary>
-		/// アカウントの作成
+		/// 他ユーザの作成
 		/// </summary>
 		/// <param name="o"></param>
-		/// <returns code="201">Accountオブジェクト</returns>
-		[PermissionTypeAuthorize("Create_Account")]
+		/// <returns code="201">Userオブジェクト</returns>
+		[PermissionTypeAuthorize("Create_User")]
 		[HttpPost("create")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Create([FromBody]Account o)
+		public IActionResult Create([FromBody]User o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -165,25 +165,25 @@ namespace OpenAPITest.Controllers
 				{
 					o.created_by = CurrentAccountId;
 					o.modified_by = CurrentAccountId;
-					o.uid = db.InsertWithInt32Identity<Account>(o);
-					return CreatedAtAction(nameof(Get), new { accountId = o.account_id }, o);
+					o.uid = db.InsertWithInt32Identity<User>(o);
+					return CreatedAtAction(nameof(Get), new { userNo = o.user_no }, o);
 				}
 			}
 			return BadRequest();
 		}
 
 		/// <summary>
-		/// アカウントの更新(必要時作成)
+		/// 他ユーザの更新(必要時作成)
 		/// </summary>
 		/// <param name="o"></param>
 		/// <returns code="200">ヒットした件数</returns>
 		/// <returns code="404"></returns>
-		[PermissionTypeAuthorize("Create_Account")]
-		[PermissionTypeAuthorize("Update_Account")]
+		[PermissionTypeAuthorize("Create_User")]
+		[PermissionTypeAuthorize("Update_User")]
 		[HttpPost("upsert")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Upsert([FromBody]Account o)
+		public IActionResult Upsert([FromBody]User o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -195,7 +195,7 @@ namespace OpenAPITest.Controllers
 					if (o.uid == 0)
 						o.created_by = CurrentAccountId;
 					o.modified_by = CurrentAccountId;
-					int count = db.InsertOrReplace<Account>(o);
+					int count = db.InsertOrReplace<User>(o);
 					return Ok(count);
 				}
 			}
@@ -203,15 +203,15 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの一括作成
+		/// 他ユーザの一括作成
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>BulkCopyRowsCopied</returns>
-		[PermissionTypeAuthorize("Create_Account")]
+		[PermissionTypeAuthorize("Create_User")]
 		[HttpPost("massive-new")]
 		[ProducesResponseType(typeof(BulkCopyRowsCopied), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult MassiveCreate([FromBody]IEnumerable<Account> os)
+		public IActionResult MassiveCreate([FromBody]IEnumerable<User> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -226,7 +226,7 @@ namespace OpenAPITest.Controllers
 						o.modified_by = CurrentAccountId;
 					}
 
-					var ret = db.BulkCopy<Account>(os);
+					var ret = db.BulkCopy<User>(os);
 					return Ok(ret);
 				}
 			}
@@ -234,16 +234,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントのマージ
+		/// 他ユーザのマージ
 		/// </summary>
 		/// <param name="os"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Create_Account")]
-		[PermissionTypeAuthorize("Update_Account")]
+		[PermissionTypeAuthorize("Create_User")]
+		[PermissionTypeAuthorize("Update_User")]
 		[HttpPost("merge")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Merge([FromBody]IEnumerable<Account> os)
+		public IActionResult Merge([FromBody]IEnumerable<User> os)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -258,7 +258,7 @@ namespace OpenAPITest.Controllers
 							o.created_by = CurrentAccountId;
 						o.modified_by = CurrentAccountId;
 					}
-					var count = db.Merge<Account>(os);
+					var count = db.Merge<User>(os);
 					return Ok(count);
 				}
 			}
@@ -266,16 +266,16 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの更新
+		/// 他ユーザの更新
 		/// </summary>
-		/// <param name="accountId">アカウントID(account_id)</param>
+		/// <param name="userNo">利用者番号(user_no)</param>
 		/// <param name="o"></param>
 		/// <returns>更新件数</returns>
-		[PermissionTypeAuthorize("Update_Account")]
-		[HttpPut, Route("modify/{accountId}")]
+		[PermissionTypeAuthorize("Update_User")]
+		[HttpPut, Route("modify/{userNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public IActionResult Modify(int accountId, [FromBody]Account o)
+		public IActionResult Modify(string userNo, [FromBody]User o)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -285,7 +285,7 @@ namespace OpenAPITest.Controllers
 				using (var db = new peppaDB())
 				{
 					o.modified_by = CurrentAccountId;
-					var count = db.Update<Account>(o);
+					var count = db.Update<User>(o);
 					return Ok(count);
 				}
 			}
@@ -293,14 +293,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの削除(論理)
+		/// 他ユーザの削除(論理)
 		/// </summary>
-		/// <param name="accountId">アカウントID(account_id)</param>
+		/// <param name="userNo">利用者番号(user_no)</param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Account")]
-		[HttpDelete("remove/{accountId}")]
+		[PermissionTypeAuthorize("Delete_User")]
+		[HttpDelete("remove/{userNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Remove(int accountId)
+		public IActionResult Remove(string userNo)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -308,8 +308,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Account
-					.Where(_ => _.account_id == accountId)
+				var count = db.User
+					.Where(_ => _.user_no == userNo)
 					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
 					.Update();
@@ -318,14 +318,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの削除(論理)
+		/// 他ユーザの削除(論理)
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Account")]
+		[PermissionTypeAuthorize("Delete_User")]
 		[HttpDelete("remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult Remove([FromQuery]AccountCondition c)
+		public IActionResult Remove([FromQuery]UserCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -333,7 +333,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Account
+				var count = db.User
 					.Where(c.CreatePredicate())
 					.Set(_ => _.modified_by, CurrentAccountId)
 					.Set(_ => _.removed_at, Sql.CurrentTimestampUtc)
@@ -343,14 +343,14 @@ namespace OpenAPITest.Controllers
 		}
 
 		/// <summary>
-		/// アカウントの物理削除
+		/// 他ユーザの物理削除
 		/// </summary>
-		/// <param name="accountId">アカウントID(account_id)</param>
+		/// <param name="userNo">利用者番号(user_no)</param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Account")]
-		[HttpDelete("physically-remove/{accountId}")]
+		[PermissionTypeAuthorize("Delete_User")]
+		[HttpDelete("physically-remove/{userNo}")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult PhysicallyRemove(int accountId)
+		public IActionResult PhysicallyRemove(string userNo)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -358,22 +358,22 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Account
-					.Where(_ => _.account_id == accountId)
+				var count = db.User
+					.Where(_ => _.user_no == userNo)
 					.Delete();
 				return Ok(count);
 			}
 		}
 
 		/// <summary>
-		/// アカウントの物理削除
+		/// 他ユーザの物理削除
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>件数</returns>
-		[PermissionTypeAuthorize("Delete_Account")]
+		[PermissionTypeAuthorize("Delete_User")]
 		[HttpDelete("physically-remove")]
 		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		public IActionResult PhysicallyRemove([FromQuery]AccountCondition c)
+		public IActionResult PhysicallyRemove([FromQuery]UserCondition c)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -381,7 +381,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var count = db.Account
+				var count = db.User
 					.Where(c.CreatePredicate())
 					.Delete();
 				return Ok(count);
