@@ -55,7 +55,6 @@ namespace OpenAPITest.Controllers
 		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
 		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order)
 		{
-
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
 			DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
