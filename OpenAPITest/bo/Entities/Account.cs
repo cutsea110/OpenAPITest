@@ -78,6 +78,10 @@ namespace OpenAPITest.Domain
                     accounts.LoadWith(_ => _.Teacher);
                     q.teacher_no_eq = id;
                     break;
+                case UserType.他ユーザ:
+                    accounts.LoadWith(_ => _.User);
+                    q.user_no_eq = id;
+                    break;
                 case UserType.ゴースト:
                     q.account_id_eq = int.Parse(id);
                     break;
