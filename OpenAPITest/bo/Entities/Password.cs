@@ -100,6 +100,7 @@ namespace OpenAPITest.Domain
         /// <returns></returns>
         public bool IsActive(DateTime dt) =>
             removed_at == null &&
+            available_from <= dt && (available_to == null || dt <= available_to) &&
             (expiration_on == null || expiration_on >= dt) &&
             IsLocked == false;
     }
