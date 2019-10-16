@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 教員資格種別拡張メソッド用クラス
 	/// </summary>
-	static public partial class TeacherLisenceTypeExtention
+	static public partial class TeacherLisenceTypeExtension
 	{
 		#region static methods
 		/// <summary>

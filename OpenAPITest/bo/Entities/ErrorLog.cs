@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// エラーログ拡張メソッド用クラス
 	/// </summary>
-	static public partial class ErrorLogExtention
+	static public partial class ErrorLogExtension
 	{
 		#region static methods
 		/// <summary>

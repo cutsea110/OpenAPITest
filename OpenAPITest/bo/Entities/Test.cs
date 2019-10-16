@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// テスト拡張メソッド用クラス
 	/// </summary>
-	static public partial class TestExtention
+	static public partial class TestExtension
 	{
 		#region static methods
 		/// <summary>

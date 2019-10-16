@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロールマスタ拡張メソッド用クラス
 	/// </summary>
-	static public partial class RoleExtention
+	static public partial class RoleExtension
 	{
 		#region static methods
 		/// <summary>

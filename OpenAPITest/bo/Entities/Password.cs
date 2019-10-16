@@ -134,7 +134,7 @@ namespace OpenAPITest.Domain
     /// <summary>
     /// パスワード拡張メソッド用クラス
     /// </summary>
-    static public partial class PasswordExtention
+    static public partial class PasswordExtension
     {
         #region static methods
         /// <summary>

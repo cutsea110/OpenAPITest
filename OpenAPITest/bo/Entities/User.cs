@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 他ユーザ拡張メソッド用クラス
 	/// </summary>
-	static public partial class UserExtention
+	static public partial class UserExtension
 	{
 		#region static methods
 		/// <summary>

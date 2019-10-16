@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 住所拡張メソッド用クラス
 	/// </summary>
-	static public partial class AddressExtention
+	static public partial class AddressExtension
 	{
 		#region static methods
 		/// <summary>

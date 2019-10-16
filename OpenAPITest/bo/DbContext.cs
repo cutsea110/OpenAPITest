@@ -5856,7 +5856,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// テスト拡張
 	/// </summary>
-	static public partial class TestExtention
+	static public partial class TestExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -9246,7 +9246,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロールマスタ拡張
 	/// </summary>
-	static public partial class RoleExtention
+	static public partial class RoleExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -10931,7 +10931,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロール権限拡張
 	/// </summary>
-	static public partial class RolePermissionExtention
+	static public partial class RolePermissionExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -12496,7 +12496,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// アカウント拡張
 	/// </summary>
-	static public partial class AccountExtention
+	static public partial class AccountExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -14401,7 +14401,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// パスワード認証拡張
 	/// </summary>
-	static public partial class PasswordExtention
+	static public partial class PasswordExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -16030,7 +16030,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// アカウントロール拡張
 	/// </summary>
-	static public partial class AccountRoleExtention
+	static public partial class AccountRoleExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -17188,7 +17188,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// エラーログ拡張
 	/// </summary>
-	static public partial class ErrorLogExtention
+	static public partial class ErrorLogExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -18651,7 +18651,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 職員拡張
 	/// </summary>
-	static public partial class StaffExtention
+	static public partial class StaffExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -20469,7 +20469,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 教員拡張
 	/// </summary>
-	static public partial class TeacherExtention
+	static public partial class TeacherExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -22147,7 +22147,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 他ユーザ拡張
 	/// </summary>
-	static public partial class UserExtention
+	static public partial class UserExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -23505,7 +23505,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 性別区分拡張
 	/// </summary>
-	static public partial class SexTypeExtention
+	static public partial class SexTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -24923,7 +24923,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 勤務形態種別拡張
 	/// </summary>
-	static public partial class WorkStyleTypeExtention
+	static public partial class WorkStyleTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -26228,7 +26228,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 職階種別拡張
 	/// </summary>
-	static public partial class PositionTypeExtention
+	static public partial class PositionTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -27574,7 +27574,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 教員資格種別拡張
 	/// </summary>
-	static public partial class TeacherLisenceTypeExtention
+	static public partial class TeacherLisenceTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -29220,7 +29220,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 人名拡張
 	/// </summary>
-	static public partial class PersonNameExtention
+	static public partial class PersonNameExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -30769,7 +30769,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 人名種別拡張
 	/// </summary>
-	static public partial class PersonNameTypeExtention
+	static public partial class PersonNameTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -32531,7 +32531,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 住所拡張
 	/// </summary>
-	static public partial class AddressExtention
+	static public partial class AddressExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -34308,7 +34308,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 住所種別拡張
 	/// </summary>
-	static public partial class AddressTypeExtention
+	static public partial class AddressTypeExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -35783,7 +35783,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 連絡先拡張
 	/// </summary>
-	static public partial class ContactExtention
+	static public partial class ContactExtension
 	{
 		#region static methods
 		#region Findメソッド
@@ -37176,7 +37176,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 連絡先種別拡張
 	/// </summary>
-	static public partial class ContactTypeExtention
+	static public partial class ContactTypeExtension
 	{
 		#region static methods
 		#region Findメソッド

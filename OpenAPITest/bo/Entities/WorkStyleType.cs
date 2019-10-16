@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 勤務形態種別拡張メソッド用クラス
 	/// </summary>
-	static public partial class WorkStyleTypeExtention
+	static public partial class WorkStyleTypeExtension
 	{
 		#region static methods
 		/// <summary>

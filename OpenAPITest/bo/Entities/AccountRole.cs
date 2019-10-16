@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// アカウントロール拡張メソッド用クラス
 	/// </summary>
-	static public partial class AccountRoleExtention
+	static public partial class AccountRoleExtension
 	{
 		#region static methods
 		/// <summary>

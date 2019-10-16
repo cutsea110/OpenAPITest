@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 連絡先拡張メソッド用クラス
 	/// </summary>
-	static public partial class ContactExtention
+	static public partial class ContactExtension
 	{
 		#region static methods
 		/// <summary>

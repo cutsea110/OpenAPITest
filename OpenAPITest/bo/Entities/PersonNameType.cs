@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 人名種別拡張メソッド用クラス
 	/// </summary>
-	static public partial class PersonNameTypeExtention
+	static public partial class PersonNameTypeExtension
 	{
 		#region static methods
 		/// <summary>

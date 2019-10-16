@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 職階種別拡張メソッド用クラス
 	/// </summary>
-	static public partial class PositionTypeExtention
+	static public partial class PositionTypeExtension
 	{
 		#region static methods
 		/// <summary>

@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// 性別区分拡張メソッド用クラス
 	/// </summary>
-	static public partial class SexTypeExtention
+	static public partial class SexTypeExtension
 	{
 		#region static methods
 		/// <summary>

@@ -51,7 +51,7 @@ namespace OpenAPITest.Domain
 	/// <summary>
 	/// ロール権限拡張メソッド用クラス
 	/// </summary>
-	static public partial class RolePermissionExtention
+	static public partial class RolePermissionExtension
 	{
 		#region static methods
 		/// <summary>
