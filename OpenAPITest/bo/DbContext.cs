@@ -9261,6 +9261,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.role_id == p_role_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なRoleのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Role> IsActiveAt(this ITable<Role> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -10929,6 +10947,23 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.role_id == p_role_id && _.permission_id == p_permission_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なRolePermissionのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<RolePermission> IsActiveAt(this ITable<RolePermission> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -12474,6 +12509,24 @@ namespace OpenAPITest.Domain
 		public static Account Find(this ITable<Account> table, int p_account_id)
 		{
 			return table.SingleOrDefault(_ => _.account_id == p_account_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なAccountのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Account> IsActiveAt(this ITable<Account> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -14363,6 +14416,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.account_id == p_account_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なPasswordのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Password> IsActiveAt(this ITable<Password> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -15975,6 +16046,23 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.account_id == p_account_id && _.role_id == p_role_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なAccountRoleのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<AccountRole> IsActiveAt(this ITable<AccountRole> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -17113,6 +17201,23 @@ namespace OpenAPITest.Domain
 		public static ErrorLog Find(this ITable<ErrorLog> table, int p_uid)
 		{
 			return table.SingleOrDefault(_ => _.uid == p_uid);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なErrorLogのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<ErrorLog> IsActiveAt(this ITable<ErrorLog> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				;
 		}
 		#endregion
 		#endregion
@@ -18559,6 +18664,24 @@ namespace OpenAPITest.Domain
 		public static Staff Find(this ITable<Staff> table, string p_staff_no)
 		{
 			return table.SingleOrDefault(_ => _.staff_no == p_staff_no);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なStaffのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Staff> IsActiveAt(this ITable<Staff> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -20361,6 +20484,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.teacher_no == p_teacher_no);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なTeacherのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Teacher> IsActiveAt(this ITable<Teacher> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -22021,6 +22162,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.user_no == p_user_no);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なUserのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<User> IsActiveAt(this ITable<User> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -23359,6 +23518,24 @@ namespace OpenAPITest.Domain
 		public static SexType Find(this ITable<SexType> table, int p_sex_type_id)
 		{
 			return table.SingleOrDefault(_ => _.sex_type_id == p_sex_type_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なSexTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<SexType> IsActiveAt(this ITable<SexType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -24761,6 +24938,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.work_style_type_id == p_work_style_type_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なWorkStyleTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<WorkStyleType> IsActiveAt(this ITable<WorkStyleType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -26046,6 +26241,24 @@ namespace OpenAPITest.Domain
 		public static PositionType Find(this ITable<PositionType> table, int p_position_type_id)
 		{
 			return table.SingleOrDefault(_ => _.position_type_id == p_position_type_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なPositionTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<PositionType> IsActiveAt(this ITable<PositionType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -27374,6 +27587,24 @@ namespace OpenAPITest.Domain
 		public static TeacherLisenceType Find(this ITable<TeacherLisenceType> table, int p_teacher_lisence_type_id)
 		{
 			return table.SingleOrDefault(_ => _.teacher_lisence_type_id == p_teacher_lisence_type_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なTeacherLisenceTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<TeacherLisenceType> IsActiveAt(this ITable<TeacherLisenceType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -29006,6 +29237,23 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なPersonNameのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<PersonName> IsActiveAt(this ITable<PersonName> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -30534,6 +30782,24 @@ namespace OpenAPITest.Domain
 		public static PersonNameType Find(this ITable<PersonNameType> table, int p_person_name_type_id)
 		{
 			return table.SingleOrDefault(_ => _.person_name_type_id == p_person_name_type_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なPersonNameTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<PersonNameType> IsActiveAt(this ITable<PersonNameType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -32280,6 +32546,23 @@ namespace OpenAPITest.Domain
 		public static Address Find(this ITable<Address> table, int p_user_type, string p_generic_user_no, int p_seq)
 		{
 			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なAddressのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Address> IsActiveAt(this ITable<Address> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
@@ -34040,6 +34323,24 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.address_type_id == p_address_type_id);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なAddressTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<AddressType> IsActiveAt(this ITable<AddressType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -35499,6 +35800,23 @@ namespace OpenAPITest.Domain
 			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
 		}
 		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なContactのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<Contact> IsActiveAt(this ITable<Contact> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
+		}
+		#endregion
 		#endregion
 	}
 	#endregion
@@ -36871,6 +37189,24 @@ namespace OpenAPITest.Domain
 		public static ContactType Find(this ITable<ContactType> table, int p_contact_type_id)
 		{
 			return table.SingleOrDefault(_ => _.contact_type_id == p_contact_type_id);
+		}
+		#endregion
+		#region IsActiveAtメソッド
+		/// <summary>
+		/// when時点で有効なContactTypeのみ収集
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="when">nullの場合には現在日時が使われる</param>
+		/// <returns></returns>
+		public static IQueryable<ContactType> IsActiveAt(this ITable<ContactType> table, DateTime? when = null)
+		{
+			DateTime whenValue = when.HasValue ? when.Value : DateTime.UtcNow;
+
+			return
+				table
+				.Where(_ => _.removed_at == null)
+				.Where(_ => _.available_from <= whenValue && (_.available_to == null || whenValue <= _.available_to))
+				;
 		}
 		#endregion
 		#endregion
