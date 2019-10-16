@@ -64,11 +64,13 @@ namespace OpenAPITest.Controllers
 		/// <param name="c"></param>
 		/// <param name="with_RolePermissionList">RolePermissionListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
+		/// <param name="currentPage">ページ指定</param>
+		/// <param name="pageSize">ページサイズ</param>
 		/// <returns code="200">Roleのリスト</returns>
 		[PermissionTypeAuthorize("Read_Role")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Role>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -87,7 +89,7 @@ namespace OpenAPITest.Controllers
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
 
-                return Ok(ordered.ToList());
+                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
 			}
 		}
 

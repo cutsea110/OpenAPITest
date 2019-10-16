@@ -71,11 +71,13 @@ namespace OpenAPITest.Controllers
 		/// <param name="with_AddressList">AddressListをLoadWithするか</param>
 		/// <param name="with_ContactList">ContactListをLoadWithするか</param>
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
+		/// <param name="currentPage">ページ指定</param>
+		/// <param name="pageSize">ページサイズ</param>
 		/// <returns code="200">Teacherのリスト</returns>
 		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Teacher>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order)
+		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -101,7 +103,7 @@ namespace OpenAPITest.Controllers
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
 
-                return Ok(ordered.ToList());
+                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
 			}
 		}
 
