@@ -83,16 +83,13 @@ namespace OpenAPITest.Controllers
 				var q = db.Account;
 
 				#region LoadWith
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
-				if (with_User)
-					q = q.LoadWith(_ => _.User);
-				if (with_AccountRoleList)
-					q = q.LoadWith(_ => _.AccountRoleList);
-				if (with_PasswordList)
-					q = q.LoadWith(_ => _.PasswordList);
+				q = q
+					.LoadWith(with_Staff, _ => _.Staff)
+					.LoadWith(with_Teacher, _ => _.Teacher)
+					.LoadWith(with_User, _ => _.User)
+					.LoadWith(with_AccountRoleList, _ => _.AccountRoleList)
+					.LoadWith(with_PasswordList, _ => _.PasswordList)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -128,16 +125,13 @@ namespace OpenAPITest.Controllers
 				var q = db.Account;
 
 				#region LoadWith
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
-				if (with_User)
-					q = q.LoadWith(_ => _.User);
-				if (with_AccountRoleList)
-					q = q.LoadWith(_ => _.AccountRoleList);
-				if (with_PasswordList)
-					q = q.LoadWith(_ => _.PasswordList);
+				q = q
+					.LoadWith(with_Staff, _ => _.Staff)
+					.LoadWith(with_Teacher, _ => _.Teacher)
+					.LoadWith(with_User, _ => _.User)
+					.LoadWith(with_AccountRoleList, _ => _.AccountRoleList)
+					.LoadWith(with_PasswordList, _ => _.PasswordList)
+					;
 				#endregion
 
 				var o = q.Find(accountId);

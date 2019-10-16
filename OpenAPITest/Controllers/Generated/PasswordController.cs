@@ -79,8 +79,9 @@ namespace OpenAPITest.Controllers
 				var q = db.Password;
 
 				#region LoadWith
-				if (with_Account)
-					q = q.LoadWith(_ => _.Account);
+				q = q
+					.LoadWith(with_Account, _ => _.Account)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -112,8 +113,9 @@ namespace OpenAPITest.Controllers
 				var q = db.Password;
 
 				#region LoadWith
-				if (with_Account)
-					q = q.LoadWith(_ => _.Account);
+				q = q
+					.LoadWith(with_Account, _ => _.Account)
+					;
 				#endregion
 
 				var o = q.Find(accountId);

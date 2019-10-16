@@ -79,8 +79,9 @@ namespace OpenAPITest.Controllers
 				var q = db.Role;
 
 				#region LoadWith
-				if (with_RolePermissionList)
-					q = q.LoadWith(_ => _.RolePermissionList);
+				q = q
+					.LoadWith(with_RolePermissionList, _ => _.RolePermissionList)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -112,8 +113,9 @@ namespace OpenAPITest.Controllers
 				var q = db.Role;
 
 				#region LoadWith
-				if (with_RolePermissionList)
-					q = q.LoadWith(_ => _.RolePermissionList);
+				q = q
+					.LoadWith(with_RolePermissionList, _ => _.RolePermissionList)
+					;
 				#endregion
 
 				var o = q.Find(roleId);

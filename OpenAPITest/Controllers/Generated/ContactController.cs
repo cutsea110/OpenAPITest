@@ -81,12 +81,11 @@ namespace OpenAPITest.Controllers
 				var q = db.Contact;
 
 				#region LoadWith
-				if (with_ContactType)
-					q = q.LoadWith(_ => _.ContactType);
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
+				q = q
+					.LoadWith(with_ContactType, _ => _.ContactType)
+					.LoadWith(with_Staff, _ => _.Staff)
+					.LoadWith(with_Teacher, _ => _.Teacher)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -122,12 +121,11 @@ namespace OpenAPITest.Controllers
 				var q = db.Contact;
 
 				#region LoadWith
-				if (with_ContactType)
-					q = q.LoadWith(_ => _.ContactType);
-				if (with_Staff)
-					q = q.LoadWith(_ => _.Staff);
-				if (with_Teacher)
-					q = q.LoadWith(_ => _.Teacher);
+				q = q
+					.LoadWith(with_ContactType, _ => _.ContactType)
+					.LoadWith(with_Staff, _ => _.Staff)
+					.LoadWith(with_Teacher, _ => _.Teacher)
+					;
 				#endregion
 
 				var o = q.Find(userType, genericUserNo, seq);

@@ -86,22 +86,16 @@ namespace OpenAPITest.Controllers
 				var q = db.Teacher;
 
 				#region LoadWith
-				if (with_WorkStyle)
-					q = q.LoadWith(_ => _.WorkStyle);
-				if (with_Position)
-					q = q.LoadWith(_ => _.Position);
-				if (with_TeacherLisence)
-					q = q.LoadWith(_ => _.TeacherLisence);
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
+				q = q
+					.LoadWith(with_WorkStyle, _ => _.WorkStyle)
+					.LoadWith(with_Position, _ => _.Position)
+					.LoadWith(with_TeacherLisence, _ => _.TeacherLisence)
+					.LoadWith(with_SexType, _ => _.SexType)
+					.LoadWith(with_AccountList, _ => _.AccountList)
+					.LoadWith(with_NameList, _ => _.NameList)
+					.LoadWith(with_AddressList, _ => _.AddressList)
+					.LoadWith(with_ContactList, _ => _.ContactList)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -140,22 +134,16 @@ namespace OpenAPITest.Controllers
 				var q = db.Teacher;
 
 				#region LoadWith
-				if (with_WorkStyle)
-					q = q.LoadWith(_ => _.WorkStyle);
-				if (with_Position)
-					q = q.LoadWith(_ => _.Position);
-				if (with_TeacherLisence)
-					q = q.LoadWith(_ => _.TeacherLisence);
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
+				q = q
+					.LoadWith(with_WorkStyle, _ => _.WorkStyle)
+					.LoadWith(with_Position, _ => _.Position)
+					.LoadWith(with_TeacherLisence, _ => _.TeacherLisence)
+					.LoadWith(with_SexType, _ => _.SexType)
+					.LoadWith(with_AccountList, _ => _.AccountList)
+					.LoadWith(with_NameList, _ => _.NameList)
+					.LoadWith(with_AddressList, _ => _.AddressList)
+					.LoadWith(with_ContactList, _ => _.ContactList)
+					;
 				#endregion
 
 				var o = q.Find(teacherNo);

@@ -83,16 +83,13 @@ namespace OpenAPITest.Controllers
 				var q = db.User;
 
 				#region LoadWith
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
+				q = q
+					.LoadWith(with_SexType, _ => _.SexType)
+					.LoadWith(with_AccountList, _ => _.AccountList)
+					.LoadWith(with_NameList, _ => _.NameList)
+					.LoadWith(with_AddressList, _ => _.AddressList)
+					.LoadWith(with_ContactList, _ => _.ContactList)
+					;
 				#endregion
 
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
@@ -128,16 +125,13 @@ namespace OpenAPITest.Controllers
 				var q = db.User;
 
 				#region LoadWith
-				if (with_SexType)
-					q = q.LoadWith(_ => _.SexType);
-				if (with_AccountList)
-					q = q.LoadWith(_ => _.AccountList);
-				if (with_NameList)
-					q = q.LoadWith(_ => _.NameList);
-				if (with_AddressList)
-					q = q.LoadWith(_ => _.AddressList);
-				if (with_ContactList)
-					q = q.LoadWith(_ => _.ContactList);
+				q = q
+					.LoadWith(with_SexType, _ => _.SexType)
+					.LoadWith(with_AccountList, _ => _.AccountList)
+					.LoadWith(with_NameList, _ => _.NameList)
+					.LoadWith(with_AddressList, _ => _.AddressList)
+					.LoadWith(with_ContactList, _ => _.ContactList)
+					;
 				#endregion
 
 				var o = q.Find(userNo);
