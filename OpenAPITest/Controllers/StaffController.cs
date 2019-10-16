@@ -49,11 +49,13 @@ namespace OpenAPITest.Controllers
         /// </summary>
         /// <param name="c"></param>
         /// <param name="order">例) birth_date Desc, gender Asc, staff_no</param>
+		/// <param name="currentPage">ページ指定</param>
+		/// <param name="pageSize">ページサイズ</param>
         /// <returns></returns>
         [PermissionTypeAuthorize("Read_Staff")]
         [HttpGet("search-full")]
 		[ProducesResponseType(typeof(IEnumerable<Staff>), StatusCodes.Status200OK)]
-		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order)
+		public IActionResult SearchFull([FromQuery]StaffCondition c, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -70,7 +72,7 @@ namespace OpenAPITest.Controllers
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
 
-                return Ok(ordered.ToList());
+                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
 			}
 		}
 	}
