@@ -5852,6 +5852,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region テスト拡張
+	/// <summary>
+	/// テスト拡張
+	/// </summary>
+	static public partial class TestExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してTestデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_uid">ユニークID(uid)</param>
+		/// <returns></returns>
+		public static Test Find(this ITable<Test> table, int p_uid)
+		{
+			return table.SingleOrDefault(_ => _.uid == p_uid);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region テスト条件
 	/// <summary>
 	/// テスト条件
@@ -9220,6 +9242,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region ロールマスタ拡張
+	/// <summary>
+	/// ロールマスタ拡張
+	/// </summary>
+	static public partial class RoleExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してRoleデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_role_id">ロールID(role_id)</param>
+		/// <returns></returns>
+		public static Role Find(this ITable<Role> table, string p_role_id)
+		{
+			return table.SingleOrDefault(_ => _.role_id == p_role_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region ロールマスタ条件
 	/// <summary>
 	/// ロールマスタ条件
@@ -10865,6 +10909,29 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region ロール権限拡張
+	/// <summary>
+	/// ロール権限拡張
+	/// </summary>
+	static public partial class RolePermissionExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してRolePermissionデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_role_id">ロールID(role_id)</param>
+		/// <param name="p_permission_id">権限ID(permission_id)</param>
+		/// <returns></returns>
+		public static RolePermission Find(this ITable<RolePermission> table, string p_role_id, string p_permission_id)
+		{
+			return table.SingleOrDefault(_ => _.role_id == p_role_id && _.permission_id == p_permission_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region ロール権限条件
 	/// <summary>
 	/// ロール権限条件
@@ -12390,6 +12457,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region アカウント拡張
+	/// <summary>
+	/// アカウント拡張
+	/// </summary>
+	static public partial class AccountExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してAccountデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_account_id">アカウントID(account_id)</param>
+		/// <returns></returns>
+		public static Account Find(this ITable<Account> table, int p_account_id)
+		{
+			return table.SingleOrDefault(_ => _.account_id == p_account_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region アカウント条件
 	/// <summary>
 	/// アカウント条件
@@ -14255,6 +14344,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region パスワード認証拡張
+	/// <summary>
+	/// パスワード認証拡張
+	/// </summary>
+	static public partial class PasswordExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してPasswordデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_account_id">アカウントID(account_id)</param>
+		/// <returns></returns>
+		public static Password Find(this ITable<Password> table, int p_account_id)
+		{
+			return table.SingleOrDefault(_ => _.account_id == p_account_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region パスワード認証条件
 	/// <summary>
 	/// パスワード認証条件
@@ -15844,6 +15955,29 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region アカウントロール拡張
+	/// <summary>
+	/// アカウントロール拡張
+	/// </summary>
+	static public partial class AccountRoleExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してAccountRoleデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_account_id">アカウントID(account_id)</param>
+		/// <param name="p_role_id">ロールID(role_id)</param>
+		/// <returns></returns>
+		public static AccountRole Find(this ITable<AccountRole> table, int p_account_id, string p_role_id)
+		{
+			return table.SingleOrDefault(_ => _.account_id == p_account_id && _.role_id == p_role_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region アカウントロール条件
 	/// <summary>
 	/// アカウントロール条件
@@ -16962,6 +17096,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region エラーログ拡張
+	/// <summary>
+	/// エラーログ拡張
+	/// </summary>
+	static public partial class ErrorLogExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してErrorLogデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_uid">ユニークID(uid)</param>
+		/// <returns></returns>
+		public static ErrorLog Find(this ITable<ErrorLog> table, int p_uid)
+		{
+			return table.SingleOrDefault(_ => _.uid == p_uid);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region エラーログ条件
 	/// <summary>
 	/// エラーログ条件
@@ -18386,6 +18542,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 職員拡張
+	/// <summary>
+	/// 職員拡張
+	/// </summary>
+	static public partial class StaffExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してStaffデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_staff_no">職員番号(staff_no)</param>
+		/// <returns></returns>
+		public static Staff Find(this ITable<Staff> table, string p_staff_no)
+		{
+			return table.SingleOrDefault(_ => _.staff_no == p_staff_no);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 職員条件
 	/// <summary>
 	/// 職員条件
@@ -20164,6 +20342,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 教員拡張
+	/// <summary>
+	/// 教員拡張
+	/// </summary>
+	static public partial class TeacherExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してTeacherデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_teacher_no">教員番号(teacher_no)</param>
+		/// <returns></returns>
+		public static Teacher Find(this ITable<Teacher> table, string p_teacher_no)
+		{
+			return table.SingleOrDefault(_ => _.teacher_no == p_teacher_no);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 教員条件
 	/// <summary>
 	/// 教員条件
@@ -21802,6 +22002,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 他ユーザ拡張
+	/// <summary>
+	/// 他ユーザ拡張
+	/// </summary>
+	static public partial class UserExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してUserデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_user_no">利用者番号(user_no)</param>
+		/// <returns></returns>
+		public static User Find(this ITable<User> table, string p_user_no)
+		{
+			return table.SingleOrDefault(_ => _.user_no == p_user_no);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 他ユーザ条件
 	/// <summary>
 	/// 他ユーザ条件
@@ -23120,6 +23342,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 性別区分拡張
+	/// <summary>
+	/// 性別区分拡張
+	/// </summary>
+	static public partial class SexTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してSexTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_sex_type_id">性別区分ID(sex_type_id)</param>
+		/// <returns></returns>
+		public static SexType Find(this ITable<SexType> table, int p_sex_type_id)
+		{
+			return table.SingleOrDefault(_ => _.sex_type_id == p_sex_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 性別区分条件
 	/// <summary>
 	/// 性別区分条件
@@ -24498,6 +24742,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 勤務形態種別拡張
+	/// <summary>
+	/// 勤務形態種別拡張
+	/// </summary>
+	static public partial class WorkStyleTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してWorkStyleTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_work_style_type_id">勤務形態種別ID(work_style_type_id)</param>
+		/// <returns></returns>
+		public static WorkStyleType Find(this ITable<WorkStyleType> table, int p_work_style_type_id)
+		{
+			return table.SingleOrDefault(_ => _.work_style_type_id == p_work_style_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 勤務形態種別条件
 	/// <summary>
 	/// 勤務形態種別条件
@@ -25763,6 +26029,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 職階種別拡張
+	/// <summary>
+	/// 職階種別拡張
+	/// </summary>
+	static public partial class PositionTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してPositionTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_position_type_id">職階ID(position_type_id)</param>
+		/// <returns></returns>
+		public static PositionType Find(this ITable<PositionType> table, int p_position_type_id)
+		{
+			return table.SingleOrDefault(_ => _.position_type_id == p_position_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 職階種別条件
 	/// <summary>
 	/// 職階種別条件
@@ -27069,6 +27357,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 教員資格種別拡張
+	/// <summary>
+	/// 教員資格種別拡張
+	/// </summary>
+	static public partial class TeacherLisenceTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してTeacherLisenceTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_teacher_lisence_type_id">教員資格種別ID(teacher_lisence_type_id)</param>
+		/// <returns></returns>
+		public static TeacherLisenceType Find(this ITable<TeacherLisenceType> table, int p_teacher_lisence_type_id)
+		{
+			return table.SingleOrDefault(_ => _.teacher_lisence_type_id == p_teacher_lisence_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 教員資格種別条件
 	/// <summary>
 	/// 教員資格種別条件
@@ -28675,6 +28985,30 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 人名拡張
+	/// <summary>
+	/// 人名拡張
+	/// </summary>
+	static public partial class PersonNameExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してPersonNameデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_user_type">利用者種別(user_type)</param>
+		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
+		/// <param name="p_seq">連番(seq)</param>
+		/// <returns></returns>
+		public static PersonName Find(this ITable<PersonName> table, int p_user_type, string p_generic_user_no, int p_seq)
+		{
+			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 人名条件
 	/// <summary>
 	/// 人名条件
@@ -30183,6 +30517,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 人名種別拡張
+	/// <summary>
+	/// 人名種別拡張
+	/// </summary>
+	static public partial class PersonNameTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してPersonNameTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_person_name_type_id">人名種別ID(person_name_type_id)</param>
+		/// <returns></returns>
+		public static PersonNameType Find(this ITable<PersonNameType> table, int p_person_name_type_id)
+		{
+			return table.SingleOrDefault(_ => _.person_name_type_id == p_person_name_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 人名種別条件
 	/// <summary>
 	/// 人名種別条件
@@ -31905,6 +32261,30 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 住所拡張
+	/// <summary>
+	/// 住所拡張
+	/// </summary>
+	static public partial class AddressExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してAddressデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_user_type">利用者種別(user_type)</param>
+		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
+		/// <param name="p_seq">連番(seq)</param>
+		/// <returns></returns>
+		public static Address Find(this ITable<Address> table, int p_user_type, string p_generic_user_no, int p_seq)
+		{
+			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 住所条件
 	/// <summary>
 	/// 住所条件
@@ -33641,6 +34021,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 住所種別拡張
+	/// <summary>
+	/// 住所種別拡張
+	/// </summary>
+	static public partial class AddressTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してAddressTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_address_type_id">住所種別ID(address_type_id)</param>
+		/// <returns></returns>
+		public static AddressType Find(this ITable<AddressType> table, int p_address_type_id)
+		{
+			return table.SingleOrDefault(_ => _.address_type_id == p_address_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 住所種別条件
 	/// <summary>
 	/// 住所種別条件
@@ -35076,6 +35478,30 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 連絡先拡張
+	/// <summary>
+	/// 連絡先拡張
+	/// </summary>
+	static public partial class ContactExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してContactデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_user_type">利用者種別(user_type)</param>
+		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
+		/// <param name="p_seq">連番(seq)</param>
+		/// <returns></returns>
+		public static Contact Find(this ITable<Contact> table, int p_user_type, string p_generic_user_no, int p_seq)
+		{
+			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 連絡先条件
 	/// <summary>
 	/// 連絡先条件
@@ -36428,6 +36854,28 @@ namespace OpenAPITest.Domain
 		#endregion
 
 	}
+	#region 連絡先種別拡張
+	/// <summary>
+	/// 連絡先種別拡張
+	/// </summary>
+	static public partial class ContactTypeExtention
+	{
+		#region static methods
+		#region Findメソッド
+		/// <summary>
+		/// 主キーを指定してContactTypeデータ取得
+		/// </summary>
+		/// <param name="table"></param>
+		/// <param name="p_contact_type_id">連絡先種別ID(contact_type_id)</param>
+		/// <returns></returns>
+		public static ContactType Find(this ITable<ContactType> table, int p_contact_type_id)
+		{
+			return table.SingleOrDefault(_ => _.contact_type_id == p_contact_type_id);
+		}
+		#endregion
+		#endregion
+	}
+	#endregion
 	#region 連絡先種別条件
 	/// <summary>
 	/// 連絡先種別条件
@@ -37110,216 +37558,6 @@ namespace OpenAPITest.Domain
 	#region peppaDB拡張
 	public static partial class peppaDBExtend
 	{
-		#region Findメソッド
-		/// <summary>
-		/// 主キーを指定してTestデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_uid">ユニークID(uid)</param>
-		/// <returns></returns>
-		public static Test Find(this ITable<Test> table, int p_uid)
-		{
-			return table.SingleOrDefault(_ => _.uid == p_uid);
-		}
-		/// <summary>
-		/// 主キーを指定してRoleデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_role_id">ロールID(role_id)</param>
-		/// <returns></returns>
-		public static Role Find(this ITable<Role> table, string p_role_id)
-		{
-			return table.SingleOrDefault(_ => _.role_id == p_role_id);
-		}
-		/// <summary>
-		/// 主キーを指定してRolePermissionデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_role_id">ロールID(role_id)</param>
-		/// <param name="p_permission_id">権限ID(permission_id)</param>
-		/// <returns></returns>
-		public static RolePermission Find(this ITable<RolePermission> table, string p_role_id, string p_permission_id)
-		{
-			return table.SingleOrDefault(_ => _.role_id == p_role_id && _.permission_id == p_permission_id);
-		}
-		/// <summary>
-		/// 主キーを指定してAccountデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_account_id">アカウントID(account_id)</param>
-		/// <returns></returns>
-		public static Account Find(this ITable<Account> table, int p_account_id)
-		{
-			return table.SingleOrDefault(_ => _.account_id == p_account_id);
-		}
-		/// <summary>
-		/// 主キーを指定してPasswordデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_account_id">アカウントID(account_id)</param>
-		/// <returns></returns>
-		public static Password Find(this ITable<Password> table, int p_account_id)
-		{
-			return table.SingleOrDefault(_ => _.account_id == p_account_id);
-		}
-		/// <summary>
-		/// 主キーを指定してAccountRoleデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_account_id">アカウントID(account_id)</param>
-		/// <param name="p_role_id">ロールID(role_id)</param>
-		/// <returns></returns>
-		public static AccountRole Find(this ITable<AccountRole> table, int p_account_id, string p_role_id)
-		{
-			return table.SingleOrDefault(_ => _.account_id == p_account_id && _.role_id == p_role_id);
-		}
-		/// <summary>
-		/// 主キーを指定してErrorLogデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_uid">ユニークID(uid)</param>
-		/// <returns></returns>
-		public static ErrorLog Find(this ITable<ErrorLog> table, int p_uid)
-		{
-			return table.SingleOrDefault(_ => _.uid == p_uid);
-		}
-		/// <summary>
-		/// 主キーを指定してStaffデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_staff_no">職員番号(staff_no)</param>
-		/// <returns></returns>
-		public static Staff Find(this ITable<Staff> table, string p_staff_no)
-		{
-			return table.SingleOrDefault(_ => _.staff_no == p_staff_no);
-		}
-		/// <summary>
-		/// 主キーを指定してTeacherデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_teacher_no">教員番号(teacher_no)</param>
-		/// <returns></returns>
-		public static Teacher Find(this ITable<Teacher> table, string p_teacher_no)
-		{
-			return table.SingleOrDefault(_ => _.teacher_no == p_teacher_no);
-		}
-		/// <summary>
-		/// 主キーを指定してUserデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_user_no">利用者番号(user_no)</param>
-		/// <returns></returns>
-		public static User Find(this ITable<User> table, string p_user_no)
-		{
-			return table.SingleOrDefault(_ => _.user_no == p_user_no);
-		}
-		/// <summary>
-		/// 主キーを指定してSexTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_sex_type_id">性別区分ID(sex_type_id)</param>
-		/// <returns></returns>
-		public static SexType Find(this ITable<SexType> table, int p_sex_type_id)
-		{
-			return table.SingleOrDefault(_ => _.sex_type_id == p_sex_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してWorkStyleTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_work_style_type_id">勤務形態種別ID(work_style_type_id)</param>
-		/// <returns></returns>
-		public static WorkStyleType Find(this ITable<WorkStyleType> table, int p_work_style_type_id)
-		{
-			return table.SingleOrDefault(_ => _.work_style_type_id == p_work_style_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してPositionTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_position_type_id">職階ID(position_type_id)</param>
-		/// <returns></returns>
-		public static PositionType Find(this ITable<PositionType> table, int p_position_type_id)
-		{
-			return table.SingleOrDefault(_ => _.position_type_id == p_position_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してTeacherLisenceTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_teacher_lisence_type_id">教員資格種別ID(teacher_lisence_type_id)</param>
-		/// <returns></returns>
-		public static TeacherLisenceType Find(this ITable<TeacherLisenceType> table, int p_teacher_lisence_type_id)
-		{
-			return table.SingleOrDefault(_ => _.teacher_lisence_type_id == p_teacher_lisence_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してPersonNameデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_user_type">利用者種別(user_type)</param>
-		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
-		/// <param name="p_seq">連番(seq)</param>
-		/// <returns></returns>
-		public static PersonName Find(this ITable<PersonName> table, int p_user_type, string p_generic_user_no, int p_seq)
-		{
-			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
-		}
-		/// <summary>
-		/// 主キーを指定してPersonNameTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_person_name_type_id">人名種別ID(person_name_type_id)</param>
-		/// <returns></returns>
-		public static PersonNameType Find(this ITable<PersonNameType> table, int p_person_name_type_id)
-		{
-			return table.SingleOrDefault(_ => _.person_name_type_id == p_person_name_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してAddressデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_user_type">利用者種別(user_type)</param>
-		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
-		/// <param name="p_seq">連番(seq)</param>
-		/// <returns></returns>
-		public static Address Find(this ITable<Address> table, int p_user_type, string p_generic_user_no, int p_seq)
-		{
-			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
-		}
-		/// <summary>
-		/// 主キーを指定してAddressTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_address_type_id">住所種別ID(address_type_id)</param>
-		/// <returns></returns>
-		public static AddressType Find(this ITable<AddressType> table, int p_address_type_id)
-		{
-			return table.SingleOrDefault(_ => _.address_type_id == p_address_type_id);
-		}
-		/// <summary>
-		/// 主キーを指定してContactデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_user_type">利用者種別(user_type)</param>
-		/// <param name="p_generic_user_no">利用者番号(generic_user_no)</param>
-		/// <param name="p_seq">連番(seq)</param>
-		/// <returns></returns>
-		public static Contact Find(this ITable<Contact> table, int p_user_type, string p_generic_user_no, int p_seq)
-		{
-			return table.SingleOrDefault(_ => _.user_type == p_user_type && _.generic_user_no == p_generic_user_no && _.seq == p_seq);
-		}
-		/// <summary>
-		/// 主キーを指定してContactTypeデータ取得
-		/// </summary>
-		/// <param name="table"></param>
-		/// <param name="p_contact_type_id">連絡先種別ID(contact_type_id)</param>
-		/// <returns></returns>
-		public static ContactType Find(this ITable<ContactType> table, int p_contact_type_id)
-		{
-			return table.SingleOrDefault(_ => _.contact_type_id == p_contact_type_id);
-		}
-		#endregion
 	}
 	#endregion
 
