@@ -8799,6 +8799,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -9054,6 +9134,8 @@ namespace OpenAPITest.Domain
 			abbrev = "";
 			name_en = "";
 			abbrev_en = "";
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -9402,6 +9484,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public string abbrev_en_like { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -9701,6 +9867,28 @@ namespace OpenAPITest.Domain
 			if (abbrev_en_in != null) predicate = predicate.And(_ => abbrev_en_in.Contains(_.abbrev_en));
 			if (abbrev_en_ni != null) predicate = predicate.And(_ => !abbrev_en_ni.Contains(_.abbrev_en));
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -9892,6 +10080,86 @@ namespace OpenAPITest.Domain
 		private void Onpermission_idChanged()
 		{
 			OnPropertyChanged(_permission_idChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
 		}
 
 		#endregion
@@ -10552,6 +10820,8 @@ namespace OpenAPITest.Domain
 			uid = default(int);
 			role_id = "";
 			permission_id = "";
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -10773,6 +11043,90 @@ namespace OpenAPITest.Domain
 			get => _permission_id_between.HasValue ? (_permission_id_between.Value.low.ToPermissionType().Value, _permission_id_between.Value.high.ToPermissionType().Value) : ((PermissionType, PermissionType)?)null;
 			set => _permission_id_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((string, string)?)null;
 		}
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -10996,6 +11350,28 @@ namespace OpenAPITest.Domain
 			if (_permission_id_ge != null) predicate = predicate.And(_ => _permission_id_ge.CompareTo(_.permission_id) <= 0);
 			if (_permission_id_in != null) predicate = predicate.And(_ => _permission_id_in.Contains(_.permission_id));
 			if (_permission_id_ni != null) predicate = predicate.And(_ => !_permission_id_ni.Contains(_.permission_id));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -11421,6 +11797,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -11688,6 +12144,8 @@ namespace OpenAPITest.Domain
 			parent_no = null;
 			user_no = null;
 			is_valid = 1;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -12407,6 +12865,90 @@ namespace OpenAPITest.Domain
 			set => _is_valid_between = value.HasValue ? (value.Value.low.Val(), value.Value.high.Val()) : ((int, int)?)null;
 		}
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -12747,6 +13289,28 @@ namespace OpenAPITest.Domain
 			if (_is_valid_ge != null) predicate = predicate.And(_ => _.is_valid >= _is_valid_ge);
 			if (_is_valid_in != null) predicate = predicate.And(_ => _is_valid_in.Contains(_.is_valid));
 			if (_is_valid_ni != null) predicate = predicate.And(_ => !_is_valid_ni.Contains(_.is_valid));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -13224,6 +13788,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -13525,6 +14169,8 @@ namespace OpenAPITest.Domain
 			fail_times = 0;
 			lock_flg = 0;
 			lock_reason = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -14133,6 +14779,90 @@ namespace OpenAPITest.Domain
 			set => _lock_reason_isnotnull = value;
 		}
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -14478,6 +15208,28 @@ namespace OpenAPITest.Domain
 			if (_lock_reason_isnull) predicate = predicate.And(_ => _.lock_reason == null);
 			if (_lock_reason_isnotnull) predicate = predicate.And(_ => _.lock_reason != null);
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -14714,6 +15466,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -14927,6 +15759,8 @@ namespace OpenAPITest.Domain
 			account_id = 0;
 			role_id = "";
 			note = "";
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -15186,6 +16020,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public string note_like { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -15418,6 +16336,28 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -16857,6 +17797,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -17120,6 +18140,8 @@ namespace OpenAPITest.Domain
 			staff_no = "";
 			sex_type = null;
 			birth_date = null;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -17635,6 +18657,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public bool birth_date_isnotnull { get; set; } = false;
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -17927,6 +19033,28 @@ namespace OpenAPITest.Domain
 			if (birth_date_ni != null) predicate = predicate.And(_ => !birth_date_ni.Contains(_.birth_date.Value));
 			if (birth_date_isnull) predicate = predicate.And(_ => _.birth_date == null);
 			if (birth_date_isnotnull) predicate = predicate.And(_ => _.birth_date != null);
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -18324,6 +19452,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -18590,6 +19798,8 @@ namespace OpenAPITest.Domain
 			work_style_type = 0;
 			position_type = 0;
 			teacher_lisence_type = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -19339,6 +20549,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public (int? low, int? high)? teacher_lisence_type_between { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -19662,6 +20956,28 @@ namespace OpenAPITest.Domain
 			if (teacher_lisence_type_in != null) predicate = predicate.And(_ => teacher_lisence_type_in.Contains(_.teacher_lisence_type));
 			if (teacher_lisence_type_ni != null) predicate = predicate.And(_ => !teacher_lisence_type_ni.Contains(_.teacher_lisence_type));
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -19893,6 +21209,86 @@ namespace OpenAPITest.Domain
 		private void Onsex_typeChanged()
 		{
 			OnPropertyChanged(_sex_typeChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
 		}
 
 		#endregion
@@ -20160,6 +21556,8 @@ namespace OpenAPITest.Domain
 			user_type = 6;
 			user_no = "";
 			sex_type = null;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -20629,6 +22027,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public bool sex_type_isnotnull { get; set; } = false;
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -20909,6 +22391,28 @@ namespace OpenAPITest.Domain
 			if (sex_type_ni != null) predicate = predicate.And(_ => !sex_type_ni.Contains(_.sex_type.Value));
 			if (sex_type_isnull) predicate = predicate.And(_ => _.sex_type == null);
 			if (sex_type_isnotnull) predicate = predicate.And(_ => _.sex_type != null);
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -21226,6 +22730,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -21490,6 +23074,8 @@ namespace OpenAPITest.Domain
 			gender_type = 1;
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -21849,6 +23435,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -22150,6 +23820,28 @@ namespace OpenAPITest.Domain
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -22426,6 +24118,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -22680,6 +24452,8 @@ namespace OpenAPITest.Domain
 			name = "";
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -22937,6 +24711,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -23227,6 +25085,28 @@ namespace OpenAPITest.Domain
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -23503,6 +25383,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -23757,6 +25717,8 @@ namespace OpenAPITest.Domain
 			name = "";
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -24014,6 +25976,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -24303,6 +26349,28 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -24620,6 +26688,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -24875,6 +27023,8 @@ namespace OpenAPITest.Domain
 			rank = 0;
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -25170,6 +27320,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -25469,6 +27703,28 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -25946,6 +28202,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -26174,6 +28510,8 @@ namespace OpenAPITest.Domain
 			name_abbrev = "";
 			name_eng = "";
 			name_eng_abbrev = "";
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -26802,6 +29140,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public string name_eng_abbrev_like { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -27095,6 +29517,28 @@ namespace OpenAPITest.Domain
 			if (name_eng_abbrev_in != null) predicate = predicate.And(_ => name_eng_abbrev_in.Contains(_.name_eng_abbrev));
 			if (name_eng_abbrev_ni != null) predicate = predicate.And(_ => !name_eng_abbrev_ni.Contains(_.name_eng_abbrev));
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -27359,6 +29803,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -27613,6 +30137,8 @@ namespace OpenAPITest.Domain
 			name = "";
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -27870,6 +30396,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -28159,6 +30769,28 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -28796,6 +31428,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -29028,6 +31740,8 @@ namespace OpenAPITest.Domain
 			longitude = null;
 			enter_date = null;
 			leave_date = null;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -29836,6 +32550,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public bool leave_date_isnotnull { get; set; } = false;
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -30177,6 +32975,28 @@ namespace OpenAPITest.Domain
 			if (leave_date_isnull) predicate = predicate.And(_ => _.leave_date == null);
 			if (leave_date_isnotnull) predicate = predicate.And(_ => _.leave_date != null);
 			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
+			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
 			if (created_at_ne != null) predicate = predicate.And(_ => _.created_at != created_at_ne);
@@ -30441,6 +33261,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -30695,6 +33595,8 @@ namespace OpenAPITest.Domain
 			name = "";
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -30952,6 +33854,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -31241,6 +34227,28 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -31598,6 +34606,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -31823,6 +34911,8 @@ namespace OpenAPITest.Domain
 			contact_type_id = 0;
 			contact = "";
 			note = "";
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -32325,6 +35415,90 @@ namespace OpenAPITest.Domain
 		/// </summary>
 		[DataMember] public string note_like { get; set; }
 		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
+		#endregion
 		#region created_at
 		/// <summary>
 		/// created_at_eqと等しい
@@ -32587,6 +35761,28 @@ namespace OpenAPITest.Domain
 			if (note_ge != null) predicate = predicate.And(_ => note_ge.CompareTo(_.note) <= 0);
 			if (note_in != null) predicate = predicate.And(_ => note_in.Contains(_.note));
 			if (note_ni != null) predicate = predicate.And(_ => !note_ni.Contains(_.note));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
@@ -32852,6 +36048,86 @@ namespace OpenAPITest.Domain
 		#endregion
 
 		#endregion
+		#region available_from : DateTime
+
+		private DateTime _available_from;
+		/// <summary>
+		/// 利用開始日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, NotNull]
+		public  DateTime  available_from
+		{
+			get { return _available_from; }
+			set
+			{
+				if (_available_from != value)
+				{
+					Beforeavailable_fromChanged(value);
+					_available_from = value;
+					Afteravailable_fromChanged();
+
+					Onavailable_fromChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_fromChanged(DateTime newValue);
+		partial void Afteravailable_fromChanged();
+
+		public const string NameOfavailable_from = "available_from";
+
+		private static readonly PropertyChangedEventArgs _available_fromChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_from);
+
+		private void Onavailable_fromChanged()
+		{
+			OnPropertyChanged(_available_fromChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
+		#region available_to : DateTime?
+
+		private DateTime? _available_to;
+		/// <summary>
+		/// 利用終了日時
+		/// </summary>
+		[Column(DbType="datetime2(7)", DataType=DataType.DateTime2, Precision=7), DataMember, Nullable]
+		public  DateTime?  available_to
+		{
+			get { return _available_to; }
+			set
+			{
+				if (_available_to != value)
+				{
+					Beforeavailable_toChanged(value);
+					_available_to = value;
+					Afteravailable_toChanged();
+
+					Onavailable_toChanged();
+				}
+			}
+		}
+
+		#region INotifyPropertyChanged support
+
+		partial void Beforeavailable_toChanged(DateTime? newValue);
+		partial void Afteravailable_toChanged();
+
+		public const string NameOfavailable_to = "available_to";
+
+		private static readonly PropertyChangedEventArgs _available_toChangedEventArgs = new PropertyChangedEventArgs(NameOfavailable_to);
+
+		private void Onavailable_toChanged()
+		{
+			OnPropertyChanged(_available_toChangedEventArgs);
+		}
+
+		#endregion
+
+		#endregion
 		#region created_at : DateTime
 
 		private DateTime _created_at;
@@ -33106,6 +36382,8 @@ namespace OpenAPITest.Domain
 			name = "";
 			description = "";
 			display_order = 0;
+			available_from = DateTime.UtcNow;
+			available_to = null;
 			created_at = DateTime.UtcNow;
 			created_by = null;
 			modified_at = DateTime.UtcNow;
@@ -33363,6 +36641,90 @@ namespace OpenAPITest.Domain
 		/// display_order_betweenの範囲内にある
 		/// </summary>
 		[DataMember] public (int? low, int? high)? display_order_between { get; set; }
+		#endregion
+		#region available_from
+		/// <summary>
+		/// available_from_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_from_eq { get; set; }
+		/// <summary>
+		/// available_from_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_from_ne { get; set; }
+		/// <summary>
+		/// available_from_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_from_lt { get; set; }
+		/// <summary>
+		/// available_from_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_from_gt { get; set; }
+		/// <summary>
+		/// available_from_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_from_le { get; set; }
+		/// <summary>
+		/// available_from_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_from_ge { get; set; }
+		/// <summary>
+		/// available_from_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_in { get; set; }
+		/// <summary>
+		/// available_from_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_from_ni { get; set; }
+		/// <summary>
+		/// available_from_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_from_between { get; set; }
+		#endregion
+		#region available_to
+		/// <summary>
+		/// available_to_eqと等しい
+		/// </summary>
+		[DataMember] public DateTime? available_to_eq { get; set; }
+		/// <summary>
+		/// available_to_neと等しくない
+		/// </summary>
+		[DataMember] public DateTime? available_to_ne { get; set; }
+		/// <summary>
+		/// available_to_ltより小さい
+		/// </summary>
+		[DataMember] public DateTime? available_to_lt { get; set; }
+		/// <summary>
+		/// available_to_gtより大きい
+		/// </summary>
+		[DataMember] public DateTime? available_to_gt { get; set; }
+		/// <summary>
+		/// available_to_le以下
+		/// </summary>
+		[DataMember] public DateTime? available_to_le { get; set; }
+		/// <summary>
+		/// available_to_ge以上
+		/// </summary>
+		[DataMember] public DateTime? available_to_ge { get; set; }
+		/// <summary>
+		/// available_to_inに含まれる
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_in { get; set; }
+		/// <summary>
+		/// available_to_niに含まれない
+		/// </summary>
+		[DataMember] public IEnumerable<DateTime> available_to_ni { get; set; }
+		/// <summary>
+		/// available_to_betweenの範囲内にある
+		/// </summary>
+		[DataMember] public (DateTime? low, DateTime? high)? available_to_between { get; set; }
+		/// <summary>
+		/// available_toがNULLか
+		/// </summary>
+		[DataMember] public bool available_to_isnull { get; set; } =  false ;
+		/// <summary>
+		/// available_toがNULLではないか
+		/// </summary>
+		[DataMember] public bool available_to_isnotnull { get; set; } = false;
 		#endregion
 		#region created_at
 		/// <summary>
@@ -33652,6 +37014,28 @@ namespace OpenAPITest.Domain
 			if (display_order_ge != null) predicate = predicate.And(_ => _.display_order >= display_order_ge);
 			if (display_order_in != null) predicate = predicate.And(_ => display_order_in.Contains(_.display_order));
 			if (display_order_ni != null) predicate = predicate.And(_ => !display_order_ni.Contains(_.display_order));
+			#endregion
+			#region available_from
+			if (available_from_eq != null) predicate = predicate.And(_ => _.available_from == available_from_eq);
+			if (available_from_ne != null) predicate = predicate.And(_ => _.available_from != available_from_ne);
+			if (available_from_lt != null) predicate = predicate.And(_ => _.available_from < available_from_lt);
+			if (available_from_gt != null) predicate = predicate.And(_ => _.available_from > available_from_gt);
+			if (available_from_le != null) predicate = predicate.And(_ => _.available_from <= available_from_le);
+			if (available_from_ge != null) predicate = predicate.And(_ => _.available_from >= available_from_ge);
+			if (available_from_in != null) predicate = predicate.And(_ => available_from_in.Contains(_.available_from));
+			if (available_from_ni != null) predicate = predicate.And(_ => !available_from_ni.Contains(_.available_from));
+			#endregion
+			#region available_to
+			if (available_to_eq != null) predicate = predicate.And(_ => _.available_to == available_to_eq);
+			if (available_to_ne != null) predicate = predicate.And(_ => _.available_to != available_to_ne);
+			if (available_to_lt != null) predicate = predicate.And(_ => _.available_to < available_to_lt);
+			if (available_to_gt != null) predicate = predicate.And(_ => _.available_to > available_to_gt);
+			if (available_to_le != null) predicate = predicate.And(_ => _.available_to <= available_to_le);
+			if (available_to_ge != null) predicate = predicate.And(_ => _.available_to >= available_to_ge);
+			if (available_to_in != null) predicate = predicate.And(_ => available_to_in.Contains(_.available_to.Value));
+			if (available_to_ni != null) predicate = predicate.And(_ => !available_to_ni.Contains(_.available_to.Value));
+			if (available_to_isnull) predicate = predicate.And(_ => _.available_to == null);
+			if (available_to_isnotnull) predicate = predicate.And(_ => _.available_to != null);
 			#endregion
 			#region created_at
 			if (created_at_eq != null) predicate = predicate.And(_ => _.created_at == created_at_eq);
