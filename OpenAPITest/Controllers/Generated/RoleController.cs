@@ -118,14 +118,9 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Role;
-
-				#region LoadWith
-				q = q
+				var q = db.Role
 					.LoadWith(with_RolePermissionList, _ => _.RolePermissionList)
 					;
-				#endregion
-
 				var o = q.Find(roleId);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}

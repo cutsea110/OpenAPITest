@@ -85,8 +85,6 @@ namespace OpenAPITest.Controllers
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
 				var result = ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-
-
                 return Ok(result);
 			}
 		}
@@ -109,7 +107,8 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.AddressType;
+				var q = db.AddressType
+					;
 				var o = q.Find(addressTypeId);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}

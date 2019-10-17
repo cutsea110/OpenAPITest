@@ -133,18 +133,13 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Staff;
-
-				#region LoadWith
-				q = q
+				var q = db.Staff
 					.LoadWith(with_SexType, _ => _.SexType)
 					.LoadWith(with_AccountList, _ => _.AccountList)
 					.LoadWith(with_NameList, _ => _.NameList)
 					.LoadWith(with_AddressList, _ => _.AddressList)
 					.LoadWith(with_ContactList, _ => _.ContactList)
 					;
-				#endregion
-
 				var o = q.Find(staffNo);
 				return o == null ? (IActionResult)NotFound() : Ok(o);
 			}
