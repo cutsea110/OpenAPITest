@@ -4,6 +4,7 @@
 //	Changes to this file may cause incorrect behavior and will be lost if the code is regenerated.
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -66,11 +67,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <param name="currentPage">ページ指定</param>
 		/// <param name="pageSize">ページサイズ</param>
+		/// <param name="p_when">この指定日時において有効なデータのみに限定する.null(デフォルト)なら限定しない.</param>
 		/// <returns code="200">Roleのリスト</returns>
 		[PermissionTypeAuthorize("Read_Role")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Role>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
+		public IActionResult Search([FromQuery]RoleCondition c, [FromQuery]bool with_RolePermissionList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10, DateTime? p_when = null)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -78,18 +80,22 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Role;
-
-				#region LoadWith
-				q = q
+				var q = db.Role
 					.LoadWith(with_RolePermissionList, _ => _.RolePermissionList)
+					.IsActiveAt(p_when)
 					;
-				#endregion
-
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+				var result = ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
-                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
+				#region アソシエーションでLoadWithしたものもフィルタする
+				result.ForEach(_ =>
+				{
+					_.RolePermissionList = _.RolePermissionList?.Where(_ => _.IsActiveAt(p_when));
+				});
+				#endregion
+
+                return Ok(result);
 			}
 		}
 

@@ -4,6 +4,7 @@
 //	Changes to this file may cause incorrect behavior and will be lost if the code is regenerated.
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -70,11 +71,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <param name="currentPage">ページ指定</param>
 		/// <param name="pageSize">ページサイズ</param>
+		/// <param name="p_when">この指定日時において有効なデータのみに限定する.null(デフォルト)なら限定しない.</param>
 		/// <returns code="200">Accountのリスト</returns>
 		[PermissionTypeAuthorize("Read_Account")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Account>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_User, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
+		public IActionResult Search([FromQuery]AccountCondition c, [FromQuery]bool with_Staff, [FromQuery]bool with_Teacher, [FromQuery]bool with_User, [FromQuery]bool with_AccountRoleList, [FromQuery]bool with_PasswordList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10, DateTime? p_when = null)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -82,22 +84,27 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Account;
-
-				#region LoadWith
-				q = q
+				var q = db.Account
 					.LoadWith(with_Staff, _ => _.Staff)
 					.LoadWith(with_Teacher, _ => _.Teacher)
 					.LoadWith(with_User, _ => _.User)
 					.LoadWith(with_AccountRoleList, _ => _.AccountRoleList)
 					.LoadWith(with_PasswordList, _ => _.PasswordList)
+					.IsActiveAt(p_when)
 					;
-				#endregion
-
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+				var result = ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
-                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
+				#region アソシエーションでLoadWithしたものもフィルタする
+				result.ForEach(_ =>
+				{
+					_.AccountRoleList = _.AccountRoleList?.Where(_ => _.IsActiveAt(p_when));
+					_.PasswordList = _.PasswordList?.Where(_ => _.IsActiveAt(p_when));
+				});
+				#endregion
+
+                return Ok(result);
 			}
 		}
 

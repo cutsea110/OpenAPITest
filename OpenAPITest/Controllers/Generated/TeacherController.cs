@@ -4,6 +4,7 @@
 //	Changes to this file may cause incorrect behavior and will be lost if the code is regenerated.
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -73,11 +74,12 @@ namespace OpenAPITest.Controllers
 		/// <param name="order">Prop0[.Prop1.Prop2...] [Asc|Desc], ...</param>
 		/// <param name="currentPage">ページ指定</param>
 		/// <param name="pageSize">ページサイズ</param>
+		/// <param name="p_when">この指定日時において有効なデータのみに限定する.null(デフォルト)なら限定しない.</param>
 		/// <returns code="200">Teacherのリスト</returns>
 		[PermissionTypeAuthorize("Read_Teacher")]
 		[HttpGet("search")]
 		[ProducesResponseType(typeof(IEnumerable<Teacher>), StatusCodes.Status200OK)]
-		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10)
+		public IActionResult Search([FromQuery]TeacherCondition c, [FromQuery]bool with_WorkStyle, [FromQuery]bool with_Position, [FromQuery]bool with_TeacherLisence, [FromQuery]bool with_SexType, [FromQuery]bool with_AccountList, [FromQuery]bool with_NameList, [FromQuery]bool with_AddressList, [FromQuery]bool with_ContactList, [FromQuery]string[] order, int currentPage = 1, int pageSize = 10, DateTime? p_when = null)
 		{
 #if DEBUG
 			DataConnection.TurnTraceSwitchOn();
@@ -85,10 +87,7 @@ namespace OpenAPITest.Controllers
 #endif
 			using (var db = new peppaDB())
 			{
-				var q = db.Teacher;
-
-				#region LoadWith
-				q = q
+				var q = db.Teacher
 					.LoadWith(with_WorkStyle, _ => _.WorkStyle)
 					.LoadWith(with_Position, _ => _.Position)
 					.LoadWith(with_TeacherLisence, _ => _.TeacherLisence)
@@ -97,13 +96,23 @@ namespace OpenAPITest.Controllers
 					.LoadWith(with_NameList, _ => _.NameList)
 					.LoadWith(with_AddressList, _ => _.AddressList)
 					.LoadWith(with_ContactList, _ => _.ContactList)
+					.IsActiveAt(p_when)
 					;
-				#endregion
-
                 var filtered = c == null ? q : q.Where(c.CreatePredicate());
                 var ordered = order.Any() ? filtered.SortBy(order) : filtered;
+				var result = ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
-                return Ok(ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList());
+				#region アソシエーションでLoadWithしたものもフィルタする
+				result.ForEach(_ =>
+				{
+					_.AccountList = _.AccountList?.Where(_ => _.IsActiveAt(p_when));
+					_.NameList = _.NameList?.Where(_ => _.IsActiveAt(p_when));
+					_.AddressList = _.AddressList?.Where(_ => _.IsActiveAt(p_when));
+					_.ContactList = _.ContactList?.Where(_ => _.IsActiveAt(p_when));
+				});
+				#endregion
+
+                return Ok(result);
 			}
 		}
 
