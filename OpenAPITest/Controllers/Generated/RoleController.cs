@@ -89,10 +89,13 @@ namespace OpenAPITest.Controllers
 				var result = ordered.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
 				#region アソシエーションでLoadWithしたものもフィルタする
-				result.ForEach(_ =>
+				if (p_when != null)
 				{
-					_.RolePermissionList = _.RolePermissionList?.Where(_ => _.IsActiveAt(p_when));
-				});
+					result.ForEach(_ =>
+					{
+						_.RolePermissionList = _.RolePermissionList?.Where(_ => _.IsActiveAt(p_when));
+					});
+				}
 				#endregion
 
                 return Ok(result);
